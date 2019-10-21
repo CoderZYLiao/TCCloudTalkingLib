@@ -1,0 +1,6 @@
+framework module TCCloudTalking {
+  umbrella header "TCCloudTalking-umbrella.h"
+
+  export *
+  module * { export * }
+}

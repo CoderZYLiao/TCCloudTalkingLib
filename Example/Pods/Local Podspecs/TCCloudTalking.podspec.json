@@ -1,0 +1,22 @@
+{
+  "name": "TCCloudTalking",
+  "version": "0.1.0",
+  "summary": "A short description of TCCloudTalking.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/TYL/TCCloudTalking",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "TYL": "tianyalin@taichuan.com"
+  },
+  "source": {
+    "git": "https://github.com/TYL/TCCloudTalking.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "TCCloudTalking/Classes/**/*"
+}
