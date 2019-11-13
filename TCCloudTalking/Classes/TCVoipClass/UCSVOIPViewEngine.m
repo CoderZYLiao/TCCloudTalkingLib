@@ -401,7 +401,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
 -(void)incomingCallID:(NSString*)callid caller:(NSString*)caller phone:(NSString*)phone name:(NSString*)name callStatus:(int)status callType:(NSInteger)calltype{
 //-(void)incomingCallInfo:(NSDictionary *)callInfo andCallID:(NSString *)callid caller:(NSString*)caller phone:(NSString*)phone name:(NSString*)name callStatus:(int)status callType:(NSInteger)calltype{//门口机使用该代理方法
     
-    debugLog(@"callid===%@---caller==%@--phone===%@---name==%@---calltype===%ld",callid,caller,phone,name,(long)calltype);
+    NSLog(@"callid===%@---caller==%@--phone===%@---name==%@---calltype===%ld",callid,caller,phone,name,(long)calltype);
     //猫眼特殊处理callInfo
     //    {
     //        "fromId":"xxxxx", // 呼叫方的id

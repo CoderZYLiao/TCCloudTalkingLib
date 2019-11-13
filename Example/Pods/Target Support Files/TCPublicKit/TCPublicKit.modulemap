@@ -1,6 +1,0 @@
-framework module TCPublicKit {
-  umbrella header "TCPublicKit-umbrella.h"
-
-  export *
-  module * { export * }
-}
