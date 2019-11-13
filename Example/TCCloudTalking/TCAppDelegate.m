@@ -7,12 +7,30 @@
 //
 
 #import "TCAppDelegate.h"
+#import "TCCLoginViewController.h"
+#import "TCNavigationController.h"
+#import "Header.h"
+@interface TCAppDelegate()<UCSTCPDelegateBase>
+
+@end
 
 @implementation TCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     // Override point for customization after application launch.
+    
+    
+    TCCLoginViewController *LoginVc = [[TCCLoginViewController alloc] initWithNibName:@"TCCLoginViewController" bundle:nil];
+    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:LoginVc];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
+    
+    //设置tcp代理
+    [[UCSTcpClient sharedTcpClientManager] setTcpDelegate:self];
+    //云对讲功能初始化
+    [UCSFuncEngine getInstance];
     return YES;
 }
 
@@ -42,5 +60,9 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+
+
 
 @end

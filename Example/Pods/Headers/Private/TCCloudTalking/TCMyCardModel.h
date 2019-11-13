@@ -1,0 +1,1 @@
+../../../../../TCCloudTalking/Classes/SmartDoor/Model/TCMyCardModel.h
