@@ -47,7 +47,7 @@
 		23C2E7D8576FBC2C51438E8B0E058B8C /* UCSTCPSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 829885FC3BF2657EB0ECAAD9056DAE9B /* UCSTCPSDK.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2483E89B2B38B3C6BF4F28539C2CB7E0 /* InfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FC712A1456BA53FC3B3347033F67E3 /* InfoManager.m */; };
 		253C3DC37B49553B049C04986B78CEBD /* MJPropertyKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 817B117F9D2A617C21B5C335B8078C77 /* MJPropertyKey.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		266BF750A88C63FFDE0C3A501BC19BDE /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBE0C598EAFB16E951F6E43A30288DC /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		266BF750A88C63FFDE0C3A501BC19BDE /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EBE0C598EAFB16E951F6E43A30288DC /* GTMBase64.m */; };
 		26D831863641AFBB6FE318F06473D6B1 /* SGPageContentScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = DFCC17AE0BC9C22386C16CE276E297D3 /* SGPageContentScrollView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		272CAD9BE7B7DEA79A637A5A726AFC85 /* TCCUserDefaulfManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2BC070617851AE49832C495198B753B3 /* TCCUserDefaulfManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		276E211DF2576013850ADEF55B7DDE62 /* UnlockRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4637E2181CAEB7252DD50CB122AE11E /* UnlockRecordTableViewCell.m */; };
