@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   #库名称
   s.name             = 'TCCloudTalking'
   #版本号
-  s.version          = '1.0.4.2'
+  s.version          = '1.0.4.3'
   #库简短介绍
   s.summary          = '云对讲组件'
 
@@ -79,5 +79,8 @@ TODO: Add long description of the pod here.
   }
   #在 podspec 文件中添加 s.static_framework = true，CocoaPods 就会把这个库配置成static framework。同时支持 Swift 和 Objective-C
   #s.static_framework = true
+  
+  #设置此处将在 模拟器编译时不产生二进制文件
+  s.pod_target_xcconfig = { 'VALID_ARCHS[sdk=iphonesimulator*]' => '' }
   
 end
