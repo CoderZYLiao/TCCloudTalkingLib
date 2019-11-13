@@ -10,6 +10,5 @@ target 'TCCloudTalking_Example' do
     inherit! :search_paths
     
     pod 'FBSnapshotTestCase'
-    pod 'FMDB', '~> 2.6.2'
   end
 end

@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   #库名称
   s.name             = 'TCCloudTalking'
   #版本号
-  s.version          = '1.0.4'
+  s.version          = '1.0.4.1'
   #库简短介绍
   s.summary          = '云对讲组件'
 
@@ -49,7 +49,7 @@ TODO: Add long description of the pod here.
   s.requires_arc = true
   
   #依赖系统库
-  s.frameworks = 'Foundation','UIKit','MapKit','VideoToolbox','CoreGraphics','AssetsLibrary','AddressBookUI','MapKit','CoreAudio','AudioToolbox','CFNetwork','SystemConfiguration','MobileCoreServices','StoreKit','CoreLocation','CoreTelephony','AVFoundation','MediaPlayer','CoreMedia','CoreFoundation','MessageUI','AddressBook'
+ 
 
   #开源库依赖库
   # s.dependency "Masonry", "~> 1.0"
@@ -59,6 +59,8 @@ TODO: Add long description of the pod here.
   s.dependency 'MJRefresh'
   s.dependency 'MJExtension'
 
+  #依赖的系统框架
+  s.frameworks = 'Foundation','UIKit','MapKit','VideoToolbox','CoreGraphics','AssetsLibrary','AddressBookUI','MapKit','CoreAudio','AudioToolbox','CFNetwork','SystemConfiguration','MobileCoreServices','StoreKit','CoreLocation','CoreTelephony','AVFoundation','MediaPlayer','CoreMedia','CoreFoundation','MessageUI','AddressBook'
   #添加系统依赖静态库
   s.library = 'resolv','sqlite3.0','z', 'stdc++.6','stdc++'
 
