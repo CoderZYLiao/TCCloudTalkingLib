@@ -255,7 +255,6 @@
     //    XMGTitleButton *titleBtn = self.titleButtons[index];
     TCTitleButton *titleBtn = self.titleVc.subviews[index];
     
-    //    NSLog(@"%@",titleBtn);
     //点击按钮
     [self titleClick:titleBtn];
     
