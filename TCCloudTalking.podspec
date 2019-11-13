@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   #库名称
   s.name             = 'TCCloudTalking'
   #版本号
-  s.version          = '1.0.4.3'
+  s.version          = '1.0.4.4'
   #库简短介绍
   s.summary          = '云对讲组件'
 
@@ -52,8 +52,8 @@ TODO: Add long description of the pod here.
  
 
   #开源库依赖库
-  # s.dependency "Masonry", "~> 1.0"
-  # s.dependency 'TCPublicKit'
+
+  s.dependency 'TCPublicKit'
   s.dependency 'FMDB', '~> 2.6.2'
   s.dependency 'Masonry'
   s.dependency 'MJRefresh'
