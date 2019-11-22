@@ -1,1 +1,1 @@
-../../../TCPublicKit/TCPublicKit/Classes/Category/UIImage+ZYAdd.h
+../../../TCPublicKit/TCPublicKit/Classes/Base/UIImage+ZYAdd.h

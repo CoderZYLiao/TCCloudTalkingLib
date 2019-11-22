@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @class TCVoipCallListModel;
 @interface TCCallRecordsModel : NSObject
+
 @property (copy, nonatomic) NSString * userId;       // 账号ID
 @property (copy, nonatomic) NSString * nickName;     // 账号昵称
 @property (copy, nonatomic) NSString * time;         // 拨打或者接听时间

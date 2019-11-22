@@ -10,6 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TCVoipCallListModel : NSObject
+
 @property (copy, nonatomic) NSString * userId;       // 账号ID
 @property (copy, nonatomic) NSString * isTop;        // 是否置顶
 @property (copy, nonatomic) NSString * nickName;     // 账号昵称

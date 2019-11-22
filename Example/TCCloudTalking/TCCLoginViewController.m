@@ -143,11 +143,11 @@ static NSTimer *loginTimer;
         
         
         //userToekn 申请的测试账号的loginToken
-//        NSString *userToekn =@"eyJBbGciOiJIUzI1NiIsIkFjY2lkIjoiY2I3MzhjZmNkNmFlYTkxMDZiZTk5OTc2NzZlNzJhMDIiLCJBcHBpZCI6ImFjNTdhMDc3ZGIwYjRjY2JhNzEwNTU5Yzk4NzlkYmQ1IiwiVXNlcmlkIjoiZmUzMDI1YWFmODczODgyMyJ9.YqhSu0pc/eF2O2XmctfZFPCxpf3eKYzkntK0CTDdS5M=";
-//        //UserCallid 对方的useid
-//        self.UserCallid = @"401304503eb5118";
-        NSString *userToekn =@"eyJBbGciOiJIUzI1NiIsIkFjY2lkIjoiY2I3MzhjZmNkNmFlYTkxMDZiZTk5OTc2NzZlNzJhMDIiLCJBcHBpZCI6ImFjNTdhMDc3ZGIwYjRjY2JhNzEwNTU5Yzk4NzlkYmQ1IiwiVXNlcmlkIjoiNDAxMzA0NTAzZWI1MTE4In0=.0RHcTByw4AMAkGH//oGJc57c223tK+O/kc6Ay7n7LRk=";
-        self.UserCallid = @"fe3025aaf8738823";
+        NSString *userToekn =@"eyJBbGciOiJIUzI1NiIsIkFjY2lkIjoiY2I3MzhjZmNkNmFlYTkxMDZiZTk5OTc2NzZlNzJhMDIiLCJBcHBpZCI6ImFjNTdhMDc3ZGIwYjRjY2JhNzEwNTU5Yzk4NzlkYmQ1IiwiVXNlcmlkIjoiZmUzMDI1YWFmODczODgyMyJ9.YqhSu0pc/eF2O2XmctfZFPCxpf3eKYzkntK0CTDdS5M=";
+        //UserCallid 对方的useid
+        self.UserCallid = @"401304503eb5118";
+//        NSString *userToekn =@"eyJBbGciOiJIUzI1NiIsIkFjY2lkIjoiY2I3MzhjZmNkNmFlYTkxMDZiZTk5OTc2NzZlNzJhMDIiLCJBcHBpZCI6ImFjNTdhMDc3ZGIwYjRjY2JhNzEwNTU5Yzk4NzlkYmQ1IiwiVXNlcmlkIjoiNDAxMzA0NTAzZWI1MTE4In0=.0RHcTByw4AMAkGH//oGJc57c223tK+O/kc6Ay7n7LRk=";
+//        self.UserCallid = @"fe3025aaf8738823";
        
         [TCCUserDefaulfManager SetLocalDataString:userToekn key:UserTccToken];
         [TCCUserDefaulfManager SetLocalDataString:self.UserCallid key:UserTccUserID];

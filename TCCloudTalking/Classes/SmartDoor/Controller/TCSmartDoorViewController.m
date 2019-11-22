@@ -13,6 +13,7 @@
 #import "TCQRCodeUnlockViewController.h"
 #import "TCMyCardViewController.h"
 #import "TCCallRecordsViewController.h"
+#import "TCOpenDoorView.h"
 #import "Header.h"
 static NSString *const SmartDoorID = @"SmartDoorID";
 @interface TCSmartDoorViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
@@ -120,6 +121,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     CollectionButtonModel *model = self.displayArray[indexPath.item];
     if ([model.CollectionName isEqualToString:@"监视门口"]) {
 
+        [TCOpenDoorView show:OpenDoor_LookDoor];
     }else if ([model.CollectionName isEqualToString:@"通话记录"])
     {
         TCCallRecordsViewController *CallVc = [[TCCallRecordsViewController alloc] init];

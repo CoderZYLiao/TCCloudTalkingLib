@@ -9,9 +9,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 @class TCUnlcokRecordModel;
+@class TCCallRecordsModel;
 @interface UnlockRecordTableViewCell : UITableViewCell
-/****模型 ******************/
+/****开锁记录模型 ******************/
 @property (nonatomic, strong) TCUnlcokRecordModel *RecordModel;
+
+/****呼叫记录模型 ******************/
+@property (nonatomic, strong) TCCallRecordsModel *callRecordModel;
 +(instancetype)viewFromBundleXib;
 @end
 

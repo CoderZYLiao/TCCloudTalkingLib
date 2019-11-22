@@ -26,9 +26,31 @@
 #import "MJExtension.h"
 #import <MJRefresh/MJRefresh.h>
 #import <YYKit/YYKit.h>
+#import "SVProgressHUD.h"
+//依赖Publickitk的头文件
+#import "TCHttpTool.h"
+#import "TCConfigDefine.h"
+#import "TCPersonalInfoModel.h"
+#import "TCUserModel.h"
+#import "TCCommunityModel.h"
 //公共库头文件
 //#import "TCPublicKit.h"
 //#import "UIImage+ZYAdd.h"
+
+//TCCloudTalking请求头文件
+#import "TCCloudTalkRequestTool.h"
+
+
+// 获取我的门口机列表
+#define GetMyDoorURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/equipments", KProjectAPIBaseURL]
+// 获取我的卡列表
+#define GetMyCardsURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/cards", KProjectAPIBaseURL]
+// 获取我的小区列表
+#define GetMyCommunityURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/communities", KProjectAPIBaseURL]
+// 获取我的开锁记录
+#define GetMyUnlocklogURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/unlocklogs", KProjectAPIBaseURL]
+
+
 
 // Notification for UI Action
 #define NOTIFICATION_ANSWERCALL_UI          @"Notification_AnswerCall_UI"

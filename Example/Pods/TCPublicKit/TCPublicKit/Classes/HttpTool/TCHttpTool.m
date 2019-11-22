@@ -19,23 +19,17 @@ static AFHTTPSessionManager *mgr = nil;
     dispatch_once(&onceTask, ^{
         sharedHttpTool = [[TCHttpTool alloc] init];
         mgr = [AFHTTPSessionManager manager];
+        mgr.requestSerializer = [AFJSONRequestSerializer serializer];
         [mgr.requestSerializer setTimeoutInterval:10];
-        mgr.responseSerializer = [AFJSONResponseSerializer serializer];
         NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:TCAccessToken];
         [mgr.requestSerializer setValue:[NSString stringWithFormat:@"bearer %@", accessToken] forHTTPHeaderField:@"Authorization"];
+        mgr.responseSerializer = [AFJSONResponseSerializer serializer];
+        mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"application/x-json",@"text/html",@"text/plain", nil];
     });
     return sharedHttpTool;
 }
 
-#pragma mark - Public
-
-- (void)updateMgrRequestAccessToken:(NSString *)accessToken
-{
-    [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:TCAccessToken];
-    [mgr.requestSerializer setValue:[NSString stringWithFormat:@"bearer %@", accessToken] forHTTPHeaderField:@"Authorization"];
-}
-
-#pragma mark - Get
+#pragma mark - Private
 
 // 获取token接口
 - (void)GetTokenRequestSuccess:(void (^)(id responseObject))success
@@ -50,25 +44,142 @@ static AFHTTPSessionManager *mgr = nil;
     [params setObject:userName forKey:@"username"];
     [params setObject:password forKey:@"password"];
     
-    [[TCHttpTool sharedHttpTool] postWithURL:GetTokenURL params:params success:^(id  _Nonnull json) {
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    [mgr.requestSerializer setTimeoutInterval:10];
+    [mgr.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [[TCHttpTool sharedHttpTool] postWithURL:GetTokenURL params:params withManager:mgr success:^(id  _Nonnull json) {
         NSString *access_token = [json objectForKey:@"access_token"];
         [self updateMgrRequestAccessToken:access_token];
-         if (success)
-         {
-             success(access_token);
-         }
+        if (success)
+        {
+            success(access_token);
+        }
     } failure:^(NSError * _Nonnull error) {
         [SVProgressHUD showInfoWithStatus:@"获取登录Token失败"];
     }];
 }
 
-- (void)postWithURL:(NSString *)url
-             params:(NSDictionary *)params
+#pragma mark - Public
+
+- (void)updateMgrRequestAccessToken:(NSString *)accessToken
+{
+    [[NSUserDefaults standardUserDefaults] setObject:accessToken forKey:TCAccessToken];
+    [mgr.requestSerializer setValue:[NSString stringWithFormat:@"bearer %@", accessToken] forHTTPHeaderField:@"Authorization"];
+}
+
+- (void)putWithURL:(NSString *)url
+              params:(id)params
+             success:(void (^)(id))success
+             failure:(void (^)(NSError *))failure
+{
+    [SVProgressHUD show];
+    __typeof(self) __weak weakSelf = self;
+    [mgr.requestSerializer setValue:@"application/json-patch+json" forHTTPHeaderField:@"Content-Type"];
+    [mgr PUT:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success)
+        {
+            [SVProgressHUD dismiss];
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if ([responseObject[@"resultCode"] isEqualToString:@"31"]) {  //强制重新登录
+                    failure(nil);
+                    [[NSNotificationCenter defaultCenter] postNotificationName:ForceToLoginNotification object:responseObject];
+                } else if ([responseObject[@"resultCode"] isEqualToString:@"401"]) {  // token过期，刷新再重新请求
+                    [weakSelf GetTokenRequestSuccess:^(id responseObject) {
+                        [weakSelf patchWithURL:url params:params success:success failure:failure];
+                    }];
+                } else {
+                    success(responseObject);
+                }
+            }else{
+                success(responseObject);
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure)
+        {
+            [SVProgressHUD dismiss];
+            failure(error);
+        }
+    }];
+}
+
+- (void)patchWithURL:(NSString *)url
+             params:(id)params
             success:(void (^)(id))success
             failure:(void (^)(NSError *))failure
 {
     [SVProgressHUD show];
     __typeof(self) __weak weakSelf = self;
+    [mgr.requestSerializer setValue:@"application/json-patch+json" forHTTPHeaderField:@"Content-Type"];
+    [mgr PATCH:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success)
+        {
+            [SVProgressHUD dismiss];
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if ([responseObject[@"resultCode"] isEqualToString:@"31"]) {  //强制重新登录
+                    failure(nil);
+                    [[NSNotificationCenter defaultCenter] postNotificationName:ForceToLoginNotification object:responseObject];
+                } else if ([responseObject[@"resultCode"] isEqualToString:@"401"]) {  // token过期，刷新再重新请求
+                    [weakSelf GetTokenRequestSuccess:^(id responseObject) {
+                        [weakSelf patchWithURL:url params:params success:success failure:failure];
+                    }];
+                } else {
+                    success(responseObject);
+                }
+            }else{
+                success(responseObject);
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure)
+        {
+            [SVProgressHUD dismiss];
+            failure(error);
+        }
+    }];
+}
+
+// 自定义的manager
+- (void)patchWithURL:(NSString *)url
+             params:(id)params withManager:(AFHTTPSessionManager *)manager
+            success:(void (^)(id))success
+            failure:(void (^)(NSError *))failure
+{
+    [SVProgressHUD show];
+    [manager PATCH:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success)
+        {
+            [SVProgressHUD dismiss];
+            if ([responseObject isKindOfClass:[NSDictionary class]]) {
+                if ([responseObject[@"resultCode"] isEqualToString:@"31"]) {  //强制重新登录
+                    failure(nil);
+                    [[NSNotificationCenter defaultCenter] postNotificationName:ForceToLoginNotification object:responseObject];
+                } else{
+                    success(responseObject);
+                }
+            } else{
+                success(responseObject);
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure)
+        {
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showInfoWithStatus:error.description];
+            failure(error);
+        }
+    }];
+}
+
+- (void)postWithURL:(NSString *)url
+             params:(id)params
+            success:(void (^)(id))success
+            failure:(void (^)(NSError *))failure
+{
+    [SVProgressHUD show];
+    __typeof(self) __weak weakSelf = self;
+    [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [mgr POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -101,7 +212,7 @@ static AFHTTPSessionManager *mgr = nil;
 
 // 自定义的manager
 - (void)postWithURL:(NSString *)url
-             params:(NSDictionary *)params withManager:(AFHTTPSessionManager *)manager
+             params:(id)params withManager:(AFHTTPSessionManager *)manager
             success:(void (^)(id))success
             failure:(void (^)(NSError *))failure
 {
@@ -127,14 +238,15 @@ static AFHTTPSessionManager *mgr = nil;
         if (failure)
         {
             [SVProgressHUD dismiss];
-            [SVProgressHUD showInfoWithStatus:error.description];
+            [SVProgressHUD showInfoWithStatus:error.localizedDescription];
             failure(error);
         }
     }];
 }
 
-- (void)postWithURL:(NSString *)url params:(NSDictionary *)params formDataArray:(NSArray *)formDataArray success:(void (^)(id))success failure:(void (^)(NSError *))failure
+- (void)postWithURL:(NSString *)url params:(id)params formDataArray:(NSArray *)formDataArray success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
+    [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [mgr POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (IWFormData *data in formDataArray)
         {
@@ -159,9 +271,9 @@ static AFHTTPSessionManager *mgr = nil;
     }];
 }
 
-- (void)getWithURL:(NSString *)url params:(NSDictionary *)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
+- (void)getWithURL:(NSString *)url params:(id)params success:(void (^)(id))success failure:(void (^)(NSError *))failure
 {
-    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"application/x-json",@"text/html", nil];
+    [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [mgr GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -172,44 +284,13 @@ static AFHTTPSessionManager *mgr = nil;
             
             NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
             
-            DDLog(@"%@",[NSString stringWithFormat:@"[post]请求URL \n%@ 请求参数 \n%@ 回调结果\n%@",url,params,jsonStr]);
+            DDLog(@"%@",[NSString stringWithFormat:@"[get]请求URL \n%@ 请求参数 \n%@ 回调结果\n%@",url,params,jsonStr]);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if(failure)
         {
             failure(error);
-            DDLog(@"%@",[NSString stringWithFormat:@"[post]请求URL \n%@ 请求参数 \n%@ 错误信息\n%@",url,params,error]);
-        }
-    }];
-}
-
-
-- (void)postWithResponseWithURL:(NSString *)url
-                         params:(NSDictionary *)params
-                        success:(void (^)(id))success
-                        failure:(void (^)(NSError *))failure
-{
-    [mgr POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (success)
-        {
-            if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                if ([responseObject[@"resultCode"] isEqualToString:@"31"]) {//强制重新登录
-                    failure(nil);
-                    [[NSNotificationCenter defaultCenter]postNotificationName:ForceToLoginNotification object:responseObject];
-                }else{
-                    success(responseObject);
-                }
-            }else{
-                success(responseObject);
-            }
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (failure)
-        {
-            NSLog(@"%@",[NSString stringWithFormat:@"[post]请求URL \n%@ 请求参数 \n%@ 错误信息\n%@",url,params,error]);
-            failure(error);
+            DDLog(@"%@",[NSString stringWithFormat:@"[get]请求URL \n%@ 请求参数 \n%@ 错误信息\n%@",url,params,error]);
         }
     }];
 }

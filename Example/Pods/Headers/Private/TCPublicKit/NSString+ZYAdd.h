@@ -1,1 +1,1 @@
-../../../TCPublicKit/TCPublicKit/Classes/Category/NSString+ZYAdd.h
+../../../TCPublicKit/TCPublicKit/Classes/Base/NSString+ZYAdd.h

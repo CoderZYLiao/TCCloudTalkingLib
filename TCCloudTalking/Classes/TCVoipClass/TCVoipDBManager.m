@@ -13,10 +13,10 @@
 #import <objc/runtime.h>
 #import "InfoManager.h"
 #import "FMDatabaseQueue.h"
+#import "Header.h"
 
 #define VOIP_DB_NAME @"voip.sqlite3"
-#define VOIP_CALL_LIST @"UCSVoipCallListModel"  // 语音通话表
-#define VOIP_CALL_RECORD @"UCSCallRecordsModel" // 通话记录表
+#define VOIP_CALL_LIST @"TCVoipCallListModel"  // 语音通话表
 @implementation TCVoipDBManager
 + (instancetype)shareInstance
 {
@@ -58,7 +58,8 @@
 - (FMDatabaseQueue *)voipQueue
 {
     if (_voipQueue == nil) {
-        NSString * userId = [InfoManager sharedInfoManager].phone;
+        TCUserModel *userModel = [[TCPersonalInfoModel shareInstance] getUserModel];
+        NSString * userId = userModel.phoneNumber;
         NSString * filepath = [[self pathForUserId:userId] stringByAppendingPathComponent:VOIP_DB_NAME];
 //        DDLogWarn(@"fileoath is %@",filepath);
         _voipQueue = [[FMDatabaseQueue alloc] initWithPath:filepath];
@@ -77,21 +78,6 @@
 //                    DDLogWarn(@">>>>>>>creat %@ table error ",VOIP_CALL_LIST);
                 }
             }
-            // 检查表是否存在 不存在则创建
-            if (![db tableExists:VOIP_CALL_RECORD]) {
-                NSString * callRecordsSql1 = [NSString stringWithFormat:@"create table if not exists %@ ",VOIP_CALL_RECORD];
-                NSArray * propertyList = [self getPropertyList:VOIP_CALL_RECORD];
-                NSMutableString * callRecordsSql2 = [NSMutableString string];
-                for ( int i = 0; i < propertyList.count; i++) {
-                    (i == 0)?[callRecordsSql2 appendFormat:@"%@ text",propertyList[i]]:[callRecordsSql2 appendFormat:@",%@ text",propertyList[i]];
-                }
-                NSString * callRecordsSql = [NSString stringWithFormat:@"%@(%@)",callRecordsSql1,callRecordsSql2];
-                // 创建对应的表
-                if (![db executeUpdate:callRecordsSql]) {
-//                    DDLogWarn(@">>>>>>>>>creat %@ table error ",VOIP_CALL_RECORD);
-                }
-            }
-            //            [_voipQueue close];
         }];
     }
     return _voipQueue;
@@ -294,7 +280,7 @@
 // 根据userid删除所有的会话纪录
 - (BOOL)deleteAllRecordeWothUserId:(NSString *)userId{
     __block BOOL result;
-    NSString * sql = [NSString stringWithFormat:@"delete from UCSCallRecordsModel where _userId=?"];
+    NSString * sql = [NSString stringWithFormat:@"delete from TCCallRecordsModel where _userId=?"];
     [_voipQueue inDatabase:^(FMDatabase *db) {
         
         result =[db executeUpdate:sql,userId];

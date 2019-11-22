@@ -21,6 +21,9 @@
   "source_files": "TCCloudTalking/Classes/**/*",
   "requires_arc": true,
   "dependencies": {
+    "TCMember": [
+
+    ],
     "TCPublicKit": [
 
     ],
@@ -38,6 +41,9 @@
     ],
     "YYKit": [
 
+    ],
+    "pop": [
+      "~> 1.0.9"
     ]
   },
   "frameworks": [

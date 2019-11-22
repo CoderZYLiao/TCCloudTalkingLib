@@ -76,7 +76,8 @@
 #define RGBACOLOR(r,g,b,a)  [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 #define MainColor @"#4073F2"
 #define LineColor @"#DCDFE6"
-
+#define TCPingFangSC_Regular @"PingFangSC-Regular"
+#define TCPingFangSC_Light @"PingFangSC-Light"
 
 #pragma mark - 验证相关
 /**让字符串变非空*/

@@ -10,8 +10,10 @@
 @implementation TCCallRecordsModel
 
 
+
 - (void)getInfoFromCallListModel:(TCVoipCallListModel *)model{
     
+
     self.userId = model.userId;
     self.nickName = model.nickName;
     self.time = model.time;

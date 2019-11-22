@@ -10,6 +10,7 @@
 
 typedef void (^timerToDoSomeThingBlock)(void);
 
+extern NSString * const UCSNotiClsoeView;
 extern NSString * const UCSNotiHeadPhone;
 extern NSString * const UCSNotiCallBalance;
 extern NSString * const UCSNotiRefreshCallList;

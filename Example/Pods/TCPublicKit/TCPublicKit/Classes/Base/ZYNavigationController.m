@@ -7,6 +7,7 @@
 //
 
 #import "ZYNavigationController.h"
+#import "UIColor+ZYAdd.h"
 
 @interface ZYNavigationController ()
 
@@ -23,10 +24,10 @@
 
 + (void)initialize
 {
-    [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHexString:@"#4073F2"]];
+    [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithHexString:@"#4073F2"]];
     //修改标题字体颜色及大小
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor colorWithRed:255.0/255.0 green:105.0/255.0 blue:0.0/255.0 alpha:1]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated

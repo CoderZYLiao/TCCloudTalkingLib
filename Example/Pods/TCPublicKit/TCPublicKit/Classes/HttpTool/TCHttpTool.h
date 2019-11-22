@@ -6,9 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
-
-NS_ASSUME_NONNULL_BEGIN
+#import <AFNetworking/AFNetworking.h>
 
 @interface TCHttpTool : NSObject
 /**
@@ -22,6 +20,45 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateMgrRequestAccessToken:(NSString *)accessToken;
 
 /**
+ *  发送一个PUT请求
+ *
+ *  @param url     请求路径
+ *  @param params  请求参数
+ *  @param success 请求成功后的回调
+ *  @param failure 请求失败后的回调
+ */
+- (void)putWithURL:(NSString *)url
+            params:(id)params
+           success:(void (^)(id))success
+           failure:(void (^)(NSError *))failure;
+
+/**
+ *  发送一个PATCH请求
+ *
+ *  @param url     请求路径
+ *  @param params  请求参数
+ *  @param success 请求成功后的回调
+ *  @param failure 请求失败后的回调
+ */
+- (void)patchWithURL:(NSString *)url
+              params:(id)params
+             success:(void (^)(id json))success
+             failure:(void (^)(NSError *error))failure;
+
+/**
+ *  自定义的manager
+ *
+ *  @param url     请求路径
+ *  @param params  请求参数
+ *  @param success 请求成功后的回调
+ *  @param failure 请求失败后的回调
+ */
+- (void)patchWithURL:(NSString *)url
+              params:(id)params withManager:(AFHTTPSessionManager *)manager
+             success:(void (^)(id json))success
+             failure:(void (^)(NSError *error))failure;
+
+/**
  *  发送一个POST请求
  *
  *  @param url     请求路径
@@ -29,10 +66,13 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param success 请求成功后的回调
  *  @param failure 请求失败后的回调
  */
-- (void)postWithURL:(NSString *)url params:(NSDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure;
+- (void)postWithURL:(NSString *)url
+             params:(id)params
+            success:(void (^)(id json))success
+            failure:(void (^)(NSError *error))failure;
 
 /**
- *  发送一个POST请求（带manager参数）
+ *  ContentTypeUrlEncoded
  *
  *  @param url     请求路径
  *  @param params  请求参数
@@ -40,9 +80,9 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param failure 请求失败后的回调
  */
 - (void)postWithURL:(NSString *)url
-             params:(NSDictionary *)params withManager:(AFHTTPSessionManager *)manager
-            success:(void (^)(id))success
-            failure:(void (^)(NSError *))failure;
+             params:(id)params withManager:(AFHTTPSessionManager *)manager
+            success:(void (^)(id json))success
+            failure:(void (^)(NSError *error))failure;
 
 /**
  *  发送一个POST请求(上传文件数据)
@@ -53,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param success 请求成功后的回调
  *  @param failure 请求失败后的回调
  */
-- (void)postWithURL:(NSString *)url params:(NSDictionary *)params formDataArray:(NSArray *)formDataArray success:(void (^)(id json))success failure:(void (^)(NSError *error))failure;
+- (void)postWithURL:(NSString *)url params:(id)params formDataArray:(NSArray *)formDataArray success:(void (^)(id json))success failure:(void (^)(NSError *error))failure;
 
 /**
  *  发送一个GET请求
@@ -63,15 +103,9 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param success 请求成功后的回调
  *  @param failure 请求失败后的回调
  */
-- (void)getWithURL:(NSString *)url params:(NSDictionary *)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure;
+- (void)getWithURL:(NSString *)url params:(id)params success:(void (^)(id json))success failure:(void (^)(NSError *error))failure;
 
-- (void)postWithResponseWithURL:(NSString *)url
-                         params:(NSDictionary *)params
-                        success:(void (^)(id))success
-                        failure:(void (^)(NSError *))failure;
 @end
-
-NS_ASSUME_NONNULL_END
 
 
 

@@ -7,6 +7,8 @@
 
 #import "UnlockRecordTableViewCell.h"
 #import "TCUnlcokRecordModel.h"
+#import "TCCallRecordsModel.h"
+#import "TCCloudTalkingTool.h"
 @interface UnlockRecordTableViewCell()
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *DoorMachineNameL;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *UnlockingTimeL;
@@ -40,6 +42,21 @@
     _RecordModel = RecordModel;
     self.DoorMachineNameL.text = RecordModel.DataModel.eqName;
     self.UnlockingTimeL.text = RecordModel.DataModel.createTime;
+}
+
+- (void)setCallRecordModel:(TCCallRecordsModel *)callRecordModel
+{
+    _callRecordModel = callRecordModel;
+    self.DoorMachineNameL.text = callRecordModel.userId;
+    self.UnlockingTimeL.text =[TCCloudTalkingTool ConvertStrToTime:callRecordModel.time];
+    if ([callRecordModel.callStatus intValue]==0) {
+        [self.DoorMachineNameL setTextColor:[UIColor blackColor]];
+        [self.UnlockingTimeL setTextColor:[UIColor blackColor]];
+    }else
+    {
+        [self.DoorMachineNameL setTextColor:[UIColor redColor]];
+        [self.UnlockingTimeL setTextColor:[UIColor redColor]];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

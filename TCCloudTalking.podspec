@@ -53,13 +53,14 @@ TODO: Add long description of the pod here.
 
   #开源库依赖库
 
+  s.dependency 'TCMember'
   s.dependency 'TCPublicKit'
   s.dependency 'FMDB', '~> 2.6.2'
   s.dependency 'Masonry'
   s.dependency 'MJRefresh'
   s.dependency 'MJExtension'
   s.dependency 'YYKit'
-  
+  s.dependency 'pop', '~> 1.0.9'
   #依赖的系统框架
   s.frameworks = 'Foundation','UIKit','MapKit','VideoToolbox','CoreGraphics','AssetsLibrary','AddressBookUI','MapKit','CoreAudio','AudioToolbox','CFNetwork','SystemConfiguration','MobileCoreServices','StoreKit','CoreLocation','CoreTelephony','AVFoundation','MediaPlayer','CoreMedia','CoreFoundation','MessageUI','AddressBook'
   #添加系统依赖静态库

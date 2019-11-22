@@ -1,0 +1,1 @@
+../../../TCMember/TCMember/Classes/MemberModule/Model/TCCommunityModel.h

@@ -48,7 +48,7 @@
     //设置title内容
     [self setupTitleContent];
     
-
+    [self setupAllChildVcView:0];
 }
 - (void)setupAllChildVc{
     

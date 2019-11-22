@@ -1,1 +1,1 @@
-../../../TCPublicKit/TCPublicKit/Classes/Category/NSFileManager+ZYAdd.h
+../../../TCPublicKit/TCPublicKit/Classes/Base/NSFileManager+ZYAdd.h

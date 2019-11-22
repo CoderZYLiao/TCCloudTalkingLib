@@ -29,7 +29,6 @@
         self.callStatus ==nil ||
         self.sendCall == nil) {
         
-        
         return YES;
     }
     

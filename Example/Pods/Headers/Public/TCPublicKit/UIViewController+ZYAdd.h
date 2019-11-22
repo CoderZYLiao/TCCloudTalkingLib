@@ -1,1 +1,1 @@
-../../../TCPublicKit/TCPublicKit/Classes/Category/UIViewController+ZYAdd.h
+../../../TCPublicKit/TCPublicKit/Classes/Base/UIViewController+ZYAdd.h

@@ -7,7 +7,7 @@
 #import "TCCUserDefaulfManager.h"
 #import "UCSVOIPViewEngine.h"
 #import "Header.h"
-
+NSString * const UCSNotiClsoeView = @"UCSNotiClsoeView";
 NSString * const UCSNotiHeadPhone = @"UCSNotiHeadPhone";
 NSString * const UCSNotiCallBalance = @"UCSNotiCallBalance";
 NSString * const UCSNotiRefreshCallList = @"UCSNotiRefreshCallList";

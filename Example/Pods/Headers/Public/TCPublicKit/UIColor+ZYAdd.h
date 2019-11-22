@@ -1,1 +1,1 @@
-../../../TCPublicKit/TCPublicKit/Classes/Category/UIColor+ZYAdd.h
+../../../TCPublicKit/TCPublicKit/Classes/Base/UIColor+ZYAdd.h

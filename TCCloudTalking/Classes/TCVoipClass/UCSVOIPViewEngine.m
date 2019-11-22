@@ -6,13 +6,13 @@
 //
 
 #import "UCSVOIPViewEngine.h"
-#import "TCVoipCallController.h"
-#import "TCVideoCallController.h"
+#import "TCDoorVoipCallController.h"
+#import "TCDoorVideoCallController.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 
 #import "TCCVibrationer.h"
-
+#import "TCVoipDBManager.h"
 #import "TCVoipCallListModel.h"
 #import "TCCallRecordsModel.h"
 #import "TCVoipDBManager.h"
@@ -22,7 +22,7 @@
 #endif
 #import "PushNotificationManager.h"
 #import "UCSChangeTheViewController.h"
-
+#import "FMDBBaseTool.h"
 NSString* const isRepeatCallStatus = @"isRepeatCallStatus";
 
 //#import "TCCatEyeCallVC.h"
@@ -40,11 +40,11 @@ NSString* const isRepeatCallStatus = @"isRepeatCallStatus";
 @property (assign,nonatomic)UIWindow * window;
 
 
-@property (strong,nonatomic)TCVoipCallController *callViewController; // WLS，2015-12-11，（语音通话主叫界面）
-@property (strong,nonatomic)TCVoipCallController *incomingCallViewController; // WLS，2015-12-11，（语音通话被叫界面）
+@property (strong,nonatomic)TCDoorVoipCallController *callViewController; // WLS，2015-12-11，（语音通话主叫界面）
+@property (strong,nonatomic)TCDoorVoipCallController *incomingCallViewController; // WLS，2015-12-11，（语音通话被叫界面）
 
-@property (strong,nonatomic)TCVideoCallController *videoViewController; // WLS，2015-12-11，（视频主叫界面）
-@property (strong,nonatomic)TCVideoCallController *incomingVideoViewController; // WLS，2015-12-11，（视频被叫界面）
+@property (strong,nonatomic)TCDoorVideoCallController *videoViewController; // WLS，2015-12-11，（视频主叫界面）
+@property (strong,nonatomic)TCDoorVideoCallController *incomingVideoViewController; // WLS，2015-12-11，（视频被叫界面）
 
 
 @property (assign,nonatomic)UCSCallType callType; // WLS，2015-12-11，（通话类型，主叫还是被叫。）
@@ -124,7 +124,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         
         self.callType = UCS_voipCall;
         
-        TCVoipCallController * voipCallVC = [[TCVoipCallController alloc] initWithCallerNo:@"" andVoipNo:@"" andCallType:callType];
+        TCDoorVoipCallController * voipCallVC = [[TCDoorVoipCallController alloc] initWithCallerNo:@"" andVoipNo:@"" andCallType:callType];
         voipCallVC.incomingCall = NO;
         voipCallVC.callType = callType;
         voipCallVC.isGroupDail = YES;
@@ -139,7 +139,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         
         self.callType = UCS_videoCall;
         
-        TCVideoCallController * videoCallVC = [[TCVideoCallController alloc] initWithCallerName:@"" andVoipNo:@""];
+        TCDoorVideoCallController * videoCallVC = [[TCDoorVideoCallController alloc] initWithCallerName:@"" andVoipNo:@""];
         videoCallVC.incomingCall = NO;
         videoCallVC.isGroupDail = YES;
         self.videoViewController = videoCallVC;
@@ -202,7 +202,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
                 userId = callNumber;
             }
             self.callType = UCS_voipCall;
-            TCVoipCallController * voipCallVC = [[TCVoipCallController alloc] initWithCallerNo:phoneNumber andVoipNo:userId andCallType:callType];
+            TCDoorVoipCallController * voipCallVC = [[TCDoorVoipCallController alloc] initWithCallerNo:phoneNumber andVoipNo:userId andCallType:callType];
             voipCallVC.incomingCall = NO;
             voipCallVC.callID = callNumber;
             voipCallVC.callerName = nickName;
@@ -214,7 +214,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
             [[UCSFuncEngine getInstance] dial:callType andCallId:callNumber andUserdata:@"语音通话"];
         }else if (callType == UCSCallType_VideoPhone){
             self.callType = UCS_videoCall;
-            TCVideoCallController * videoCallVC = [[TCVideoCallController alloc] initWithCallerName:nickName andVoipNo:callNumber];
+            TCDoorVideoCallController * videoCallVC = [[TCDoorVideoCallController alloc] initWithCallerName:nickName andVoipNo:callNumber];
             videoCallVC.incomingCall = NO;
             videoCallVC.callID = callNumber;
             self.videoViewController = videoCallVC;
@@ -285,7 +285,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         
         self.callType = UCS_voipCall;
         
-        TCVoipCallController * voipCallVC = [[TCVoipCallController alloc] initWithCallerNo:phoneNumber andVoipNo:userId andCallType:callType];
+        TCDoorVoipCallController * voipCallVC = [[TCDoorVoipCallController alloc] initWithCallerNo:phoneNumber andVoipNo:userId andCallType:callType];
         voipCallVC.incomingCall = NO;
         voipCallVC.callID = callUserid;
         voipCallVC.callerName = nickName;
@@ -401,6 +401,8 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
 -(void)incomingCallID:(NSString*)callid caller:(NSString*)caller phone:(NSString*)phone name:(NSString*)name callStatus:(int)status callType:(NSInteger)calltype{
 //-(void)incomingCallInfo:(NSDictionary *)callInfo andCallID:(NSString *)callid caller:(NSString*)caller phone:(NSString*)phone name:(NSString*)name callStatus:(int)status callType:(NSInteger)calltype{//门口机使用该代理方法
     
+    //如果在开锁页面(关闭开锁页面)
+    [[NSNotificationCenter defaultCenter] postNotificationName:UCSNotiClsoeView object:nil];
     NSLog(@"callid===%@---caller==%@--phone===%@---name==%@---calltype===%ld",callid,caller,phone,name,(long)calltype);
     //猫眼特殊处理callInfo
     //    {
@@ -489,7 +491,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
     if (calltype == UCSCallType_VOIP)  //语音电话
     {
         self.callType = UCS_incomingVoipCall;
-        TCVoipCallController * incomingCallVC = [[TCVoipCallController alloc] initWithCallerNo:phone andVoipNo:caller andCallType:calltype];
+        TCDoorVoipCallController * incomingCallVC = [[TCDoorVoipCallController alloc] initWithCallerNo:phone andVoipNo:caller andCallType:calltype];
         incomingCallVC.incomingCall = YES;
         incomingCallVC.callID = callid;
         incomingCallVC.callerName = nickName;
@@ -507,7 +509,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
 //            [self pushToTheViewController:VC];
         }else{
             
-            TCVideoCallController* incomingVideolView = [[TCVideoCallController alloc] initWithCallerName:nickName andVoipNo:caller];
+            TCDoorVideoCallController* incomingVideolView = [[TCDoorVideoCallController alloc] initWithCallerName:nickName andVoipNo:caller];
 //            if ([[callNumber substringToIndex:2] isEqualToString:@"5K"]) {
 //                incomingVideolView.is5KMachine = YES;
 //            }else
@@ -714,9 +716,9 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         callModel.callStatus = [NSString stringWithFormat:@"%d",UCS_CallType_Disanswer];
         callModel.sendCall = @"0";
         callTypes = 1;
-    }else if ([releaseVC isKindOfClass:[TCVoipCallController class]] ) {
+    }else if ([releaseVC isKindOfClass:[TCDoorVoipCallController class]] ) {
         
-        TCVoipCallController * callModelVC = (TCVoipCallController *)releaseVC;
+        TCDoorVoipCallController * callModelVC = (TCDoorVoipCallController *)releaseVC;
         if (callModelVC.incomingCall) {
             
             /**
@@ -777,9 +779,9 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         }
         
         
-    }else if ([releaseVC isKindOfClass:[TCVideoCallController class]]){
+    }else if ([releaseVC isKindOfClass:[TCDoorVideoCallController class]]){
         
-        TCVideoCallController * callModelVC = (TCVideoCallController *)releaseVC;
+        TCDoorVideoCallController * callModelVC = (TCDoorVideoCallController *)releaseVC;
         if (callModelVC.incomingCall) {
             /**
              @author WLS, 15-12-19 10:12:42
@@ -835,7 +837,6 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         
     }
     
-//    [self saveCallRecoredWithName:callModel.nickName];
     
     if ([callModel.userId isEqualToString:callModel.nickName]) {
         callModel.nickName = @"";
@@ -862,22 +863,20 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
     NSLog(@"%@----------------%@",callModel.callStatus,recordModel.callStatus);
     NSLog(@"%@----------------%@",callModel.sendCall,recordModel.sendCall);
     
+    [[FMDBBaseTool shareInstance] insertDBWithModel:recordModel];
+    [[UCSVOIPViewEngine getInstance] WriteToSandBox:[NSString stringWithFormat:@"写入数据库"]];
     
     
-
+    /**
+     @author WLS, 15-12-19 14:12:38
+     
+     当数据库存储完成后，发通知更新呼叫记录界面
+     */
+    self.isCalling = NO;
+    [[NSNotificationCenter defaultCenter] postNotificationName:UCSNotiRefreshCallList object:nil];
 }
 
--(void)saveCallRecoredWithName:(NSString *)UserName
-{
-//    CallRecoredData *callRecoredData = [[CallRecoredData alloc] init];
-//    CallRecoredEntity *callRecoredEntity=[[CallRecoredEntity alloc] init];
-//    callRecoredEntity._callName          = UserName;
-//    callRecoredEntity._callType          = callTypes;//0呼入，1呼出，2未接
-//    callRecoredEntity._callTallTime      = [self getNowTime];
-//    callRecoredEntity._callTime          = [NSDate date];
-//
-//    [callRecoredData addNewCallRecoredData:callRecoredEntity SMSData:nil CallOrSMS:YES];
-}
+
 
 
 //以本地通知方式弹出数据用于调试pushkit

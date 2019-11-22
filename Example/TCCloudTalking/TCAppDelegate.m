@@ -7,9 +7,15 @@
 //
 
 #import "TCAppDelegate.h"
-#import "TCCLoginViewController.h"
+#import "TCLoginViewController.h"
+#import "TCSmartDoorViewController.h"
 #import "TCNavigationController.h"
 #import "Header.h"
+
+//测试
+#import "TCCLoginViewController.h"
+
+#import "TCDoorVideoCallController.h"
 @interface TCAppDelegate()<UCSTCPDelegateBase>
 
 @end
@@ -18,20 +24,51 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    // Override point for customization after application launch.
-    
-    
-    TCCLoginViewController *LoginVc = [[TCCLoginViewController alloc] initWithNibName:@"TCCLoginViewController" bundle:nil];
-    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:LoginVc];
-    self.window.rootViewController = nav;
-    [self.window makeKeyAndVisible];
-    
+
+//    TCDoorVideoCallController *SmartDoorVc = [[TCDoorVideoCallController alloc] init];
+//    SmartDoorVc.callerName = @"阿里落地N21-2号机";
+//    TCCLoginViewController *SmartDoorVc = [[TCCLoginViewController alloc] init];
+//    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:SmartDoorVc];
+//    [UIApplication sharedApplication].delegate.window.rootViewController = nav;
+//    CATransition *anim = [CATransition animation];
+//    anim.type = @"kCATransitionPush";
+//    anim.duration = 1;
+//    [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
+//     Override point for customization after application launch.
+    [self gotoLoginInterface];
     //设置tcp代理
     [[UCSTcpClient sharedTcpClientManager] setTcpDelegate:self];
     //云对讲功能初始化
     [UCSFuncEngine getInstance];
+    
+    [self.window makeKeyAndVisible];
     return YES;
+}
+
+// 去登录页面
+- (void)gotoLoginInterface
+{
+    TCLoginViewController *LoginVc = [[TCLoginViewController alloc]init];
+    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:LoginVc];
+    self.window.rootViewController = nav;
+    LoginVc.loginSucceedAction = ^(NSInteger tag) {
+        
+        TCCLoginViewController *SmartDoorVc = [[TCCLoginViewController alloc] init];
+        TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:SmartDoorVc];
+        [UIApplication sharedApplication].delegate.window.rootViewController = nav;
+        CATransition *anim = [CATransition animation];
+        anim.type = @"kCATransitionPush";
+        anim.duration = 1;
+        [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
+        
+//        TCSmartDoorViewController *SmartDoorVc = [[TCSmartDoorViewController alloc] init];
+//        TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:SmartDoorVc];
+//        [UIApplication sharedApplication].delegate.window.rootViewController = nav;
+//        CATransition *anim = [CATransition animation];
+//        anim.type = @"kCATransitionPush";
+//        anim.duration = 1;
+//        [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
+    };
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

@@ -1,1 +1,1 @@
-../../../TCPublicKit/TCPublicKit/Classes/Category/UILabel+ZYAdd.h
+../../../TCPublicKit/TCPublicKit/Classes/Base/UILabel+ZYAdd.h

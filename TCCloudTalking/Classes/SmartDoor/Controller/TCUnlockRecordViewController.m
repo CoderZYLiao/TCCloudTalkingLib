@@ -57,7 +57,30 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
     //初始化tabbleView
     [self tableView];
     //获取开锁记录
-//    [self getDataSoure];
+    [self getDataSoure];
+}
+
+- (void)getDataSoure
+{
+    [SVProgressHUD showWithStatus:@""];
+    [TCCloudTalkRequestTool GetMyCommunityWithPageIndex:@"0" pageSize:@"20" month:[self getCurrentMonth] Success:^(id  _Nonnull result) {
+        [SVProgressHUD dismiss];
+        [self.tableView.mj_header endRefreshing];
+        debugLog(@"%@-----开锁记录",result);
+        if ([result[@"code"] intValue] == 0) {
+            self.DataSource = [TCUnlcokRecordModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
+            
+            [self.tableView reloadData];
+        }else
+        {
+            if (result[@"message"]) {
+                [SVProgressHUD showErrorWithStatus:result[@"message"]];
+            }
+            
+        }
+    } faile:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 - (void)loadNewData
@@ -72,18 +95,35 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-   
+    
     return 72;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    TCUnlcokRecordModel *model = self.DataSource[indexPath.row];
     UnlockRecordTableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:UnlockRecordID];
     if (cell == nil) {
         cell = [UnlockRecordTableViewCell viewFromBundleXib];
     }
+    cell.RecordModel = model;
     return cell;
-
+    
 }
+
+- (NSString *)getCurrentMonth
+{
+    // 获取代表公历的NSCalendar对象
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    // 获取当前日期
+    NSDate* dt = [NSDate date];
+    // 定义一个时间字段的旗标，指定将会获取指定年、月、日、时、分、秒的信息
+    unsigned unitFlags = NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|  NSCalendarUnitMinute|NSCalendarUnitSecond | NSCalendarUnitWeekday;
+    // 获取不同时间字段的信息
+    NSDateComponents* comp = [gregorian components: unitFlags fromDate:dt];
+    
+    return [NSString stringWithFormat:@"%ld-%ld",comp.year,comp.month];
+}
+
+
 
 @end
