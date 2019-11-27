@@ -64,6 +64,19 @@ typedef void (^FailBlock)(NSError * error);
                            Success:(SuccessBlock)successBlock
                              faile:(FailBlock)failBlock;
 
+
+
+
+/**
+ 门口机开锁
+
+ @param DoorID 门口机id
+ @param successBlock 成功
+ @param failBlock 失败
+ */
++(void)OpenMyDoorWithDoorID:(NSString *)DoorID
+                    Success:(SuccessBlock)successBlock
+                      faile:(FailBlock)failBlock;
 @end
 
 NS_ASSUME_NONNULL_END

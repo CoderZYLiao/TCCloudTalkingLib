@@ -49,7 +49,8 @@
 #define GetMyCommunityURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/communities", KProjectAPIBaseURL]
 // 获取我的开锁记录
 #define GetMyUnlocklogURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/unlocklogs", KProjectAPIBaseURL]
-
+//门口机开锁
+#define OpenMyDoorURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/equipments", KProjectAPIBaseURL]
 
 
 // Notification for UI Action

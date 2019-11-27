@@ -56,7 +56,7 @@
         
         // 时间字符串
         NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
-        fmt.dateFormat = @"yyyy-MM-dd HH:mm";
+        fmt.dateFormat = @"yyyy-MM-dd HH:mm:ss";
         NSDate *createdAtDate = [fmt dateFromString:CardItems.expirationTime];
         int resultValue = 0;
         resultValue = [self compareOneDay:[self getCurrentTime] withAnotherDay:createdAtDate];
@@ -98,7 +98,7 @@
 
 -(NSDate *)getCurrentTime{
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"dd-MM-yyyy-HHmm"];
+    [formatter setDateFormat:@"dd-MM-yyyy-HHmmss"];
     NSString *dateTime=[formatter stringFromDate:[NSDate date]];
     NSDate *date = [formatter dateFromString:dateTime];
     
@@ -108,7 +108,7 @@
 (int)compareOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM-yyyy-HHmm"];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy-HHmmss"];
     NSString *oneDayStr = [dateFormatter stringFromDate:oneDay];
     NSString *anotherDayStr = [dateFormatter stringFromDate:anotherDay];
     NSDate *dateA = [dateFormatter dateFromString:oneDayStr];

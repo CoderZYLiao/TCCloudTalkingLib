@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TCCHomeViewController">
             <connections>
+                <outlet property="LongTouchBtn" destination="dYb-wl-JO0" id="del-VL-wvq"/>
                 <outlet property="UserIDTextView" destination="aUk-5n-qu5" id="hRt-Ze-g5V"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -103,6 +104,11 @@
                     <connections>
                         <action selector="SettingBtnClick:" destination="-1" eventType="touchUpInside" id="IEH-Df-Brx"/>
                     </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYb-wl-JO0">
+                    <rect key="frame" x="154" y="468" width="46" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

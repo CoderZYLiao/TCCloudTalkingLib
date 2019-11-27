@@ -99,7 +99,7 @@ static NSString *const MyCardCellID  =@"MyCardCellID";
     if (cell == nil) {
         cell = [MyCardTableViewCell viewFromBundleXib];
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSInteger rows = indexPath.row%4;
     switch (rows) {
         case 0:

@@ -70,4 +70,19 @@
         failBlock(error);
     }];
 }
+
++(void)OpenMyDoorWithDoorID:(NSString *)DoorID
+                    Success:(SuccessBlock)successBlock
+                      faile:(FailBlock)failBlock
+{
+    NSMutableDictionary * params = [NSMutableDictionary dictionary];
+    if(DoorID){
+        [params setObject:DoorID forKey:@"id"];
+    }
+    [[TCHttpTool sharedHttpTool] postWithURL:OpenMyDoorURL params:params success:^(id  _Nonnull json) {
+        successBlock(json);
+    } failure:^(NSError * _Nonnull error) {
+        failBlock(error);
+    }];
+}
 @end

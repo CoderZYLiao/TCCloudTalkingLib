@@ -50,7 +50,7 @@
     [TipView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(View);
         make.right.left.equalTo(View);
-        make.height.equalTo(View).multipliedBy(0.5);
+        make.height.equalTo(View).multipliedBy(0.52);
     }];
     
     UILabel *label = [[UILabel alloc] init];
@@ -59,19 +59,19 @@
     label.textColor = [UIColor whiteColor];
     [TipView addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(TipView).offset(60);
+        make.top.equalTo(TipView).offset(40);
         make.centerX.equalTo(TipView);
     }];
     
     UILabel *Detiallabel = [[UILabel alloc] init];
     Detiallabel.textAlignment = NSTextAlignmentCenter;
     Detiallabel.numberOfLines = 0;
-    Detiallabel.text = @"请用手机二维码对准门口机\n摄像头扫码开锁";
+    Detiallabel.text = @"请用手机二维码对准门口机摄像头扫码开锁";
     Detiallabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
     Detiallabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1/1.0];
     [TipView addSubview:Detiallabel];
     [Detiallabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(label.mas_bottom).offset(10);
+        make.top.equalTo(label.mas_bottom).offset(5);
         make.centerX.equalTo(TipView);
     }];
     
@@ -79,11 +79,19 @@
     imageView.image = [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_二维码开锁"];
     [TipView addSubview:imageView];
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(Detiallabel.mas_bottom).offset(50);
-        make.left.mas_equalTo(55.5);
-        make.right.mas_equalTo(-55.5);
+        make.top.equalTo(Detiallabel.mas_bottom).offset(40);
         make.centerX.equalTo(TipView);
-        make.bottom.equalTo(TipView).offset(-58);
+    }];
+    
+    UIImageView *downImage = [[UIImageView alloc] init];
+    downImage.image = [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_指引箭头"];
+    [TipView addSubview:downImage];
+    [downImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(imageView.mas_bottom).offset(20);
+        make.width.mas_equalTo(24);
+        make.height.mas_equalTo(24);
+        make.centerX.equalTo(TipView);
+        make.bottom.equalTo(TipView).offset(-38);
     }];
     
     UIView *QRCodeView = [[UIView alloc] init];

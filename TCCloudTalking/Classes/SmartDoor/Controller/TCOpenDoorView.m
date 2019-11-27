@@ -109,9 +109,15 @@ static UIWindow *window_;
         debugLog(@"%@-----门口机列表",result);
         if ([result[@"code"] intValue] == 0) {
             self.AllMachines = [TCDoorMachineModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
-            [self setUpButton];
-            //更新门口机列表
-            [TCCloudTalkingTool saveUserMachineList:result];
+            if (self.AllMachines.count>0) {
+                [self setUpButton];
+                //更新门口机列表
+                [TCCloudTalkingTool saveUserMachineList:result];
+            }else
+            {
+//                [self canceBtnClick];
+            }
+            
    
         }else
         {
@@ -179,12 +185,12 @@ static UIWindow *window_;
         [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.doorScrolView addSubview:button];
         // 设置内容
+        
         button.titleLabel.font = [UIFont systemFontOfSize:14];
         //自动折行设置
-        [button.titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
         button.titleLabel.numberOfLines = 0;
-        //        button.titleLabel.lineBreakMode = 0;
-        
+        [button.titleLabel setLineBreakMode:NSLineBreakByCharWrapping];
+
         [button setTitle:DoorItem.name forState:UIControlStateNormal];
         
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -247,7 +253,7 @@ static UIWindow *window_;
 /**
  * 先执行退出动画, 动画完毕后执行completionBlock
  */
-- (void)cancelWithCompletionBlock:(void (^)())completionBlock
+- (void)cancelWithCompletionBlock:(void (^)(void))completionBlock
 {
     
     if (self.subviews.count > 1) {

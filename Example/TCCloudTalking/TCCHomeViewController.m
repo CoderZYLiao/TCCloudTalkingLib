@@ -11,9 +11,11 @@
 #import "TCAppDelegate.h"
 #import "Header.h"
 #import "TCSmartDoorViewController.h"
+#import "TCVoiceView.h"
 
 @interface TCCHomeViewController ()
 
+@property (weak, nonatomic) IBOutlet UIButton *LongTouchBtn;
 
 @end
 
@@ -26,6 +28,22 @@
     
     self.UserIDTextView.layer.borderColor = UIColor.orangeColor.CGColor;
     self.UserIDTextView.layer.borderWidth = 2;
+    
+    //button长按事件
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(btnLong:)];
+    longPress.minimumPressDuration = 0.5; //定义按的时间
+    [self.LongTouchBtn addGestureRecognizer:longPress];
+}
+
+- (void)btnLong:(UILongPressGestureRecognizer*)sender
+{
+    //直接return掉，不在开始的状态里面添加任何操作，则长按手势就会被少调用一次了
+    if (sender.state == UIGestureRecognizerStateBegan)
+    {
+//        [TCVoiceView  show];
+    }
+    
+
 }
 
 

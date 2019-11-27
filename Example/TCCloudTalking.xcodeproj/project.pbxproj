@@ -24,6 +24,8 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A11DCC0B90DC72FB3D06612B /* libPods-TCCloudTalking_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BE4B1929455601F81682B6 /* libPods-TCCloudTalking_Tests.a */; };
 		A124BC4EC8685DA5C3B8CFF0 /* libPods-TCCloudTalking_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DC8FF2F9BF36FA8CE898B8 /* libPods-TCCloudTalking_Example.a */; };
+		E40C2FD2238CB85D002D890F /* TCVoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40C2FD1238CB85D002D890F /* TCVoiceView.m */; };
+		E43C59D2238D0DDF004C0816 /* BTCoverVerticalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = E43C59D0238D0DDE004C0816 /* BTCoverVerticalTransition.m */; };
 		E4D9869023602436007B95F3 /* TCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D9868E23602436007B95F3 /* TCNavigationController.m */; };
 		E4D9869123602436007B95F3 /* TCCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D9868F23602436007B95F3 /* TCCBaseViewController.m */; };
 		E4D9869523602444007B95F3 /* TCCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D9869223602443007B95F3 /* TCCLoginViewController.m */; };
@@ -74,6 +76,19 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C00405321095C05918EF50DA /* Pods-TCCloudTalking_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TCCloudTalking_Tests.debug.xcconfig"; path = "Target Support Files/Pods-TCCloudTalking_Tests/Pods-TCCloudTalking_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		CC4336D8B0D41B8BEA7E220B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		E40C2FBE238CB79F002D890F /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		E40C2FC0238CB7A8002D890F /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		E40C2FC2238CB7B0002D890F /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		E40C2FC4238CB7BD002D890F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E40C2FC6238CB7C3002D890F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E40C2FC8238CB7C8002D890F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E40C2FCA238CB7D4002D890F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		E40C2FCC238CB7E1002D890F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		E40C2FCE238CB7F2002D890F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		E40C2FD0238CB85D002D890F /* TCVoiceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCVoiceView.h; sourceTree = "<group>"; };
+		E40C2FD1238CB85D002D890F /* TCVoiceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCVoiceView.m; sourceTree = "<group>"; };
+		E43C59D0238D0DDE004C0816 /* BTCoverVerticalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BTCoverVerticalTransition.m; sourceTree = "<group>"; };
+		E43C59D1238D0DDF004C0816 /* BTCoverVerticalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BTCoverVerticalTransition.h; sourceTree = "<group>"; };
 		E4D9868C23602435007B95F3 /* TCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNavigationController.h; sourceTree = "<group>"; };
 		E4D9868D23602435007B95F3 /* TCCBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCBaseViewController.h; sourceTree = "<group>"; };
 		E4D9868E23602436007B95F3 /* TCNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNavigationController.m; sourceTree = "<group>"; };
@@ -140,6 +155,15 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E40C2FCE238CB7F2002D890F /* GLKit.framework */,
+				E40C2FCC238CB7E1002D890F /* CoreTelephony.framework */,
+				E40C2FCA238CB7D4002D890F /* CoreLocation.framework */,
+				E40C2FC8238CB7C8002D890F /* CFNetwork.framework */,
+				E40C2FC6238CB7C3002D890F /* AVFoundation.framework */,
+				E40C2FC4238CB7BD002D890F /* AudioToolbox.framework */,
+				E40C2FC2238CB7B0002D890F /* libsqlite3.0.tbd */,
+				E40C2FC0238CB7A8002D890F /* libz.1.2.5.tbd */,
+				E40C2FBE238CB79F002D890F /* libc++.tbd */,
 				E4D986A32360412F007B95F3 /* SystemConfiguration.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
@@ -170,6 +194,10 @@
 				6003F5A5195388D20070C39A /* TCViewController.h */,
 				6003F5A6195388D20070C39A /* TCViewController.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
+				E40C2FD0238CB85D002D890F /* TCVoiceView.h */,
+				E40C2FD1238CB85D002D890F /* TCVoiceView.m */,
+				E43C59D1238D0DDF004C0816 /* BTCoverVerticalTransition.h */,
+				E43C59D0238D0DDE004C0816 /* BTCoverVerticalTransition.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -416,11 +444,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E40C2FD2238CB85D002D890F /* TCVoiceView.m in Sources */,
 				6003F5A7195388D20070C39A /* TCViewController.m in Sources */,
 				E4D9869523602444007B95F3 /* TCCLoginViewController.m in Sources */,
 				6003F59E195388D20070C39A /* TCAppDelegate.m in Sources */,
 				E4D9869123602436007B95F3 /* TCCBaseViewController.m in Sources */,
 				E4D9869F23602523007B95F3 /* TCCHomeViewController.m in Sources */,
+				E43C59D2238D0DDF004C0816 /* BTCoverVerticalTransition.m in Sources */,
 				E4D9869023602436007B95F3 /* TCNavigationController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
@@ -564,6 +594,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/TCCloudTalking/Classes/VOIPSDK",
 					"$(PROJECT_DIR)/TCCloudTalking/Classes/TCPSDK",
+					"$(PROJECT_DIR)/TCCloudTalking/BDSClientLib",
 				);
 				MODULE_NAME = ExampleApp;
 				ONLY_ACTIVE_ARCH = YES;
@@ -599,6 +630,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/TCCloudTalking/Classes/VOIPSDK",
 					"$(PROJECT_DIR)/TCCloudTalking/Classes/TCPSDK",
+					"$(PROJECT_DIR)/TCCloudTalking/BDSClientLib",
 				);
 				MODULE_NAME = ExampleApp;
 				ONLY_ACTIVE_ARCH = NO;
