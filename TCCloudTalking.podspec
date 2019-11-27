@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   #库名称
   s.name             = 'TCCloudTalking'
   #版本号
-  s.version          = '1.0.0.2'
+  s.version          = '1.0.0.3'
   #库简短介绍
   s.summary          = '云对讲组件'
 
@@ -35,7 +35,7 @@ TODO: Add long description of the pod here.
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   #开源库最低支持
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '8.0'
   #源库资源文件
   s.source_files = 'TCCloudTalking/Classes/**/*'
   
