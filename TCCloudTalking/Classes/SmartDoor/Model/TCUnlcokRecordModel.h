@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *totalCount;
 
 //PriRoomView实体
-@property (nonatomic, strong) TCUnlcokRecordDataModel *DataModel;
+@property (nonatomic, strong) TCUnlcokRecordDataModel *dataArray;
 @end
 
 
@@ -26,9 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 //开锁者类型
 @property (nonatomic, strong) NSString *userType;
 //住户Id
-@property (nonatomic, strong) NSString *houseAccount;
+@property (nonatomic, strong) NSString *account;
 //住户姓名
-@property (nonatomic, strong) NSString *houseName;
+@property (nonatomic, strong) NSString *name;
 //住户地址
 @property (nonatomic, strong) NSString *address;
 //开锁类型

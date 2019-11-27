@@ -11,12 +11,14 @@
 
 #define TCMemberBundelName @"TCMember"
 #define TCMemberInfoKey @"TCMemberInfo"
+#define TCHousesInfoKey @"TCHousesInfo"
 
 #pragma mark - 链接
 // 登录链接
 #define LoginURL [NSString stringWithFormat:@"%@/connect/token", KProjectAPIBaseURL]
 // 获取用户信息相关链接
 #define UserInfoURL [NSString stringWithFormat:@"%@/api/ucenter-app/user", KProjectAPIBaseURL]
+#define GetHousesInfoURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/houses", KProjectAPIBaseURL]
 // 更改用户密码
 #define ChangeUserPasswordURL [NSString stringWithFormat:@"%@/api/ucenter-app/account/changepassword", KProjectAPIBaseURL]
 // 注册链接

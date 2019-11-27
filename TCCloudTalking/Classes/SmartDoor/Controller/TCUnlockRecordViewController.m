@@ -37,12 +37,10 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.tableFooterView = [[UIView alloc] init];
         _tableView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
         _tableView.mj_header =  [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
         _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
         // 注册cell(Pods的注册方式)
-        [_tableView registerClass:[UnlockRecordTableViewCell class] forCellReuseIdentifier:UnlockRecordID];
+//        [_tableView registerClass:[UnlockRecordTableViewCell class] forCellReuseIdentifier:UnlockRecordID];
         [self.view addSubview:_tableView];
     }
     return _tableView;
@@ -56,6 +54,13 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
     self.view.backgroundColor = [UIColor whiteColor];
     //初始化tabbleView
     [self tableView];
+    
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)loadNewData
+{
+    self.currentPage = 0;
     //获取开锁记录
     [self getDataSoure];
 }
@@ -83,10 +88,7 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
     }];
 }
 
-- (void)loadNewData
-{
-    self.currentPage = 0;
-}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     

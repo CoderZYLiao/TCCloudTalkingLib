@@ -7,9 +7,10 @@
 
 #import "TCPersonalInfoModel.h"
 #import "TCUserModel.h"
-#import <MJExtension.h>
+#import <MJExtension/MJExtension.h>
 #import "MemberBaseHeader.h"
-#import "TCPublicKit.h"
+#import <TCPublicKit/TCPublicKit.h>
+#import "TCHousesInfoModel.h"
 
 @implementation TCPersonalInfoModel
 
@@ -29,11 +30,18 @@
     NSDictionary *memberInfoDict = [NSDictionary dictionaryWithJsonString:dataJsonString];
     return [TCUserModel mj_objectWithKeyValues:memberInfoDict];
 }
+// 获取对讲信息
+- (TCHousesInfoModel *)getHousesInfoModel
+{
+    NSString *dataJsonString = [[NSUserDefaults standardUserDefaults] objectForKey:TCHousesInfoKey];
+    NSDictionary *memberInfoDict = [NSDictionary dictionaryWithJsonString:dataJsonString];
+    return [TCHousesInfoModel mj_objectWithKeyValues:memberInfoDict];
+}
 
 - (void)updateUserModelName:(NSString *)name
 {
     NSString *dataJsonString = [[NSUserDefaults standardUserDefaults] objectForKey:TCMemberInfoKey];
-    NSMutableArray *memberInfoDict = [NSDictionary dictionaryWithJsonString:dataJsonString];
+    NSDictionary *memberInfoDict = [NSDictionary dictionaryWithJsonString:dataJsonString];
     [memberInfoDict setValue:name forKey:@"name"];
     NSData *dataData = [NSJSONSerialization dataWithJSONObject:memberInfoDict options:NSJSONWritingPrettyPrinted error:nil];
     dataJsonString = [[NSString alloc] initWithData:dataData encoding:NSUTF8StringEncoding];
@@ -45,7 +53,7 @@
 - (void)updateUserModelAvatar:(NSString *)avatar
 {
     NSString *dataJsonString = [[NSUserDefaults standardUserDefaults] objectForKey:TCMemberInfoKey];
-    NSMutableArray *memberInfoDict = [NSDictionary dictionaryWithJsonString:dataJsonString];
+    NSDictionary *memberInfoDict = [NSDictionary dictionaryWithJsonString:dataJsonString];
     [memberInfoDict setValue:avatar forKey:@"avatar"];
     NSData *dataData = [NSJSONSerialization dataWithJSONObject:memberInfoDict options:NSJSONWritingPrettyPrinted error:nil];
     dataJsonString = [[NSString alloc] initWithData:dataData encoding:NSUTF8StringEncoding];
@@ -54,10 +62,10 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdatePersonalInfoNotification" object:nil];
 }
 
-- (void)updateUserModelGender:(TCGender)gender
+- (void)updateUserModelGender:(NSInteger)gender
 {
     NSString *dataJsonString = [[NSUserDefaults standardUserDefaults] objectForKey:TCMemberInfoKey];
-    NSMutableArray *memberInfoDict = [NSDictionary dictionaryWithJsonString:dataJsonString];
+    NSDictionary *memberInfoDict = [NSDictionary dictionaryWithJsonString:dataJsonString];
     [memberInfoDict setValue:[NSNumber numberWithInteger:gender] forKey:@"gender"];
     NSData *dataData = [NSJSONSerialization dataWithJSONObject:memberInfoDict options:NSJSONWritingPrettyPrinted error:nil];
     dataJsonString = [[NSString alloc] initWithData:dataData encoding:NSUTF8StringEncoding];

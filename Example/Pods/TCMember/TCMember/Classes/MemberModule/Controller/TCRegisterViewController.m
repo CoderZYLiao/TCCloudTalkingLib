@@ -7,10 +7,10 @@
 //
 
 #import "TCRegisterViewController.h"
-#import "Masonry.h"
-#import "TCPublicKit.h"
-#import "YYKit.h"
-#import "AFNetworking.h"
+#import <Masonry.h>
+#import <TCPublicKit/TCPublicKit.h>
+#import <YYKit/YYKit.h>
+#import <AFNetworking/AFNetworking.h>
 #import "MemberBaseHeader.h"
 
 @interface TCRegisterViewController ()

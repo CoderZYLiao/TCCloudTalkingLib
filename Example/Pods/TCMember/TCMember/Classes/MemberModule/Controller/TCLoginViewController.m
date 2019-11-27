@@ -7,11 +7,11 @@
 //
 
 #import "TCLoginViewController.h"
-#import "TCPublicKit.h"
-#import "Masonry.h"
+#import <TCPublicKit/TCPublicKit.h>
+#import <Masonry.h>
 #import "TCFindPwdViewController.h"
 #import "TCRegisterViewController.h"
-#import "TCHttpTool.h"
+#import <TCPublicKit/TCHttpTool.h>
 #import "MemberBaseHeader.h"
 
 @interface TCLoginViewController () <UITextFieldDelegate>
@@ -180,6 +180,8 @@
             base64 = valueList[1];
             // 获取用户信息
             [weakSelf GetUserInfoRequest];
+            // 获取对讲信息
+            [weakSelf GetHousesInfoRequest];
         }
     } failure:^(NSError * _Nonnull error) {
         [SVProgressHUD dismiss];
@@ -198,11 +200,11 @@
             NSData *dataData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
             NSString *dataJsonString = [[NSString alloc] initWithData:dataData encoding:NSUTF8StringEncoding];
             [[NSUserDefaults standardUserDefaults] setObject:dataJsonString forKey:TCMemberInfoKey]; // 保存用户信息
+            [[NSUserDefaults standardUserDefaults] setObject:[dict objectForKey:@"id"] forKey:TCUserId];
             [[NSUserDefaults standardUserDefaults] synchronize];
             if (self.loginSucceedAction) {
                 self.loginSucceedAction(0);
             }
-            [[NSUserDefaults standardUserDefaults] setObject:[dict objectForKey:@"id"] forKey:TCUserId];
             NSDictionary *userInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:[dict objectForKey:@"id"], @"id", nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessNotification" object:self userInfo:userInfoDict];
         } else {
@@ -210,6 +212,26 @@
         }
     } failure:^(NSError * _Nonnull error) {
         [SVProgressHUD showInfoWithStatus:@"用户名或者密码错误"];
+    }];
+}
+
+// 获取对讲用户信息
+- (void)GetHousesInfoRequest
+{
+    [[TCHttpTool sharedHttpTool] getWithURL:GetHousesInfoURL params:nil success:^(id  _Nonnull json) {
+        [SVProgressHUD dismiss];
+        NSInteger code = [[json objectForKey:@"code"] integerValue];
+        if (code == 0) {
+            NSDictionary *dict = [json objectForKey:@"data"];
+            NSData *dataData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+            NSString *dataJsonString = [[NSString alloc] initWithData:dataData encoding:NSUTF8StringEncoding];
+            [[NSUserDefaults standardUserDefaults] setObject:dataJsonString forKey:TCHousesInfoKey]; // 保存对讲用户信息
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        } else {
+            [SVProgressHUD showInfoWithStatus:[json objectForKey:@"message"]];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD showInfoWithStatus:@"获取对讲信息失败"];
     }];
 }
 

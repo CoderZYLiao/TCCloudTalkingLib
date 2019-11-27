@@ -7,7 +7,7 @@
 //
 
 #import "TCBaseViewController.h"
-#import "TCPublicKit.h"
+#import <TCPublicKit/TCPublicKit.h>
 #import "MemberBaseHeader.h"
 
 @interface TCBaseViewController ()
