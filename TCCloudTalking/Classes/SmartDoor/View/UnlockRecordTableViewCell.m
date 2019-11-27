@@ -40,8 +40,8 @@
 - (void)setRecordModel:(TCUnlcokRecordModel *)RecordModel
 {
     _RecordModel = RecordModel;
-    self.DoorMachineNameL.text = RecordModel.dataArray.eqName;
-    self.UnlockingTimeL.text = RecordModel.dataArray.createTime;
+    self.DoorMachineNameL.text = RecordModel.eqName;
+    self.UnlockingTimeL.text = RecordModel.createTime;
 }
 
 - (void)setCallRecordModel:(TCCallRecordsModel *)callRecordModel

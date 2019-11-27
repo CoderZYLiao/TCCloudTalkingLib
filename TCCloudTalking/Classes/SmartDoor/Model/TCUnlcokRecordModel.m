@@ -8,12 +8,15 @@
 #import "TCUnlcokRecordModel.h"
 
 @implementation TCUnlcokRecordModel
-
-@end
-
-@implementation TCUnlcokRecordDataModel
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
     return @{@"ID" : @"id"
              };
 }
 @end
+
+//@implementation TCUnlcokRecordDataModel
+//+ (NSDictionary *)mj_replacedKeyFromPropertyName {
+//    return @{@"ID" : @"id"
+//             };
+//}
+//@end

@@ -8,7 +8,7 @@
 
 #import "TCLoginViewController.h"
 #import <TCPublicKit/TCPublicKit.h>
-#import <Masonry.h>
+#import <Masonry/Masonry.h>
 #import "TCFindPwdViewController.h"
 #import "TCRegisterViewController.h"
 #import <TCPublicKit/TCHttpTool.h>

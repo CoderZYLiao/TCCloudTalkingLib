@@ -8,21 +8,21 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class TCUnlcokRecordDataModel;
+//@class TCUnlcokRecordDataModel;
 @interface TCUnlcokRecordModel : NSObject
-//页面索引，0开始
-@property (nonatomic, strong) NSString *pageIndex;
-//页面记录大小
-@property (nonatomic, strong) NSString *pageSize;
-//全部记录条数
-@property (nonatomic, strong) NSString *totalCount;
-
-//PriRoomView实体
-@property (nonatomic, strong) TCUnlcokRecordDataModel *dataArray;
-@end
-
-
-@interface TCUnlcokRecordDataModel : NSObject
+////页面索引，0开始
+//@property (nonatomic, strong) NSString *pageIndex;
+////页面记录大小
+//@property (nonatomic, strong) NSString *pageSize;
+////全部记录条数
+//@property (nonatomic, strong) NSString *totalCount;
+//
+////PriRoomView实体
+//@property (nonatomic, strong) TCUnlcokRecordDataModel *dataArray;
+//@end
+//
+//
+//@interface TCUnlcokRecordDataModel : NSObject
 //开锁者类型
 @property (nonatomic, strong) NSString *userType;
 //住户Id

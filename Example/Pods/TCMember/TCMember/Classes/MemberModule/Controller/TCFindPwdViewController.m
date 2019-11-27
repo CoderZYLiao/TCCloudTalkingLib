@@ -8,7 +8,7 @@
 
 #import "TCFindPwdViewController.h"
 #import <TCPublicKit/TCPublicKit.h>
-#import <Masonry.h>
+#import <Masonry/Masonry.h>
 #import <ZXCountDownView/ZXCountDownBtn.h>
 #import "MemberBaseHeader.h"
 

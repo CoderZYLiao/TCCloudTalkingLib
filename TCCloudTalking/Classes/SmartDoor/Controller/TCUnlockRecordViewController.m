@@ -15,8 +15,8 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *DataSource;
 
-@property(nonatomic, assign) NSInteger currentPage;
-@property(nonatomic, assign) NSInteger totalPage;
+@property(nonatomic, assign) int currentPage;
+@property(nonatomic, assign) int totalPage;
 @end
 
 @implementation TCUnlockRecordViewController
@@ -58,6 +58,43 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
     [self.tableView.mj_header beginRefreshing];
 }
 
+- (void)loadMoreData
+{
+    if (self.tableView.mj_header.isRefreshing) {
+        return;
+    }
+    if (self.currentPage + 1 > self.totalPage) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        return;
+    }
+
+    NSString *PageIndex = [NSString stringWithFormat:@"%i",self.currentPage+1];
+    [TCCloudTalkRequestTool GetMyCommunityWithPageIndex:PageIndex pageSize:@"20" month:[self getCurrentMonth] Success:^(id  _Nonnull result) {
+
+        debugLog(@"%@-----开锁记录",result);
+        if ([result[@"code"] intValue] == 0) {
+            NSArray *dataArray = result[@"data"][@"dataArray"];
+            self.currentPage =  [result[@"data"][@"pageIndex"] intValue];
+            int pageSize = [result[@"data"][@"pageSize"] intValue];
+            int totalCount = [result[@"data"][@"totalCount"] intValue];
+            self.totalPage =  ((totalCount + pageSize - 1)/pageSize);
+            NSArray *array = [TCUnlcokRecordModel mj_objectArrayWithKeyValuesArray:dataArray];
+            [self.DataSource addObjectsFromArray:array];
+            [self.tableView reloadData];
+            
+        }else
+        {
+            if (result[@"message"]) {
+                [SVProgressHUD showErrorWithStatus:result[@"message"]];
+            }
+            
+        }
+        [self.tableView.mj_footer resetNoMoreData];
+    } faile:^(NSError * _Nonnull error) {
+        [self.tableView.mj_footer resetNoMoreData];
+    }];
+}
+
 - (void)loadNewData
 {
     self.currentPage = 0;
@@ -73,7 +110,13 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
         [self.tableView.mj_header endRefreshing];
         debugLog(@"%@-----开锁记录",result);
         if ([result[@"code"] intValue] == 0) {
-            self.DataSource = [TCUnlcokRecordModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
+            NSArray *array = result[@"data"][@"dataArray"];
+            self.currentPage =  [result[@"data"][@"pageIndex"] intValue];
+            int pageSize = [result[@"data"][@"pageSize"] intValue];
+            int totalCount = [result[@"data"][@"totalCount"] intValue];
+            self.totalPage =  ((totalCount + pageSize - 1)/pageSize);
+            [self.DataSource removeAllObjects];
+            self.DataSource = [TCUnlcokRecordModel mj_objectArrayWithKeyValuesArray:array];
             
             [self.tableView reloadData];
         }else
@@ -107,6 +150,7 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
     if (cell == nil) {
         cell = [UnlockRecordTableViewCell viewFromBundleXib];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.RecordModel = model;
     return cell;
     
