@@ -29,7 +29,7 @@ PODS:
   - MJRefresh (3.2.0)
   - pop (1.0.12)
   - SVProgressHUD (2.2.5)
-  - TCCloudTalking (1.0.5.1):
+  - TCCloudTalking (1.0.0.1):
     - FMDB (~> 2.6.2)
     - Masonry
     - MJExtension
@@ -99,7 +99,7 @@ SPEC CHECKSUMS:
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TCCloudTalking: 8f65c2a03e74b66e87cc5dc2d2bda98ca33d0dd1
+  TCCloudTalking: a757a6cdd2a388a544d522c18e553523f918fa17
   TCMember: 14a76c743aa636f7f7c708128902615e2194953f
   TCPublicKit: 7df091db9a094f8d0bcab2c42ce97e47bf9efacb
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
