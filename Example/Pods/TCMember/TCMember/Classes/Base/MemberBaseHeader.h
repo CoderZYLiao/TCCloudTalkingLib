@@ -27,5 +27,9 @@
 #define ResetPasswordURL [NSString stringWithFormat:@"%@/api/ucenter-app/account/resetpassword", KProjectAPIBaseURL]
 // 获取七牛token链接
 #define GetUploadTokensURL [NSString stringWithFormat:@"%@/api/ucenter/qinius/uploadtokens", KProjectAPIBaseURL]
+// 搜索社区列表链接
+#define SearchCommunityURL [NSString stringWithFormat:@"%@/api/ucenter-app/community", KProjectAPIBaseURL]
+// 设置我的默认小区链接
+#define SetDefaultCommunityURL [NSString stringWithFormat:@"%@/api/ucenter-app/community/default", KProjectAPIBaseURL]
 
 #endif /* BaseHeader_h */

@@ -154,6 +154,7 @@
     [params setObject:@"client_credentials" forKey:@"grant_type"];
     [params setObject:@"uhome uhome.rke uhome.o2o uhome.park" forKey:@"scope"];
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
     [mgr.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [mgr.requestSerializer setTimeoutInterval:10];
     mgr.responseSerializer = [AFJSONResponseSerializer serializer];

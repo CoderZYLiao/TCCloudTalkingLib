@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** 获取Bundle里面的图片 **/
 + (instancetype)tc_imgWithName:(NSString *)name bundle:(NSString *)bundleName targetClass:(Class)targetClass;
 + (UIImage *)scaleImage:(UIImage *)img ToSize:(CGSize)size;
+- (UIImage *)fillColor:(UIColor *)fillColor;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TCPersonalInfoModel : NSObject
 + (instancetype)shareInstance;
 - (TCUserModel *)getUserModel;
+- (void)UpdateUserModel;
 - (void)updateUserModelName:(NSString *)name;
 - (void)updateUserModelAvatar:(NSString *)avatar;
 - (void)updateUserModelGender:(NSInteger)gender;

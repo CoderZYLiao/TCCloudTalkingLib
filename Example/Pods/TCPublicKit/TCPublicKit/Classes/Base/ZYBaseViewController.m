@@ -7,6 +7,7 @@
 //
 
 #import "ZYBaseViewController.h"
+#import "UIImage+ZYAdd.h"
 
 @interface ZYBaseViewController ()
 
@@ -35,7 +36,6 @@
     UIView *rightButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 32, 44)];
     _btnRight = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 32, 44)];
     [rightButtonView addSubview:_btnRight];
-    [_btnRight setImage:[UIImage imageNamed:@"notice_icon"] forState:UIControlStateNormal];
     UIBarButtonItem *rightCunstomButtonView = [[UIBarButtonItem alloc] initWithCustomView:rightButtonView];    
     self.navigationItem.rightBarButtonItem = rightCunstomButtonView;
     _btnRight.tag = 2;

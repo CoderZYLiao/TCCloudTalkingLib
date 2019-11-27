@@ -154,8 +154,14 @@
     [params setObject:@"123456" forKey:@"client_secret"];
     [params setObject:@"client_credentials" forKey:@"grant_type"];
     [params setObject:@"uhome uhome.rke uhome.o2o uhome.park" forKey:@"scope"];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [mgr.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [mgr.requestSerializer setTimeoutInterval:10];
+    mgr.responseSerializer = [AFJSONResponseSerializer serializer];
+    mgr.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"application/x-json",@"text/html",@"text/plain", nil];
     WEAKSELF
-    [[TCHttpTool sharedHttpTool] postWithURL:GetTokenURL params:params success:^(id  _Nonnull json) {
+    [[TCHttpTool sharedHttpTool] postWithURL:GetTokenURL params:params withManager:mgr success:^(id  _Nonnull json) {
         NSLog(@"%@", json);
         weakSelf.access_token = [json objectForKey:@"access_token"];
         [weakSelf SendCodeRequestWithToken:weakSelf.access_token];

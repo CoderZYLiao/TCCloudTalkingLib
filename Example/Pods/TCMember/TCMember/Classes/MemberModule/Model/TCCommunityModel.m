@@ -12,7 +12,8 @@
 + (NSDictionary *)mj_replacedKeyFromPropertyName
 {
     return @{
-             @"communityId" : @"id"
+              @"communityId" : @"id"
              };
 }
+
 @end

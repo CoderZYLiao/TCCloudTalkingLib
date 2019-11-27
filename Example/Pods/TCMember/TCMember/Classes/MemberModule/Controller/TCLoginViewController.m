@@ -161,11 +161,12 @@
     [params setObject:self.textFieldAccount.text forKey:@"username"];
     [params setObject:self.textFieldPwd.text forKey:@"password"];
     [[NSUserDefaults standardUserDefaults] setObject:self.textFieldAccount.text forKey:TCUsername];
-    [[NSUserDefaults standardUserDefaults] setObject:self.textFieldAccount.text forKey:TCPassword];
+    [[NSUserDefaults standardUserDefaults] setObject:self.textFieldPwd.text forKey:TCPassword];
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
     [mgr.requestSerializer setTimeoutInterval:10];
     [mgr.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+     [SVProgressHUD show];
     WEAKSELF
     [[TCHttpTool sharedHttpTool] postWithURL:LoginURL params:params withManager:mgr success:^(id _Nonnull json) {
         // 保存token
@@ -181,6 +182,7 @@
             [weakSelf GetUserInfoRequest];
         }
     } failure:^(NSError * _Nonnull error) {
+        [SVProgressHUD dismiss];
          [SVProgressHUD showInfoWithStatus:@"用户名或者密码错误"];
     }];
 }
@@ -189,6 +191,7 @@
 - (void)GetUserInfoRequest
 {
     [[TCHttpTool sharedHttpTool] getWithURL:UserInfoURL params:nil success:^(id  _Nonnull json) {
+        [SVProgressHUD dismiss];
         NSInteger code = [[json objectForKey:@"code"] integerValue];
         if (code == 0) {
             NSDictionary *dict = [json objectForKey:@"data"];
@@ -199,6 +202,9 @@
             if (self.loginSucceedAction) {
                 self.loginSucceedAction(0);
             }
+            [[NSUserDefaults standardUserDefaults] setObject:[dict objectForKey:@"id"] forKey:TCUserId];
+            NSDictionary *userInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:[dict objectForKey:@"id"], @"id", nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessNotification" object:self userInfo:userInfoDict];
         } else {
             [SVProgressHUD showInfoWithStatus:[json objectForKey:@"message"]];
         }

@@ -58,4 +58,44 @@
     return scaledImage;
 }
 
+- (UIImage *)fillColor:(UIColor *)fillColor
+{
+    return [self fillColor:fillColor backgroundColor:[UIColor clearColor]];
+}
+
+- (UIImage*) fillColor:(UIColor *)fillColor backgroundColor:(UIColor*)bgColor
+{
+    if (!fillColor) {
+        return self;
+    }
+    // Create the proper sized rect
+    CGRect imageRect = CGRectMake(0, 0, CGImageGetWidth(self.CGImage), CGImageGetHeight(self.CGImage));
+    
+    // Create a new bitmap context
+    CGContextRef context = CGBitmapContextCreate(NULL, imageRect.size.width, imageRect.size.height, 8, 0, CGImageGetColorSpace(self.CGImage), (CGBitmapInfo)kCGImageAlphaPremultipliedLast);
+    
+    //    CGContextSetRGBFillColor(context, 1, 1, 1, 0);
+    CGContextSetFillColorWithColor(context, bgColor.CGColor);
+    CGContextFillRect(context, imageRect);
+    
+    // Use the passed in image as a clipping mask
+    CGContextClipToMask(context, imageRect, self.CGImage);
+    // Set the fill color to black: R:0 G:0 B:0 alpha:1
+    //    CGContextSetRGBFillColor(context, 1, 1, 1, 1);
+    CGContextSetFillColorWithColor(context, fillColor.CGColor);
+    
+    // Fill with black
+    CGContextFillRect(context, imageRect);
+    
+    // Generate a new image
+    CGImageRef newCGImage = CGBitmapContextCreateImage(context);
+    UIImage* newImage = [UIImage imageWithCGImage:newCGImage scale:self.scale orientation:self.imageOrientation];
+    
+    // Cleanup
+    CGContextRelease(context);
+    CGImageRelease(newCGImage);
+    
+    return newImage;
+}
+
 @end

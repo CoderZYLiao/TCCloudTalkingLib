@@ -19,6 +19,7 @@
 #define TCAccessToken @"access_token"
 #define TCUsername @"username"
 #define TCPassword @"password"
+#define TCUserId @"userId"
 /*
  Web基链接
  */

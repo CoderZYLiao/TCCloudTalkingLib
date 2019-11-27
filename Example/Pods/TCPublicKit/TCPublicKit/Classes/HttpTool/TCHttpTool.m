@@ -45,7 +45,7 @@ static AFHTTPSessionManager *mgr = nil;
     [params setObject:password forKey:@"password"];
     
     AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-    mgr.requestSerializer = [AFJSONRequestSerializer serializer];
+    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
     [mgr.requestSerializer setTimeoutInterval:10];
     [mgr.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [[TCHttpTool sharedHttpTool] postWithURL:GetTokenURL params:params withManager:mgr success:^(id  _Nonnull json) {
@@ -216,13 +216,11 @@ static AFHTTPSessionManager *mgr = nil;
             success:(void (^)(id))success
             failure:(void (^)(NSError *))failure
 {
-    [SVProgressHUD show];
     [manager POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success)
         {
-            [SVProgressHUD dismiss];
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 if ([responseObject[@"resultCode"] isEqualToString:@"31"]) {  //强制重新登录
                     failure(nil);
@@ -237,8 +235,6 @@ static AFHTTPSessionManager *mgr = nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure)
         {
-            [SVProgressHUD dismiss];
-            [SVProgressHUD showInfoWithStatus:error.localizedDescription];
             failure(error);
         }
     }];
@@ -284,13 +280,13 @@ static AFHTTPSessionManager *mgr = nil;
             
             NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
             
-            DDLog(@"%@",[NSString stringWithFormat:@"[get]请求URL \n%@ 请求参数 \n%@ 回调结果\n%@",url,params,jsonStr]);
+//            DDLog(@"%@",[NSString stringWithFormat:@"[get]请求URL \n%@ 请求参数 \n%@ 回调结果\n%@",url,params,jsonStr]);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if(failure)
         {
             failure(error);
-            DDLog(@"%@",[NSString stringWithFormat:@"[get]请求URL \n%@ 请求参数 \n%@ 错误信息\n%@",url,params,error]);
+//            DDLog(@"%@",[NSString stringWithFormat:@"[get]请求URL \n%@ 请求参数 \n%@ 错误信息\n%@",url,params,error]);
         }
     }];
 }
