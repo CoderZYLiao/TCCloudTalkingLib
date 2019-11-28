@@ -6,10 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TCCloudTalkingBaseVC.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TCAllCallsViewController : UIViewController
+@interface TCAllCallsViewController : TCCloudTalkingBaseVC
 
 @end
 

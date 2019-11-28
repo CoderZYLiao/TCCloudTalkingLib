@@ -6,10 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TCCloudTalkingBaseVC.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TCPasswordOpenViewController : UIViewController
+@interface TCPasswordOpenViewController : TCCloudTalkingBaseVC
 
 @end
 

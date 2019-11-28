@@ -17,21 +17,21 @@
 // 登录链接
 #define LoginURL [NSString stringWithFormat:@"%@/connect/token", KProjectAPIBaseURL]
 // 获取用户信息相关链接
-#define UserInfoURL [NSString stringWithFormat:@"%@/api/ucenter-app/user", KProjectAPIBaseURL]
+#define UserInfoURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/user", KProjectAPIBaseURL]
 #define GetHousesInfoURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/houses", KProjectAPIBaseURL]
 // 更改用户密码
-#define ChangeUserPasswordURL [NSString stringWithFormat:@"%@/api/ucenter-app/account/changepassword", KProjectAPIBaseURL]
+#define ChangeUserPasswordURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/account/changepassword", KProjectAPIBaseURL]
 // 注册链接
-#define RegisterURL [NSString stringWithFormat:@"%@/api/ucenter/account", KProjectAPIBaseURL]
+#define RegisterURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/account", KProjectAPIBaseURL]
 // 注册验证码链接
-#define SendCodeURL [NSString stringWithFormat:@"%@/api/ucenter-app/account/sendcode", KProjectAPIBaseURL]
+#define SendCodeURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/account/sendcode", KProjectAPIBaseURL]
 // 重置密码链接
-#define ResetPasswordURL [NSString stringWithFormat:@"%@/api/ucenter-app/account/resetpassword", KProjectAPIBaseURL]
+#define ResetPasswordURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/account/resetpassword", KProjectAPIBaseURL]
 // 获取七牛token链接
-#define GetUploadTokensURL [NSString stringWithFormat:@"%@/api/ucenter/qinius/uploadtokens", KProjectAPIBaseURL]
+#define GetUploadTokensURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/qinius/uploadtokens", KProjectAPIBaseURL]
 // 搜索社区列表链接
-#define SearchCommunityURL [NSString stringWithFormat:@"%@/api/ucenter-app/community", KProjectAPIBaseURL]
+#define SearchCommunityURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/community", KProjectAPIBaseURL]
 // 设置我的默认小区链接
-#define SetDefaultCommunityURL [NSString stringWithFormat:@"%@/api/ucenter-app/community/default", KProjectAPIBaseURL]
+#define SetDefaultCommunityURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/community/default", KProjectAPIBaseURL]
 
 #endif /* BaseHeader_h */

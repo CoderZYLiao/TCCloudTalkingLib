@@ -115,10 +115,10 @@ static UIWindow *window_;
                 [TCCloudTalkingTool saveUserMachineList:result];
             }else
             {
-//                [self canceBtnClick];
+                //                [self canceBtnClick];
             }
             
-   
+            
         }else
         {
             if (result[@"message"]) {
@@ -190,7 +190,7 @@ static UIWindow *window_;
         //自动折行设置
         button.titleLabel.numberOfLines = 0;
         [button.titleLabel setLineBreakMode:NSLineBreakByCharWrapping];
-
+        
         [button setTitle:DoorItem.name forState:UIControlStateNormal];
         
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -235,6 +235,24 @@ static UIWindow *window_;
         if (self.typeNum == 0) {//对讲
             
             NSLog(@"视频呼叫");
+            if ([[UCSTcpClient sharedTcpClientManager] login_isConnected]) {
+                //主动呼叫
+                [[UCSVOIPViewEngine getInstance] makingCallViewCallNumber:DoorItem.intercomUserId callType:UCSCallType_VideoPhone callName:DoorItem.name];
+                
+            }else
+            {
+                
+                ShowNoti(@"对讲服务正在连接中,请稍后!");
+                TCHousesInfoModel *houesModel = [[TCPersonalInfoModel shareInstance] getHousesInfoModel];
+                [[UCSTcpClient sharedTcpClientManager] login_connect:houesModel.intercomToken  success:^(NSString *userId) {
+                    [SVProgressHUD dismiss];
+                    //主动呼叫
+                    [[UCSVOIPViewEngine getInstance] makingCallViewCallNumber:DoorItem.intercomUserId callType:UCSCallType_VideoPhone callName:DoorItem.name];
+                } failure:^(UCSError *error) {
+                    [SVProgressHUD dismiss];
+                    ShowErrorNoti(@"d对讲服务器连接失败!!");
+                }];
+            }
         }else//开锁
         {
             

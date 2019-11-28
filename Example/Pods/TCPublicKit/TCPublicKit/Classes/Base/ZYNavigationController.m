@@ -8,6 +8,10 @@
 
 #import "ZYNavigationController.h"
 #import "UIColor+ZYAdd.h"
+#import "UIImage+ZYAdd.h"
+
+//导航栏颜色
+#define NavBarColor [UIColor colorWithRed:64/255.0 green:115/255.0 blue:242/255.0 alpha:1/1.0]
 
 @interface ZYNavigationController ()
 
@@ -24,8 +28,7 @@
 
 + (void)initialize
 {
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithHexString:@"#4073F2"]];
-    [[UINavigationBar appearance] setBackgroundColor:[UIColor colorWithHexString:@"#4073F2"]];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NavBarColor] forBarMetrics:UIBarMetricsDefault];
     //修改标题字体颜色及大小
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
@@ -37,7 +40,6 @@
         UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
         [backButton setImage:[UIImage imageNamed:@"return_icon"] forState:UIControlStateNormal];
         [backButton setImage:[UIImage imageNamed:@"return_icon"] forState:UIControlStateHighlighted];
-//        [backButton setTitle:@"返回" forState:UIControlStateNormal];
         backButton.titleLabel.font = [UIFont systemFontOfSize:15];
         // 让按钮内部的所有内容左对齐
         backButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;

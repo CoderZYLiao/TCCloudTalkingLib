@@ -11,6 +11,7 @@
 #import <Masonry/Masonry.h>
 #import <ZXCountDownView/ZXCountDownBtn.h>
 #import "MemberBaseHeader.h"
+#import "TCPersonalInfoModel.h"
 
 @interface TCFindPwdViewController ()
 @property (nonatomic, strong) UIImageView *imgViewPhoneIcon;
@@ -207,14 +208,12 @@
     [mgr.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", self.access_token] forHTTPHeaderField:@"Authorization"];
     [mgr.requestSerializer setTimeoutInterval:10];
     mgr.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [mgr POST:ResetPasswordURL parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-        NSLog(@"%@", ResetPasswordURL);
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [mgr POST:ResetPasswordURL parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [SVProgressHUD dismiss];
         NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
         if (code == 0) {
             [SVProgressHUD showInfoWithStatus:@"重置密码成功"];
+            [[TCPersonalInfoModel shareInstance] logout];
         } else {
             NSString *msg = [responseObject objectForKey:@"message"];
             [SVProgressHUD showInfoWithStatus:msg];
@@ -246,7 +245,7 @@
         [SVProgressHUD showInfoWithStatus:@"请输入验证码"];
         return;
     } else if (![NSString valiPassword:self.textFieldPwd.text]) {
-        [SVProgressHUD showInfoWithStatus:@"请输入8-20位数字和字母组合的新密码"];
+        [SVProgressHUD showInfoWithStatus:@"请输入6-16位数字和字母组合的新密码"];
         self.textFieldPwd.text = @"";
         [self.textFieldPwd becomeFirstResponder];
         return;

@@ -92,9 +92,9 @@
 // 验证密码
 + (BOOL)valiPassword:(NSString *)password {
     /**
-     * 密码8-20位数字和字母组合
+     * 密码6-16位数字和字母组合
      */
-    NSString *pattern = @"^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{8,20}";
+    NSString *pattern = @"^(?![0-9]+$)(?![a-zA-Z]+$)[a-zA-Z0-9]{6,16}";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", pattern];
     BOOL isMatch = [pred evaluateWithObject:password];
     if (isMatch) {

@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)tc_imgWithName:(NSString *)name bundle:(NSString *)bundleName targetClass:(Class)targetClass;
 + (UIImage *)scaleImage:(UIImage *)img ToSize:(CGSize)size;
 - (UIImage *)fillColor:(UIColor *)fillColor;
++ (UIImage *)imageWithColor:(UIColor *)color;
 @end
 
 NS_ASSUME_NONNULL_END

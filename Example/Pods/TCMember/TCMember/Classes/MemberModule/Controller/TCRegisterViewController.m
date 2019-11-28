@@ -128,7 +128,7 @@
         [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号码"];
         return;
     } else if (![NSString valiPassword:self.textFieldPwd.text]) {
-        [SVProgressHUD showInfoWithStatus:@"请输入8-20位数字和字母组合的注册密码"];
+        [SVProgressHUD showInfoWithStatus:@"请输入6-16位数字和字母组合的注册密码"];
         return;
     } else if (self.textFieldPwd2.text.length <= 0) {
         [SVProgressHUD showInfoWithStatus:@"请再次输入密码"];
@@ -344,7 +344,7 @@
 {
     if (_lblGotoLogin == nil) {
         _lblGotoLogin = [[YYLabel alloc] init];
-        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"我已有账号，马上登陆"];
+        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"我已有账号，马上登录"];
         [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13] range:NSMakeRange(0, text.length)];
         [text addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#C0C4CC"] range:NSMakeRange(0, text.length)];
         

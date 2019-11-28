@@ -33,10 +33,13 @@
 #import "TCPersonalInfoModel.h"
 #import "TCUserModel.h"
 #import "TCCommunityModel.h"
+#import "TCHousesInfoModel.h"
 //公共库头文件
 //#import "TCPublicKit.h"
 //#import "UIImage+ZYAdd.h"
 
+//基类
+#import "TCCloudTalkingBaseVC.h"
 //TCCloudTalking请求头文件
 #import "TCCloudTalkRequestTool.h"
 
@@ -72,7 +75,16 @@
 #define UserTccToken @"UserTccToken"
 //userID
 #define UserTccUserID @"UserTccUserID"
+/*
+ *检查字符串是否为空
+ */
+#define CheckUnNilStr(str) (str != nil && [str isKindOfClass:[NSString class]])
+#define CheckUnNilArray(arr) (arr && [arr isKindOfClass:[NSArray class]])
+#define CheckUnNilDictionary(dict) (dict && [dict isKindOfClass:[NSDictionary class]])
 
+#define ShowErrorNoti(string) [SVProgressHUD showErrorWithStatus:string];
+#define ShowNoti(string) [SVProgressHUD showInfoWithStatus:string];
+#define ShowSucessNoti(string) [SVProgressHUD showSuccessWithStatus:string];
 
 /** 屏幕bounds */
 #define MainScreenCGRect [[UIScreen mainScreen] bounds]
