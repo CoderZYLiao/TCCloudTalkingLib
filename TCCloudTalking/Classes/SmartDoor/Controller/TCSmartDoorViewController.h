@@ -9,10 +9,10 @@
 /*******本页面包含-监控门口机-通话记录-动态密码-二维码开锁-我的卡列表-开锁记录*******/
 /*******智能门禁*******/
 #import <UIKit/UIKit.h>
-
+#import "ZYBaseViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TCSmartDoorViewController : UIViewController
+@interface TCSmartDoorViewController : ZYBaseViewController
 
 @end
 

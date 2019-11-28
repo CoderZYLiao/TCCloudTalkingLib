@@ -15,6 +15,7 @@
 #import "TCCallRecordsViewController.h"
 #import "TCOpenDoorView.h"
 #import "Header.h"
+
 static NSString *const SmartDoorID = @"SmartDoorID";
 @interface TCSmartDoorViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
