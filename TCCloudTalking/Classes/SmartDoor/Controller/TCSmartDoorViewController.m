@@ -57,7 +57,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     //初始化collectionview
     [self initCollectionViewUI];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    self.navigationController.navigationBar.hidden = NO;
     [self initBackImgeUI];
 }
 
