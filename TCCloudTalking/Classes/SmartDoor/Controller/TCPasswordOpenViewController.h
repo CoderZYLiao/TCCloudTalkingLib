@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TCPasswordOpenViewController : TCCloudTalkingBaseVC
-
+@property (nonatomic ,copy) NSString *PasswordCode;//动态密码
 @end
 
 NS_ASSUME_NONNULL_END

@@ -129,8 +129,8 @@ static NSString *const SmartDoorID = @"SmartDoorID";
         [self.navigationController pushViewController:CallVc animated:YES];
     }else if ([model.CollectionName isEqualToString:@"动态密码"])
     {
-        TCPasswordOpenViewController *PasswordVc = [[TCPasswordOpenViewController alloc] init];
-        [self.navigationController pushViewController:PasswordVc animated:YES];
+        [self getRandomPwds];
+        
     }else if ([model.CollectionName isEqualToString:@"二维码开锁"])
     {
         TCQRCodeUnlockViewController *QRCodeVc = [[TCQRCodeUnlockViewController alloc] init];
@@ -144,6 +144,27 @@ static NSString *const SmartDoorID = @"SmartDoorID";
         TCMyCardViewController *MyCardVc = [[TCMyCardViewController alloc] init];
         [self.navigationController pushViewController:MyCardVc animated:YES];
     }
+}
+
+- (void)getRandomPwds
+{
+    [SVProgressHUD showWithStatus:@""];
+    [TCCloudTalkRequestTool GetDoorOpenRandomPwdsWithHours:@"24" Success:^(id  _Nonnull result) {
+        debugLog(@"%@-----动态密码",result);
+        if ([result[@"code"] intValue] == 0) {
+            TCPasswordOpenViewController *PasswordVc = [[TCPasswordOpenViewController alloc] init];
+            PasswordVc.PasswordCode =  [result[@"data"] objectForKey:@"passWord"];
+            [self.navigationController pushViewController:PasswordVc animated:YES];
+        }else
+        {
+            if (result[@"message"]) {
+                [SVProgressHUD showErrorWithStatus:result[@"message"]];
+            }
+            
+        }
+    } faile:^(NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"请求失败"];
+    }];
 }
 
 
@@ -171,7 +192,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 -(NSArray *)collImagesArray
 {
     if (!_collImagesArray) {
-        _collImagesArray = @[@"TCCT_ico_监视",@"TCCT_ico_监视",@"TCCT_ico_监视",@"TCCT_ico_监视",@"TCCT_ico_监视",@"TCCT_ico_监视"];
+        _collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TCCT_ic_dynamic password",@"TCCT_ic_code unlock",@"TCCT_ic_my card",@"TCCT_ico_lock record"];
     }
     return _collImagesArray;
 }

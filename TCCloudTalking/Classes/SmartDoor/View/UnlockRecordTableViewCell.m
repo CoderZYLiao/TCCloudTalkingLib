@@ -47,7 +47,7 @@
 - (void)setCallRecordModel:(TCCallRecordsModel *)callRecordModel
 {
     _callRecordModel = callRecordModel;
-    self.DoorMachineNameL.text = callRecordModel.userId;
+    self.DoorMachineNameL.text = callRecordModel.nickName;
     self.UnlockingTimeL.text =[TCCloudTalkingTool ConvertStrToTime:callRecordModel.time];
     if ([callRecordModel.callStatus intValue]==0) {
         [self.DoorMachineNameL setTextColor:[UIColor blackColor]];

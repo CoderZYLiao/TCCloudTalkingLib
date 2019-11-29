@@ -135,7 +135,8 @@
 
 - (void)generateCode
 {
-    NSString *plainText = [NSString stringWithFormat:@"123456D%@",[self currentTimeStr]];
+    TCHousesInfoModel *houesModel = [[TCPersonalInfoModel shareInstance] getHousesInfoModel];
+    NSString *plainText = [NSString stringWithFormat:@"%@D%@",houesModel.housesInfoId,[self currentTimeStr]];
     
     self.key = @"Tc-AESKey4QrCode";
     //加密
@@ -150,6 +151,25 @@
         
     }
     
+}
+
+- (void)getQRCodePwds
+{
+    [SVProgressHUD showWithStatus:@""];
+    [TCCloudTalkRequestTool GetDoorOpenQRCodesSuccess:^(id  _Nonnull result) {
+        NSLog(@"%@-----二维码开锁",result);
+        if ([result[@"code"] intValue] == 0) {
+            
+        }else
+        {
+            if (result[@"message"]) {
+                [SVProgressHUD showErrorWithStatus:result[@"message"]];
+            }
+            
+        }
+    } faile:^(NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"请求失败"];
+    }];
 }
 
 //点击刷新二维码

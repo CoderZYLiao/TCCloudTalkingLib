@@ -28,7 +28,7 @@ static NSString *const MyCardCellID  =@"MyCardCellID";
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, TCNaviH, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-TCNaviH) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, TCNaviH, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-TCNaviH) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
@@ -46,7 +46,7 @@ static NSString *const MyCardCellID  =@"MyCardCellID";
     
     self.title = @"我的卡";
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#F5F6FB"];
     //初始化tabbleView
     [self tableView];
     
@@ -82,25 +82,30 @@ static NSString *const MyCardCellID  =@"MyCardCellID";
     }];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
     return self.DataSource.count;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    return 1;
     
 }
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 185;
+    return 180;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    TCMyCardModel *CardModel = self.DataSource[indexPath.row];
+    TCMyCardModel *CardModel = self.DataSource[indexPath.item];
     MyCardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyCardCellID];
     if (cell == nil) {
         cell = [MyCardTableViewCell viewFromBundleXib];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSInteger rows = indexPath.row%4;
+    NSInteger rows = indexPath.section%4;
     switch (rows) {
         case 0:
             cell.CardBackImageView.image = [TCCloudTalkingImageTool getToolsBundleImage:@"bg_卡片1"];
@@ -125,5 +130,37 @@ static NSString *const MyCardCellID  =@"MyCardCellID";
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    
+    if (section == 0) {
+        return 10.0f;
+    }else
+    {
+       return 0.01f;//section头部高度
+    }
+    
+}
+//section头部视图
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 1)];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
+    
+}
+//section底部间距
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 7;
+}
+//section底部视图
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, kMainScreenWidth, 1)];
+    view.backgroundColor = [UIColor clearColor];
+    return view;
+}
 
 @end

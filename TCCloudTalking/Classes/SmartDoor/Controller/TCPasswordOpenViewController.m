@@ -9,7 +9,7 @@
 #import "Header.h"
 
 @interface TCPasswordOpenViewController ()
-@property (nonatomic ,copy) NSString *PasswordCode;//动态密码
+
 @end
 
 @implementation TCPasswordOpenViewController
@@ -20,9 +20,9 @@
     self.title = @"动态密码";
 
     self.view.backgroundColor = [UIColor whiteColor];
-    self.PasswordCode = @"123456";
     [self initUI];
     [self initPasswordUI];
+    
 }
 
 - (void)initUI
@@ -74,8 +74,8 @@
         label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:40];
         label.textAlignment = NSTextAlignmentCenter;
         label.layer.backgroundColor =  [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1/1.0].CGColor;
-        label.layer.borderColor = [UIColor blueColor].CGColor;//颜色
-        label.layer.borderWidth = 3.0f;//设置边框粗细
+        label.layer.borderColor = [UIColor colorWithHexString:@"#4073F2"].CGColor;//颜色
+        label.layer.borderWidth = 2.0f;//设置边框粗细
         label.layer.cornerRadius = 10;
         label.layer.masksToBounds = YES;
     }
@@ -87,5 +87,6 @@
     label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:13];
     label.textColor = [UIColor colorWithRed:144/255.0 green:147/255.0 blue:153/255.0 alpha:1/1.0];
 }
+
 
 @end

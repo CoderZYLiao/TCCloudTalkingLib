@@ -52,8 +52,12 @@
 #define GetMyCommunityURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/communities", KProjectAPIBaseURL]
 // 获取我的开锁记录
 #define GetMyUnlocklogURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/unlocklogs", KProjectAPIBaseURL]
-//门口机开锁
+// 门口机开锁
 #define OpenMyDoorURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/equipments", KProjectAPIBaseURL]
+// 创建随机开锁密码
+#define DoorRandomPwdsURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/randompwds", KProjectAPIBaseURL]
+// 创建二维码文本开锁记录
+#define DoorQRcodesURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/qrcodes", KProjectAPIBaseURL]
 
 
 // Notification for UI Action

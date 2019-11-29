@@ -71,6 +71,35 @@
     }];
 }
 
+//创建随机开锁密码
++(void)GetDoorOpenRandomPwdsWithHours:(NSString *)hours
+                              Success:(SuccessBlock)successBlock
+                                faile:(FailBlock)failBlock
+{
+    NSMutableDictionary * params = [NSMutableDictionary dictionary];
+    if(hours){
+        [params setObject:hours forKey:@"hours"];
+    }
+    [[TCHttpTool sharedHttpTool] postWithURL:DoorRandomPwdsURL params:params success:^(id  _Nonnull json) {
+        successBlock(json);
+    } failure:^(NSError * _Nonnull error) {
+        failBlock(error);
+    }];
+}
+
+
+//创建二维码文本开锁记录
++(void)GetDoorOpenQRCodesSuccess:(SuccessBlock)successBlock
+                           faile:(FailBlock)failBlock{
+    [[TCHttpTool sharedHttpTool] postWithURL:DoorQRcodesURL params:nil success:^(id  _Nonnull json) {
+        successBlock(json);
+    } failure:^(NSError * _Nonnull error) {
+        failBlock(error);
+    }];
+    
+}
+
+//门口机开锁
 +(void)OpenMyDoorWithDoorID:(NSString *)DoorID
                     Success:(SuccessBlock)successBlock
                       faile:(FailBlock)failBlock

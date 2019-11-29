@@ -34,7 +34,7 @@ NSString* const isRepeatCallStatus = @"isRepeatCallStatus";
 {
     
     NSMutableDictionary *muDic;
-
+    
     int callTypes;  //保存通话记录类型
 }
 @property (assign,nonatomic)UIWindow * window;
@@ -88,7 +88,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
 {
     if (self = [super init]){
         self.window =[[UIApplication sharedApplication].delegate window];
-//        [UCSFuncEngine getInstance].UIDelegate = self;
+        //        [UCSFuncEngine getInstance].UIDelegate = self;
         _isCalling = NO;
         _deviceType = 2;
     }
@@ -155,17 +155,17 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
 
 //为免费通话、单向外呼准备
 - (void)makingCallViewCallNumber:(NSString *)callNumber callType:(UCSCallTypeEnum)callType callName:(NSString *)callName{
-
+    
     if ([[callNumber substringToIndex:3] isEqualToString:@"Cat"]) {     //离线猫眼被呼叫后 反呼叫猫眼
-//        _deviceType = 1;
-//        TCCatEyeCallVC *VC = [[TCCatEyeCallVC alloc] init];
-//        //TODO确定透传设备ID
-//        VC.callID = callNumber;
-//        self.callVC = VC;
-//        [self pushToTheViewController:VC];
-//
-//        self.callType = UCS_videoCall;
-//        [[UCSFuncEngine getInstance] dial:callType andCalled:callNumber andUserdata:@"视频通话"];
+        //        _deviceType = 1;
+        //        TCCatEyeCallVC *VC = [[TCCatEyeCallVC alloc] init];
+        //        //TODO确定透传设备ID
+        //        VC.callID = callNumber;
+        //        self.callVC = VC;
+        //        [self pushToTheViewController:VC];
+        //
+        //        self.callType = UCS_videoCall;
+        //        [[UCSFuncEngine getInstance] dial:callType andCalled:callNumber andUserdata:@"视频通话"];
     }else{
         _deviceType = 2;
         if (self.callViewController || self.incomingCallViewController || self.videoViewController || self.incomingVideoViewController || self.callVC) {
@@ -175,20 +175,17 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         }
         //标识正在通话
         self.isCalling = YES;
-        NSString *nickName;
+        NSString * nickName = callName;
         //显示名称寻找
-        if ([[callNumber substringToIndex:2] isEqualToString:@"5K"]) {
-            nickName = callName;
-        }else
-        {
-            NSString * callKitName = nil;//[TCCetUserHouseMachine getMachineNameWithVoipNo:callNumber];
-            if (callKitName) {
-                nickName = [callKitName copy];
-            }
-            if (nickName == nil) {
-                nickName = callNumber;
-            }
+        
+        NSString * callKitName = nil;//[TCCetUserHouseMachine getMachineNameWithVoipNo:callNumber];
+        if (callKitName) {
+            nickName = [callKitName copy];
         }
+        if (nickName == nil) {
+            nickName = callNumber;
+        }
+        
         
         [[UCSVOIPViewEngine getInstance] WriteToSandBox:[NSString stringWithFormat:@"发起通话：%@---%@---%@",callNumber,callName,nickName]];
         if (callType == UCSCallType_VOIP || callType == 1) {
@@ -370,7 +367,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
  */
 - (BOOL)needShake:(NSString *) fromChatter{
     BOOL ret = YES;
-   
+    
     return ret;
 }
 
@@ -399,7 +396,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
 
 //来电信息
 -(void)incomingCallID:(NSString*)callid caller:(NSString*)caller phone:(NSString*)phone name:(NSString*)name callStatus:(int)status callType:(NSInteger)calltype{
-//-(void)incomingCallInfo:(NSDictionary *)callInfo andCallID:(NSString *)callid caller:(NSString*)caller phone:(NSString*)phone name:(NSString*)name callStatus:(int)status callType:(NSInteger)calltype{//门口机使用该代理方法
+    //-(void)incomingCallInfo:(NSDictionary *)callInfo andCallID:(NSString *)callid caller:(NSString*)caller phone:(NSString*)phone name:(NSString*)name callStatus:(int)status callType:(NSInteger)calltype{//门口机使用该代理方法
     
     //如果在开锁页面(关闭开锁页面)
     [[NSNotificationCenter defaultCenter] postNotificationName:UCSNotiClsoeView object:nil];
@@ -409,12 +406,12 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
     //        "fromId":"xxxxx", // 呼叫方的id
     //        "type":"1" // 呼叫方机器类型，1猫眼，2门口机
     //    }
-//    NSString *catEyeId = [callInfo objectForKey:@"fromId"];
-//    if ([[callInfo objectForKey:@"type"] integerValue] == 1) {
-//        _deviceType = 1;
-//    }else{
-//        _deviceType = 2;
-//    }
+    //    NSString *catEyeId = [callInfo objectForKey:@"fromId"];
+    //    if ([[callInfo objectForKey:@"type"] integerValue] == 1) {
+    //        _deviceType = 1;
+    //    }else{
+    //        _deviceType = 2;
+    //    }
     
     NSString *callNumber = caller;//[callInfo objectForKey:@"callerNumber"];
     
@@ -440,7 +437,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
      */
     
     NSString * nickName = nil;
-//    nickName = [TCCetUserHouseMachine getMachineNameWithVoipNo:caller];
+    //    nickName = [TCCetUserHouseMachine getMachineNameWithVoipNo:caller];
     
     if (nickName == nil) {
         nickName = caller;
@@ -450,42 +447,42 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
     
     [[UCSVOIPViewEngine getInstance] WriteToSandBox:@"收到来电"];
     
-        NSLog(@"%@---扬声器状态",[[AVAudioSession sharedInstance] category]);
-        UIApplicationState state = [UIApplication sharedApplication].applicationState;
-        if (state != UIApplicationStateActive ) {
-            [[self player] releasePlayResource];//释放资源,不占用播放句柄
-      
-            //iOS10以上
-            if (UCS_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(10.0)) {
-                [[self player] play];//若应用处于前台,播放铃声
-                if (_deviceType == 2) {
-                    [[PushNotificationManager sharedInstance] normalPushNotificationWithTitle:@"门口机来电" subTitle:nil body:[NSString stringWithFormat:@"%@ %@", nickName,  (calltype == 2)? @"视频来电" : @"语音来电"] userInfo:nil identifier:@"identifier" soundName:@"incomingCall.mp3" timeInterval:1 repeat:NO];
-                }else{
-                    [[PushNotificationManager sharedInstance] normalPushNotificationWithTitle:@"猫眼来电" subTitle:nil body:[NSString stringWithFormat:@"%@ %@", nickName, @"视频来电"] userInfo:nil identifier:@"identifier" soundName:@"incomingCall.mp3" timeInterval:1 repeat:NO];
-                }
-            }else if (UCS_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(8.0)){
-                
-                if (_deviceType == 2) {
-                    UILocalNotification *localNot = [[UILocalNotification alloc] init];
-                    localNot.fireDate = [NSDate date];
-                    localNot.alertBody = [NSString stringWithFormat:@"%@ %@", nickName,  (calltype == 2)? @"视频来电" : @"语音来电"];
-                    localNot.soundName = @"incomingCall.mp3";
-                    localNot.timeZone = [NSTimeZone defaultTimeZone];
-                    [[UIApplication sharedApplication]  scheduleLocalNotification:localNot];
-                }else{
-                    UILocalNotification *localNot = [[UILocalNotification alloc] init];
-                    localNot.fireDate = [NSDate date];
-                    localNot.alertBody = [NSString stringWithFormat:@"%@ %@", nickName,@"视频来电"];
-                    localNot.soundName = @"incomingCall.mp3";
-                    localNot.timeZone = [NSTimeZone defaultTimeZone];
-                    [[UIApplication sharedApplication]  scheduleLocalNotification:localNot];
-                }
-            }
-            
-        }else if (state == UIApplicationStateActive ) {
+    NSLog(@"%@---扬声器状态",[[AVAudioSession sharedInstance] category]);
+    UIApplicationState state = [UIApplication sharedApplication].applicationState;
+    if (state != UIApplicationStateActive ) {
+        [[self player] releasePlayResource];//释放资源,不占用播放句柄
+        
+        //iOS10以上
+        if (UCS_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(10.0)) {
             [[self player] play];//若应用处于前台,播放铃声
+            if (_deviceType == 2) {
+                [[PushNotificationManager sharedInstance] normalPushNotificationWithTitle:@"门口机来电" subTitle:nil body:[NSString stringWithFormat:@"%@ %@", nickName,  (calltype == 2)? @"视频来电" : @"语音来电"] userInfo:nil identifier:@"identifier" soundName:@"incomingCall.mp3" timeInterval:1 repeat:NO];
+            }else{
+                [[PushNotificationManager sharedInstance] normalPushNotificationWithTitle:@"猫眼来电" subTitle:nil body:[NSString stringWithFormat:@"%@ %@", nickName, @"视频来电"] userInfo:nil identifier:@"identifier" soundName:@"incomingCall.mp3" timeInterval:1 repeat:NO];
+            }
+        }else if (UCS_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(8.0)){
+            
+            if (_deviceType == 2) {
+                UILocalNotification *localNot = [[UILocalNotification alloc] init];
+                localNot.fireDate = [NSDate date];
+                localNot.alertBody = [NSString stringWithFormat:@"%@ %@", nickName,  (calltype == 2)? @"视频来电" : @"语音来电"];
+                localNot.soundName = @"incomingCall.mp3";
+                localNot.timeZone = [NSTimeZone defaultTimeZone];
+                [[UIApplication sharedApplication]  scheduleLocalNotification:localNot];
+            }else{
+                UILocalNotification *localNot = [[UILocalNotification alloc] init];
+                localNot.fireDate = [NSDate date];
+                localNot.alertBody = [NSString stringWithFormat:@"%@ %@", nickName,@"视频来电"];
+                localNot.soundName = @"incomingCall.mp3";
+                localNot.timeZone = [NSTimeZone defaultTimeZone];
+                [[UIApplication sharedApplication]  scheduleLocalNotification:localNot];
+            }
         }
-
+        
+    }else if (state == UIApplicationStateActive ) {
+        [[self player] play];//若应用处于前台,播放铃声
+    }
+    
     
     
     if (calltype == UCSCallType_VOIP)  //语音电话
@@ -502,20 +499,20 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
     {
         self.callType = UCS_incomingVideoCall;
         if (_deviceType == 1) {
-//            TCCatEyeCallVC *VC = [[TCCatEyeCallVC alloc] init];
-//            //TODO确定透传设备ID
-//            VC.callID = callNumber;
-//            self.callVC = VC;
-//            [self pushToTheViewController:VC];
+            //            TCCatEyeCallVC *VC = [[TCCatEyeCallVC alloc] init];
+            //            //TODO确定透传设备ID
+            //            VC.callID = callNumber;
+            //            self.callVC = VC;
+            //            [self pushToTheViewController:VC];
         }else{
             
             TCDoorVideoCallController* incomingVideolView = [[TCDoorVideoCallController alloc] initWithCallerName:nickName andVoipNo:caller];
-//            if ([[callNumber substringToIndex:2] isEqualToString:@"5K"]) {
-//                incomingVideolView.is5KMachine = YES;
-//            }else
-//            {
-//                incomingVideolView.is5KMachine = NO;
-//            }
+            //            if ([[callNumber substringToIndex:2] isEqualToString:@"5K"]) {
+            //                incomingVideolView.is5KMachine = YES;
+            //            }else
+            //            {
+            //                incomingVideolView.is5KMachine = NO;
+            //            }
             incomingVideolView.incomingCall = YES;
             incomingVideolView.callID = callid;
             incomingVideolView.isActivity = NO;
@@ -536,9 +533,9 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
 //通话状态回调
 -(void)responseVoipManagerStatus:(UCSCallStatus)event callID:(NSString*)callid data:(UCSReason *)data withVideoflag:(int)videoflag{
     
-
+    
     [[TCCVibrationer instance] removeVibrate];
-
+    
     
     [[UCSVOIPViewEngine getInstance] WriteToSandBox:[NSString stringWithFormat:@"收到信令：%d---%@---%@",event,callid,data.msg]];
     
@@ -554,9 +551,9 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         }
     }else if (self.callType == UCS_videoCall){
         if (_deviceType == 1) {
-//            UIViewController *curVC = [self xs_getCurrentViewController];
-//            TCCatEyeVC *callVC = (TCCatEyeVC *)curVC;
-//            [callVC responseVoipManagerStatus:event callID:callid data:data withVideoflag:videoflag];
+            //            UIViewController *curVC = [self xs_getCurrentViewController];
+            //            TCCatEyeVC *callVC = (TCCatEyeVC *)curVC;
+            //            [callVC responseVoipManagerStatus:event callID:callid data:data withVideoflag:videoflag];
             if ((event == UCSCallStatus_Released || event == UCSCallStatus_Answered)) {//音频去电模式,若挂断,接听,接听则停止播放铃声
                 [[self player] stop];
             }
@@ -568,7 +565,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         }
     }else{
         if (_deviceType == 1) {
-//            [self.callVC responseVoipManagerStatus:event callID:callid data:data withVideoflag:videoflag];
+            //            [self.callVC responseVoipManagerStatus:event callID:callid data:data withVideoflag:videoflag];
             if ((event == UCSCallStatus_Released || event == UCSCallStatus_Answered)) {//音频去电模式,若挂断,接听,接听则停止播放铃声
                 [[self player] stop];
             }

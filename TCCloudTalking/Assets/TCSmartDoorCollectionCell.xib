@@ -24,10 +24,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cxp-b8-tVq">
-                        <rect key="frame" x="112.5" y="92" width="57" height="68"/>
+                        <rect key="frame" x="101" y="80" width="80" height="80"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="68" id="KZC-T0-y0t"/>
-                            <constraint firstAttribute="width" constant="57" id="eiA-XJ-QYo"/>
+                            <constraint firstAttribute="height" constant="80" id="KZC-T0-y0t"/>
+                            <constraint firstAttribute="width" constant="80" id="eiA-XJ-QYo"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23n-SP-fVC">

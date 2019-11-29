@@ -68,6 +68,28 @@ typedef void (^FailBlock)(NSError * error);
 
 
 /**
+ 创建随机开锁密码
+
+ @param hours 时效
+ @param successBlock 成功
+ @param failBlock 失败
+ */
++(void)GetDoorOpenRandomPwdsWithHours:(NSString *)hours
+                           Success:(SuccessBlock)successBlock
+                             faile:(FailBlock)failBlock;
+
+
+
+/**
+ 创建二维码文本开锁记录
+
+ @param successBlock 成功
+ @param failBlock 失败
+ */
++(void)GetDoorOpenQRCodesSuccess:(SuccessBlock)successBlock
+                                faile:(FailBlock)failBlock;
+
+/**
  门口机开锁
 
  @param DoorID 门口机id

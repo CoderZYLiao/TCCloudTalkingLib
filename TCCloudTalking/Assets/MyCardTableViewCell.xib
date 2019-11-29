@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y8T-Oe-WOW">
-                        <rect key="frame" x="15" y="15" width="334" height="144.5"/>
+                        <rect key="frame" x="5" y="-5" width="354" height="164.5"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小区智能门禁IC卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DRv-Qr-Ndy">
                         <rect key="frame" x="37" y="30" width="143.5" height="25.5"/>
@@ -57,18 +57,18 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="y8T-Oe-WOW" secondAttribute="bottom" id="07S-t5-19G"/>
                     <constraint firstItem="p1J-vE-O5U" firstAttribute="top" secondItem="DRv-Qr-Ndy" secondAttribute="bottom" constant="5" id="1TU-d7-BRL"/>
-                    <constraint firstAttribute="trailing" secondItem="y8T-Oe-WOW" secondAttribute="trailing" constant="15" id="1rt-wb-ZDx"/>
+                    <constraint firstAttribute="trailing" secondItem="y8T-Oe-WOW" secondAttribute="trailing" constant="5" id="1rt-wb-ZDx"/>
                     <constraint firstItem="ien-n9-hZ9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5Kc-BP-KBk"/>
                     <constraint firstItem="hmD-dH-iFW" firstAttribute="leading" secondItem="DRv-Qr-Ndy" secondAttribute="leading" id="6Jt-Zo-NNl"/>
                     <constraint firstItem="8pZ-sT-Xtx" firstAttribute="leading" secondItem="DRv-Qr-Ndy" secondAttribute="leading" id="Phj-hf-njI"/>
                     <constraint firstAttribute="bottom" secondItem="hmD-dH-iFW" secondAttribute="bottom" constant="15" id="QGh-2y-I19"/>
                     <constraint firstItem="DRv-Qr-Ndy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="30" id="QR8-Ed-KwV"/>
                     <constraint firstAttribute="trailing" secondItem="ien-n9-hZ9" secondAttribute="trailing" constant="31" id="Vfm-bh-RiR"/>
-                    <constraint firstItem="y8T-Oe-WOW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="bHJ-5u-8SB"/>
+                    <constraint firstItem="y8T-Oe-WOW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="bHJ-5u-8SB"/>
                     <constraint firstItem="DRv-Qr-Ndy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="37" id="eKr-6f-a3H"/>
                     <constraint firstItem="p1J-vE-O5U" firstAttribute="leading" secondItem="DRv-Qr-Ndy" secondAttribute="leading" id="hSP-6c-8RT"/>
                     <constraint firstItem="hmD-dH-iFW" firstAttribute="top" secondItem="8pZ-sT-Xtx" secondAttribute="bottom" constant="5" id="vDQ-wt-4Q9"/>
-                    <constraint firstItem="y8T-Oe-WOW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="xYn-Ja-sSr"/>
+                    <constraint firstItem="y8T-Oe-WOW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="-5" id="xYn-Ja-sSr"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
