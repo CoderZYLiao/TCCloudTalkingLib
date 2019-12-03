@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/SmartDoor/Model/TCMyCardModel.h
+../../../../../TCCloudTalking/Classes/TCSmartDoor/Model/TCMyCardModel.h

@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/SmartDoor/Controller/TCPasswordOpenViewController.h
+../../../../../TCCloudTalking/Classes/TCSmartDoor/Controller/TCPasswordOpenViewController.h

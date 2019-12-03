@@ -33,10 +33,25 @@
 
 
 /**
+ 获取门口机数组
+
+ @return 数组
+ */
++(NSArray *)getMachineDataArray;
+/**
+ 根据VOIP获取门口机的机身号
+ 
+ @param VoipNo VOIP
+ @return 门口机昵称
+ */
++ (NSString *)getMachineNumberWithVoipNo:(NSString *)VoipNo;
+
+
+/**
  根据VOIP获取门口机的昵称
 
  @param VoipNo VOIP
  @return 门口机昵称
  */
-+ (NSString *)getMachineNumberWithVoipNo:(NSString *)VoipNo;
++ (NSString *)getMachineNameWithVoipNo:(NSString *)VoipNo;
 @end

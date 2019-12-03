@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/SmartDoor/View/TCSmartDoorCollectionCell.h
+../../../../../TCCloudTalking/Classes/TCSmartDoor/View/TCSmartDoorCollectionCell.h

@@ -59,8 +59,39 @@ static dispatch_once_t predicate;
     }];
 }
 
+//获取门口机数组
++(NSArray *)getMachineDataArray
+{
+    //读取本地json数据
+    NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/MyMachineJson.json"];//获取json文件保存的路径
+    NSData *data = [NSData dataWithContentsOfFile:filePath];//获取指定路径的data文件
+    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil]; //获取到json文件的跟数据（字典）
+    NSArray *arr = [json objectForKey:@"data"];//获取指定key值的value，是一个数组
+    return arr;
+}
 
+//根据对讲账号获取门口机机身号
 + (NSString *)getMachineNumberWithVoipNo:(NSString *)VoipNo
+{
+    //读取本地json数据
+    NSString *str = [[NSString alloc] init];
+    NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/MyMachineJson.json"];//获取json文件保存的路径
+    NSData *data = [NSData dataWithContentsOfFile:filePath];//获取指定路径的data文件
+    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil]; //获取到json文件的跟数据（字典）
+    NSArray *arr = [json objectForKey:@"data"];//获取指定key值的value，是一个数组
+    
+    for (NSDictionary *dic in arr) {
+        
+        if ([[dic objectForKey:@"intercomUserId"] isEqualToString:VoipNo]) {
+            NSLog(@"%@",[dic objectForKey:@"num"]);//遍历数组
+            str =   [dic objectForKey:@"num"];
+        }
+    }
+    return str;
+}
+
+//根据对讲账号获取门口机名称
++ (NSString *)getMachineNameWithVoipNo:(NSString *)VoipNo
 {
     //读取本地json数据
     NSString *str = [[NSString alloc] init];

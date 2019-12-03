@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/SmartDoor/Controller/TCCallRecordsViewController.h
+../../../../../TCCloudTalking/Classes/TCSmartDoor/Controller/TCCallRecordsViewController.h

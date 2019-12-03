@@ -16,6 +16,9 @@
 #import "TCCLoginViewController.h"
 
 #import "TCDoorVideoCallController.h"
+#import "IFlyMSC/IFlyMSC.h"
+
+#define APPID_VALUE           @"5ddceac9"
 @interface TCAppDelegate()<UCSTCPDelegateBase>
 
 @end
@@ -40,6 +43,24 @@
     [[UCSTcpClient sharedTcpClientManager] setTcpDelegate:self];
     //云对讲功能初始化
     [UCSFuncEngine getInstance];
+    
+    //讯飞SDK初始化
+    //Set log level
+    [IFlySetting setLogFile:LVL_ALL];
+    
+    //Set whether to output log messages in Xcode console
+    [IFlySetting showLogcat:YES];
+    
+    //Set the local storage path of SDK
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachePath = [paths objectAtIndex:0];
+    [IFlySetting setLogFilePath:cachePath];
+    
+    //Set APPID
+    NSString *initString = [[NSString alloc] initWithFormat:@"appid=%@",APPID_VALUE];
+    
+    //Configure and initialize iflytek services.(This interface must been invoked in application:didFinishLaunchingWithOptions:)
+    [IFlySpeechUtility createUtility:initString];
     
     [self.window makeKeyAndVisible];
     return YES;

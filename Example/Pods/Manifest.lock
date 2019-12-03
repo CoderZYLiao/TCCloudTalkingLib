@@ -29,7 +29,7 @@ PODS:
   - MJRefresh (3.2.0)
   - pop (1.0.12)
   - SVProgressHUD (2.2.5)
-  - TCCloudTalking (1.0.0.7):
+  - TCCloudTalking (1.0.0.8):
     - FMDB (~> 2.6.2)
     - Masonry
     - MJExtension
@@ -37,7 +37,6 @@ PODS:
     - pop (~> 1.0.9)
     - TCMember
     - TCPublicKit
-    - YYKit
   - TCMember (1.2.11):
     - FDFullscreenPopGesture
     - IQKeyboardManager
@@ -99,7 +98,7 @@ SPEC CHECKSUMS:
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TCCloudTalking: 3984a0f6f8d3232abf3caa7a28d081876d18d21a
+  TCCloudTalking: 7518b0b4b7ecd535f046c2f47baadcf964589a01
   TCMember: 937dee0acff36ae6c765d18a13fa0c21f29feac1
   TCPublicKit: 113449e2e0b694c0b6a437c5e3345cf52a66de0d
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7

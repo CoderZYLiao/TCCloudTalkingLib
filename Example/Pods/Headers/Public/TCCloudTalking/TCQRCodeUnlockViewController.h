@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/SmartDoor/Controller/TCQRCodeUnlockViewController.h
+../../../../../TCCloudTalking/Classes/TCSmartDoor/Controller/TCQRCodeUnlockViewController.h

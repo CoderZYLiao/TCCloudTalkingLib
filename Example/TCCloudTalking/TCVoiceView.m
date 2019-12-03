@@ -1,366 +1,349 @@
-////
-////  TCVoiceView.m
-////  TCCloudTalking_Example
-////
-////  Created by Huang ZhiBin on 2019/11/26.
-////  Copyright © 2019年 TYL. All rights reserved.
-////
 //
-//#import "TCVoiceView.h"
-//#import "Header.h"
-//#import "POP.h"
-////百度语音SDK
-//#import "BDSEventManager.h"
-//#import "BDSASRDefines.h"
-//#import "BDSASRParameters.h"
-//static CGFloat const TCAnimationDelay = 0.1;
-//static CGFloat const TCSpringFactor = 10;
+//  TCVoiceView.m
+//  TCCloudTalking_Example
 //
+//  Created by Huang ZhiBin on 2019/11/26.
+//  Copyright © 2019年 TYL. All rights reserved.
 //
-//const NSString* APP_ID = @"17801386";
-//const NSString* API_KEY = @"XnuoD3UtO5dEmOWW5HVVG8a4";
-//const NSString* SECRET_KEY = @"3Mg2DD6CZR8m2N4zc4WNT2E9lThao1cN";
-//@interface TCVoiceView()<BDSClientASRDelegate>
-//
-//@property (strong, nonatomic) BDSEventManager *asrEventManager;
-//@property (strong, nonatomic) BDSEventManager *wakeupEventManager;
-//
-//@property (strong, nonatomic) UIButton *voiceRecogButton;
-//@property (nonatomic, strong) NSFileHandle *fileHandler;
-//
-//
-////是否为长语音
-//@property(nonatomic, assign) BOOL longSpeechFlag;
-//@end
-//@implementation TCVoiceView
-//
-//
-//
-//
-//
-//
-//static UIWindow *window_;
-//
-//+ (void)show
-//{
-//    // 创建窗口
-//    window_ = [[UIWindow alloc] init];
-//    window_.frame = [UIScreen mainScreen].bounds;
-//    window_.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:1];
-//    window_.hidden = NO;
-//    
-//    
-//    // 添加发布界面
-//    TCVoiceView *publishView = [[TCVoiceView alloc] init];
-//    publishView.frame = window_.bounds;
-//    [window_ addSubview:publishView];
-//    [publishView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        if (@available(iOS 11.0, *)) {
-//            make.left.equalTo(window_.mas_safeAreaLayoutGuideLeft);
-//            make.right.equalTo(window_.mas_safeAreaLayoutGuideRight);
-//            make.top.equalTo(window_.mas_safeAreaLayoutGuideTop);
-//            make.bottom.equalTo(window_.mas_safeAreaLayoutGuideBottom);
-//        } else {
-//            make.leading.trailing.top.bottom.equalTo(window_);
-//        }
-//    }];
-//    
-//    UIButton *canceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [publishView addSubview:canceButton];
-//    [canceButton addTarget:publishView action:@selector(canceBtnClick) forControlEvents:UIControlEventTouchUpInside];
-//    [canceButton setImage:[UIImage imageNamed:@"quxiao-2"] forState:UIControlStateNormal];
-//    [canceButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(publishView).offset(30);
-//        make.right.equalTo(publishView).offset(-30);
-//        make.width.height.equalTo(@32);
-//  
-//    }];
-//    
-//    UIButton *voiceRecogButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    publishView.voiceRecogButton = voiceRecogButton;
-//    [voiceRecogButton addTarget:publishView action:@selector(voiceRecogBtnClick) forControlEvents:UIControlEventTouchUpInside];
-//    [voiceRecogButton setTitle:@"开始" forState:UIControlStateNormal];
-//    [voiceRecogButton setTitle:@"停止" forState:UIControlStateSelected];
-//    [publishView addSubview:voiceRecogButton];
-//    [voiceRecogButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(publishView);
-//        make.bottom.equalTo(publishView).offset(-50);
-//        
-//    }];
-//    
-//    
-//    
-//    
-//}
-//
-//- (instancetype)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        NSLog(@"initWithFrame");
-//        self.asrEventManager = [BDSEventManager createEventManagerWithName:BDS_ASR_NAME];
-//        self.wakeupEventManager = [BDSEventManager createEventManagerWithName:BDS_WAKEUP_NAME];
-//        self.longSpeechFlag = NO;
-//        NSLog(@"Current SDK version: %@", [self.asrEventManager libver]);
-//        [self configVoiceRecognitionClient];
-//        
-//    }
-//    return self;
-//}
-//
-//#pragma mark - Private: Configuration
-//
-//- (void)configVoiceRecognitionClient {
-//    //设置DEBUG_LOG的级别
-//    [self.asrEventManager setParameter:@(EVRDebugLogLevelTrace) forKey:BDS_ASR_DEBUG_LOG_LEVEL];
-//    //配置API_KEY 和 SECRET_KEY 和 APP_ID
-//    [self.asrEventManager setParameter:@[API_KEY, SECRET_KEY] forKey:BDS_ASR_API_SECRET_KEYS];
-//    [self.asrEventManager setParameter:APP_ID forKey:BDS_ASR_OFFLINE_APP_CODE];
-//    //配置端点检测（二选一）
-//    [self configModelVAD];
-//    //    [self configDNNMFE];
-//    
-//    //    [self.asrEventManager setParameter:@"15361" forKey:BDS_ASR_PRODUCT_ID];
-//    // ---- 语义与标点 -----
-//    [self enableNLU];
-//    //    [self enablePunctuation];
-//    // ------------------------
-//    
-//    //---- 语音自训练平台 ----
-//    //    [self configSmartAsr];
-//}
-//
-//- (void) enableNLU {
-//    // ---- 开启语义理解 -----
-//    [self.asrEventManager setParameter:@(YES) forKey:BDS_ASR_ENABLE_NLU];
-//    [self.asrEventManager setParameter:@"15363" forKey:BDS_ASR_PRODUCT_ID];
-//}
-//
-//- (void) enablePunctuation {
-//    // ---- 开启标点输出 -----
-//    [self.asrEventManager setParameter:@(NO) forKey:BDS_ASR_DISABLE_PUNCTUATION];
-//    // 普通话标点
-//    //    [self.asrEventManager setParameter:@"1537" forKey:BDS_ASR_PRODUCT_ID];
-//    // 英文标点
-////    [self.asrEventManager setParameter:@"1737" forKey:BDS_ASR_PRODUCT_ID];
-//    
-//}
-//
-//
-//- (void)configModelVAD {
-//    NSString *modelVAD_filepath = [[NSBundle mainBundle] pathForResource:@"bds_easr_basic_model" ofType:@"dat"];
-//    [self.asrEventManager setParameter:modelVAD_filepath forKey:BDS_ASR_MODEL_VAD_DAT_FILE];
-//    [self.asrEventManager setParameter:@(YES) forKey:BDS_ASR_ENABLE_MODEL_VAD];
-//}
-//
-//- (void)configDNNMFE {
-//    NSString *mfe_dnn_filepath = [[NSBundle mainBundle] pathForResource:@"bds_easr_mfe_dnn" ofType:@"dat"];
-//    [self.asrEventManager setParameter:mfe_dnn_filepath forKey:BDS_ASR_MFE_DNN_DAT_FILE];
-//    NSString *cmvn_dnn_filepath = [[NSBundle mainBundle] pathForResource:@"bds_easr_mfe_cmvn" ofType:@"dat"];
-//    [self.asrEventManager setParameter:cmvn_dnn_filepath forKey:BDS_ASR_MFE_CMVN_DAT_FILE];
-//    // 自定义静音时长
-//    //    [self.asrEventManager setParameter:@(501) forKey:BDS_ASR_MFE_MAX_SPEECH_PAUSE];
-//    //    [self.asrEventManager setParameter:@(500) forKey:BDS_ASR_MFE_MAX_WAIT_DURATION];
-//}
-//
-//
-//#pragma mark --点击取消按钮
-//- (void)canceBtnClick
-//{
-//    [self cancelWithCompletionBlock:nil];
-//}
-//
-///**
-// * 先执行退出动画, 动画完毕后执行completionBlock
-// */
-//- (void)cancelWithCompletionBlock:(void (^)(void))completionBlock
-//{
-//    
-//    // 不能被点击
-//    self.userInteractionEnabled = NO;
-//    
-//    int beginIndex = 0;
-//    NSUInteger count = self.subviews.count;
-//    for (int i = beginIndex; i<self.subviews.count; i++) {
-//        UIView *subview = self.subviews[i];
-//        
-//        // 基本动画
-//        POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPViewCenter];
-//        CGFloat centerY = subview.centerY + kMainScreenHeight;
-//        anim.toValue = [NSValue valueWithCGPoint:CGPointMake(subview.centerX, centerY)];
-//        anim.beginTime = CACurrentMediaTime() + (i - beginIndex) * TCAnimationDelay;
-//        [subview pop_addAnimation:anim forKey:nil];
-//        
-//        // 监听最后一个动画  add tyl 2017.4.20
-//        if (beginIndex == (count - 1 + beginIndex - i)) {
-//            [anim setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
-//                //                JYJKeyWindow.rootViewController.view.userInteractionEnabled = YES;
-//                // iOS9中一定要hidden
-//                window_.hidden = YES;
-//                // 销毁窗口
-//                window_ = nil;
-//                
-//                // 执行传进来的completionBlock参数
-//                !completionBlock ? : completionBlock();
-//            }];
-//        }
-//        
-//    }
-//    
-//}
-//
-//- (void)VoiceRecognitionClientWorkStatus:(int)workStatus obj:(id)aObj {
-//    switch (workStatus) {
-//        case EVoiceRecognitionClientWorkStatusNewRecordData: {
-//            [self.fileHandler writeData:(NSData *)aObj];
-//            break;
-//        }
-//            
-//        case EVoiceRecognitionClientWorkStatusStartWorkIng: {
-//            NSDictionary *logDic = [self parseLogToDic:aObj];
-//            [self printLogTextView:[NSString stringWithFormat:@"CALLBACK: start vr, log: %@\n", logDic]];
-//            [self onStartWorking];
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusStart: {
-//            [self printLogTextView:@"CALLBACK: detect voice start point.\n"];
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusEnd: {
-//            [self printLogTextView:@"CALLBACK: detect voice end point.\n"];
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusFlushData: {
-//            [self printLogTextView:[NSString stringWithFormat:@"CALLBACK: partial result - %@.\n\n", [self getDescriptionForDic:aObj]]];
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusFinish: {
-//            [self printLogTextView:[NSString stringWithFormat:@"CALLBACK: final result - %@.\n\n", [self getDescriptionForDic:aObj]]];
-//            if (aObj) {
-////                self.resultTextView.text = [self getDescriptionForDic:aObj];
-//            }
-//            if (!self.longSpeechFlag) {
-//                [self onEnd];
-//            }
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusMeterLevel: {
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusCancel: {
-//            [self printLogTextView:@"CALLBACK: user press cancel.\n"];
-//            [self onEnd];
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusError: {
-//            [self printLogTextView:[NSString stringWithFormat:@"CALLBACK: encount error - %@.\n", (NSError *)aObj]];
-//            [self onEnd];
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusLoaded: {
-//            [self printLogTextView:@"CALLBACK: offline engine loaded.\n"];
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusUnLoaded: {
-//            [self printLogTextView:@"CALLBACK: offline engine unLoaded.\n"];
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusChunkThirdData: {
-//            [self printLogTextView:[NSString stringWithFormat:@"CALLBACK: Chunk 3-party data length: %lu\n", (unsigned long)[(NSData *)aObj length]]];
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusChunkNlu: {
-//            NSString *nlu = [[NSString alloc] initWithData:(NSData *)aObj encoding:NSUTF8StringEncoding];
-//            [self printLogTextView:[NSString stringWithFormat:@"CALLBACK: Chunk NLU data: %@\n", nlu]];
-//            NSLog(@"%@", nlu);
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusChunkEnd: {
-//            [self printLogTextView:[NSString stringWithFormat:@"CALLBACK: Chunk end, sn: %@.\n", aObj]];
-//            if (!self.longSpeechFlag) {
-//                [self onEnd];
-//            }
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusFeedback: {
-//            NSDictionary *logDic = [self parseLogToDic:aObj];
-//            [self printLogTextView:[NSString stringWithFormat:@"CALLBACK Feedback: %@\n", logDic]];
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusRecorderEnd: {
-//            [self printLogTextView:@"CALLBACK: recorder closed.\n"];
-//            break;
-//        }
-//        case EVoiceRecognitionClientWorkStatusLongSpeechEnd: {
-//            [self printLogTextView:@"CALLBACK: Long Speech end.\n"];
-//            [self onEnd];
-//            break;
-//        }
-//        default:
-//            break;
-//    }
-//}
-//
-//- (void)voiceRecogBtnClick
-//{
-//    [self voiceRecogButtonHelper];
-//}
-//
-//- (void)voiceRecogButtonHelper
-//{
-//    //    [self configFileHandler];
-//    [self.asrEventManager setDelegate:self];
-//    [self.asrEventManager setParameter:nil forKey:BDS_ASR_AUDIO_FILE_PATH];
-//    [self.asrEventManager setParameter:nil forKey:BDS_ASR_AUDIO_INPUT_STREAM];
-//    [self.asrEventManager sendCommand:BDS_ASR_CMD_START];
-//    [self onInitializing];
-//}
-//
-//- (void)onInitializing
-//{
-//
-//    [self.voiceRecogButton setTitle:@"Initializing..." forState:UIControlStateNormal];
-//}
-//
-//- (void)onStartWorking
-//{
-//
-//
-//    [self.voiceRecogButton setTitle:@"Speaking..." forState:UIControlStateNormal];
-//}
-//
-//- (void)onEnd
-//{
-//
-//    [self.voiceRecogButton setTitle:@"语音识别" forState:UIControlStateNormal];
-//}
-//
-//- (void)printLogTextView:(NSString *)logString
-//{
-////    self.logTextView.text = [logString stringByAppendingString:_logTextView.text];
-////    [self.logTextView scrollRangeToVisible:NSMakeRange(0, 0)];
-//}
-//
-//- (NSDictionary *)parseLogToDic:(NSString *)logString
-//{
-//    NSArray *tmp = NULL;
-//    NSMutableDictionary *logDic = [[NSMutableDictionary alloc] initWithCapacity:3];
-//    NSArray *items = [logString componentsSeparatedByString:@"&"];
-//    for (NSString *item in items) {
-//        tmp = [item componentsSeparatedByString:@"="];
-//        if (tmp.count == 2) {
-//            [logDic setObject:tmp.lastObject forKey:tmp.firstObject];
-//        }
-//    }
-//    return logDic;
-//}
-//
-//- (NSString *)getDescriptionForDic:(NSDictionary *)dic {
-//    if (dic) {
-//        return [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dic
-//                                                                              options:NSJSONWritingPrettyPrinted
-//                                                                                error:nil] encoding:NSUTF8StringEncoding];
-//    }
-//    return nil;
-//}
-//@end
+
+#import "TCVoiceView.h"
+#import "Header.h"
+#import "POP.h"
+
+#import "IFlyMSC/IFlyMSC.h"
+#import "ISRDataHelper.h"
+static CGFloat const TCAnimationDelay = 0.1;
+static CGFloat const TCSpringFactor = 10;
+
+
+
+@interface TCVoiceView()<IFlySpeechRecognizerDelegate>
+@property (nonatomic, strong) IFlySpeechRecognizer *iFlySpeechRecognizer;
+
+
+@property (strong, nonatomic) UIButton *voiceRecogButton;
+@property (nonatomic, strong) NSFileHandle *fileHandler;
+
+@property (weak, nonatomic) UITextView *textView;
+@property (nonatomic, strong) NSString * result;
+@property (nonatomic, weak)  UIView *speechView;
+//动画
+@property (nonatomic , strong) CAReplicatorLayer *musicLayer;
+@end
+@implementation TCVoiceView
+
+
+static UIWindow *window_;
+
++ (void)show
+{
+    // 创建窗口
+    window_ = [[UIWindow alloc] init];
+    window_.frame = [UIScreen mainScreen].bounds;
+    window_.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:1];
+    window_.hidden = NO;
+
+
+    // 添加发布界面
+    TCVoiceView *publishView = [[TCVoiceView alloc] init];
+    publishView.frame = window_.bounds;
+    [window_ addSubview:publishView];
+    [publishView mas_makeConstraints:^(MASConstraintMaker *make) {
+        if (@available(iOS 11.0, *)) {
+            make.left.equalTo(window_.mas_safeAreaLayoutGuideLeft);
+            make.right.equalTo(window_.mas_safeAreaLayoutGuideRight);
+            make.top.equalTo(window_.mas_safeAreaLayoutGuideTop);
+            make.bottom.equalTo(window_.mas_safeAreaLayoutGuideBottom);
+        } else {
+            make.leading.trailing.top.bottom.equalTo(window_);
+        }
+    }];
+
+    UIButton *canceButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [publishView addSubview:canceButton];
+    [canceButton addTarget:publishView action:@selector(canceBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [canceButton setImage:[UIImage imageNamed:@"quxiao-2"] forState:UIControlStateNormal];
+    [canceButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(publishView).offset(30);
+        make.right.equalTo(publishView).offset(-30);
+        make.width.height.equalTo(@32);
+
+    }];
+
+    UIView *SpeechView = [[UIView alloc] init];
+    publishView.speechView = SpeechView;
+    [publishView addSubview:SpeechView];
+    [SpeechView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(publishView).offset(TCBottomTabH);
+        make.left.equalTo(publishView);
+        make.right.equalTo(publishView);
+        make.height.mas_equalTo(@300);
+    }];
+    UIImageView *backImage = [[UIImageView alloc] init];
+    [SpeechView addSubview:backImage];
+    [backImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(SpeechView);
+        make.right.left.equalTo(SpeechView);
+    }];
+    
+    UITextView *textView = [[UITextView alloc] init];
+    publishView.textView = textView;
+    [SpeechView addSubview:textView];
+    [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(SpeechView).offset(-30);
+        make.left.equalTo(SpeechView);
+        make.right.equalTo(SpeechView);
+        make.height.mas_equalTo(@200);
+    }];
+    
+    
+    
+    
+    UIButton *voiceRecogButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    publishView.voiceRecogButton = voiceRecogButton;
+    [voiceRecogButton addTarget:publishView action:@selector(voiceRecogBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [voiceRecogButton setTitle:@"开始" forState:UIControlStateNormal];
+    [voiceRecogButton setTitle:@"停止" forState:UIControlStateSelected];
+    [SpeechView addSubview:voiceRecogButton];
+    [voiceRecogButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(publishView);
+        make.bottom.equalTo(publishView).offset(-10);
+
+    }];
+
+
+
+
+}
+
+
+- (void)voiceRecogBtnClick
+{
+    [self musicReplicatorLayer];
+    [_textView setText:@""];
+    [_textView resignFirstResponder];
+    if(_iFlySpeechRecognizer == nil)
+    {
+        [self initRecognizer];
+    }
+    
+    [_iFlySpeechRecognizer cancel];
+    
+    //Set microphone as audio source
+    [_iFlySpeechRecognizer setParameter:IFLY_AUDIO_SOURCE_MIC forKey:@"audio_source"];
+    
+    //Set result type
+    [_iFlySpeechRecognizer setParameter:@"json" forKey:[IFlySpeechConstant RESULT_TYPE]];
+    
+    //Set the audio name of saved recording file while is generated in the local storage path of SDK,by default in library/cache.
+    [_iFlySpeechRecognizer setParameter:@"asr.pcm" forKey:[IFlySpeechConstant ASR_AUDIO_PATH]];
+    
+    [_iFlySpeechRecognizer setDelegate:self];
+    
+    BOOL ret = [_iFlySpeechRecognizer startListening];
+    
+    if (ret) {
+        
+        
+    }else{
+        
+        NSLog(@"启动识别服务失败，请稍后重试!");
+    }
+}
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        NSLog(@"initWithFrame");
+        [self initRecognizer];
+
+        
+    }
+    return self;
+}
+
+#pragma mark - Initialization
+
+/**
+ initialize recognition conctol and set recognition params
+ **/
+-(void)initRecognizer
+{
+    if (_iFlySpeechRecognizer == nil) {
+        _iFlySpeechRecognizer = [IFlySpeechRecognizer sharedInstance];
+    }
+    
+    [_iFlySpeechRecognizer setParameter:@"" forKey:[IFlySpeechConstant PARAMS]];
+    
+    //set recognition domain
+    [_iFlySpeechRecognizer setParameter:@"iat" forKey:[IFlySpeechConstant IFLY_DOMAIN]];
+    
+    _iFlySpeechRecognizer.delegate = self;
+    
+    if (_iFlySpeechRecognizer != nil) {
+        
+        //set network timeout
+        [_iFlySpeechRecognizer setParameter:@"20000" forKey:[IFlySpeechConstant NET_TIMEOUT]];
+        
+        
+    }
+}
+
+//IFlySpeechRecognizerDelegate协议实现
+//识别结果返回代理
+- (void) onResults:(NSArray *) results isLast:(BOOL)isLast{
+    NSMutableString *resultString = [[NSMutableString alloc] init];
+    NSDictionary *dic = results[0];
+    
+    for (NSString *key in dic) {
+        [resultString appendFormat:@"%@",key];
+    }
+    
+    _result =[NSString stringWithFormat:@"%@%@", _textView.text,resultString];
+    
+    NSString * resultFromJson = [ISRDataHelper stringFromJson:resultString];
+    _textView.text = [NSString stringWithFormat:@"%@%@", _textView.text,resultFromJson];
+    
+    if (isLast){
+        NSLog(@"ISR Results(json)：%@",  self.result);
+    }
+    NSLog(@"_result=%@",_result);
+    NSLog(@"resultFromJson=%@",resultFromJson);
+    NSLog(@"isLast=%d,_textView.text=%@",isLast,_textView.text);
+}
+//识别会话结束返回代理
+- (void)onCompleted: (IFlySpeechError *) error{
+    
+    NSString *text ;
+    if (error.errorCode == 0 ) {
+        if (_result.length == 0) {
+            text = @"无识别结果";
+        }else {
+            text = @"识别成功";
+            //empty results
+            _result = nil;
+        }
+    }else {
+        text = [NSString stringWithFormat:@"Error：%d %@", error.errorCode,error.errorDesc];
+        NSLog(@"%@",text);
+    }
+}
+//停止录音回调
+- (void) onEndOfSpeech{
+    NSLog(@"onEndOfSpeech");
+}
+//开始录音回调
+- (void) onBeginOfSpeech{
+    NSLog(@"onBeginOfSpeech");
+}
+//音量回调函数
+- (void) onVolumeChanged: (int)volume{
+    
+}
+//会话取消回调
+- (void) onCancel{
+     NSLog(@"Recognition is cancelled");
+}
+
+#pragma mark --点击取消按钮
+- (void)canceBtnClick
+{
+    [self cancelWithCompletionBlock:nil];
+}
+
+/**
+ * 先执行退出动画, 动画完毕后执行completionBlock
+ */
+- (void)cancelWithCompletionBlock:(void (^)(void))completionBlock
+{
+
+    // 不能被点击
+    self.userInteractionEnabled = NO;
+
+    int beginIndex = 0;
+    NSUInteger count = self.subviews.count;
+    for (int i = beginIndex; i<self.subviews.count; i++) {
+        UIView *subview = self.subviews[i];
+
+        // 基本动画
+        POPBasicAnimation *anim = [POPBasicAnimation animationWithPropertyNamed:kPOPViewCenter];
+        CGFloat centerY = subview.centerY + kMainScreenHeight;
+        anim.toValue = [NSValue valueWithCGPoint:CGPointMake(subview.centerX, centerY)];
+        anim.beginTime = CACurrentMediaTime() + (i - beginIndex) * TCAnimationDelay;
+        [subview pop_addAnimation:anim forKey:nil];
+
+        // 监听最后一个动画  add tyl 2017.4.20
+        if (beginIndex == (count - 1 + beginIndex - i)) {
+            [anim setCompletionBlock:^(POPAnimation *anim, BOOL finished) {
+                //                JYJKeyWindow.rootViewController.view.userInteractionEnabled = YES;
+                // iOS9中一定要hidden
+                window_.hidden = YES;
+                // 销毁窗口
+                window_ = nil;
+
+                // 执行传进来的completionBlock参数
+                !completionBlock ? : completionBlock();
+            }];
+        }
+
+    }
+
+}
+
+
+
+- (NSDictionary *)parseLogToDic:(NSString *)logString
+{
+    NSArray *tmp = NULL;
+    NSMutableDictionary *logDic = [[NSMutableDictionary alloc] initWithCapacity:3];
+    NSArray *items = [logString componentsSeparatedByString:@"&"];
+    for (NSString *item in items) {
+        tmp = [item componentsSeparatedByString:@"="];
+        if (tmp.count == 2) {
+            [logDic setObject:tmp.lastObject forKey:tmp.firstObject];
+        }
+    }
+    return logDic;
+}
+
+- (NSString *)getDescriptionForDic:(NSDictionary *)dic {
+    if (dic) {
+        return [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dic
+                                                                              options:NSJSONWritingPrettyPrinted
+                                                                                error:nil] encoding:NSUTF8StringEncoding];
+    }
+    return nil;
+}
+
+- (void)musicReplicatorLayer
+{
+    _musicLayer = [CAReplicatorLayer layer];
+    _musicLayer.frame = CGRectMake(0, 0, 200, 50);
+    _musicLayer.position = self.center;
+    //设置复制层里面包含的子层个数
+    _musicLayer.instanceCount = 20;
+    //设置下个子层相对于前一个的偏移量
+    _musicLayer.instanceTransform = CATransform3DMakeTranslation(10, 0, 0);     //每个layer的间距。
+    //设置下一个层相对于前一个的延迟时间
+    _musicLayer.instanceDelay = 0.2;
+    _musicLayer.backgroundColor = [UIColor redColor].CGColor;
+    _musicLayer.masksToBounds = YES;
+    [self.speechView.layer addSublayer:_musicLayer];
+    
+    CALayer *tLayer = [CALayer layer];
+    tLayer.frame = CGRectMake(10, 20, 5, 40);
+    tLayer.backgroundColor = [UIColor whiteColor].CGColor;
+    [_musicLayer addSublayer:tLayer];
+    
+    CABasicAnimation *musicAnimation = [CABasicAnimation animationWithKeyPath:@"position.y"];
+    musicAnimation.duration = 0.35;
+    musicAnimation.fromValue = @(tLayer.frame.size.height);
+    //    musicAnimation.toValue = @(tLayer.frame.size.height - 10);
+    musicAnimation.byValue = @(20);
+    musicAnimation.autoreverses = YES;
+    musicAnimation.repeatCount = MAXFLOAT;
+    musicAnimation.beginTime = -2;
+    musicAnimation.removedOnCompletion = NO;
+    [tLayer addAnimation:musicAnimation forKey:@"musicAnimation"];
+}
+@end

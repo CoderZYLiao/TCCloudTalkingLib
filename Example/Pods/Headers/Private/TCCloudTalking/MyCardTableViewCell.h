@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/SmartDoor/View/MyCardTableViewCell.h
+../../../../../TCCloudTalking/Classes/TCSmartDoor/View/MyCardTableViewCell.h

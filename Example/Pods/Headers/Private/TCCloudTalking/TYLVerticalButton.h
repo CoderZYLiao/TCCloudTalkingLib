@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/SmartDoor/View/TYLVerticalButton.h
+../../../../../TCCloudTalking/Classes/TCSmartDoor/View/TYLVerticalButton.h

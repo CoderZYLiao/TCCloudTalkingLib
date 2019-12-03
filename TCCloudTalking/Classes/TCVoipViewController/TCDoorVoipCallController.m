@@ -10,7 +10,7 @@
 #import "Header.h"
 #import <AVFoundation/AVFoundation.h>
 #import "RadarAnimationView.h"
-
+#import "TCOpenDoorTool.h"
 @interface TCDoorVoipCallController ()
 @property (strong,nonatomic) UIImageView *backgroundView; // WLS，2015-12-09，背景视图
 @property (strong,nonatomic) UIView *callBackView; // WLS，2015-12-09，通话中背景视图
@@ -259,7 +259,7 @@
         [self hangupCall];
     }else if([button.titleLabel.text isEqualToString:@"开锁"])
     {
-        
+        [TCOpenDoorTool openTheDoorWithID:[TCCloudTalkingTool getMachineNumberWithVoipNo:self.voipNo]];
     }else if([button.titleLabel.text isEqualToString:@"免提"])
     {
         [self handfreeButtonClicked];

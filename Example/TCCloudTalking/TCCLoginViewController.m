@@ -117,11 +117,10 @@ static NSTimer *loginTimer;
         //连接云平台
         [[UCSTcpClient sharedTcpClientManager] login_connect:userToekn  success:^(NSString *userId) {
             
-
             NSString * log2 = [NSString stringWithFormat:@"%@:%@:TCP链接成功\n",self.textView.text,[self getNowTime]];
             [log2 saveTolog];
-            
             [self connectionSuccessful];
+            
         } failure:^(UCSError *error) {
             
             NSString * log2 = [NSString stringWithFormat:@"%@:%@:TCP链接失败 error：%zd\n",self.textView.text,[self getNowTime],error.code];

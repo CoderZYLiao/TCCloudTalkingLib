@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/SmartDoor/Controller/TCMyCardViewController.h
+../../../../../TCCloudTalking/Classes/TCSmartDoor/Controller/TCMyCardViewController.h

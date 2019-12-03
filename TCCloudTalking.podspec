@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   #库名称
   s.name             = 'TCCloudTalking'
   #版本号
-  s.version          = '1.0.0.8'
+  s.version          = '1.0.0.9'
   #库简短介绍
   s.summary          = '云对讲组件'
 
@@ -59,15 +59,15 @@ TODO: Add long description of the pod here.
   s.dependency 'Masonry'
   s.dependency 'MJRefresh'
   s.dependency 'MJExtension'
-  s.dependency 'YYKit'
+  #s.dependency 'YYKit'
   s.dependency 'pop', '~> 1.0.9'
   #依赖的系统框架
-  s.frameworks = 'Foundation','UIKit','MapKit','VideoToolbox','CoreGraphics','AssetsLibrary','AddressBookUI','MapKit','CoreAudio','AudioToolbox','CFNetwork','SystemConfiguration','MobileCoreServices','StoreKit','CoreLocation','CoreTelephony','AVFoundation','MediaPlayer','CoreMedia','CoreFoundation','MessageUI','AddressBook'
+  s.frameworks = 'Foundation','UIKit','MapKit','VideoToolbox','CoreGraphics','AssetsLibrary','AddressBookUI','MapKit','CoreAudio','AudioToolbox','CFNetwork','SystemConfiguration','MobileCoreServices','StoreKit','CoreLocation','CoreTelephony','AVFoundation','MediaPlayer','CoreMedia','CoreFoundation','MessageUI','AddressBook','Contacts','AddressBook','QuartzCore'
   #添加系统依赖静态库
-  s.library = 'resolv','sqlite3.0','z', 'stdc++.6','stdc++'
+  s.library = 'resolv','sqlite3.0','z', 'stdc++.6','stdc++','c++'
 
   #添加依赖第三方的framework
-  #s.vendored_frameworks = 'XXXX/XXXX/**/*.framework'
+  s.vendored_frameworks = 'TCCloudTalking/Classes/iFLYOSsdk/*.framework'
   
   #静态库.a
   s.vendored_library = 'TCCloudTalking/Classes/VOIPSDK/*.a','TCCloudTalking/Classes/TCPSDK/*.a'

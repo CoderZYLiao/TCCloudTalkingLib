@@ -34,6 +34,7 @@
 #import "TCUserModel.h"
 #import "TCCommunityModel.h"
 #import "TCHousesInfoModel.h"
+
 //公共库头文件
 //#import "TCPublicKit.h"
 //#import "UIImage+ZYAdd.h"
@@ -42,6 +43,7 @@
 #import "TCCloudTalkingBaseVC.h"
 //TCCloudTalking请求头文件
 #import "TCCloudTalkRequestTool.h"
+#import "TCCloudTalkingTool.h"
 
 
 // 获取我的门口机列表

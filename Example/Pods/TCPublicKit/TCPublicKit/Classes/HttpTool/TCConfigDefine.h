@@ -11,7 +11,7 @@
 /*
  APP基本配置
  */
-#define APPID @"1216584761"
+#define QAPPID @"1216584761"
 #define APPName "H家云社区"
 /*
  APP登录相关

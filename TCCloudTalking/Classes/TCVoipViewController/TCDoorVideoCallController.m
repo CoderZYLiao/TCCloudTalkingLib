@@ -9,6 +9,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "TYLVerticalButton.h"
 #import "Header.h"
+#import "TCOpenDoorTool.h"
 #import <mach/mach.h>
 @class UCSVideoAttr;
 @class Resolutions;
@@ -445,6 +446,7 @@
         [self hangupCall];
     }else if([button.titleLabel.text isEqualToString:@"开锁"])
     {
+        [TCOpenDoorTool openTheDoorWithID:[TCCloudTalkingTool getMachineNumberWithVoipNo:self.voipNo]];
         
     }else if([button.titleLabel.text isEqualToString:@"免提"])
     {

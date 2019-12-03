@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 显示
  */
-//+ (void)show;
++ (void)show;
 
 @end
 

@@ -12,6 +12,7 @@
 #import "Header.h"
 #import "TCSmartDoorViewController.h"
 #import "TCVoiceView.h"
+#import "TCVoiceUnlockViewController.h"
 
 @interface TCCHomeViewController ()
 
@@ -41,6 +42,8 @@
     if (sender.state == UIGestureRecognizerStateBegan)
     {
 //        [TCVoiceView  show];
+        TCVoiceUnlockViewController * vc = [[TCVoiceUnlockViewController alloc]init];;
+        [self presentViewController:vc animated:YES completion:nil];
     }
     
 

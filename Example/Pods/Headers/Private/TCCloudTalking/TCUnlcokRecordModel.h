@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/SmartDoor/Model/TCUnlcokRecordModel.h
+../../../../../TCCloudTalking/Classes/TCSmartDoor/Model/TCUnlcokRecordModel.h
