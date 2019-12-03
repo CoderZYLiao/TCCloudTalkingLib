@@ -256,7 +256,7 @@ static UIWindow *window_;
             }
         }else//开锁
         {
-            [self OpenTheDoorWithID:DoorItem.num];
+            [self OpenTheDoorWithID:DoorItem.ID];
             NSLog(@"开锁");
             
         }
