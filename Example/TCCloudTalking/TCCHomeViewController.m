@@ -13,6 +13,7 @@
 #import "TCSmartDoorViewController.h"
 #import "TCVoiceView.h"
 #import "TCVoiceUnlockViewController.h"
+#import "TCOpenDoorView.h"
 
 @interface TCCHomeViewController ()
 
@@ -49,6 +50,10 @@
 
 }
 
+- (IBAction)openDoorBtn:(UIButton *)sender {
+    
+    [TCOpenDoorView show:OpenDoor_OpenDoor];
+}
 
 - (IBAction)VideoCallBtnClick {
     

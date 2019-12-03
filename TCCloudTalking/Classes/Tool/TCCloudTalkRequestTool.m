@@ -104,11 +104,8 @@
                     Success:(SuccessBlock)successBlock
                       faile:(FailBlock)failBlock
 {
-    NSMutableDictionary * params = [NSMutableDictionary dictionary];
-    if(DoorID){
-        [params setObject:DoorID forKey:@"id"];
-    }
-    [[TCHttpTool sharedHttpTool] postWithURL:OpenMyDoorURL params:params success:^(id  _Nonnull json) {
+    NSString * url = [NSString stringWithFormat:@"%@/%@",OpenMyDoorURL,DoorID];
+    [[TCHttpTool sharedHttpTool] postWithURL:url params:nil success:^(id  _Nonnull json) {
         successBlock(json);
     } failure:^(NSError * _Nonnull error) {
         failBlock(error);

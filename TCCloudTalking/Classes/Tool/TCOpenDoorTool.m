@@ -15,6 +15,7 @@
     [SVProgressHUD showWithStatus:@" "];
     [TCCloudTalkRequestTool OpenMyDoorWithDoorID:ID Success:^(id  _Nonnull result) {
         [SVProgressHUD dismiss];
+        debugLog(@"开锁回调----%@",result);
         if ([result[@"code"] intValue] == 0) {
             
             ShowSucessNoti(@"开锁成功");

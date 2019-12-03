@@ -110,15 +110,4 @@
 //当前设备的系统版本
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 #define UCS_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([UIDevice currentDevice].systemVersion.floatValue >= v)
-#ifdef DEBUG
-#define DDLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define debugLog(...) NSLog(__VA_ARGS__)
-#define debugMethod() NSLog(@" %s ,%d",__FUNCTION__,__LINE__);
-#define debugReleaseMark() NSLog(@"Release %s ,%d",__FUNCTION__,__LINE__);
 
-#else
-#define DDLog(fmt, ...)
-#define debugLog(...)
-#define debugMethod()
-#define debugReleaseMark()
-#endif

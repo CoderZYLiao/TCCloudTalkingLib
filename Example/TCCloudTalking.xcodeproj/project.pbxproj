@@ -25,6 +25,7 @@
 		A11DCC0B90DC72FB3D06612B /* libPods-TCCloudTalking_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BE4B1929455601F81682B6 /* libPods-TCCloudTalking_Tests.a */; };
 		A124BC4EC8685DA5C3B8CFF0 /* libPods-TCCloudTalking_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DC8FF2F9BF36FA8CE898B8 /* libPods-TCCloudTalking_Example.a */; };
 		E40C2FD2238CB85D002D890F /* TCVoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40C2FD1238CB85D002D890F /* TCVoiceView.m */; };
+		E4490C9C23964AF400EAFF56 /* NSArray+TCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E4490C9B23964AF400EAFF56 /* NSArray+TCLog.m */; };
 		E4D9869023602436007B95F3 /* TCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D9868E23602436007B95F3 /* TCNavigationController.m */; };
 		E4D9869123602436007B95F3 /* TCCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D9868F23602436007B95F3 /* TCCBaseViewController.m */; };
 		E4D9869523602444007B95F3 /* TCCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D9869223602443007B95F3 /* TCCLoginViewController.m */; };
@@ -86,6 +87,8 @@
 		E40C2FCE238CB7F2002D890F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		E40C2FD0238CB85D002D890F /* TCVoiceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCVoiceView.h; sourceTree = "<group>"; };
 		E40C2FD1238CB85D002D890F /* TCVoiceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCVoiceView.m; sourceTree = "<group>"; };
+		E4490C9A23964AF400EAFF56 /* NSArray+TCLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSArray+TCLog.h"; path = "../../TCCloudTalking/Classes/Category/NSArray+TCLog.h"; sourceTree = "<group>"; };
+		E4490C9B23964AF400EAFF56 /* NSArray+TCLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSArray+TCLog.m"; path = "../../TCCloudTalking/Classes/Category/NSArray+TCLog.m"; sourceTree = "<group>"; };
 		E44CE26C2390F1D900A1D52C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E44CE2732390F21E00A1D52C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		E44CE2752390F22500A1D52C /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
@@ -203,6 +206,8 @@
 				E40C2FD1238CB85D002D890F /* TCVoiceView.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				E4490C9A23964AF400EAFF56 /* NSArray+TCLog.h */,
+				E4490C9B23964AF400EAFF56 /* NSArray+TCLog.m */,
 			);
 			name = "Example for TCCloudTalking";
 			path = TCCloudTalking;
@@ -454,6 +459,7 @@
 				E4D9869123602436007B95F3 /* TCCBaseViewController.m in Sources */,
 				E4D9869F23602523007B95F3 /* TCCHomeViewController.m in Sources */,
 				E4D9869023602436007B95F3 /* TCNavigationController.m in Sources */,
+				E4490C9C23964AF400EAFF56 /* NSArray+TCLog.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
