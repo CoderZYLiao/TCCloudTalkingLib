@@ -56,7 +56,7 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     //初始化tabbleView
     [self tableView];
     [self getDataSuorce];

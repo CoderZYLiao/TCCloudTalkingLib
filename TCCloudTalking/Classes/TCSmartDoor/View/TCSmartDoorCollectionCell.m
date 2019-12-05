@@ -22,14 +22,11 @@
     self = [super initWithFrame:frame];
     
     if (self) {
-        
         // 在此添加
         // 初始化时加载collectionCell.xib文件
         NSBundle *bundle = [NSBundle bundleWithPath:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"TCCloudTalking.bundle"]];
         NSArray *arrayOfViews = [bundle loadNibNamed:@"TCSmartDoorCollectionCell" owner:self options:nil];
-        
         // 如果路径不存在，return nil
-        
         if(arrayOfViews.count < 1){return nil;}
         // 如果xib中view不属于UICollectionViewCell类，return nil
         if(![[arrayOfViews objectAtIndex:0] isKindOfClass:[UICollectionViewCell class]]){

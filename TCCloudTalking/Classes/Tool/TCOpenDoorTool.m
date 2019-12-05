@@ -10,15 +10,16 @@
 
 @implementation TCOpenDoorTool
 
-+ (void)openTheDoorWithID:(NSString *)ID
++ (void)openTheDoorWithID:(NSString *)ID DoorName:(NSString *)DoorName
 {
-    [SVProgressHUD showWithStatus:@" "];
+    [SVProgressHUD showWithStatus:@""];
     [TCCloudTalkRequestTool OpenMyDoorWithDoorID:ID Success:^(id  _Nonnull result) {
         [SVProgressHUD dismiss];
         debugLog(@"开锁回调----%@",result);
         if ([result[@"code"] intValue] == 0) {
             
-            ShowSucessNoti(@"开锁成功");
+            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%@\n开锁成功",DoorName]];
+
         }else
         {
 //            TCHousesInfoModel *houesModel = [[TCPersonalInfoModel shareInstance] getHousesInfoModel];

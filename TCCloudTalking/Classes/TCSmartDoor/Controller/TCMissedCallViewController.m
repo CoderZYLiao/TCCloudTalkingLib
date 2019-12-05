@@ -58,11 +58,10 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     //初始化tabbleView
     [self tableView];
     [self getDataSuorce];
-    
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshRecordDataSuorce) name:UCSNotiRefreshCallList object:nil];
 }
 

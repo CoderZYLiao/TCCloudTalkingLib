@@ -28,13 +28,17 @@ PODS:
   - MJExtension (3.0.17)
   - MJRefresh (3.2.0)
   - pop (1.0.12)
+  - SDWebImage (5.0.6):
+    - SDWebImage/Core (= 5.0.6)
+  - SDWebImage/Core (5.0.6)
   - SVProgressHUD (2.2.5)
-  - TCCloudTalking (1.0.0.9):
+  - TCCloudTalking (1.0.1.1):
     - FMDB (~> 2.6.2)
     - Masonry
     - MJExtension
     - MJRefresh
     - pop (~> 1.0.9)
+    - SDWebImage
     - TCMember
     - TCPublicKit
   - TCMember (1.2.11):
@@ -79,6 +83,7 @@ SPEC REPOS:
     - MJExtension
     - MJRefresh
     - pop
+    - SDWebImage
     - SVProgressHUD
     - YYKit
     - ZXCountDownView
@@ -97,8 +102,9 @@ SPEC CHECKSUMS:
   MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
+  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TCCloudTalking: 60d8b21baa0058f9e06bf268d8cac21e7c9994e2
+  TCCloudTalking: 409e2f745e5bed873122a3f70e1dd9eaf0488b84
   TCMember: 937dee0acff36ae6c765d18a13fa0c21f29feac1
   TCPublicKit: 113449e2e0b694c0b6a437c5e3345cf52a66de0d
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7

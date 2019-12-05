@@ -12,6 +12,7 @@
 #import "ISRDataHelper.h"
 #import "Header.h"
 #import "TCOpenDoorTool.h"
+#import "UIImage+GIF.h"
 
 @interface TCVoiceUnlockViewController ()<IFlySpeechRecognizerDelegate>
 //科大讯飞识别
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) BTCoverVerticalTransition *aniamtion;
 @property (nonatomic, strong) NSFileHandle *fileHandler;
 @property (nonatomic, strong) NSString * result;
+@property (nonatomic, strong) NSArray *doorArray;
 //动画
 @property (nonatomic , strong) CAReplicatorLayer *musicLayer;
 //识别内容
@@ -49,7 +51,7 @@
     [self initRecognizer];
     
     [self performSelector:@selector(delayMethod) withObject:nil afterDelay:2.0];
-    self.textView.text = @"请说,我在听";
+    self.textView.text = @"请说,我在聆听...";
     //一起入启动
     BOOL ret = [_iFlySpeechRecognizer startListening];
     
@@ -73,21 +75,52 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    //背景颜色
     self.view.backgroundColor = [UIColor.whiteColor colorWithAlphaComponent:1];
-    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 330);
-    
+    //设置弹出屏幕的大小
+    self.preferredContentSize = CGSizeMake(self.view.bounds.size.width, 300);
+    //获取门口机数组
+    self.doorArray  = [TCCloudTalkingTool getMachineDataArray];
+    //设置圆角
     [self makeRoundedCorner:20.0f];
-
+    //UI初始化
     [self initUI];
+    //提示label
+    [self showTiplabel];
     
+}
+
+- (void)showTiplabel
+{
+    NSString *str = nil;
+    if (self.doorArray.count <=1) {
+        str = [NSString stringWithFormat:@"你可以试试这样说:开锁"];
+    }else if(self.doorArray.count == 2){
+        NSDictionary *dict = self.doorArray.firstObject;
+        NSDictionary *dict1 = self.doorArray.lastObject;
+        str = [NSString stringWithFormat:@"你可以试试这样说:%@开锁   %@开锁",[dict xyValueForKey:@"name"],[dict1 xyValueForKey:@"name"]];
+    }else
+    {
+        NSDictionary *dict = self.doorArray[0];
+        NSDictionary *dict1 = self.doorArray[1];
+        NSDictionary *dict2 = self.doorArray[2];
+        str = [NSString stringWithFormat:@"你可以试试这样说:%@开锁   %@开锁   %@开锁 ...",[dict xyValueForKey:@"name"],[dict1 xyValueForKey:@"name"],[dict2 xyValueForKey:@"name"]];
+    }
+
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]
+                                          initWithString:str];
+    [attrStr addAttribute:NSFontAttributeName value:
+     [UIFont boldSystemFontOfSize:11.0f] range:NSMakeRange(0, 9)];  //字体大小为12.0f
+    [attrStr addAttribute:NSForegroundColorAttributeName value:
+     [UIColor colorWithHexString:@"#303133"] range:NSMakeRange(0, 9)];//添加文字颜色
+    self.Tiplabel.attributedText = attrStr;
 }
 
 - (void)delayMethod
 {
     
     [self.textView setText:@""];
-    self.Tiplabel.hidden = YES;
+    
 }
 
 - (void)initUI
@@ -101,7 +134,8 @@
             make.top.equalTo(self.view.mas_safeAreaLayoutGuideTop);
             make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
         } else {
-            make.leading.trailing.top.bottom.equalTo(self.view);
+            make.leading.trailing.top.equalTo(self.view);
+            make.bottom.equalTo(self.view);
         }
     }];
     
@@ -110,8 +144,8 @@
     [canceButton addTarget:self action:@selector(canceBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [canceButton setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_quxiao"] forState:UIControlStateNormal];
     [canceButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(view).offset(30);
-        make.right.equalTo(view).offset(-30);
+        make.top.equalTo(view).offset(13);
+        make.right.equalTo(view).offset(-13);
         make.width.height.equalTo(@32);
         
     }];
@@ -120,7 +154,6 @@
     textView.textAlignment =  NSTextAlignmentCenter;
     textView.font = [UIFont fontWithName:@"PingFang TC" size:20];
     textView.textColor = [UIColor colorWithRed:64/255.0 green:115/255.0 blue:242/255.0 alpha:1/1.0];
-    
     self.textView = textView;
     [view addSubview:textView];
     [textView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -134,37 +167,51 @@
     self.Tiplabel = label;
     [view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(textView.mas_bottom).offset(20);
+        make.top.equalTo(textView.mas_bottom).offset(-15);
         make.left.equalTo(view).offset(30);
         make.right.equalTo(view).offset(-30);
         make.height.mas_equalTo(40);
     }];
     label.backgroundColor = [UIColor whiteColor];
     label.text = @"你可以试试这样说:开锁";
+    label.lineBreakMode = NSLineBreakByTruncatingTail;
+    label.numberOfLines = 2;
     label.textAlignment =  NSTextAlignmentCenter;
-    label.font = [UIFont fontWithName:@"PingFang TC" size:13];
-    label.textColor = [UIColor colorWithRed:64/255.0 green:115/255.0 blue:242/255.0 alpha:1/1.0];
-    label.textColor = [UIColor blackColor];
+    label.font = [UIFont fontWithName:@"PingFang TC" size:11];
+    label.textColor = [UIColor grayColor];
     
     UIButton *SpeakBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     self.SpeakBtn = SpeakBtn;
-    SpeakBtn.backgroundColor = [UIColor colorWithRed:64/255.0 green:115/255.0 blue:242/255.0 alpha:1/1.0];
-    [SpeakBtn setTitle:@"Speaking" forState:UIControlStateNormal];
-    [SpeakBtn setTitle:@"Start" forState:UIControlStateSelected];
+    SpeakBtn.backgroundColor = [UIColor whiteColor];
+    NSURL *bundleURL = [[NSBundle mainBundle] URLForResource:@"TCCloudTalking" withExtension:@"bundle"];
+    NSBundle *bundle = [NSBundle bundleWithURL:bundleURL];
+    NSString *imagePath = [bundle pathForResource:@"TCCT_Voice" ofType:@"gif"];
+    NSData *imageData = [NSData dataWithContentsOfFile:imagePath];
+    UIImage *image = [UIImage sd_imageWithGIFData:imageData];
+    [SpeakBtn setImage:image forState:UIControlStateNormal];
+    [SpeakBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_talkback"] forState:UIControlStateSelected];
+    SpeakBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
     [view addSubview:SpeakBtn];
     [SpeakBtn addTarget:self action:@selector(SpeakBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [SpeakBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(view).offset(60);
-        make.right.equalTo(view).offset(-60);
-        make.height.mas_equalTo(50);
-        make.bottom.equalTo(view).offset(TCBottomTabH+20);
+        make.left.equalTo(view);
+        make.right.equalTo(view);
+        make.height.mas_equalTo(80);
+//        make.bottom.equalTo(view).offset(TCBottomTabH+20);
         if (@available(iOS 11.0, *)) {
-            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom);
+            make.bottom.equalTo(self.view.mas_safeAreaLayoutGuideBottom).offset(-20);
         } else {
-            make.bottom.equalTo(view).offset(20);
+            make.bottom.equalTo(view).offset(-50);
         }
     }];
     
+    UIView *buttonvView = [[UIView alloc] init];
+    [view addSubview:buttonvView];
+    buttonvView.backgroundColor = [UIColor whiteColor];
+    [buttonvView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(SpeakBtn.mas_bottom);
+        make.right.left.bottom.equalTo(view);
+    }];
 }
 
 - (void)SpeakBtnClick
@@ -173,7 +220,7 @@
     if (!self.SpeakBtn.selected) {
         [self performSelector:@selector(delayMethod) withObject:nil afterDelay:2.0];
         self.Tiplabel.hidden = NO;
-        self.textView.text = @"请说,我在听";
+        self.textView.text = @"请说,我在聆听...";
         //一起入启动
         BOOL ret = [_iFlySpeechRecognizer startListening];
         
@@ -221,6 +268,10 @@
 //IFlySpeechRecognizerDelegate协议实现
 //识别结果返回代理
 - (void) onResults:(NSArray *) results isLast:(BOOL)isLast{
+    
+    //隐藏提示框
+    self.Tiplabel.hidden = YES;
+    
     NSMutableString *resultString = [[NSMutableString alloc] init];
     NSDictionary *dic = results[0];
     
@@ -287,71 +338,57 @@
 
 - (void)makeRoundedCorner:(CGFloat)cornerRadius {
     
-    CALayer *roundedlayer = [self.view layer];
-    [roundedlayer setMasksToBounds:YES];
-    [roundedlayer setCornerRadius:cornerRadius];
+    UIBezierPath *maskPath= [UIBezierPath bezierPathWithRoundedRect:self.view.bounds
+                              
+                                                    byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight
+                              
+                                                          cornerRadii:CGSizeMake(20,20)];
+    
+    CAShapeLayer*maskLayer = [[CAShapeLayer alloc] init];
+    maskLayer.frame = self.view.bounds;
+    maskLayer.path = maskPath.CGPath;
+    self.view.layer.mask = maskLayer;
+    
+
 }
 
 
 - (void)dealWithResult:(NSString *)Result
 {
-    if ([Result containsString:@"开锁"]||([Result containsString:@"门"]&&[Result containsString:@"开"])) {
+    if ([Result containsString:@"开锁"]||([Result containsString:@"门"]&&[Result containsString:@"开"])||([Result containsString:@"开"]&&[Result containsString:@"锁"])) {
         NSLog(@"开锁");
         [self dismissViewControllerAnimated:YES completion:^{
-            
+            [self openDoor];
         }];
     }else
     {
-        [self.textView setText:@"抱歉,未找到相关指令!"];
+        [self.textView setText:@"未能识别,请点击麦克风重试"];
         self.Tiplabel.hidden = NO;
     }
 }
 
 - (void)openDoor
 {
-    NSArray *doorArray = [TCCloudTalkingTool getMachineDataArray];
-    if (doorArray.count == 0) {
+    
+    if (self.doorArray.count == 0) {
         
         [self.textView setText:@"抱歉,您还未绑定门口机!"];
         
-    }else{
+    }else if(self.doorArray.count == 1){
         
-        NSDictionary *dict = doorArray.firstObject;
-        [TCOpenDoorTool openTheDoorWithID:[dict objectForKey:@"num"]];
+        NSDictionary *dict = self.doorArray.firstObject;
+        [TCOpenDoorTool openTheDoorWithID:[dict objectForKey:@"id"] DoorName:[dict objectForKey:@"name"]];
+    }else
+    {
+        NSString *reult = self.textView.text;
+        NSDictionary * dict = [TCCloudTalkingTool getMatchMachineDataArrayWithResult:reult];
+        debugLog(@"%@----计算后的字典",dict);
+        [TCOpenDoorTool openTheDoorWithID:[dict objectForKey:@"id"] DoorName:[dict objectForKey:@"name"]];
+        
     }
 }
 
 
-- (void)musicReplicatorLayer
-{
-    _musicLayer = [CAReplicatorLayer layer];
-    _musicLayer.frame = CGRectMake(0, 0, 200, 50);
-    _musicLayer.position = self.view.center;
-    //设置复制层里面包含的子层个数
-    _musicLayer.instanceCount = 20;
-    //设置下个子层相对于前一个的偏移量
-    _musicLayer.instanceTransform = CATransform3DMakeTranslation(10, 0, 0);     //每个layer的间距。
-    //设置下一个层相对于前一个的延迟时间
-    _musicLayer.instanceDelay = 0.2;
-    _musicLayer.backgroundColor = [UIColor redColor].CGColor;
-    _musicLayer.masksToBounds = YES;
-    [self.view.layer addSublayer:_musicLayer];
-    
-    CALayer *tLayer = [CALayer layer];
-    tLayer.frame = CGRectMake(10, 20, 5, 40);
-    tLayer.backgroundColor = [UIColor whiteColor].CGColor;
-    [_musicLayer addSublayer:tLayer];
-    
-    CABasicAnimation *musicAnimation = [CABasicAnimation animationWithKeyPath:@"position.y"];
-    musicAnimation.duration = 0.35;
-    musicAnimation.fromValue = @(tLayer.frame.size.height);
-    //    musicAnimation.toValue = @(tLayer.frame.size.height - 10);
-    musicAnimation.byValue = @(20);
-    musicAnimation.autoreverses = YES;
-    musicAnimation.repeatCount = MAXFLOAT;
-    musicAnimation.beginTime = -2;
-    musicAnimation.removedOnCompletion = NO;
-    [tLayer addAnimation:musicAnimation forKey:@"musicAnimation"];
-}
+
 
 @end

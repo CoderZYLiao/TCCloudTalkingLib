@@ -446,7 +446,7 @@
         [self hangupCall];
     }else if([button.titleLabel.text isEqualToString:@"开锁"])
     {
-        [TCOpenDoorTool openTheDoorWithID:[TCCloudTalkingTool getMachineNumberWithVoipNo:self.voipNo]];
+        [TCOpenDoorTool openTheDoorWithID:[TCCloudTalkingTool getMachineNumberWithVoipNo:self.voipNo] DoorName:[TCCloudTalkingTool getMachineNameWithVoipNo:self.voipNo]];
         
     }else if([button.titleLabel.text isEqualToString:@"免提"])
     {

@@ -27,6 +27,7 @@
 #import <MJRefresh/MJRefresh.h>
 #import <YYKit/YYKit.h>
 #import "SVProgressHUD.h"
+#import "NSObject+DataSafe.h"
 //依赖Publickitk的头文件
 #import "TCHttpTool.h"
 #import "TCConfigDefine.h"

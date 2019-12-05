@@ -38,9 +38,9 @@
     [super viewDidLoad];
     
 
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     self.title = @"通话记录";
-    self.view.backgroundColor = [UIColor whiteColor];
-    
+
     //添加所有的自控制器(View)
     [self setupAllChildVc];
     //设置UIScrollView

@@ -8,6 +8,10 @@
 #import "TCCloudTalkingTool.h"
 #import "Header.h"
 
+static inline int min(int a, int b) {
+    return a < b ? a : b;
+}
+
 @implementation TCCloudTalkingTool
 
 
@@ -70,6 +74,82 @@ static dispatch_once_t predicate;
     return arr;
 }
 
++(NSDictionary *)getMatchMachineDataArrayWithResult:(NSString *)Result
+{
+    //读取本地json数据
+    NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/MyMachineJson.json"];//获取json文件保存的路径
+    NSData *data = [NSData dataWithContentsOfFile:filePath];//获取指定路径的data文件
+    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil]; //获取到json文件的跟数据（字典）
+    NSArray *arr = [json objectForKey:@"data"];//获取指定key值的value，是一个数组
+    float max_number = 0;
+    int max_index = 0;
+    for (int i = 0; i<arr.count; i++) {
+        NSDictionary *dic = arr[i];
+        //取最大值和最大值的对应下标
+        float a = [self likePercentByCompareOriginText:[dic objectForKey:@"name"] targetText:Result];
+        debugLog(@"%f-----相似度计算",a);
+        if (a > max_number) {
+            max_index = i;
+        }
+        max_number = a>max_number?a:max_number;
+    }
+    
+    return arr[max_index];
+}
+
++(float)likePercentByCompareOriginText:(NSString *)originText targetText:(NSString *)targetText{
+    
+    //length
+    int n = (int)originText.length;
+    int m = (int)targetText.length;
+    if (n == 0 || m == 0) {
+        return 0.0;
+    }
+    
+    //Construct a matrix, need C99 support
+    int N = n+1;
+    int **matrix;
+    matrix = (int **)malloc(sizeof(int *)*N);
+    
+    int M = m+1;
+    for (int i = 0; i < N; i++) {
+        matrix[i] = (int *)malloc(sizeof(int)*M);
+    }
+    
+    for (int i = 0; i<N; i++) {
+        for (int j=0; j<M; j++) {
+            matrix[i][j]=0;
+        }
+    }
+    
+    for(int i=1; i<=n; i++) {
+        matrix[i][0]=i;
+    }
+    for(int i=1; i<=m; i++) {
+        matrix[0][i]=i;
+    }
+    for(int i=1;i<=n;i++)
+    {
+        unichar si = [originText characterAtIndex:i-1];
+        for(int j=1;j<=m;j++)
+        {
+            unichar dj = [targetText characterAtIndex:j-1];
+            int cost;
+            if(si==dj){
+                cost=0;
+            }
+            else{
+                cost=1;
+            }
+            const int above = matrix[i-1][j]+1;
+            const int left = matrix[i][j-1]+1;
+            const int diag = matrix[i-1][j-1]+cost;
+            matrix[i][j] = min(above, min(left,diag));
+        }
+    }
+    return 100.0 - 100.0*matrix[n][m]/MAX(m,n);
+}
+
 //根据对讲账号获取门口机机身号
 + (NSString *)getMachineNumberWithVoipNo:(NSString *)VoipNo
 {
@@ -83,8 +163,8 @@ static dispatch_once_t predicate;
     for (NSDictionary *dic in arr) {
         
         if ([[dic objectForKey:@"intercomUserId"] isEqualToString:VoipNo]) {
-            NSLog(@"%@",[dic objectForKey:@"num"]);//遍历数组
-            str =   [dic objectForKey:@"num"];
+            NSLog(@"%@",[dic objectForKey:@"id"]);//遍历数组
+            str =   [dic objectForKey:@"id"];
         }
     }
     return str;

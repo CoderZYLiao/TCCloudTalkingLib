@@ -38,6 +38,10 @@
  @return 数组
  */
 +(NSArray *)getMachineDataArray;
+
+
++(NSDictionary *)getMatchMachineDataArrayWithResult:(NSString *)Result;
+
 /**
  根据VOIP获取门口机的机身号
  
