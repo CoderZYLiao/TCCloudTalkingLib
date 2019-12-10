@@ -36,7 +36,7 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
         _tableView.dataSource = self;
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.tableFooterView = [[UIView alloc] init];
-        _tableView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+        _tableView.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
 //        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         _tableView.mj_header =  [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -61,7 +61,7 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
     //初始化tabbleView
     [self tableView];
     [self getDataSuorce];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshRecordDataSuorce) name:UCSNotiRefreshCallList object:nil];
 }
 

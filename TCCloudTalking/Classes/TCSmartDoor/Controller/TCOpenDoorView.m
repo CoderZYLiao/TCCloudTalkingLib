@@ -68,7 +68,7 @@ static UIWindow *window_;
     [publishView addSubview:canceBtn];
     [canceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(publishView);
-        make.width.height.equalTo(@70);
+        make.width.height.equalTo(@80);
         make.bottom.equalTo(publishView).offset(-10);
         
     }];

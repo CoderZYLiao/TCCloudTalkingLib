@@ -38,7 +38,7 @@
     [super viewDidLoad];
     
 
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
     self.title = @"通话记录";
 
     //添加所有的自控制器(View)
