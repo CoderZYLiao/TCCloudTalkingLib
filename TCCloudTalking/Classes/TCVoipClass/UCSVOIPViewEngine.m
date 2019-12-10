@@ -437,7 +437,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
      */
     
     NSString * nickName = nil;
-    //    nickName = [TCCetUserHouseMachine getMachineNameWithVoipNo:caller];
+        nickName = [TCCloudTalkingTool getMachineNameWithVoipNo:caller];
     
     if (nickName == nil) {
         nickName = caller;
@@ -453,7 +453,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         [[self player] releasePlayResource];//释放资源,不占用播放句柄
         
         //iOS10以上
-        if (UCS_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(10.0)) {
+       if (@available(iOS 10.0, *)) {
             [[self player] play];//若应用处于前台,播放铃声
             if (_deviceType == 2) {
                 [[PushNotificationManager sharedInstance] normalPushNotificationWithTitle:@"门口机来电" subTitle:nil body:[NSString stringWithFormat:@"%@ %@", nickName,  (calltype == 2)? @"视频来电" : @"语音来电"] userInfo:nil identifier:@"identifier" soundName:@"incomingCall.mp3" timeInterval:1 repeat:NO];

@@ -69,9 +69,15 @@ static dispatch_once_t predicate;
     //读取本地json数据
     NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/MyMachineJson.json"];//获取json文件保存的路径
     NSData *data = [NSData dataWithContentsOfFile:filePath];//获取指定路径的data文件
-    id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil]; //获取到json文件的跟数据（字典）
-    NSArray *arr = [json objectForKey:@"data"];//获取指定key值的value，是一个数组
-    return arr;
+    if (data) {
+        id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil]; //获取到json文件的跟数据（字典）
+        NSArray *arr = [json objectForKey:@"data"];//获取指定key值的value，是一个数组
+        return arr;
+    }else
+    {
+        return 0;
+    }
+    
 }
 
 +(NSDictionary *)getMatchMachineDataArrayWithResult:(NSString *)Result

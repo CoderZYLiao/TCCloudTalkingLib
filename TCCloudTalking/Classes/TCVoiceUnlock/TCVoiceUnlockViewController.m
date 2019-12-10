@@ -151,6 +151,7 @@
     }];
     
     UITextView *textView = [[UITextView alloc] init];
+    textView.userInteractionEnabled = NO;
     textView.textAlignment =  NSTextAlignmentCenter;
     textView.font = [UIFont fontWithName:@"PingFang TC" size:20];
     textView.textColor = [UIColor colorWithRed:64/255.0 green:115/255.0 blue:242/255.0 alpha:1/1.0];
@@ -357,9 +358,17 @@
 {
     if ([Result containsString:@"开锁"]||([Result containsString:@"门"]&&[Result containsString:@"开"])||([Result containsString:@"开"]&&[Result containsString:@"锁"])) {
         NSLog(@"开锁");
-        [self dismissViewControllerAnimated:YES completion:^{
-            [self openDoor];
-        }];
+        if (self.doorArray.count == 0) {
+            
+            [self.textView setText:@"抱歉,您还未绑定门口机!"];
+            
+        }else
+        {
+            [self dismissViewControllerAnimated:YES completion:^{
+                [self openDoor];
+            }];
+        }
+        
     }else
     {
         [self.textView setText:@"未能识别,请点击麦克风重试"];
@@ -369,12 +378,7 @@
 
 - (void)openDoor
 {
-    
-    if (self.doorArray.count == 0) {
-        
-        [self.textView setText:@"抱歉,您还未绑定门口机!"];
-        
-    }else if(self.doorArray.count == 1){
+    if(self.doorArray.count == 1){
         
         NSDictionary *dict = self.doorArray.firstObject;
         [TCOpenDoorTool openTheDoorWithID:[dict objectForKey:@"id"] DoorName:[dict objectForKey:@"name"]];
