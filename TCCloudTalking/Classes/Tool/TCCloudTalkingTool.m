@@ -53,7 +53,7 @@ static dispatch_once_t predicate;
 {
     TCUserModel *userModel = [[TCPersonalInfoModel shareInstance] getUserModel];
     [TCCloudTalkRequestTool GetMyDoorMachinelistWithCoid:userModel.defaultCommunity.communityId Success:^(id  _Nonnull result) {
-        [SVProgressHUD dismiss];
+        [MBManager hideAlert];;
         debugLog(@"%@-----门口机列表",result);
         if ([result[@"code"] intValue] == 0) {
             [self saveUserMachineList:result];

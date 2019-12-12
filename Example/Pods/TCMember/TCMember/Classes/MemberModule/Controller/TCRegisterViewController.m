@@ -125,16 +125,16 @@
 - (void)btnConfrmClick:(UIButton *)btn
 {
     if (![NSString valiMobile:self.textFieldPhone.text]) {
-        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号码"];
+        [MBManager showBriefAlert:@"请输入正确的手机号码"];
         return;
     } else if (![NSString valiPassword:self.textFieldPwd.text]) {
-        [SVProgressHUD showInfoWithStatus:@"请输入6-16位数字和字母组合的注册密码"];
+        [MBManager showBriefAlert:@"请输入6-16位数字和字母组合的注册密码"];
         return;
     } else if (self.textFieldPwd2.text.length <= 0) {
-        [SVProgressHUD showInfoWithStatus:@"请再次输入密码"];
+        [MBManager showBriefAlert:@"请再次输入密码"];
         return;
     } else if (![self.textFieldPwd.text isEqualToString:self.textFieldPwd2.text]) {
-        [SVProgressHUD showInfoWithStatus:@"两次输入的密码不一致"];
+        [MBManager showBriefAlert:@"两次输入的密码不一致"];
         self.btnConfrm.enabled = NO;
         [self.btnConfrm setBackgroundColor:[UIColor colorWithHexString:@"#E0E9FF"]];
         self.textFieldPwd.text = @"";
@@ -175,7 +175,7 @@
     NSDictionary *params = @{@"phoneNumber" : self.textFieldPhone.text, @"userName" : self.textFieldPhone.text , @"password" : self.textFieldPwd2.text};
     WEAKSELF
     [[TCHttpTool sharedHttpTool] postWithURL:RegisterURL params:params success:^(id json) {
-        [SVProgressHUD dismiss];
+        [MBManager hideAlert];
         NSInteger code = [[json objectForKey:@"code"] integerValue];
         if (code == 0) {
             [weakSelf addAlertWithTitle:@"提示" text:@"注册成功" sureStr:@"确定" cancelStr:@""];
@@ -184,8 +184,8 @@
             [weakSelf addAlertWithTitle:@"提示" text:msg sureStr:@"确定" cancelStr:@""];
         }
     } failure:^(NSError *error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showInfoWithStatus:error.description];
+        [MBManager hideAlert];
+        [MBManager showBriefAlert:error.description];
         NSLog(@"%@", error);
     }];
 }

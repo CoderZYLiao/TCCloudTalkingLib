@@ -7,6 +7,7 @@
 //
 
 #import "NSString+ZYAdd.h"
+#import "NSDate+ZYAdd.h"
 
 @implementation NSString (ZYAdd)
 
@@ -163,6 +164,19 @@
     NSDate *datenow = [NSDate date];
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)([datenow timeIntervalSince1970]*1000)];
     return timeSp;
+}
+
+// 将时间字符串转换成时间
++ (NSString *)getTimeTimestampWithTimeStr:(NSString *)timeStr
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]]; //解决8小时时间差问题
+    NSDate *date = [dateFormatter dateFromString:timeStr];    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"YYYY.MM.dd"];
+    NSString *str=[formatter stringFromDate:date];
+    return str;
 }
 
 @end

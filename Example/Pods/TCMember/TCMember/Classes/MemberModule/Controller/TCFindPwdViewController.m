@@ -138,7 +138,7 @@
 - (void)btnGetCodeClick:(ZXCountDownBtn *)btn
 {
     if (![NSString valiMobile:self.textFieldPhone.text]) {
-        [SVProgressHUD showInfoWithStatus:@"请填写正确的手机号码"];
+        [MBManager showBriefAlert:@"请填写正确的手机号码"];
         return;
     }
     btn.enabled = NO;
@@ -185,11 +185,11 @@
     [mgr POST:SendCodeURL parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         NSLog(@"%@", SendCodeURL);
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showInfoWithStatus:@"验证码已发送，请注意查收"];
+        [MBManager hideAlert];
+        [MBManager showBriefAlert:@"验证码已发送，请注意查收"];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showInfoWithStatus:error.description];
+        [MBManager hideAlert];
+        [MBManager showBriefAlert:error.description];
         NSLog(@"%@", error);
     }];
 }
@@ -209,18 +209,18 @@
     [mgr.requestSerializer setTimeoutInterval:10];
     mgr.responseSerializer = [AFJSONResponseSerializer serializer];
     [mgr POST:ResetPasswordURL parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [SVProgressHUD dismiss];
+        [MBManager hideAlert];
         NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
         if (code == 0) {
-            [SVProgressHUD showInfoWithStatus:@"重置密码成功"];
+            [MBManager showBriefAlert:@"重置密码成功"];
             [[TCPersonalInfoModel shareInstance] logout];
         } else {
             NSString *msg = [responseObject objectForKey:@"message"];
-            [SVProgressHUD showInfoWithStatus:msg];
+            [MBManager showBriefAlert:msg];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showInfoWithStatus:error.description];
+        [MBManager hideAlert];
+        [MBManager showBriefAlert:error.description];
         NSLog(@"%@", error);
     }];
 }
@@ -239,13 +239,13 @@
 - (void)btnConfirmClick:(UIButton *)btn
 {
     if (![NSString valiMobile:self.textFieldPhone.text]) {
-        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号码"];
+        [MBManager showBriefAlert:@"请输入正确的手机号码"];
         return;
     } else if (self.textFieldVerifyCode.text.length <= 0) {
-        [SVProgressHUD showInfoWithStatus:@"请输入验证码"];
+        [MBManager showBriefAlert:@"请输入验证码"];
         return;
     } else if (![NSString valiPassword:self.textFieldPwd.text]) {
-        [SVProgressHUD showInfoWithStatus:@"请输入6-16位数字和字母组合的新密码"];
+        [MBManager showBriefAlert:@"请输入6-16位数字和字母组合的新密码"];
         self.textFieldPwd.text = @"";
         [self.textFieldPwd becomeFirstResponder];
         return;

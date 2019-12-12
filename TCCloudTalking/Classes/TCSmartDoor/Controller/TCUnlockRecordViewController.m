@@ -9,14 +9,17 @@
 #import "UnlockRecordTableViewCell.h"
 #import "TCUnlcokRecordModel.h"
 #import "Header.h"
+#import "TCPickerView.h"
 
 static NSString *const UnlockRecordID  =@"UnlockRecordID";
-@interface TCUnlockRecordViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TCUnlockRecordViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *DataSource;
-
+@property (strong, nonatomic) TCPickerView *PickerView;
 @property(nonatomic, assign) int currentPage;
 @property(nonatomic, assign) int totalPage;
+
+@property (nonatomic, strong) NSString *currentMonth;
 @end
 
 @implementation TCUnlockRecordViewController
@@ -41,6 +44,12 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
         _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
         // 注册cell(Pods的注册方式)
 //        [_tableView registerClass:[UnlockRecordTableViewCell class] forCellReuseIdentifier:UnlockRecordID];
+        
+        self.tableView.emptyDataSetSource = self;
+        self.tableView.emptyDataSetDelegate = self;
+
+        // 删除单元格分隔线的一个小技巧
+        self.tableView.tableFooterView = [UIView new];
         [self.view addSubview:_tableView];
     }
     return _tableView;
@@ -56,6 +65,42 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
     [self tableView];
     
     [self.tableView.mj_header beginRefreshing];
+    
+    [self RightItem];
+    
+    self.currentMonth = [self getCurrentMonth];
+    self.PickerView = [[TCPickerView alloc]init];
+    
+}
+
+- (void)RightItem
+{
+    UIBarButtonItem * right = [[UIBarButtonItem alloc]initWithImage:[[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_option"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBarItem)];
+    self.navigationItem.rightBarButtonItem = right;
+}
+
+- (void)clickRightBarItem
+{
+    NSArray *dateSouce = @[[self beforeDate:0],[self beforeDate:-1],[self beforeDate:-2]];
+    self.PickerView.dataSource = [dateSouce copy];
+    self.PickerView.pickerTitle = @"选择月份";
+    for (NSInteger i=0; i<dateSouce.count; i++) {
+
+        if ([self.currentMonth isEqualToString:dateSouce[i]]) {
+            self.PickerView.defaultmodel = dateSouce[i];
+        }
+    }
+    __weak typeof(self) weakSelf = self;
+           weakSelf.PickerView.valueDidSelect = ^(NSString *value){
+               if (value) {
+                   NSLog(@"---%@",value);
+                   self.currentMonth = value;
+                   [self.tableView.mj_header beginRefreshing];
+               }
+               
+           };
+    
+    [self.PickerView show];
 }
 
 - (void)loadMoreData
@@ -69,7 +114,7 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
     }
 
     NSString *PageIndex = [NSString stringWithFormat:@"%i",self.currentPage+1];
-    [TCCloudTalkRequestTool GetMyCommunityWithPageIndex:PageIndex pageSize:@"20" month:[self getCurrentMonth] Success:^(id  _Nonnull result) {
+    [TCCloudTalkRequestTool GetMyCommunityWithPageIndex:PageIndex pageSize:@"20" month:self.currentMonth Success:^(id  _Nonnull result) {
 
         debugLog(@"%@-----开锁记录",result);
         if ([result[@"code"] intValue] == 0) {
@@ -85,7 +130,7 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
         }else
         {
             if (result[@"message"]) {
-                [SVProgressHUD showErrorWithStatus:result[@"message"]];
+                [MBManager showBriefAlert:result[@"message"]];
             }
             
         }
@@ -104,9 +149,9 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
 
 - (void)getDataSoure
 {
-    [SVProgressHUD showWithStatus:@""];
-    [TCCloudTalkRequestTool GetMyCommunityWithPageIndex:@"0" pageSize:@"20" month:[self getCurrentMonth] Success:^(id  _Nonnull result) {
-        [SVProgressHUD dismiss];
+    [MBManager showLoading];
+    [TCCloudTalkRequestTool GetMyCommunityWithPageIndex:@"0" pageSize:@"20" month:self.currentMonth Success:^(id  _Nonnull result) {
+        [MBManager hideAlert];
         [self.tableView.mj_header endRefreshing];
         debugLog(@"%@-----开锁记录",result);
         if ([result[@"code"] intValue] == 0) {
@@ -122,7 +167,8 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
         }else
         {
             if (result[@"message"]) {
-                [SVProgressHUD showErrorWithStatus:result[@"message"]];
+                [MBManager showBriefAlert:result[@"message"]];
+                
             }
             
         }
@@ -172,4 +218,60 @@ static NSString *const UnlockRecordID  =@"UnlockRecordID";
 
 
 
+
+- (NSString *)beforeDate:(NSInteger)n {
+    NSDate *currentDate = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM"];
+    NSString *nowDateStr = [formatter stringFromDate:currentDate];
+    NSLog(@"当前日期：%@",nowDateStr);
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *lastMonthComps = [[NSDateComponents alloc] init];
+    //    [lastMonthComps setYear:1]; // year = 1表示1年后的时间 year = -1为1年前的日期，month day 类推
+    [lastMonthComps setMonth:n];
+    NSDate *newdate = [calendar dateByAddingComponents:lastMonthComps toDate:currentDate options:0];
+    NSString *beforeDateStr = [formatter stringFromDate:newdate];
+    
+    return beforeDateStr;
+}
+
+
+#pragma mark - DZNEmptyDataSetSource
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_empty"];
+}
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *text = @"亲 你还有没有开锁记录哦~";
+
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:text];
+    // 设置所有字体大小为 #15
+    [attStr addAttribute:NSFontAttributeName
+                   value:[UIFont systemFontOfSize:15.0]
+                   range:NSMakeRange(0, text.length)];
+    // 设置所有字体颜色为浅灰色
+    [attStr addAttribute:NSForegroundColorAttributeName
+                   value:[UIColor colorWithHexString:@"#4073F2"]
+                   range:NSMakeRange(0, text.length)];
+    // 设置指定4个字体为蓝色
+//    [attStr addAttribute:NSForegroundColorAttributeName
+//                   value:[UIColor colorWithHexString:@"#007EE5"]
+//                   range:NSMakeRange(7, 4)];
+    return attStr;
+}
+
+- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView {
+    return -70.0f;
+}
+
+#pragma mark - DZNEmptyDataSetDelegate
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
+    // button clicked...
+}
+
+- (void)emptyDataSetWillAppear:(UIScrollView *)scrollView {
+    self.tableView.contentOffset = CGPointZero;
+}
 @end

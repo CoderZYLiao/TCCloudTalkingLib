@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIImage *)scaleImage:(UIImage *)img ToSize:(CGSize)size;
 - (UIImage *)fillColor:(UIColor *)fillColor;
 + (UIImage *)imageWithColor:(UIColor *)color;
++ (instancetype)circleImageWithName:(NSString *)name borderWidth:(CGFloat)borderWidth borderColor:(UIColor *)borderColor;
 @end
 
 NS_ASSUME_NONNULL_END

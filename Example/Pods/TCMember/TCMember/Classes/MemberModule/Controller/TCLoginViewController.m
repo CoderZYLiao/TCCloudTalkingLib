@@ -34,10 +34,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 设置弹框样式
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD setMaximumDismissTimeInterval:3.6];
-    [SVProgressHUD setMinimumDismissTimeInterval:1.2];
     
     self.navigationController.navigationBar.hidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
@@ -141,10 +137,10 @@
 - (void)loginBtnClick:(UIButton *)btn
 {
     if (![NSString valiMobile:self.textFieldAccount.text]) {
-        [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号码"];
+        [MBManager showBriefAlert:@"请输入正确的手机号码"];
         return;
     } else if (self.textFieldPwd.text.length <= 0) {
-        [SVProgressHUD showInfoWithStatus:@"请输入密码"];
+        [MBManager showBriefAlert:@"请输入密码"];
         return;
     }
     [self LoginRequest];
@@ -166,7 +162,7 @@
     mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
     [mgr.requestSerializer setTimeoutInterval:10];
     [mgr.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-     [SVProgressHUD show];
+     [MBManager showLoading];
     WEAKSELF
     [[TCHttpTool sharedHttpTool] postWithURL:LoginURL params:params withManager:mgr success:^(id _Nonnull json) {
         // 保存token
@@ -184,8 +180,8 @@
             [weakSelf GetHousesInfoRequest];
         }
     } failure:^(NSError * _Nonnull error) {
-        [SVProgressHUD dismiss];
-         [SVProgressHUD showInfoWithStatus:@"用户名或者密码错误"];
+        [MBManager hideAlert];
+        [MBManager showBriefAlert:@"用户名或者密码错误"];
     }];
 }
 
@@ -193,7 +189,7 @@
 - (void)GetUserInfoRequest
 {
     [[TCHttpTool sharedHttpTool] getWithURL:UserInfoURL params:nil success:^(id  _Nonnull json) {
-        [SVProgressHUD dismiss];
+        [MBManager hideAlert];
         NSInteger code = [[json objectForKey:@"code"] integerValue];
         if (code == 0) {
             NSDictionary *dict = [json objectForKey:@"data"];
@@ -208,10 +204,10 @@
             NSDictionary *userInfoDict = [NSDictionary dictionaryWithObjectsAndKeys:[dict objectForKey:@"id"], @"id", nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"LoginSuccessNotification" object:self userInfo:userInfoDict];
         } else {
-            [SVProgressHUD showInfoWithStatus:[json objectForKey:@"message"]];
+            [MBManager showBriefAlert:[json objectForKey:@"message"]];
         }
     } failure:^(NSError * _Nonnull error) {
-        [SVProgressHUD showInfoWithStatus:@"用户名或者密码错误"];
+        [MBManager showBriefAlert:@"用户名或者密码错误"];
     }];
 }
 
@@ -219,7 +215,7 @@
 - (void)GetHousesInfoRequest
 {
     [[TCHttpTool sharedHttpTool] getWithURL:GetHousesInfoURL params:nil success:^(id  _Nonnull json) {
-        [SVProgressHUD dismiss];
+        [MBManager hideAlert];
         NSInteger code = [[json objectForKey:@"code"] integerValue];
         if (code == 0) {
             NSDictionary *dict = [json objectForKey:@"data"];
@@ -228,10 +224,10 @@
             [[NSUserDefaults standardUserDefaults] setObject:dataJsonString forKey:TCHousesInfoKey]; // 保存对讲用户信息
             [[NSUserDefaults standardUserDefaults] synchronize];
         } else {
-            [SVProgressHUD showInfoWithStatus:[json objectForKey:@"message"]];
+            [MBManager showBriefAlert:[json objectForKey:@"message"]];
         }
     } failure:^(NSError * _Nonnull error) {
-        [SVProgressHUD showInfoWithStatus:@"获取对讲信息失败"];
+        [MBManager showBriefAlert:@"获取对讲信息失败"];
     }];
 }
 

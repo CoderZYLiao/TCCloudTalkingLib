@@ -9,11 +9,6 @@
 #ifndef TCConfigDefine_h
 #define TCConfigDefine_h
 /*
- APP基本配置
- */
-#define QAPPID @"1216584761"
-#define APPName "H家云社区"
-/*
  APP登录相关
  */
 #define TCAccessToken @"access_token"
@@ -23,7 +18,11 @@
 /*
  Web基链接
  */
-#define KProjectWebBaseURL @"http://wweb.ddhongtai.com"
+#define KProjectWebBaseURL @"http://47.112.123.24:8888"
+/*
+ Api基链接
+ */
+#define KProjectO2OAPIBaseURL @"http://47.112.123.24:8888/o2o/"
 /*
  Api基链接
  */
@@ -32,11 +31,6 @@
  获取token
  */
 #define GetTokenURL [NSString stringWithFormat:@"%@/connect/token", KProjectAPIBaseURL]
-
-/*
- 用UIWebview还是WKWebView     1为UIWebview    0为WKWebView
- */
-#define UIWebViewUsed  1
 
 /*
  地图AppID,当前项目集成百度地图

@@ -35,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getTimeStyle2FromTimestamp:(NSString *)timestamp;
 #pragma mark ---- 获取时间戳
 + (NSString *)getNowTimeTimestamp;
+
+#pragma mark ---- 将时间字符串转换成时间再转换成时间字符串
++ (NSString *)getTimeTimestampWithTimeStr:(NSString *)timeStr;
 @end
 
 NS_ASSUME_NONNULL_END

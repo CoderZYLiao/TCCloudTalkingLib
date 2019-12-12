@@ -238,7 +238,7 @@
 
 - (void)getQRCodePwds
 {
-    [SVProgressHUD showWithStatus:@""];
+    [MBManager showLoading];
     [TCCloudTalkRequestTool GetDoorOpenQRCodesSuccess:^(id  _Nonnull result) {
         NSLog(@"%@-----二维码开锁",result);
         if ([result[@"code"] intValue] == 0) {
@@ -246,12 +246,13 @@
         }else
         {
             if (result[@"message"]) {
-                [SVProgressHUD showErrorWithStatus:result[@"message"]];
+                [MBManager showBriefAlert:result[@"message"]];
+
             }
             
         }
     } faile:^(NSError * _Nonnull error) {
-        [SVProgressHUD showErrorWithStatus:@"请求失败"];
+        [MBManager showBriefAlert:@"请求失败"];
     }];
 }
 

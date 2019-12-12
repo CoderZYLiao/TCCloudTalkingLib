@@ -21,6 +21,8 @@
 #define GetHousesInfoURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/houses", KProjectAPIBaseURL]
 // 更改用户密码
 #define ChangeUserPasswordURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/account/changepassword", KProjectAPIBaseURL]
+// 意见反馈
+#define FeedbackURL [NSString stringWithFormat:@"%@/auth/api/app/feedback", KProjectAPIBaseURL]
 // 注册链接
 #define RegisterURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/account", KProjectAPIBaseURL]
 // 注册验证码链接

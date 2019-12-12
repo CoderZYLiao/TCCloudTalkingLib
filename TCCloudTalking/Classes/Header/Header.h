@@ -26,8 +26,8 @@
 #import "MJExtension.h"
 #import <MJRefresh/MJRefresh.h>
 #import <YYKit/YYKit.h>
-#import "SVProgressHUD.h"
 #import "NSObject+DataSafe.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 //依赖Publickitk的头文件
 #import "TCHttpTool.h"
 #import "TCConfigDefine.h"
@@ -35,7 +35,8 @@
 #import "TCUserModel.h"
 #import "TCCommunityModel.h"
 #import "TCHousesInfoModel.h"
-
+#import "MBManager.h"
+#import "TCReachability.h"
 //公共库头文件
 //#import "TCPublicKit.h"
 //#import "UIImage+ZYAdd.h"

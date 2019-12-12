@@ -7,7 +7,7 @@
 
 #import "TCHttpTool.h"
 #import "TCConfigDefine.h"
-#import "SVProgressHUD.h"
+#import "MBManager.h"
 
 static AFHTTPSessionManager *mgr = nil;
 
@@ -56,7 +56,7 @@ static AFHTTPSessionManager *mgr = nil;
             success(access_token);
         }
     } failure:^(NSError * _Nonnull error) {
-        [SVProgressHUD showInfoWithStatus:@"获取登录Token失败"];
+        [MBManager showBriefAlert:@"获取登录Token失败"];
     }];
 }
 
@@ -73,13 +73,13 @@ static AFHTTPSessionManager *mgr = nil;
              success:(void (^)(id))success
              failure:(void (^)(NSError *))failure
 {
-    [SVProgressHUD show];
+    [MBManager showLoading];
     __typeof(self) __weak weakSelf = self;
     [mgr.requestSerializer setValue:@"application/json-patch+json" forHTTPHeaderField:@"Content-Type"];
     [mgr PUT:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success)
         {
-            [SVProgressHUD dismiss];
+            [MBManager hideAlert];
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 if ([responseObject[@"resultCode"] isEqualToString:@"31"]) {  //强制重新登录
                     failure(nil);
@@ -98,7 +98,7 @@ static AFHTTPSessionManager *mgr = nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure)
         {
-            [SVProgressHUD dismiss];
+            [MBManager hideAlert];
             failure(error);
         }
     }];
@@ -109,13 +109,13 @@ static AFHTTPSessionManager *mgr = nil;
             success:(void (^)(id))success
             failure:(void (^)(NSError *))failure
 {
-    [SVProgressHUD show];
+    [MBManager showLoading];
     __typeof(self) __weak weakSelf = self;
     [mgr.requestSerializer setValue:@"application/json-patch+json" forHTTPHeaderField:@"Content-Type"];
     [mgr PATCH:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success)
         {
-            [SVProgressHUD dismiss];
+            [MBManager hideAlert];
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 if ([responseObject[@"resultCode"] isEqualToString:@"31"]) {  //强制重新登录
                     failure(nil);
@@ -134,7 +134,7 @@ static AFHTTPSessionManager *mgr = nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure)
         {
-            [SVProgressHUD dismiss];
+            [MBManager hideAlert];
             failure(error);
         }
     }];
@@ -146,11 +146,11 @@ static AFHTTPSessionManager *mgr = nil;
             success:(void (^)(id))success
             failure:(void (^)(NSError *))failure
 {
-    [SVProgressHUD show];
+    [MBManager showLoading];
     [manager PATCH:url parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success)
         {
-            [SVProgressHUD dismiss];
+            [MBManager hideAlert];
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 if ([responseObject[@"resultCode"] isEqualToString:@"31"]) {  //强制重新登录
                     failure(nil);
@@ -165,8 +165,8 @@ static AFHTTPSessionManager *mgr = nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure)
         {
-            [SVProgressHUD dismiss];
-            [SVProgressHUD showInfoWithStatus:error.description];
+            [MBManager hideAlert];
+            [MBManager showBriefAlert:error.description];
             failure(error);
         }
     }];
@@ -177,7 +177,7 @@ static AFHTTPSessionManager *mgr = nil;
             success:(void (^)(id))success
             failure:(void (^)(NSError *))failure
 {
-    [SVProgressHUD show];
+    [MBManager showLoading];
     __typeof(self) __weak weakSelf = self;
     [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [mgr POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -185,7 +185,7 @@ static AFHTTPSessionManager *mgr = nil;
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success)
         {
-            [SVProgressHUD dismiss];
+            [MBManager hideAlert];
             if ([responseObject isKindOfClass:[NSDictionary class]]) {
                 if ([responseObject[@"resultCode"] isEqualToString:@"31"]) {  //强制重新登录
                     failure(nil);
@@ -204,7 +204,7 @@ static AFHTTPSessionManager *mgr = nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure)
         {
-            [SVProgressHUD dismiss];
+            [MBManager hideAlert];
             failure(error);
         }
     }];

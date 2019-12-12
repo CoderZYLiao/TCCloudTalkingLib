@@ -10,7 +10,7 @@
 #import "TCMyCardModel.h"
 #import "Header.h"
 static NSString *const MyCardCellID  =@"MyCardCellID";
-@interface TCMyCardViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface TCMyCardViewController ()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (nonatomic,strong)UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *DataSource;
 
@@ -35,6 +35,12 @@ static NSString *const MyCardCellID  =@"MyCardCellID";
         _tableView.tableFooterView = [[UIView alloc] init];
         _tableView.backgroundColor = [UIColor colorWithHexString:@"#F5F6FB"];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        self.tableView.emptyDataSetSource = self;
+        self.tableView.emptyDataSetDelegate = self;
+
+        // 删除单元格分隔线的一个小技巧
+        self.tableView.tableFooterView = [UIView new];
         
         _tableView.mj_header =  [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
         [self.view addSubview:_tableView];
@@ -61,9 +67,9 @@ static NSString *const MyCardCellID  =@"MyCardCellID";
 
 - (void)GetMyCardsDate
 {
-    [SVProgressHUD showWithStatus:@""];
+    [MBManager showLoading];
     [TCCloudTalkRequestTool GetMyCardslistSuccess:^(id  _Nonnull result) {
-        [SVProgressHUD dismiss];
+        [MBManager hideAlert];;
         [self.tableView.mj_header endRefreshing];
         debugLog(@"%@-----卡列表",result);
         if ([result[@"code"] intValue] == 0) {
@@ -73,12 +79,13 @@ static NSString *const MyCardCellID  =@"MyCardCellID";
         }else
         {
             if (result[@"message"]) {
-                [SVProgressHUD showErrorWithStatus:result[@"message"]];
+                [MBManager showBriefAlert:result[@"message"]];
+                
             }
-            
         }
     } faile:^(NSError * _Nonnull error) {
-        [SVProgressHUD dismiss];
+        [MBManager hideAlert];
+        [MBManager showBriefAlert:@"请求失败"];
     }];
 }
 
@@ -163,4 +170,42 @@ static NSString *const MyCardCellID  =@"MyCardCellID";
     return view;
 }
 
+#pragma mark - DZNEmptyDataSetSource
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+    return [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_empty"];
+}
+
+- (NSAttributedString *)buttonTitleForEmptyDataSet:(UIScrollView *)scrollView forState:(UIControlState)state {
+    NSString *text = @"亲 你还有没有添加门禁ID卡哦~";
+
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:text];
+    // 设置所有字体大小为 #15
+    [attStr addAttribute:NSFontAttributeName
+                   value:[UIFont systemFontOfSize:15.0]
+                   range:NSMakeRange(0, text.length)];
+    // 设置所有字体颜色为浅灰色
+    [attStr addAttribute:NSForegroundColorAttributeName
+                   value:[UIColor colorWithHexString:@"#4073F2"]
+                   range:NSMakeRange(0, text.length)];
+    // 设置指定4个字体为蓝色
+//    [attStr addAttribute:NSForegroundColorAttributeName
+//                   value:[UIColor colorWithHexString:@"#007EE5"]
+//                   range:NSMakeRange(7, 4)];
+    return attStr;
+}
+
+- (CGFloat)verticalOffsetForEmptyDataSet:(UIScrollView *)scrollView {
+    return -70.0f;
+}
+
+#pragma mark - DZNEmptyDataSetDelegate
+
+- (void)emptyDataSet:(UIScrollView *)scrollView didTapButton:(UIButton *)button {
+    // button clicked...
+}
+
+- (void)emptyDataSetWillAppear:(UIScrollView *)scrollView {
+    self.tableView.contentOffset = CGPointZero;
+}
 @end

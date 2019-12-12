@@ -103,10 +103,10 @@ static UIWindow *window_;
 
 - (void)getMyDoorMachineDate
 {
-    [SVProgressHUD showWithStatus:@""];
+    [MBManager showLoading];
     TCUserModel *userModel = [[TCPersonalInfoModel shareInstance] getUserModel];
     [TCCloudTalkRequestTool GetMyDoorMachinelistWithCoid:userModel.defaultCommunity.communityId Success:^(id  _Nonnull result) {
-        [SVProgressHUD dismiss];
+        [MBManager hideAlert];
         debugLog(@"%@-----门口机列表",result);
         if ([result[@"code"] intValue] == 0) {
             self.AllMachines = [TCDoorMachineModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
@@ -123,13 +123,14 @@ static UIWindow *window_;
         }else
         {
             if (result[@"message"]) {
-                [SVProgressHUD showErrorWithStatus:result[@"message"]];
+                [MBManager showBriefAlert:result[@"message"]];
+
             }
             
         }
     } faile:^(NSError * _Nonnull error) {
         debugLog(@"门口机列表加载失败----%@",error);
-        [SVProgressHUD showErrorWithStatus:@"请求失败"];
+        [MBManager showBriefAlert:@"请求失败"];
     }];
 }
 
@@ -242,16 +243,15 @@ static UIWindow *window_;
                 
             }else
             {
-                
-                ShowNoti(@"对讲服务正在连接中,请稍后!");
+                [MBManager showWaitingWithTitle:@"对讲服务正在连接中,请稍后!"];
                 TCHousesInfoModel *houesModel = [[TCPersonalInfoModel shareInstance] getHousesInfoModel];
                 [[UCSTcpClient sharedTcpClientManager] login_connect:houesModel.intercomToken  success:^(NSString *userId) {
-                    [SVProgressHUD dismiss];
+                    [MBManager hideAlert];
                     //主动呼叫
                     [[UCSVOIPViewEngine getInstance] makingCallViewCallNumber:DoorItem.intercomUserId callType:UCSCallType_VideoPhone callName:DoorItem.name];
                 } failure:^(UCSError *error) {
-                    [SVProgressHUD dismiss];
-                    ShowErrorNoti(@"d对讲服务器连接失败!!");
+                    [MBManager hideAlert];
+                    [MBManager showBriefAlert:@"对讲服务器连接失败!"];
                 }];
             }
         }else//开锁

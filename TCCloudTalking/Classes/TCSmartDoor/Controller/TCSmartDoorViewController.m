@@ -148,8 +148,9 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 
 - (void)getRandomPwds
 {
-    [SVProgressHUD showWithStatus:@""];
+    [MBManager showLoading];
     [TCCloudTalkRequestTool GetDoorOpenRandomPwdsWithHours:@"24" Success:^(id  _Nonnull result) {
+        [MBManager hideAlert];
         debugLog(@"%@-----动态密码",result);
         if ([result[@"code"] intValue] == 0) {
             TCPasswordOpenViewController *PasswordVc = [[TCPasswordOpenViewController alloc] init];
@@ -158,12 +159,13 @@ static NSString *const SmartDoorID = @"SmartDoorID";
         }else
         {
             if (result[@"message"]) {
-                [SVProgressHUD showErrorWithStatus:result[@"message"]];
+                [MBManager showBriefAlert:result[@"message"]];
+                
             }
             
         }
     } faile:^(NSError * _Nonnull error) {
-        [SVProgressHUD showErrorWithStatus:@"请求失败"];
+        [MBManager showBriefAlert:@"请求失败"];
     }];
 }
 

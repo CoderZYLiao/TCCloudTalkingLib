@@ -24,11 +24,13 @@
     [super viewDidLoad];
     //解决自定义返回按钮后滑动手势失效的问题
     self.interactivePopGestureRecognizer.delegate = nil;
+    self.navigationBar.translucent = NO;
+    self.navigationBar.barTintColor = NavBarColor;
 }
 
 + (void)initialize
 {
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NavBarColor] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:NavBarColor] forBarMetrics:UIBarMetricsDefault];
     //修改标题字体颜色及大小
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }

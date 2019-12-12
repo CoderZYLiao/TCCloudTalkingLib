@@ -80,6 +80,8 @@
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:TCPassword];
     [[NSUserDefaults standardUserDefaults] setObject:@"" forKey:TCMemberInfoKey];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"UserLogoutNotification" object:nil];
+    // 清除之前的HTML缓存
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ClearHTMLStorageNotification" object:nil];
 }
 
 
@@ -126,11 +128,10 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdatePersonalInfoNotification" object:nil];
         } else {
-            [SVProgressHUD showInfoWithStatus:[json objectForKey:@"message"]];
+            [MBManager showBriefAlert:[json objectForKey:@"message"]];
         }
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"更新用户信息失败");
     }];
 }
-
 @end

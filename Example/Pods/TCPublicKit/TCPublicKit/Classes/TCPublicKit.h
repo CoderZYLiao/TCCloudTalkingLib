@@ -19,11 +19,12 @@
 #import "TCConfigDefine.h"
 #import "NSDate+ZYAdd.h"
 #import "NSString+ZYAdd.h"
+#import "UINavigationController+ZYAdd.h"
 /* 分类头文件添加end */
 
 /* 第三方库添加start */
-#import "SVProgressHUD.h"
 #import "TCHttpTool.h"
+#import "MBManager.h"
 /* 第三方库添加end */
 
 #pragma mark - 屏幕适配相关

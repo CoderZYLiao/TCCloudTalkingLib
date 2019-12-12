@@ -12,13 +12,14 @@
 
 + (void)openTheDoorWithID:(NSString *)ID DoorName:(NSString *)DoorName
 {
-    [SVProgressHUD showWithStatus:@""];
+
+    [MBManager showLoading];
     [TCCloudTalkRequestTool OpenMyDoorWithDoorID:ID Success:^(id  _Nonnull result) {
-        [SVProgressHUD dismiss];
+        [MBManager hideAlert];
         debugLog(@"开锁回调----%@",result);
         if ([result[@"code"] intValue] == 0) {
             
-            [SVProgressHUD showSuccessWithStatus:[NSString stringWithFormat:@"%@\n开锁成功",DoorName]];
+            [MBManager showBriefAlert:[NSString stringWithFormat:@"%@\n开锁成功",DoorName]];
 
         }else
         {
@@ -41,12 +42,12 @@
 //
 //                    NSString * tmpack = [NSString stringWithFormat:@"发送成功:ackData-->%@",request.ackData];
 //                    NSLog(@"---%@",tmpack);
-//                    [SVProgressHUD dismiss];
+//                    [MBManager hideAlert];;
 //                    ShowSucessNoti(@"开锁成功");
 //
 //
 //                } failure:^(UCSTCPTransParentRequest *request, UCSError *error) {
-//                    [SVProgressHUD dismiss];
+//                    [MBManager hideAlert];;
 //                    NSLog(@"发送失败：%@ackData-->%@",error.errorDescription,request.ackData);
 //                    ShowNoti(@"开锁失败");
 //
@@ -54,8 +55,8 @@
 //            }
         }
     } faile:^(NSError * _Nonnull error) {
-        [SVProgressHUD dismiss];
-        ShowNoti(@"请求失败");
+        [MBManager hideAlert];
+        [MBManager showBriefAlert:@"请求失败"];
     }];
 }
 @end
