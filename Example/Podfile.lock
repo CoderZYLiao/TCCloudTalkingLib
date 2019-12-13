@@ -33,7 +33,8 @@ PODS:
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
-  - TCCloudTalking (1.0.1.4):
+  - SVProgressHUD (2.2.5)
+  - TCCloudTalking (1.0.1.5):
     - DZNEmptyDataSet
     - FMDB (~> 2.6.2)
     - Masonry
@@ -41,6 +42,7 @@ PODS:
     - MJRefresh
     - pop (~> 1.0.9)
     - SDWebImage
+    - SVProgressHUD
     - TCMember
     - TCPublicKit
   - TCMember (1.2.12):
@@ -93,6 +95,7 @@ SPEC REPOS:
     - MJRefresh
     - pop
     - SDWebImage
+    - SVProgressHUD
     - YYKit
     - ZXCountDownView
 
@@ -113,7 +116,8 @@ SPEC CHECKSUMS:
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
-  TCCloudTalking: a9a727bfa313b96cde9ccc125b359a2b0e035786
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  TCCloudTalking: c966ba55ab850d8dcb503165b5f337c5d26a34f9
   TCMember: bd0a9d6df83c31f1c5d288dd5648b64d68480ebf
   TCPublicKit: 59b092eb2d13f04d3f9a07c2cfdf8c54aa89d3f9
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7

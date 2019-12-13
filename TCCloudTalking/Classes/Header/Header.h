@@ -28,6 +28,7 @@
 #import <YYKit/YYKit.h>
 #import "NSObject+DataSafe.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "SVProgressHUD.h"
 //依赖Publickitk的头文件
 #import "TCHttpTool.h"
 #import "TCConfigDefine.h"
