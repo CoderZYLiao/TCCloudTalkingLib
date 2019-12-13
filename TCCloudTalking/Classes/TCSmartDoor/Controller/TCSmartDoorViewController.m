@@ -49,14 +49,19 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+        self.navigationController.navigationBarHidden = NO;
    if (!_isPush) {
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.hidesBackButton = YES;
+    }else
+    {
+        self.navigationItem.hidesBackButton = NO;
     }
     self.title = @"智能门禁";
     //初始化collectionview
     [self initCollectionViewUI];
-    self.navigationController.navigationBarHidden = NO;
+
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self initBackImgeUI];
