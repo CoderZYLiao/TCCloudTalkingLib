@@ -381,13 +381,13 @@
     if(self.doorArray.count == 1){
         
         NSDictionary *dict = self.doorArray.firstObject;
-        [TCOpenDoorTool openTheDoorWithID:[dict objectForKey:@"id"] DoorName:[dict objectForKey:@"name"]];
+        [TCOpenDoorTool openTheDoorWithID:[dict xyValueForKey:@"id"] DoorName:[dict xyValueForKey:@"name"] TalkID:[dict xyValueForKey:@"intercomUserId"]];
     }else
     {
         NSString *reult = self.textView.text;
         NSDictionary * dict = [TCCloudTalkingTool getMatchMachineDataArrayWithResult:reult];
         debugLog(@"%@----计算后的字典",dict);
-        [TCOpenDoorTool openTheDoorWithID:[dict objectForKey:@"id"] DoorName:[dict objectForKey:@"name"]];
+        [TCOpenDoorTool openTheDoorWithID:[dict xyValueForKey:@"id"] DoorName:[dict xyValueForKey:@"name"] TalkID:[dict xyValueForKey:@"intercomUserId"]];
         
     }
 }

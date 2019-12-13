@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZYNavigationController.h"
-@interface TCNavigationController : ZYNavigationController
+@interface TCNavigationController : UINavigationController
 
 @end

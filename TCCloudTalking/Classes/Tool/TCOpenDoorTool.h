@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TCOpenDoorTool : NSObject
 
-+ (void)openTheDoorWithID:(NSString *)ID DoorName:(NSString *)DoorName;
++ (void)openTheDoorWithID:(NSString *)ID DoorName:(NSString *)DoorName TalkID:(NSString *)TalkID;
 @end
 
 NS_ASSUME_NONNULL_END

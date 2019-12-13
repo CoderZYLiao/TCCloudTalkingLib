@@ -25,6 +25,8 @@
 		A11DCC0B90DC72FB3D06612B /* libPods-TCCloudTalking_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BE4B1929455601F81682B6 /* libPods-TCCloudTalking_Tests.a */; };
 		E40C2FD2238CB85D002D890F /* TCVoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40C2FD1238CB85D002D890F /* TCVoiceView.m */; };
 		E4490C9C23964AF400EAFF56 /* NSArray+TCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E4490C9B23964AF400EAFF56 /* NSArray+TCLog.m */; };
+		E461886623A360DC00D0FBFC /* TCTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E461886423A360DC00D0FBFC /* TCTextViewController.m */; };
+		E461886723A360DC00D0FBFC /* TCTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E461886523A360DC00D0FBFC /* TCTextViewController.xib */; };
 		E4BBDF5D239E212400B304BD /* libPods-TCCloudTalking_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BBDF5C239E212400B304BD /* libPods-TCCloudTalking_Example.a */; };
 		E4D9869023602436007B95F3 /* TCNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D9868E23602436007B95F3 /* TCNavigationController.m */; };
 		E4D9869123602436007B95F3 /* TCCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D9868F23602436007B95F3 /* TCCBaseViewController.m */; };
@@ -93,6 +95,9 @@
 		E44CE2732390F21E00A1D52C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		E44CE2752390F22500A1D52C /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		E44CE2772390F23400A1D52C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E461886323A360DC00D0FBFC /* TCTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCTextViewController.h; sourceTree = "<group>"; };
+		E461886423A360DC00D0FBFC /* TCTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCTextViewController.m; sourceTree = "<group>"; };
+		E461886523A360DC00D0FBFC /* TCTextViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TCTextViewController.xib; sourceTree = "<group>"; };
 		E4BBDF5C239E212400B304BD /* libPods-TCCloudTalking_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = "libPods-TCCloudTalking_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4D9868C23602435007B95F3 /* TCNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNavigationController.h; sourceTree = "<group>"; };
 		E4D9868D23602435007B95F3 /* TCCBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCCBaseViewController.h; sourceTree = "<group>"; };
@@ -206,6 +211,9 @@
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				E40C2FD0238CB85D002D890F /* TCVoiceView.h */,
 				E40C2FD1238CB85D002D890F /* TCVoiceView.m */,
+				E461886323A360DC00D0FBFC /* TCTextViewController.h */,
+				E461886423A360DC00D0FBFC /* TCTextViewController.m */,
+				E461886523A360DC00D0FBFC /* TCTextViewController.xib */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				E4490C9A23964AF400EAFF56 /* NSArray+TCLog.h */,
@@ -358,6 +366,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E461886723A360DC00D0FBFC /* TCTextViewController.xib in Resources */,
 				E4D986A023602523007B95F3 /* TCCHomeViewController.xib in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
@@ -455,6 +464,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E461886623A360DC00D0FBFC /* TCTextViewController.m in Sources */,
 				E40C2FD2238CB85D002D890F /* TCVoiceView.m in Sources */,
 				6003F5A7195388D20070C39A /* TCViewController.m in Sources */,
 				E4D9869523602444007B95F3 /* TCCLoginViewController.m in Sources */,

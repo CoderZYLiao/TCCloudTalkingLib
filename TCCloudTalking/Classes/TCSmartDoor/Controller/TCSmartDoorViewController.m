@@ -38,26 +38,27 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //设置顶部导航栏透明，TODO 可移植于基类
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self setNavigationBarTransparent];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    //退出顶部导航栏还原，TODO 可移植于基类
-    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:nil];
+    [self returnNavigationBarTransparent];
     
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+   if (!_isPush) {
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.hidesBackButton = YES;
+    }
     self.title = @"智能门禁";
     //初始化collectionview
     [self initCollectionViewUI];
+    self.navigationController.navigationBarHidden = NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.hidden = NO;
+    
     [self initBackImgeUI];
 }
 

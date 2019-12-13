@@ -13,7 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TCSmartDoorViewController : TCCloudTalkingBaseVC
-
+@property (assign,nonatomic) BOOL isPush;
 @end
 
 NS_ASSUME_NONNULL_END
