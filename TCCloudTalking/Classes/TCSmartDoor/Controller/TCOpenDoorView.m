@@ -69,7 +69,7 @@ static UIWindow *window_;
     [canceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(publishView);
         make.width.height.equalTo(@80);
-        make.bottom.equalTo(publishView).offset(5) ;
+        make.bottom.equalTo(publishView).offset(3) ;
         
     }];
     
@@ -105,18 +105,27 @@ static UIWindow *window_;
 {
     [MBManager showLoading];
     TCUserModel *userModel = [[TCPersonalInfoModel shareInstance] getUserModel];
-    [TCCloudTalkRequestTool GetMyDoorMachinelistWithCoid:userModel.defaultCommunity.communityId Success:^(id  _Nonnull result) {
+    [TCCloudTalkRequestTool GetMyDoorMachinelistWithCoid:nil Success:^(id  _Nonnull result) {
         [MBManager hideAlert];
         debugLog(@"%@-----门口机列表",result);
         if ([result[@"code"] intValue] == 0) {
-            self.AllMachines = [TCDoorMachineModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
+            [self.AllMachines removeAllObjects];
+            NSMutableArray *Machines = [TCDoorMachineModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
+            
+            for (TCDoorMachineModel *Model in Machines) {
+                if ([Model.coId isEqualToString:userModel.defaultCommunity.communityId]) {
+                    [self.AllMachines addObject:Model];
+                }
+            }
+            
             if (self.AllMachines.count>0) {
                 [self setUpButton];
                 //更新门口机列表
                 [TCCloudTalkingTool saveUserMachineList:result];
             }else
             {
-                //                [self canceBtnClick];
+                [MBManager showBriefAlert:@"没有可用门口机"];
+                 [self canceBtnClick];
             }
             
             
