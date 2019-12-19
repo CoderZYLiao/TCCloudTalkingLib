@@ -89,7 +89,13 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     
     layout.minimumInteritemSpacing = margin;//item水平间距
     layout.minimumLineSpacing = 0;//item垂直间距
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, TCNaviH+15, MainScreenCGRect.size.width-20, MainScreenCGRect.size.height-TCNaviH-15) collectionViewLayout:layout];
+    if (self.tabBarController.tabBar.isHidden) {
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, TCNaviH+15, MainScreenCGRect.size.width-20, MainScreenCGRect.size.height-TCNaviH-15) collectionViewLayout:layout];
+    }else
+    {
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, TCNaviH+15, MainScreenCGRect.size.width-20, MainScreenCGRect.size.height-TCNaviH-15-TCBottomTabH) collectionViewLayout:layout];
+    }
+    
     _collectionView.alwaysBounceVertical = YES;
     // 设置数据源
     _collectionView.dataSource = self;
