@@ -131,6 +131,7 @@
             [MBManager showBriefAlert:[json objectForKey:@"message"]];
         }
     } failure:^(NSError * _Nonnull error) {
+        [self logout];
         NSLog(@"更新用户信息失败");
     }];
 }

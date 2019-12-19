@@ -13,6 +13,8 @@
 #import "TCRegisterViewController.h"
 #import <TCPublicKit/TCHttpTool.h>
 #import "MemberBaseHeader.h"
+#import <YYKit/YYLabel.h>
+#import <NSAttributedString+YYText.h>
 
 @interface TCLoginViewController () <UITextFieldDelegate>
 @property (nonatomic, strong) UIImageView *imgViewBg;
@@ -28,14 +30,26 @@
 @property (nonatomic, strong) UIView *viewLine1;
 @property (nonatomic, strong) UIView *viewLine2;
 @property (nonatomic, strong) UIButton *btnSwitchStatus;
+// 同意
+@property (nonatomic, strong) YYLabel *agreeLbl;
+@property (nonatomic, strong) UIButton *btnCheckBox;
+// 底部切换登录方式
+@property (nonatomic, strong) UIButton *btnBottomLoginStyle;
+@property (nonatomic, strong) UIView *viewBottomLeftLine;
+@property (nonatomic, strong) UIView *viewBottomRightLine;
 @end
 
 @implementation TCLoginViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBar.hidden = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.imgViewBg];
     [self.view addSubview:self.imgView];
@@ -48,9 +62,28 @@
     [self.view addSubview:self.btnLogin];
     [self.view addSubview:self.viewLine1];
     [self.view addSubview:self.viewLine2];
+    [self.view addSubview:self.agreeLbl];
+    [self.view addSubview:self.btnCheckBox];
+    [self.view addSubview:self.btnBottomLoginStyle];
+    [self.view addSubview:self.viewBottomLeftLine];
+    [self.view addSubview:self.viewBottomRightLine];
 }
 
 #pragma mark - Private
+
+- (void)changeLoginStyle:(UIButton *)btn
+{
+    if (btn.selected) {
+        [MBManager showBriefAlert:@"已更改为输入手机号模式"];
+        self.textFieldAccount.placeholder = @"请输入您的手机号";
+        self.textFieldAccount.keyboardType = UIKeyboardTypePhonePad;
+    } else {
+        [MBManager showBriefAlert:@"已更改为输入账号模式"];
+        self.textFieldAccount.placeholder = @"请输入您的账号";
+        self.textFieldAccount.keyboardType = UIKeyboardTypeDefault;
+    }
+    btn.selected = !btn.isSelected;
+}
 
 - (void)viewWillLayoutSubviews
 {
@@ -120,6 +153,31 @@
         make.right.mas_equalTo(self.view.mas_right).offset(-30);
         make.height.mas_equalTo(50);
     }];
+    [self.btnBottomLoginStyle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-50*TCFrameRatioWidth);
+        make.centerX.mas_equalTo(self.view.mas_centerX);
+    }];
+    [self.viewBottomLeftLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).offset(35);
+        make.right.mas_equalTo(self.btnBottomLoginStyle.mas_left).offset(-15);
+        make.centerY.mas_equalTo(self.btnBottomLoginStyle.mas_centerY);
+        make.height.mas_equalTo(1);
+    }];
+    [self.viewBottomRightLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.btnBottomLoginStyle.mas_right).offset(15);
+        make.right.mas_equalTo(self.view.mas_right).offset(-15);
+        make.centerY.mas_equalTo(self.btnBottomLoginStyle.mas_centerY);
+        make.height.mas_equalTo(1);
+    }];
+    [self.agreeLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.view.mas_centerX).offset(20);
+        make.bottom.mas_equalTo(self.btnBottomLoginStyle.mas_top).offset(-15);
+    }];
+    [self.btnCheckBox mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.agreeLbl.mas_left);
+        make.centerY.mas_equalTo(self.agreeLbl.mas_centerY);
+        make.width.height.mas_equalTo(40);
+    }];
 }
 
 - (void)findPwdBtnClick:(UIButton *)btn
@@ -136,11 +194,23 @@
 
 - (void)loginBtnClick:(UIButton *)btn
 {
-    if (![NSString valiMobile:self.textFieldAccount.text]) {
-        [MBManager showBriefAlert:@"请输入正确的手机号码"];
-        return;
-    } else if (self.textFieldPwd.text.length <= 0) {
+    if (self.btnBottomLoginStyle.selected) {  // 可以输入字符串
+        if (self.textFieldAccount.text.length <= 0) {
+            [MBManager showBriefAlert:@"请输入您的账号"];
+            return;
+        }
+    } else {
+        if (![NSString valiMobile:self.textFieldAccount.text]) {
+            [MBManager showBriefAlert:@"请输入正确的手机号码"];
+            return;
+        }
+    }
+    if (self.textFieldPwd.text.length <= 0) {
         [MBManager showBriefAlert:@"请输入密码"];
+        return;
+    }
+    if (!self.btnCheckBox.isSelected) {
+        [MBManager showBriefAlert:@"同意《用户协议》和《隐私权政策》才能登录"];
         return;
     }
     [self LoginRequest];
@@ -252,7 +322,47 @@
     }
 }
 
+- (void)checkBoxClick:(UIButton *)btn
+{
+    if (btn.isSelected) {
+        [MBManager showBriefAlert:@"同意《用户协议》和《隐私权政策》才能登录"];
+    }
+    btn.selected = !btn.isSelected;
+}
+
 #pragma mark - Get
+
+- (UIButton *)btnCheckBox
+{
+    if (_btnCheckBox == nil) {
+        _btnCheckBox = [[UIButton alloc] init];
+        [_btnCheckBox setImage:[UIImage imageNamed:@"check_nor"] forState:UIControlStateNormal];
+        [_btnCheckBox setImage:[UIImage imageNamed:@"check_pre"] forState:UIControlStateSelected];
+        [_btnCheckBox addTarget:self action:@selector(checkBoxClick:) forControlEvents:UIControlEventTouchUpInside];
+        _btnCheckBox.selected = YES;
+    }
+    return _btnCheckBox;
+}
+
+- (YYLabel *)agreeLbl
+{
+    if (_agreeLbl == nil) {
+        _agreeLbl = [[YYLabel alloc] init];
+       NSString *textStr = @"同意《用户协议》和《隐私权政策》";
+        NSMutableAttributedString  *attriStr = [[NSMutableAttributedString alloc] initWithString:textStr];
+        NSRange range1 =[textStr rangeOfString:@"《用户协议》" options:NSCaseInsensitiveSearch];
+        NSRange range2 =[textStr rangeOfString:@"《隐私权政策》" options:NSCaseInsensitiveSearch];
+        [attriStr setFont:[UIFont systemFontOfSize:15]];
+        [attriStr setTextHighlightRange:range1 color:[UIColor colorWithHexString:MainColor] backgroundColor:[UIColor clearColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"GoToUserAgreementNotification" object:nil];
+        }];
+        [attriStr setTextHighlightRange:range2 color:[UIColor colorWithHexString:MainColor] backgroundColor:[UIColor clearColor] tapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"GoToPrivacyPolicyNotification" object:nil];
+        }];
+        _agreeLbl.attributedText = attriStr;
+    }
+    return _agreeLbl;
+}
 
 - (UIImageView *)imgViewBg
 {
@@ -276,7 +386,7 @@
 {
     if (_textFieldAccount == nil) {
         _textFieldAccount = [[UITextField alloc] init];
-        _textFieldAccount.placeholder = @"请输入您的账号";
+        _textFieldAccount.placeholder = @"请输入您的手机号";
         [_textFieldAccount setFont:[UIFont systemFontOfSize:15]];
         _textFieldAccount.tintColor = [UIColor colorWithHexString:MainColor];
         [_textFieldAccount addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
@@ -383,6 +493,37 @@
         [_imgPwdIcon setImage:[UIImage tc_imgWithName:@"member_userPwd" bundle:TCMemberBundelName targetClass:[self class]]];
     }
     return _imgPwdIcon;
+}
+
+- (UIView *)viewBottomLeftLine
+{
+    if (_viewBottomLeftLine == nil) {
+        _viewBottomLeftLine = [[UIView alloc] init];
+        _viewBottomLeftLine.backgroundColor = [UIColor colorWithHexString:LineColor];
+    }
+    return _viewBottomLeftLine;
+}
+
+- (UIView *)viewBottomRightLine
+{
+    if (_viewBottomRightLine == nil) {
+        _viewBottomRightLine = [[UIView alloc] init];
+        _viewBottomRightLine.backgroundColor = [UIColor colorWithHexString:LineColor];
+    }
+    return _viewBottomRightLine;
+}
+
+- (UIButton *)btnBottomLoginStyle
+{
+    if (_btnBottomLoginStyle == nil) {
+        _btnBottomLoginStyle = [[UIButton alloc] init];
+        [_btnBottomLoginStyle setTitle:@"其它方式登录" forState:UIControlStateNormal];
+        [_btnBottomLoginStyle setTitleColor:[UIColor colorWithHexString:@"#333333"] forState:UIControlStateNormal];
+        _btnBottomLoginStyle.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_btnBottomLoginStyle addTarget:self action:@selector(changeLoginStyle:) forControlEvents:UIControlEventTouchUpInside];
+        _btnBottomLoginStyle.selected = NO;
+    }
+    return _btnBottomLoginStyle;
 }
 
 @end

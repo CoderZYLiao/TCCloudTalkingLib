@@ -13,7 +13,7 @@
 
 #define kDefaultView [[UIApplication sharedApplication] keyWindow]
 
-#define kGloomyBlackColor  [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]
+#define kGloomyBlackColor  [UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]
 #define kGloomyClearCloler  [UIColor colorWithRed:1 green:1 blue:1 alpha:0]
 
 /* 默认网络提示，可在这统一修改 */
@@ -52,16 +52,18 @@ BOOL isShowGloomy;//是否显示深色背景
     [self showBriefAlert:message time:showTime inView:view isHerizotal:YES];
 }
 + (void)showBriefAlert:(NSString *)message time:(NSInteger)showTime inView:(UIView *)view isHerizotal:(BOOL)isHerizontal {
+    [MBManager hideAlert];
     dispatch_async(dispatch_get_main_queue(), ^{
         prestrainView = view;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view ?:kDefaultView animated:YES];
         hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-        hud.bezelView.backgroundColor = [UIColor blackColor];
+        hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         hud.detailsLabelText = message;
+        hud.detailsLabel.font = [UIFont systemFontOfSize:15.0];
         hud.contentColor = [UIColor whiteColor];
         hud.animationType = MBProgressHUDAnimationZoom;
         hud.mode = MBProgressHUDModeText;
-        hud.margin = 10.f;
+        hud.margin = 20.f;
         //HUD.yOffset = 200;
         
         hud.removeFromSuperViewOnHide = YES;
@@ -79,7 +81,7 @@ BOOL isShowGloomy;//是否显示深色背景
         kDefaultRect;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:gloomyView animated:YES];
         hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-        hud.bezelView.backgroundColor = [UIColor blackColor];
+        hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         hud.labelText = message;
         hud.contentColor = [UIColor whiteColor];
         hud.animationType = MBProgressHUDAnimationZoom;
@@ -97,7 +99,7 @@ BOOL isShowGloomy;//是否显示深色背景
         prestrainView = view;
         MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:gloomyView];
         hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-        hud.bezelView.backgroundColor = [UIColor blackColor];
+        hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         hud.labelText = kLoadingMessage;
         hud.removeFromSuperViewOnHide = YES;
         gloomyView.frame = view ? CGRectMake(0, 0, view.frame.size.width, view.frame.size.height):
@@ -117,7 +119,7 @@ BOOL isShowGloomy;//是否显示深色背景
         prestrainView = view;
         MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:gloomyView];
         hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-        hud.bezelView.backgroundColor = [UIColor blackColor];
+        hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         hud.labelText = title;
         hud.contentColor = [UIColor whiteColor];
         hud.removeFromSuperViewOnHide = YES;
@@ -153,7 +155,7 @@ BOOL isShowGloomy;//是否显示深色背景
         hud.contentColor = [UIColor whiteColor];
         hud.mode = MBProgressHUDModeCustomView;
         hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
-        hud.bezelView.backgroundColor = [UIColor blackColor];
+        hud.bezelView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
         hud.square = YES;//等宽高
         hud.margin = 5;  //修改该值，可以修改加载框大小
         [gloomyView addSubview:hud];

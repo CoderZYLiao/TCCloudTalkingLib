@@ -20,6 +20,7 @@
 #import "NSDate+ZYAdd.h"
 #import "NSString+ZYAdd.h"
 #import "UINavigationController+ZYAdd.h"
+#import "NSMutableDictionary+ZYAdd.h"
 /* 分类头文件添加end */
 
 /* 第三方库添加start */

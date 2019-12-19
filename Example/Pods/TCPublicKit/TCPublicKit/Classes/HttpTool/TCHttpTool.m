@@ -291,6 +291,26 @@ static AFHTTPSessionManager *mgr = nil;
     }];
 }
 
+- (void)getWithURL:(NSString *)url params:(id)params withManager:(AFHTTPSessionManager *)manager success:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [manager GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success)
+        {
+            success(responseObject);
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
+            NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if(failure)
+        {
+            failure(error);
+        }
+    }];
+}
+
 @end
 
 @implementation IWFormData

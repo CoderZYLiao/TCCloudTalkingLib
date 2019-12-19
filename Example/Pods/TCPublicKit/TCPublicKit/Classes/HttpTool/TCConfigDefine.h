@@ -18,11 +18,11 @@
 /*
  Web基链接
  */
-#define KProjectWebBaseURL @"http://47.112.123.24:8888"
+#define KProjectWebBaseURL @"http://14.21.34.83:8888"
 /*
  Api基链接
  */
-#define KProjectO2OAPIBaseURL @"http://47.112.123.24:8888/o2o/"
+#define KProjectO2OAPIBaseURL @"http://14.21.34.83:8888/o2o/"
 /*
  Api基链接
  */
@@ -56,7 +56,7 @@
  */
 #define ZFBPartner  @"2088021653385023"
 #define ZFBSeller  @"2088021653385023"
-#define ZFBScheme  @"TCUlife"
+#define ZFBScheme  @"UHomeAliPay"
 
 //weakSelf && strongSelf;
 #define WEAKSELF __typeof(self) __weak weakSelf = self;

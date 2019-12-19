@@ -32,6 +32,12 @@
 
 @implementation TCRegisterViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -325,15 +331,15 @@
 {
     if (_lblAgree == nil) {
         _lblAgree = [[YYLabel alloc] init];
-        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"注册即代表您已经同意《平台服务协议》"];
+        NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"注册即代表您已经同意《用户协议》"];
         [text addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:13] range:NSMakeRange(0, text.length)];
         [text addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#C0C4CC"] range:NSMakeRange(0, text.length)];
     
-        [text setTextHighlightRange:NSMakeRange(10, 8)
+        [text setTextHighlightRange:NSMakeRange(10, 6)
                                color:[UIColor colorWithHexString:MainColor]
                      backgroundColor:[UIColor whiteColor]
                            tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
-                               NSLog(@"%@",[NSString stringWithFormat:@"Tap: %@", [text.string substringWithRange:range]]);
+                               [[NSNotificationCenter defaultCenter] postNotificationName:@"GoToUserAgreementNotification" object:nil];
                            }];
         _lblAgree.attributedText = text;
     }
