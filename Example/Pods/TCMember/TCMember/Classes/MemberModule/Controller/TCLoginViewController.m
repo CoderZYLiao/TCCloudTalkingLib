@@ -13,8 +13,7 @@
 #import "TCRegisterViewController.h"
 #import <TCPublicKit/TCHttpTool.h>
 #import "MemberBaseHeader.h"
-#import <YYKit/YYLabel.h>
-#import <NSAttributedString+YYText.h>
+#import <YYKit/YYKit.h>
 
 @interface TCLoginViewController () <UITextFieldDelegate>
 @property (nonatomic, strong) UIImageView *imgViewBg;

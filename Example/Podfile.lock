@@ -45,7 +45,7 @@ PODS:
     - SVProgressHUD
     - TCMember
     - TCPublicKit
-  - TCMember (1.2.16):
+  - TCMember (1.2.17):
     - FDFullscreenPopGesture
     - IQKeyboardManager
     - Masonry (~> 1.1.0)
@@ -118,7 +118,7 @@ SPEC CHECKSUMS:
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   TCCloudTalking: a1091aabd8cc745b2e6cdce83d8bfd3e396c5a2f
-  TCMember: 1835c7116c1878c4e0a7dad6a037371e6e699a5d
+  TCMember: 18894732d102385927a7d854862e96f70fc42ccc
   TCPublicKit: 692d3a08309a9212fd838a9199387943e3e16a6f
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZXCountDownView: ff78b8c1d2bf3de6f067b886b2c33e1278985349
