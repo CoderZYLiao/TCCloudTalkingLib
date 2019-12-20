@@ -69,7 +69,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 
 - (void)initBackImgeUI
 {
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_bg"]];
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_bg1"]];
     imgView.frame = self.view.bounds;
     imgView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view insertSubview:imgView atIndex:0];
