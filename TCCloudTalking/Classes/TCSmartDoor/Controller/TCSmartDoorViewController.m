@@ -69,7 +69,14 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 
 - (void)initBackImgeUI
 {
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_bg1"]];
+    UIImage *image;
+    if (!self.navigationItem.hidesBackButton) {
+        image = [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_bg"];
+    }else
+    {
+        image = [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_bg1"];
+    }
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
     imgView.frame = self.view.bounds;
     imgView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view insertSubview:imgView atIndex:0];
@@ -85,15 +92,21 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     NSInteger cols = 2;
     CGFloat cellWH = (MainScreenCGRect.size.width-20 - (cols - 1) * margin) / cols;
     
-    layout.itemSize = CGSizeMake(cellWH, cellWH*1.1414);
+    if ((kMainScreenHeight -TCNaviH -TCBottomTabH)>=(cellWH*1.1414*3+10)) {
+        layout.itemSize = CGSizeMake(cellWH, cellWH*1.1414);
+    }else
+    {
+        layout.itemSize = CGSizeMake(cellWH, (kMainScreenHeight -TCNaviH -TCBottomTabH-10)/3);
+    }
+    
     
     layout.minimumInteritemSpacing = margin;//item水平间距
     layout.minimumLineSpacing = 0;//item垂直间距
     if (!self.navigationItem.hidesBackButton) {
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, TCNaviH+15, MainScreenCGRect.size.width-20, MainScreenCGRect.size.height-TCNaviH-15) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, TCNaviH+10, MainScreenCGRect.size.width-20, MainScreenCGRect.size.height-TCNaviH-15) collectionViewLayout:layout];
     }else
     {
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, TCNaviH+15, MainScreenCGRect.size.width-20, MainScreenCGRect.size.height-TCNaviH-15-TCBottomTabH) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10, TCNaviH+10, MainScreenCGRect.size.width-20, MainScreenCGRect.size.height-TCNaviH-15-TCBottomTabH) collectionViewLayout:layout];
     }
     
     _collectionView.alwaysBounceVertical = YES;

@@ -10,6 +10,7 @@ static const float timeinterval = 0.5;
 
 #import <QuartzCore/QuartzCore.h>
 #import "RadarAnimationView.h"
+#import "YYKit.h"
 
 @interface RadarAnimationView ()
 //按钮图片
@@ -35,11 +36,12 @@ static const float timeinterval = 0.5;
     if (self) {
         
         _iamgeBtn = [[UIButton alloc]initWithFrame:self.bounds];
-        [_iamgeBtn addTarget:self action:@selector(imageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        _iamgeBtn.userInteractionEnabled = NO;
+//        [_iamgeBtn addTarget:self action:@selector(imageBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_iamgeBtn];
         
         //设置默认波纹颜色
-        self.raderColor = [UIColor whiteColor];
+        self.raderColor = [UIColor colorWithHexString:@"#81C7FB"];
     }
     return self;
 }
@@ -86,7 +88,7 @@ static const float timeinterval = 0.5;
     CGPoint centerPoint = CGPointMake(self.bounds.size.height / 2, self.bounds.size.width / 2);
     
     //使用贝塞尔画圆
-    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:centerPoint radius:40 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+    UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:centerPoint radius:60 startAngle:0 endAngle:2 * M_PI clockwise:YES];
     
     CAShapeLayer *shapeLayer = [CAShapeLayer layer];
     shapeLayer.frame = self.bounds;
@@ -101,8 +103,8 @@ static const float timeinterval = 0.5;
     CABasicAnimation *basicAnimation = [CABasicAnimation animation];
     basicAnimation.keyPath = @"path";
     CGPoint center = CGPointMake(self.bounds.size.height / 2, self.bounds.size.width / 2);
-    UIBezierPath *path1 = [UIBezierPath bezierPathWithArcCenter:center radius:10 startAngle:0 endAngle:2 * M_PI clockwise:YES];
-    UIBezierPath *path2 = [UIBezierPath bezierPathWithArcCenter:center radius:200 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+    UIBezierPath *path1 = [UIBezierPath bezierPathWithArcCenter:center radius:60 startAngle:0 endAngle:2 * M_PI clockwise:YES];
+    UIBezierPath *path2 = [UIBezierPath bezierPathWithArcCenter:center radius:180 startAngle:0 endAngle:2 * M_PI clockwise:YES];
     basicAnimation.fromValue = (__bridge id _Nullable)(path1.CGPath);
     basicAnimation.toValue = (__bridge id _Nullable)(path2.CGPath);
     basicAnimation.fillMode = kCAFillModeForwards;
@@ -112,7 +114,7 @@ static const float timeinterval = 0.5;
     CABasicAnimation *opacityAnimation = [CABasicAnimation animation];
     opacityAnimation.keyPath = @"opacity";
     
-    opacityAnimation.fromValue = @(0.7);
+    opacityAnimation.fromValue = @(0.5);
     opacityAnimation.toValue = @(0);
     opacityAnimation.fillMode = kCAFillModeForwards;
     
@@ -120,13 +122,13 @@ static const float timeinterval = 0.5;
     group.animations = @[basicAnimation,opacityAnimation];
     
     //动画间隔时间  这里的值和创建的动画个数需要计算好，避免最后一轮动画结束了，第一个动画好没有结束，出现效果差
-    group.duration = 3;
+    group.duration = 4;
     //动画开始时间
-    group.beginTime = CACurrentMediaTime()+ (double)time/1;
+    group.beginTime = CACurrentMediaTime()+ (double)time/1.5-3;
     //循环次数最大（无尽）  HUGE
     group.repeatCount = HUGE;
     
-    group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     //指定的时间段完成后,动画就自动的从层上移除
     group.removedOnCompletion = YES;
     //添加动画到layer

@@ -34,7 +34,7 @@ PODS:
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
   - SVProgressHUD (2.2.5)
-  - TCCloudTalking (1.0.2.2):
+  - TCCloudTalking (1.0.2.3):
     - DZNEmptyDataSet
     - FMDB (~> 2.6.2)
     - Masonry
@@ -117,7 +117,7 @@ SPEC CHECKSUMS:
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TCCloudTalking: c340272f21f5d4779b8e3e99ec331608d0776e50
+  TCCloudTalking: 129d2d52d044e12074d573f5bf19b08e0fc0e7a9
   TCMember: 18894732d102385927a7d854862e96f70fc42ccc
   TCPublicKit: 692d3a08309a9212fd838a9199387943e3e16a6f
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7

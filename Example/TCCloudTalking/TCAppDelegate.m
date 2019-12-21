@@ -17,6 +17,7 @@
 #import "TCTextViewController.h"
 #import "TCDoorVideoCallController.h"
 #import "IFlyMSC/IFlyMSC.h"
+#import "TCCHomeViewController.h"
 
 #define APPID_VALUE           @"5ddceac9"
 @interface TCAppDelegate()<UCSTCPDelegateBase>
@@ -99,7 +100,7 @@
     TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:LoginVc];
     self.window.rootViewController = nav;
     LoginVc.loginSucceedAction = ^(NSInteger tag) {
-        
+//        TCCHomeViewController *TextVc = [[TCCHomeViewController alloc] init];
         TCTextViewController *TextVc = [[TCTextViewController alloc] init];
         TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:TextVc];
         [UIApplication sharedApplication].delegate.window.rootViewController = nav;
@@ -117,7 +118,7 @@
     TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:LoginVc];
     self.window.rootViewController = nav;
     LoginVc.loginSucceedAction = ^(NSInteger tag) {
-        
+//        TCCHomeViewController *TextVc = [[TCCHomeViewController alloc] init];
         TCTextViewController *TextVc = [[TCTextViewController alloc] init];
         TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:TextVc];
         [UIApplication sharedApplication].delegate.window.rootViewController = nav;

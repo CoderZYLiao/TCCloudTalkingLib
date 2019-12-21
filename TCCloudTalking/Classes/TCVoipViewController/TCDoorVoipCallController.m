@@ -176,13 +176,13 @@
         
     }
     
-    RadarAnimationView *rader = [[RadarAnimationView alloc]initWithFrame:CGRectMake(300, 300, 150, 150)];
+    RadarAnimationView *rader = [[RadarAnimationView alloc]initWithFrame:CGRectMake(300, 300, 240, 240)];
     rader.image = [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_img_门口机"];
     [self.backgroundView addSubview:rader];
     
     [rader mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.backgroundView);
-        make.height.width.mas_equalTo(150);
+        make.height.width.mas_equalTo(240);
     }];
     
     //显示通话中网络状态
