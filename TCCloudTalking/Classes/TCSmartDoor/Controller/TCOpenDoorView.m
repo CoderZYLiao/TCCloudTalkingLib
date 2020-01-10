@@ -68,8 +68,8 @@ static UIWindow *window_;
     [publishView addSubview:canceBtn];
     [canceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(publishView);
-        make.width.height.equalTo(@88);
-        make.bottom.equalTo(publishView).offset(13) ;
+        make.width.height.equalTo(@94);
+        make.bottom.equalTo(publishView).offset(15) ;
         
     }];
     
@@ -105,18 +105,13 @@ static UIWindow *window_;
 {
     [MBManager showLoading];
     TCUserModel *userModel = [[TCPersonalInfoModel shareInstance] getUserModel];
-    [TCCloudTalkRequestTool GetMyDoorMachinelistWithCoid:nil Success:^(id  _Nonnull result) {
+    [TCCloudTalkRequestTool GetMyDoorMachinelistWithCoid:userModel.defaultCommunity.communityId Success:^(id  _Nonnull result) {
         [MBManager hideAlert];
         debugLog(@"%@-----门口机列表",result);
         if ([result[@"code"] intValue] == 0) {
             [self.AllMachines removeAllObjects];
-            NSMutableArray *Machines = [TCDoorMachineModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
             
-            for (TCDoorMachineModel *Model in Machines) {
-                if ([Model.coId isEqualToString:userModel.defaultCommunity.communityId]) {
-                    [self.AllMachines addObject:Model];
-                }
-            }
+            self.AllMachines = [TCDoorMachineModel mj_objectArrayWithKeyValuesArray:result[@"data"]];
             
             if (self.AllMachines.count>0) {
                 [self setUpButton];
@@ -265,7 +260,7 @@ static UIWindow *window_;
             }
         }else//开锁
         {
-            [self OpenTheDoorWithID:DoorItem.ID DoorName:DoorItem.name TalkID:DoorItem.intercomUserId] ;
+            [self OpenTheDoorWithID:DoorItem.num DoorName:DoorItem.name TalkID:DoorItem.intercomUserId] ;
             NSLog(@"开锁");
             
         }

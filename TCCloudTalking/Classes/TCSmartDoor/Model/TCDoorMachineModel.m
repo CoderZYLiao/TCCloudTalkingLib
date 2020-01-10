@@ -8,8 +8,5 @@
 #import "TCDoorMachineModel.h"
 
 @implementation TCDoorMachineModel
-+ (NSDictionary *)mj_replacedKeyFromPropertyName {
-    return @{@"ID" : @"id"
-             };
-}
+
 @end
