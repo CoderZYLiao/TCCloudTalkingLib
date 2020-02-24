@@ -18,15 +18,15 @@
 /*
  Web基链接
  */
-#define KProjectWebBaseURL @"http://14.21.34.83:8888"
+#define KProjectWebBaseURL @"http://o2o.v5.taichuan.net"
 /*
  Api基链接
  */
-#define KProjectO2OAPIBaseURL @"http://14.21.34.83:8888/o2o/"
+#define KProjectO2OAPIBaseURL @"http://o2o.v5.taichuan.net/o2o/"
 /*
  Api基链接
  */
-#define KProjectAPIBaseURL @"http://10.0.1.222"
+#define KProjectAPIBaseURL @"https://v5.taichuan.net"
 /*
  获取token
  */

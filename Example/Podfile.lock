@@ -33,8 +33,9 @@ PODS:
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
+  - SGQRCode (3.0.1)
   - SVProgressHUD (2.2.5)
-  - TCCloudTalking (1.0.2.3):
+  - TCCloudTalking (1.0.2.7):
     - DZNEmptyDataSet
     - FMDB (~> 2.6.2)
     - Masonry
@@ -42,10 +43,11 @@ PODS:
     - MJRefresh
     - pop (~> 1.0.9)
     - SDWebImage
+    - SGQRCode
     - SVProgressHUD
     - TCMember
     - TCPublicKit
-  - TCMember (1.2.17):
+  - TCMember (1.2.19):
     - FDFullscreenPopGesture
     - IQKeyboardManager
     - Masonry (~> 1.1.0)
@@ -53,20 +55,20 @@ PODS:
     - TCPublicKit
     - YYKit
     - ZXCountDownView
-  - TCPublicKit (1.3.15):
+  - TCPublicKit (1.3.18):
     - AFNetworking
     - MBProgressHUD
-    - TCPublicKit/Base (= 1.3.15)
-    - TCPublicKit/HttpTool (= 1.3.15)
-    - TCPublicKit/MBManager (= 1.3.15)
-  - TCPublicKit/Base (1.3.15):
+    - TCPublicKit/Base (= 1.3.18)
+    - TCPublicKit/HttpTool (= 1.3.18)
+    - TCPublicKit/MBManager (= 1.3.18)
+  - TCPublicKit/Base (1.3.18):
     - AFNetworking
     - MBProgressHUD
-  - TCPublicKit/HttpTool (1.3.15):
+  - TCPublicKit/HttpTool (1.3.18):
     - AFNetworking
     - MBProgressHUD
     - TCPublicKit/MBManager
-  - TCPublicKit/MBManager (1.3.15):
+  - TCPublicKit/MBManager (1.3.18):
     - AFNetworking
     - MBProgressHUD
   - YYKit (1.0.9):
@@ -95,6 +97,7 @@ SPEC REPOS:
     - MJRefresh
     - pop
     - SDWebImage
+    - SGQRCode
     - SVProgressHUD
     - YYKit
     - ZXCountDownView
@@ -116,10 +119,11 @@ SPEC CHECKSUMS:
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SGQRCode: bf02d60e18d6660a9d75ff1c8b9b467f064f054e
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TCCloudTalking: 129d2d52d044e12074d573f5bf19b08e0fc0e7a9
-  TCMember: 18894732d102385927a7d854862e96f70fc42ccc
-  TCPublicKit: 692d3a08309a9212fd838a9199387943e3e16a6f
+  TCCloudTalking: 484e437cfac1e431d2bfec08741f62e6f2a5b8ac
+  TCMember: a82b54174c0d8f350b8486ae41ed44d1054a3aab
+  TCPublicKit: 6ea3308c38829b1bb78774f428cf3215c55fb46b
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZXCountDownView: ff78b8c1d2bf3de6f067b886b2c33e1278985349
 

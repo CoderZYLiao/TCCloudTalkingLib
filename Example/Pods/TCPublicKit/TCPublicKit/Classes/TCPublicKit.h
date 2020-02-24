@@ -19,6 +19,7 @@
 #import "TCConfigDefine.h"
 #import "NSDate+ZYAdd.h"
 #import "NSString+ZYAdd.h"
+#import "NSObject+DataSafe.h"
 #import "UINavigationController+ZYAdd.h"
 #import "NSMutableDictionary+ZYAdd.h"
 /* 分类头文件添加end */

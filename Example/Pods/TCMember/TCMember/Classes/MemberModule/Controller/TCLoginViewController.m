@@ -287,11 +287,13 @@
         [MBManager hideAlert];
         NSInteger code = [[json objectForKey:@"code"] integerValue];
         if (code == 0) {
-            NSDictionary *dict = [json objectForKey:@"data"];
-            NSData *dataData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
-            NSString *dataJsonString = [[NSString alloc] initWithData:dataData encoding:NSUTF8StringEncoding];
-            [[NSUserDefaults standardUserDefaults] setObject:dataJsonString forKey:TCHousesInfoKey]; // 保存对讲用户信息
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            NSDictionary *dict = [json xyValueForKey:@"data"];
+            if (dict) {
+                NSData *dataData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+                NSString *dataJsonString = [[NSString alloc] initWithData:dataData encoding:NSUTF8StringEncoding];
+                [[NSUserDefaults standardUserDefaults] setObject:dataJsonString forKey:TCHousesInfoKey]; // 保存对讲用户信息
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            }
         } else {
             [MBManager showBriefAlert:[json objectForKey:@"message"]];
         }
@@ -392,6 +394,7 @@
         _textFieldAccount.tag = 0;
         _textFieldAccount.keyboardType = UIKeyboardTypePhonePad;
         _textFieldAccount.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _textFieldAccount.text = @"16626206884";
     }
     return _textFieldAccount;
 }
@@ -413,6 +416,7 @@
         [self.btnSwitchStatus addTarget:self action:@selector(btnSwitchStatusClick:) forControlEvents:UIControlEventTouchUpInside];
         self.textFieldPwd.secureTextEntry = YES;
         _textFieldPwd.rightView = self.btnSwitchStatus;
+        _textFieldPwd.text = @"a111111";
         
     }
     return _textFieldPwd;

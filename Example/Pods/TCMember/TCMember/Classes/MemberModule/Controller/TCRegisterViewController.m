@@ -190,8 +190,7 @@
             [weakSelf addAlertWithTitle:@"提示" text:msg sureStr:@"确定" cancelStr:@""];
         }
     } failure:^(NSError *error) {
-        [MBManager hideAlert];
-        [MBManager showBriefAlert:error.description];
+        [MBManager showBriefAlert:@"服务器异常"];
         NSLog(@"%@", error);
     }];
 }

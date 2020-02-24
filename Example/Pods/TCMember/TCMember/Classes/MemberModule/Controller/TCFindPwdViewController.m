@@ -194,8 +194,7 @@
         [MBManager hideAlert];
         [MBManager showBriefAlert:@"验证码已发送，请注意查收"];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBManager hideAlert];
-        [MBManager showBriefAlert:error.description];
+        [MBManager showBriefAlert:@"服务器异常"];
         NSLog(@"%@", error);
     }];
 }
@@ -225,8 +224,7 @@
             [MBManager showBriefAlert:msg];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBManager hideAlert];
-        [MBManager showBriefAlert:error.description];
+        [MBManager showBriefAlert:@"服务器异常"];
         NSLog(@"%@", error);
     }];
 }
