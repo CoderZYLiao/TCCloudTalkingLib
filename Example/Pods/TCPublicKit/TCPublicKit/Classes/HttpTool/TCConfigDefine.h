@@ -18,15 +18,19 @@
 /*
  Web基链接
  */
-#define KProjectWebBaseURL @"http://o2o.v5.taichuan.net"
+//#define KProjectWebBaseURL @"http://o2o.v5.taichuan.net"  // 测试
+#define KProjectWebBaseURL @"http://o2o.ucloud.taichuan.net"  // 正式
 /*
  Api基链接
  */
-#define KProjectO2OAPIBaseURL @"http://o2o.v5.taichuan.net/o2o/"
+//#define KProjectO2OAPIBaseURL @"http://o2o.v5.taichuan.net/o2o/" // 正式
+#define KProjectO2OAPIBaseURL @"http://o2o.ucloud.taichuan.net/o2o/"   // 测试
 /*
  Api基链接
  */
-#define KProjectAPIBaseURL @"https://v5.taichuan.net"
+//#define KProjectAPIBaseURL @"https://v5.taichuan.net"  // 测试
+#define KProjectAPIBaseURL @"https://ucloud.taichuan.net"    // 正式
+
 /*
  获取token
  */

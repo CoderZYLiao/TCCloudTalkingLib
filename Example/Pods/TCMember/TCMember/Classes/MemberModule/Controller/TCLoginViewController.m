@@ -250,7 +250,13 @@
         }
     } failure:^(NSError * _Nonnull error) {
         [MBManager hideAlert];
-        [MBManager showBriefAlert:@"用户名或者密码错误"];
+        if (error.code == -1011) {  //  服务器那边如果密码错误，直接返回了400错误，只能先这样处理。
+            [MBManager showBriefAlert:@"用户名或者密码错误"];
+        } else if (error.code == -1009) {
+            [MBManager showBriefAlert:@"互联网似乎断开了连接"];
+        } else {
+            [MBManager showBriefAlert:error.localizedDescription];
+        }
     }];
 }
 
@@ -394,7 +400,6 @@
         _textFieldAccount.tag = 0;
         _textFieldAccount.keyboardType = UIKeyboardTypePhonePad;
         _textFieldAccount.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _textFieldAccount.text = @"16626206884";
     }
     return _textFieldAccount;
 }
@@ -416,7 +421,6 @@
         [self.btnSwitchStatus addTarget:self action:@selector(btnSwitchStatusClick:) forControlEvents:UIControlEventTouchUpInside];
         self.textFieldPwd.secureTextEntry = YES;
         _textFieldPwd.rightView = self.btnSwitchStatus;
-        _textFieldPwd.text = @"a111111";
         
     }
     return _textFieldPwd;
