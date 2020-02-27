@@ -25,6 +25,9 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - IQKeyboardManager (6.4.0)
+  - JCore (2.1.1)
+  - JPush (3.2.1):
+    - JCore (< 3.0.0, >= 2.0.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJExtension (3.0.17)
@@ -35,9 +38,10 @@ PODS:
   - SDWebImage/Core (5.0.6)
   - SGQRCode (3.0.1)
   - SVProgressHUD (2.2.5)
-  - TCCloudTalking (1.0.2.7):
+  - TCCloudTalking (1.0.2.8):
     - DZNEmptyDataSet
     - FMDB (~> 2.6.2)
+    - JPush
     - Masonry
     - MJExtension
     - MJRefresh
@@ -91,6 +95,8 @@ SPEC REPOS:
     - FDFullscreenPopGesture
     - FMDB
     - IQKeyboardManager
+    - JCore
+    - JPush
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -113,6 +119,8 @@ SPEC CHECKSUMS:
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   IQKeyboardManager: fcef267266379c003181fc3592f6bdb8bf4db839
+  JCore: 4072327557f0b83cc22dd4041f2f839740c0077b
+  JPush: a1ff8b8ec53fa3419b414946e4db4efa313baeae
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
@@ -121,7 +129,7 @@ SPEC CHECKSUMS:
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SGQRCode: bf02d60e18d6660a9d75ff1c8b9b467f064f054e
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TCCloudTalking: 484e437cfac1e431d2bfec08741f62e6f2a5b8ac
+  TCCloudTalking: 1b13eb7d8f606c3c22bcb5e840b11525dab76dff
   TCMember: a82b54174c0d8f350b8486ae41ed44d1054a3aab
   TCPublicKit: 6ea3308c38829b1bb78774f428cf3215c55fb46b
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7

@@ -9,7 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class TCCTCatEyeModel;
 @interface TCCTFaceListVC : TCCloudTalkingBaseVC
+
+@property (nonatomic, strong) TCCTCatEyeModel *catEyeModel;
 
 @end
 

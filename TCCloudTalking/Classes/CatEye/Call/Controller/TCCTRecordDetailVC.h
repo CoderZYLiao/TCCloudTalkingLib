@@ -7,9 +7,13 @@
 
 #import "TCCloudTalkingBaseVC.h"
 
+@class TCCTRecordModel;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TCCTRecordDetailVC : TCCloudTalkingBaseVC
+
+@property (nonatomic, strong)TCCTRecordModel *recordModel;
 
 @end
 

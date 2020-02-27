@@ -6,10 +6,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@class TCCTFaceModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TCCTFaceCell : UITableViewCell
+
+- (void)setFaceModel:(TCCTFaceModel *)faceModel;
 
 @end
 

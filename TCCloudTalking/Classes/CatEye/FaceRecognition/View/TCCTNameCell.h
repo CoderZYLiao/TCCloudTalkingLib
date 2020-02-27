@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TCCTNameCell : UICollectionViewCell
 
+@property (nonatomic, strong) UILabel *nameLabel;
+
 @end
 
 NS_ASSUME_NONNULL_END

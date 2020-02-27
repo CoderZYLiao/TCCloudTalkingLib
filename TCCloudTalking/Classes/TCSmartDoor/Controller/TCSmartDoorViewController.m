@@ -50,8 +50,8 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-        self.navigationController.navigationBarHidden = NO;
-   if (!_isPush) {
+    self.navigationController.navigationBarHidden = NO;
+    if (!_isPush) {
         self.navigationItem.leftBarButtonItem = nil;
         self.navigationItem.hidesBackButton = YES;
     }else
@@ -61,7 +61,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     self.title = @"智能门禁";
     //初始化collectionview
     [self initCollectionViewUI];
-
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self initBackImgeUI];
@@ -113,9 +113,9 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     // 设置数据源
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
-
+    
     // 注册cell(Pods的注册方式)
-     [self.collectionView registerClass:[TCSmartDoorCollectionCell class] forCellWithReuseIdentifier:SmartDoorID];
+    [self.collectionView registerClass:[TCSmartDoorCollectionCell class] forCellWithReuseIdentifier:SmartDoorID];
     _collectionView.scrollEnabled = YES;
     _collectionView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:_collectionView];
@@ -132,7 +132,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    
     TCSmartDoorCollectionCell *cell = (TCSmartDoorCollectionCell *)[collectionView dequeueReusableCellWithReuseIdentifier:SmartDoorID forIndexPath:indexPath];
     cell.CellModel = self.displayArray[indexPath.item];
     
@@ -146,7 +146,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 {
     CollectionButtonModel *model = self.displayArray[indexPath.item];
     if ([model.CollectionName isEqualToString:@"监视门口"]) {
-
+        
         [TCOpenDoorView show:OpenDoor_LookDoor];
     }else if ([model.CollectionName isEqualToString:@"通话记录"])
     {

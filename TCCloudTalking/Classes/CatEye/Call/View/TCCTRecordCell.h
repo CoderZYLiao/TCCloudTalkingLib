@@ -6,10 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TCCTCatEyeHeader.h"
+
+@class TCCTRecordModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TCCTRecordCell : UITableViewCell
+
+- (void)setRecordModel:(TCCTRecordModel *)recordModel andRecordType:(CatEyeRecordType)recordType;
 
 @end
 

@@ -22,11 +22,11 @@
 }
 
 - (void)setNavigationBar{
-     self.navigationController.navigationBar.barTintColor = NavBarColor;
+    self.navigationController.navigationBar.barTintColor = NavBarColor;
     self.navigationController.navigationBar.translucent = NO;
     self.extendedLayoutIncludesOpaqueBars = YES;
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-   
+    
     
     //字体大小
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:20]}];
@@ -63,8 +63,8 @@
 //设置导航栏左侧按钮
 -(void)setBackBarButton{
     [self setLeftButtonImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_return_icon"] offSet:10];
-//    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc]initWithImage:[[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_return_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftBarButtonItem)];
-//    self.navigationItem.leftBarButtonItem = rightBarItem;
+    //    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc]initWithImage:[[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_return_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(clickLeftBarButtonItem)];
+    //    self.navigationItem.leftBarButtonItem = rightBarItem;
 }
 
 - (UIBarButtonItem *)setLeftButtonImage:(UIImage *)image offSet:(CGFloat )offSet{
@@ -74,7 +74,7 @@
     button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [button setImage:image forState:UIControlStateNormal];
     [button setImage:image forState:UIControlStateHighlighted];
-    [button addTarget:self action:@selector(clickLeftBarItem) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(clickLeftBarButtonItem) forControlEvents:UIControlEventTouchUpInside];
     //    [button sizeToFit];
     
     UIBarButtonItem * leftItem = [[UIBarButtonItem alloc]initWithCustomView:button];
@@ -100,7 +100,7 @@
         
         [self.navigationController popViewControllerAnimated:YES];
     }else{
-
+        
     }
 }
 
@@ -113,7 +113,7 @@
 -(void)setRightBarButtonWithImageName:(NSString *)imageName{
     UIButton *rightBarBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBarBtn addTarget:self action:@selector(clickRightBarButtonItem:) forControlEvents:UIControlEventTouchUpInside];
-    [rightBarBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+    [rightBarBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:imageName] forState:UIControlStateNormal];
     
     [rightBarBtn sizeToFit];
     UIBarButtonItem *rightBarBtnItem = [[UIBarButtonItem alloc] initWithCustomView:rightBarBtn];

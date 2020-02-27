@@ -48,7 +48,6 @@
 #import "TCCloudTalkRequestTool.h"
 #import "TCCloudTalkingTool.h"
 
-
 // 获取我的门口机列表
 #define GetMyDoorURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/equipments", KProjectAPIBaseURL]
 // 获取我的卡列表
