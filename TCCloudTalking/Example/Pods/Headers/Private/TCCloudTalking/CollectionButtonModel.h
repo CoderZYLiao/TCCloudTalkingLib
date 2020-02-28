@@ -1,1 +1,0 @@
-../../../../../TCCloudTalking/Classes/Category/CollectionButtonModel.h

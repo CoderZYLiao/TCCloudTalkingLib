@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     #库名称
     s.name             = 'TCCloudTalking'
     #版本号
-    s.version          = '1.0.3.7'
+    s.version          = '1.0.4.1'
     #库简短介绍
     s.summary          = '云对讲组件'
     

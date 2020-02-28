@@ -1,6 +1,0 @@
-module Pods_TCCloudTalking_Tests {
-  umbrella header "Pods-TCCloudTalking_Tests-umbrella.h"
-
-  export *
-  module * { export * }
-}
