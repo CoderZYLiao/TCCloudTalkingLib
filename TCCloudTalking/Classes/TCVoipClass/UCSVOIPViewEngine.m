@@ -25,9 +25,9 @@
 #import "FMDBBaseTool.h"
 NSString* const isRepeatCallStatus = @"isRepeatCallStatus";
 
-//#import "TCCTCatEyeCall.h"
-//#import "TCCTCatEyeMonitorVC.h"
-//#import "TCCTCatEyeAccountManager.h"
+#import "TCCTCatEyeCall.h"
+#import "TCCTCatEyeMonitorVC.h"
+#import "TCCTCatEyeAccountManager.h"
 
 #import "NSString+UCLog.h"
 
@@ -56,8 +56,8 @@ NSString* const isRepeatCallStatus = @"isRepeatCallStatus";
 @property (nonatomic, strong) TCCAVPlayer * player;
 
 @property (nonatomic, assign) NSInteger deviceType;   //设备类型： 1-猫眼 2-门口机
-@property (nonatomic, strong) UIViewController *callVC; //猫眼被叫页面
-//@property (nonatomic, strong) TCCTCatEyeCall *callVC; //猫眼被叫页面
+//@property (nonatomic, strong) UIViewController *callVC; //猫眼被叫页面
+@property (nonatomic, strong) TCCTCatEyeCall *callVC; //猫眼被叫页面
 @end
 
 @implementation UCSVOIPViewEngine
@@ -159,11 +159,11 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
     
     if ([[callNumber substringToIndex:3] isEqualToString:@"Cat"]) {     //离线猫眼被呼叫后 反呼叫猫眼
         _deviceType = 1;
-//        TCCTCatEyeCall *VC = [[TCCTCatEyeCall alloc] init];
-//        //TODO确定透传设备ID
-//        VC.callID = callNumber;
-//        self.callVC = VC;
-//        [self pushToTheViewController:VC];
+        TCCTCatEyeCall *VC = [[TCCTCatEyeCall alloc] init];
+        //TODO确定透传设备ID
+        VC.callID = callNumber;
+        self.callVC = VC;
+        [self pushToTheViewController:VC];
         
         self.callType = UCS_videoCall;
         [[UCSFuncEngine getInstance] dial:callType andCallId:callNumber andUserdata:@"视频通话"];
@@ -442,7 +442,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
     if (_deviceType == 2) {
         nickName = [TCCloudTalkingTool getMachineNameWithVoipNo:caller];
     }else{
-//        nickName = [TCCTCatEyeAccountManager tcSelectCatEyeNameByCatEyeAccount:caller];
+        nickName = [TCCTCatEyeAccountManager tcSelectCatEyeNameByCatEyeAccount:caller];
     }
     
     if (nickName == nil) {
@@ -505,11 +505,11 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
     {
         self.callType = UCS_incomingVideoCall;
         if (_deviceType == 1) {
-//            TCCTCatEyeCall *VC = [[TCCTCatEyeCall alloc] init];
-//            //TODO确定透传设备ID
-//            VC.callID = callNumber;
-//            self.callVC = VC;
-//            [self pushToTheViewController:VC];
+            TCCTCatEyeCall *VC = [[TCCTCatEyeCall alloc] init];
+            //TODO确定透传设备ID
+            VC.callID = callNumber;
+            self.callVC = VC;
+            [self pushToTheViewController:VC];
         }else{
             
             TCDoorVideoCallController* incomingVideolView = [[TCDoorVideoCallController alloc] initWithCallerName:nickName andVoipNo:caller];
@@ -557,12 +557,12 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         }
     }else if (self.callType == UCS_videoCall){
         if (_deviceType == 1) {
-//            UIViewController *curVC = [self xs_getCurrentViewController];
-//            TCCTCatEyeMonitorVC *callVC = (TCCTCatEyeMonitorVC *)curVC;
-//            [callVC responseVoipManagerStatus:event callID:callid data:data withVideoflag:videoflag];
-//            if ((event == UCSCallStatus_Released || event == UCSCallStatus_Answered)) {//音频去电模式,若挂断,接听,接听则停止播放铃声
-//                [[self player] stop];
-//            }
+            UIViewController *curVC = [self xs_getCurrentViewController];
+            TCCTCatEyeMonitorVC *callVC = (TCCTCatEyeMonitorVC *)curVC;
+            [callVC responseVoipManagerStatus:event callID:callid data:data withVideoflag:videoflag];
+            if ((event == UCSCallStatus_Released || event == UCSCallStatus_Answered)) {//音频去电模式,若挂断,接听,接听则停止播放铃声
+                [[self player] stop];
+            }
         }else{
             [self.videoViewController responseVoipManagerStatus:event callID:callid data:data withVideoflag:videoflag];
             if ((event == UCSCallStatus_Released || event == UCSCallStatus_Answered)) {//音频去电模式,若挂断,接听,接听则停止播放铃声
@@ -571,10 +571,10 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         }
     }else{
         if (_deviceType == 1) {
-//            [self.callVC responseVoipManagerStatus:event callID:callid data:data withVideoflag:videoflag];
-//            if ((event == UCSCallStatus_Released || event == UCSCallStatus_Answered)) {//音频去电模式,若挂断,接听,接听则停止播放铃声
-//                [[self player] stop];
-//            }
+            [self.callVC responseVoipManagerStatus:event callID:callid data:data withVideoflag:videoflag];
+            if ((event == UCSCallStatus_Released || event == UCSCallStatus_Answered)) {//音频去电模式,若挂断,接听,接听则停止播放铃声
+                [[self player] stop];
+            }
         }else{
             [self.incomingVideoViewController responseVoipManagerStatus:event callID:callid data:data withVideoflag:videoflag];
             if ((event == UCSCallStatus_Released || event == UCSCallStatus_Answered)) {//音频去电模式,若挂断,接听,接听则停止播放铃声
