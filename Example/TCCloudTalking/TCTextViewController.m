@@ -8,11 +8,11 @@
 
 #import "TCTextViewController.h"
 #import "TCSmartDoorViewController.h"
-//#import "TCCTAFNetworking.h"
-//#import "TCCTCatEyeModel.h"
-//#import "TCCTCatEyeMonitorVC.h"
-//#import "TCCTCatEyeOperateVC.h"
-//#import "TCCTCatEyeAccountManager.h"
+#import "TCCTAFNetworking.h"
+#import "TCCTCatEyeModel.h"
+#import "TCCTCatEyeMonitorVC.h"
+#import "TCCTCatEyeOperateVC.h"
+#import "TCCTCatEyeAccountManager.h"
 
 @interface TCTextViewController ()
 
