@@ -27,6 +27,7 @@ NSString* const isRepeatCallStatus = @"isRepeatCallStatus";
 
 #import "TCCTCatEyeCall.h"
 #import "TCCTCatEyeMonitorVC.h"
+#import "TCCTCatEyeAccountManager.h"
 
 #import "NSString+UCLog.h"
 
@@ -437,7 +438,12 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
      */
     
     NSString * nickName = nil;
-    nickName = [TCCloudTalkingTool getMachineNameWithVoipNo:caller];
+    
+    if (_deviceType == 2) {
+        nickName = [TCCloudTalkingTool getMachineNameWithVoipNo:caller];
+    }else{
+        nickName = [TCCTCatEyeAccountManager tcSelectCatEyeNameByCatEyeAccount:caller];
+    }
     
     if (nickName == nil) {
         nickName = caller;

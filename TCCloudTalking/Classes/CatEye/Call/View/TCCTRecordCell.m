@@ -116,7 +116,7 @@
         if (recordModel.alertType.integerValue == 1) {
             self.contentLabel.text = @"电量已低于20%，请及时充电";
         }else if (recordModel.alertType.integerValue == 2){
-            if (recordModel.age == 0) {
+            if (recordModel.age.integerValue == 0) {
                 self.contentLabel.text = @"陌生人在家门口长时间徘徊逗留";
             }else{
                 self.contentLabel.text = [NSString stringWithFormat:@"%@岁%@在家门口长时间徘徊逗留",recordModel.age,recordModel.sex.integerValue == 0?@"女性":@"男性"];

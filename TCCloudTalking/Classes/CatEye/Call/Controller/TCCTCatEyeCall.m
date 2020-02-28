@@ -845,10 +845,10 @@
     self.videoLocationView.backgroundColor = [UIColor clearColor];
     [self.yzxVideoView addSubview:self.videoLocationView];
     
-    // 设置通话过程中自动感应，黑屏，避免耳朵按到其他按键
-    [UIDevice currentDevice].proximityMonitoringEnabled = YES;
-    // 设置不自动进入锁屏待机状态
-    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+//    // 设置通话过程中自动感应，黑屏，避免耳朵按到其他按键
+//    [UIDevice currentDevice].proximityMonitoringEnabled = YES;
+//    // 设置不自动进入锁屏待机状态
+//    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     // 需要在通话中成为firstResponder，否则切换回前台后，听不到声音
     [self becomeFirstResponder];
     //初始化视频界面

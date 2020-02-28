@@ -669,7 +669,7 @@
             if (operateStatus) {
                 if (awakenType == 1) {
                     [MBManager showWaitingWithTitle:@"设备唤醒中,请稍后"];
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(15 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [MBManager hideAlert];
                     });
                 }
@@ -681,7 +681,7 @@
         }
     } failure:^(NSError * _Nonnull error) {
         [MBManager hideAlert];
-        [MBManager showBriefAlert:@"操作失败，请稍后重试"];
+        [MBManager showBriefAlert:@"设备响应超时,请稍后重试"];
     }];
 }
 
@@ -1212,10 +1212,10 @@
     self.videoLocationView.backgroundColor = [UIColor clearColor];
     [self.yzxVideoView addSubview:self.videoLocationView];
     
-    // 设置通话过程中自动感应，黑屏，避免耳朵按到其他按键
-    [UIDevice currentDevice].proximityMonitoringEnabled = YES;
-    // 设置不自动进入锁屏待机状态
-    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+//    // 设置通话过程中自动感应，黑屏，避免耳朵按到其他按键
+//    [UIDevice currentDevice].proximityMonitoringEnabled = YES;
+//    // 设置不自动进入锁屏待机状态
+//    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     // 需要在通话中成为firstResponder，否则切换回前台后，听不到声音
     [self becomeFirstResponder];
     //初始化视频界面
