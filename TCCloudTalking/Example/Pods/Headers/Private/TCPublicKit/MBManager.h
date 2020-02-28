@@ -1,0 +1,1 @@
+../../../TCPublicKit/TCPublicKit/Classes/MBManager/MBManager.h
