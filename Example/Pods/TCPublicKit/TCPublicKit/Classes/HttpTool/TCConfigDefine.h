@@ -28,8 +28,8 @@
 /*
  Api基链接
  */
-#define KProjectAPIBaseURL @"https://v5.taichuan.net"  // 测试
-//#define KProjectAPIBaseURL @"https://ucloud.taichuan.net"    // 正式
+//#define KProjectAPIBaseURL @"https://v5.taichuan.net"  // 测试
+#define KProjectAPIBaseURL @"https://ucloud.taichuan.net"    // 正式
 
 /*
  获取token
