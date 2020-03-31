@@ -65,6 +65,7 @@ Pod::Spec.new do |s|
     s.dependency 'SVProgressHUD'
     s.dependency 'SGQRCode'
     s.dependency 'JPush'
+    s.dependency 'MBProgressHUD', '~> 1.1.0'
     
     #依赖的系统框架
     s.frameworks = 'Foundation','UIKit','MapKit','VideoToolbox','CoreGraphics','AssetsLibrary','AddressBookUI','MapKit','CoreAudio','AudioToolbox','CFNetwork','SystemConfiguration','MobileCoreServices','StoreKit','CoreLocation','CoreTelephony','AVFoundation','MediaPlayer','CoreMedia','CoreFoundation','MessageUI','AddressBook','Contacts','AddressBook','QuartzCore'

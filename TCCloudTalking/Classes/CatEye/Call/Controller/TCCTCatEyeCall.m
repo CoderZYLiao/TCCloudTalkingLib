@@ -685,7 +685,7 @@
 - (void)dateViewTimerClick{
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dataFormatter = [[NSDateFormatter alloc]init];
-    [dataFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    [dataFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     self.timeLabel.text = [dataFormatter stringFromDate:currentDate];
 }
 

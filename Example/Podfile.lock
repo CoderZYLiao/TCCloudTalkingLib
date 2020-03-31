@@ -24,18 +24,18 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
-  - IQKeyboardManager (6.4.0)
-  - JCore (2.1.1)
-  - JPush (3.2.1):
+  - IQKeyboardManager (6.5.5)
+  - JCore (2.2.2)
+  - JPush (3.3.0):
     - JCore (< 3.0.0, >= 2.0.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
-  - MJExtension (3.0.17)
-  - MJRefresh (3.2.0)
+  - MJExtension (3.2.1)
+  - MJRefresh (3.3.1)
   - pop (1.0.12)
-  - SDWebImage (5.0.6):
-    - SDWebImage/Core (= 5.0.6)
-  - SDWebImage/Core (5.0.6)
+  - SDWebImage (5.6.0):
+    - SDWebImage/Core (= 5.6.0)
+  - SDWebImage/Core (5.6.0)
   - SGQRCode (3.0.1)
   - SVProgressHUD (2.2.5)
   - TCCloudTalking (1.0.4.3):
@@ -43,6 +43,7 @@ PODS:
     - FMDB (~> 2.6.2)
     - JPush
     - Masonry
+    - MBProgressHUD (~> 1.1.0)
     - MJExtension
     - MJRefresh
     - pop (~> 1.0.9)
@@ -51,7 +52,7 @@ PODS:
     - SVProgressHUD
     - TCMember
     - TCPublicKit
-  - TCMember (1.2.20):
+  - TCMember (1.2.23):
     - FDFullscreenPopGesture
     - IQKeyboardManager
     - Masonry (~> 1.1.0)
@@ -78,7 +79,7 @@ PODS:
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
-  - ZXCountDownView (1.0.1)
+  - ZXCountDownView (1.0.5)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -118,23 +119,23 @@ SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  IQKeyboardManager: fcef267266379c003181fc3592f6bdb8bf4db839
-  JCore: 4072327557f0b83cc22dd4041f2f839740c0077b
-  JPush: a1ff8b8ec53fa3419b414946e4db4efa313baeae
+  IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
+  JCore: 2e6690b41b1b59c4a768e0a3187c311911c02ca8
+  JPush: 65cd9d8cb050b6d8c95736517d846fac2f53c134
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
-  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
+  MJRefresh: eeda70fbf0ad277f3178cef1cd0c3532591d6237
   pop: d582054913807fd11fd50bfe6a539d91c7e1a55a
-  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SDWebImage: 21b19f56b4226cdfe3aefe4e6848dc43ed129a86
   SGQRCode: bf02d60e18d6660a9d75ff1c8b9b467f064f054e
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TCCloudTalking: 4fd62710985203243f2f553146f3a963c5d9525f
-  TCMember: 06cc50aba90f1a6cfddb488aee2e1b7f31cb22b4
+  TCCloudTalking: 15ddf37845baaae1c56910e2adabc94bf2f6db00
+  TCMember: 75d3c8e38e187a3354d547278f9fbd8283151754
   TCPublicKit: e27fb2160f4cfbff7ab603e7466f7a65f4a72d81
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
-  ZXCountDownView: ff78b8c1d2bf3de6f067b886b2c33e1278985349
+  ZXCountDownView: 8315e1063484179eb552566154894ff86de79f63
 
 PODFILE CHECKSUM: e1412012ef6c86c79328a759a130546c07d4379b
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.0

@@ -12,6 +12,7 @@
 #define TCMemberBundelName @"TCMember"
 #define TCMemberInfoKey @"TCMemberInfo"
 #define TCHousesInfoKey @"TCHousesInfo"
+#define TCLoginStyleKey @"TCLoginStyle"
 
 #pragma mark - 链接
 // 登录链接

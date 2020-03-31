@@ -242,7 +242,7 @@
 
 - (NSString *)getTimestampFromTimeWithTimeStr:(NSString *)timeStr{
     // 时间转时间戳的方法:
-    NSDate *strDate = [NSDate dateWithString:timeStr format:@"YYYY-MM-dd HH:mm:ss"];
+    NSDate *strDate = [NSDate dateWithString:timeStr format:@"yyyy-MM-dd HH:mm:ss"];
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[strDate timeIntervalSince1970]];
     return timeSp;
 }
