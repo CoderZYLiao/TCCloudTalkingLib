@@ -16,7 +16,7 @@
 
 @implementation MJRefreshFooter
 #pragma mark - 构造方法
-+ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentAction)refreshingBlock
++ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
 {
     MJRefreshFooter *cmp = [[self alloc] init];
     cmp.refreshingBlock = refreshingBlock;

@@ -24,8 +24,8 @@
 #import <Masonry.h>
 #import "TCCloudTalkingImageTool.h"
 #import "MJExtension.h"
-#import <MJRefresh/MJRefresh.h>
 #import <YYKit/YYKit.h>
+#import <MJRefresh/MJRefresh.h>
 #import "NSObject+DataSafe.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "SVProgressHUD.h"

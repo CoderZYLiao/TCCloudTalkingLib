@@ -30,32 +30,32 @@
     "FMDB": [
       "~> 2.6.2"
     ],
-    "Masonry": [
-
-    ],
-    "MJRefresh": [
-
-    ],
-    "MJExtension": [
-
-    ],
-    "SDWebImage": [
-
-    ],
     "pop": [
       "~> 1.0.9"
     ],
     "DZNEmptyDataSet": [
-
+      "~> 1.8.1"
     ],
     "SVProgressHUD": [
-
+      "~> 2.2.5"
     ],
     "SGQRCode": [
-
+      "~> 3.0.1"
     ],
     "JPush": [
-
+      "~> 3.3.2"
+    ],
+    "Masonry": [
+      "~> 1.1.0"
+    ],
+    "MJRefresh": [
+      "~> 3.2.0"
+    ],
+    "MJExtension": [
+      "~> 3.0.17"
+    ],
+    "SDWebImage": [
+      "~> 5.0.6"
     ],
     "MBProgressHUD": [
       "~> 1.1.0"

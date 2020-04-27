@@ -125,16 +125,17 @@
     
     if (modal)
     {
-        UITextField *textField = (UITextField*)view;
-
-        if ([view respondsToSelector:@selector(setReturnKeyType:)])
+        if ([view isKindOfClass:[UITextField class]])
         {
+            UITextField *textField = (UITextField*)view;
             textField.returnKeyType = modal.originalReturnKeyType;
-        }
-
-        if ([view respondsToSelector:@selector(setDelegate:)])
-        {
             textField.delegate = modal.textFieldDelegate;
+        }
+        else if ([view isKindOfClass:[UITextView class]])
+        {
+            UITextView *textView = (UITextView*)view;
+            textView.returnKeyType = modal.originalReturnKeyType;
+            textView.delegate = modal.textViewDelegate;
         }
         
         [textFieldInfoCache removeObject:modal];
@@ -145,17 +146,19 @@
 {
     IQTextFieldViewInfoModal *modal = [[IQTextFieldViewInfoModal alloc] initWithTextFieldView:view textFieldDelegate:nil textViewDelegate:nil originalReturnKey:UIReturnKeyDefault];
     
-    UITextField *textField = (UITextField*)view;
-
-    if ([view respondsToSelector:@selector(setReturnKeyType:)])
+    if ([view isKindOfClass:[UITextField class]])
     {
+        UITextField *textField = (UITextField*)view;
         modal.originalReturnKeyType = textField.returnKeyType;
-    }
-
-    if ([view respondsToSelector:@selector(setDelegate:)])
-    {
         modal.textFieldDelegate = textField.delegate;
         [textField setDelegate:self];
+    }
+    else if ([view isKindOfClass:[UITextView class]])
+    {
+        UITextView *textView = (UITextView*)view;
+        modal.originalReturnKeyType = textView.returnKeyType;
+        modal.textViewDelegate = textView.delegate;
+        [textView setDelegate:self];
     }
 
     [textFieldInfoCache addObject:modal];
@@ -596,16 +599,19 @@
 {
     for (IQTextFieldViewInfoModal *modal in textFieldInfoCache)
     {
-        UITextField *textField = (UITextField*)modal.textFieldView;
-
-        if ([textField respondsToSelector:@selector(setReturnKeyType:)])
+        UIView *textFieldView = modal.textFieldView;
+        if ([textFieldView isKindOfClass:[UITextField class]])
         {
+            UITextField *textField = (UITextField*)textFieldView;
             textField.returnKeyType = modal.originalReturnKeyType;
+            textField.delegate = modal.textFieldDelegate
+            ;
         }
-
-        if ([textField respondsToSelector:@selector(setDelegate:)])
+        else if ([textFieldView isKindOfClass:[UITextView class]])
         {
-            textField.delegate = modal.textFieldDelegate;
+            UITextView *textView = (UITextView*)textFieldView;
+            textView.returnKeyType = modal.originalReturnKeyType;
+            textView.delegate = modal.textViewDelegate;
         }
     }
 

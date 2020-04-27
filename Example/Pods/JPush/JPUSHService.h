@@ -9,11 +9,7 @@
  * Copyright (c) 2011 ~ 2017 Shenzhen HXHG. All rights reserved.
  */
 
-<<<<<<< HEAD
 #define JPUSH_VERSION_NUMBER 3.3.2
-=======
-#define JPUSH_VERSION_NUMBER 3.3.0
->>>>>>> 2744e2b2ebd5ee4933264ca869409b57e9eb4468
 
 #import <Foundation/Foundation.h>
 
@@ -229,7 +225,6 @@ typedef NS_ENUM(NSUInteger, JPAuthorizationStatus) {
 + (void)handleRemoteNotification:(NSDictionary *)remoteInfo;
 
 /*!
-<<<<<<< HEAD
  * @abstract  向极光服务器提交Token
  *
  * @param voipToken 推送使用的Voip Token
@@ -246,8 +241,6 @@ typedef NS_ENUM(NSUInteger, JPAuthorizationStatus) {
 
 
 /*!
-=======
->>>>>>> 2744e2b2ebd5ee4933264ca869409b57e9eb4468
 * @abstract 检测通知授权状态
 * @param completion 授权结果通过status值返回，详见JPAuthorizationStatus
 */

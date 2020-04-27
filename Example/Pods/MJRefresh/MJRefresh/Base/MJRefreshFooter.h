@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MJRefreshFooter : MJRefreshComponent
 /** 创建footer */
-+ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentAction)refreshingBlock;
++ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
 /** 创建footer */
 + (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 

@@ -14,7 +14,7 @@
 #endif
 
 // 过期提醒
-#define MJRefreshDeprecated(DESCRIPTION) __attribute__((deprecated(DESCRIPTION)))
+#define MJRefreshDeprecated(instead) NS_DEPRECATED(2_0, 2_0, 2_0, 2_0, instead)
 
 // 运行时objc_msgSend
 #define MJRefreshMsgSend(...) ((void (*)(void *, SEL, UIView *))objc_msgSend)(__VA_ARGS__)

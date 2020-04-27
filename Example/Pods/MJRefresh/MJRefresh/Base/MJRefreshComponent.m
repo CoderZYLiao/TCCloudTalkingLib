@@ -237,11 +237,6 @@
         }
     })
 }
-
-#pragma mark - <<< Deprecation compatible function >>> -
-- (void)setEndRefreshingAnimateCompletionBlock:(MJRefreshComponentEndRefreshingCompletionBlock)endRefreshingAnimateCompletionBlock {
-    _endRefreshingAnimationBeginAction = endRefreshingAnimateCompletionBlock;
-}
 @end
 
 @implementation UILabel(MJRefresh)
@@ -259,18 +254,7 @@
 - (CGFloat)mj_textWidth {
     CGFloat stringWidth = 0;
     CGSize size = CGSizeMake(MAXFLOAT, MAXFLOAT);
-    
-    if (self.attributedText) {
-        if (self.attributedText.length == 0) { return 0; }
-        stringWidth = [self.attributedText boundingRectWithSize:size
-                                                        options:NSStringDrawingUsesLineFragmentOrigin
-                                                        context:nil].size.width;
-    } else {
-        if (self.text.length == 0) { return 0; }
-<<<<<<< HEAD
-        NSAssert(self.font != nil, @"请检查 mj_label's `font` 是否设置正确");
-=======
->>>>>>> 2744e2b2ebd5ee4933264ca869409b57e9eb4468
+    if (self.text.length > 0) {
         stringWidth = [self.text boundingRectWithSize:size
                                               options:NSStringDrawingUsesLineFragmentOrigin
                                            attributes:@{NSFontAttributeName:self.font}

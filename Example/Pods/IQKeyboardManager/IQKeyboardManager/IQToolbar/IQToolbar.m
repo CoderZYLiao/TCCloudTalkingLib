@@ -29,6 +29,12 @@
 #import <UIKit/UIAccessibility.h>
 #import <UIKit/UIViewController.h>
 
+@interface IQTitleBarButtonItem (PrivateAccessor)
+
+@property(nonnull, nonatomic, strong) UIButton *titleButton;
+
+@end
+
 @implementation IQToolbar
 @synthesize previousBarButton = _previousBarButton;
 @synthesize nextBarButton = _nextBarButton;
@@ -90,6 +96,7 @@
     if (_previousBarButton == nil)
     {
         _previousBarButton = [[IQBarButtonItem alloc] initWithImage:nil style:UIBarButtonItemStylePlain target:nil action:nil];
+        _previousBarButton.accessibilityLabel = @"Previous";
     }
     
     return _previousBarButton;
@@ -100,6 +107,7 @@
     if (_nextBarButton == nil)
     {
         _nextBarButton = [[IQBarButtonItem alloc] initWithImage:nil style:UIBarButtonItemStylePlain target:nil action:nil];
+        _nextBarButton.accessibilityLabel = @"Next";
     }
     
     return _nextBarButton;
@@ -121,6 +129,7 @@
     if (_doneBarButton == nil)
     {
         _doneBarButton = [[IQBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:nil action:nil];
+        _doneBarButton.accessibilityLabel = @"Done";
     }
     
     return _doneBarButton;
@@ -151,6 +160,23 @@
     sizeThatFit.height = 44;
     
     return sizeThatFit;
+}
+
+-(void)setBarStyle:(UIBarStyle)barStyle
+{
+    [super setBarStyle:barStyle];
+    
+    if (self.titleBarButton.selectableTitleColor == nil)
+    {
+        if (barStyle == UIBarStyleDefault)
+        {
+            [self.titleBarButton.titleButton setTitleColor:[UIColor colorWithRed:0.0 green:0.5 blue:1.0 alpha:1.0] forState:UIControlStateNormal];
+        }
+        else
+        {
+            [self.titleBarButton.titleButton setTitleColor:[UIColor yellowColor] forState:UIControlStateNormal];
+        }
+    }
 }
 
 -(void)setTintColor:(UIColor *)tintColor
