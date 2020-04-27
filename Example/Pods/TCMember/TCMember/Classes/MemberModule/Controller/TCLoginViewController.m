@@ -36,6 +36,8 @@
 @property (nonatomic, strong) UIButton *btnBottomLoginStyle;
 @property (nonatomic, strong) UIView *viewBottomLeftLine;
 @property (nonatomic, strong) UIView *viewBottomRightLine;
+// 是否测试版提醒
+@property (nonatomic, strong) UILabel *lblIsTestVersionTip;
 @end
 
 @implementation TCLoginViewController
@@ -44,6 +46,15 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    BOOL flag = [[NSUserDefaults standardUserDefaults] boolForKey:TCLoginStyleKey]; // 登录方式
+    self.btnBottomLoginStyle.selected = flag;
+     if (flag) {
+        self.textFieldAccount.placeholder = @"请输入您的账号";
+        self.textFieldAccount.keyboardType = UIKeyboardTypeDefault;
+    } else {
+        self.textFieldAccount.placeholder = @"请输入您的手机号";
+        self.textFieldAccount.keyboardType = UIKeyboardTypePhonePad;
+    }
 }
 
 - (void)viewDidLoad {
@@ -66,6 +77,9 @@
     [self.view addSubview:self.btnBottomLoginStyle];
     [self.view addSubview:self.viewBottomLeftLine];
     [self.view addSubview:self.viewBottomRightLine];
+#if IsTestEnvironment
+    [self.view addSubview:self.lblIsTestVersionTip];
+#endif
 }
 
 #pragma mark - Private
@@ -82,6 +96,7 @@
         self.textFieldAccount.keyboardType = UIKeyboardTypeDefault;
     }
     btn.selected = !btn.isSelected;
+    [[NSUserDefaults standardUserDefaults] setBool:self.btnBottomLoginStyle.selected forKey:TCLoginStyleKey];   // 保存登录方式
 }
 
 - (void)viewWillLayoutSubviews
@@ -177,6 +192,12 @@
         make.centerY.mas_equalTo(self.agreeLbl.mas_centerY);
         make.width.height.mas_equalTo(40);
     }];
+#if IsTestEnvironment
+    [self.lblIsTestVersionTip mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view.mas_right).offset(-15);
+        make.centerY.mas_equalTo(self.view.mas_top).offset(40);
+    }];
+#endif
 }
 
 - (void)findPwdBtnClick:(UIButton *)btn
@@ -193,12 +214,12 @@
 
 - (void)loginBtnClick:(UIButton *)btn
 {
-    if (self.btnBottomLoginStyle.selected) {  // 可以输入字符串
+    if (self.btnBottomLoginStyle.selected) {  // 账号
         if (self.textFieldAccount.text.length <= 0) {
             [MBManager showBriefAlert:@"请输入您的账号"];
             return;
         }
-    } else {
+    } else {                                // 手机很号
         if (![NSString valiMobile:self.textFieldAccount.text]) {
             [MBManager showBriefAlert:@"请输入正确的手机号码"];
             return;
@@ -524,13 +545,25 @@
 {
     if (_btnBottomLoginStyle == nil) {
         _btnBottomLoginStyle = [[UIButton alloc] init];
-        [_btnBottomLoginStyle setTitle:@"其它方式登录" forState:UIControlStateNormal];
+        [_btnBottomLoginStyle setTitle:@"使用其它方式登录" forState:UIControlStateNormal];
+        [_btnBottomLoginStyle setTitle:@"使用手机号登录" forState:UIControlStateSelected];
         [_btnBottomLoginStyle setTitleColor:[UIColor colorWithHexString:@"#333333"] forState:UIControlStateNormal];
         _btnBottomLoginStyle.titleLabel.font = [UIFont systemFontOfSize:14];
         [_btnBottomLoginStyle addTarget:self action:@selector(changeLoginStyle:) forControlEvents:UIControlEventTouchUpInside];
         _btnBottomLoginStyle.selected = NO;
     }
     return _btnBottomLoginStyle;
+}
+
+- (UILabel *)lblIsTestVersionTip
+{
+    if (_lblIsTestVersionTip == nil) {
+        _lblIsTestVersionTip = [[UILabel alloc] init];
+        _lblIsTestVersionTip.text = @"测试版";
+        _lblIsTestVersionTip.textColor = [UIColor redColor];
+        _lblIsTestVersionTip.font = [UIFont systemFontOfSize:13];
+    }
+    return _lblIsTestVersionTip;
 }
 
 @end

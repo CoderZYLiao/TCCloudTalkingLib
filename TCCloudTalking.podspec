@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     #库名称
     s.name             = 'TCCloudTalking'
     #版本号
-    s.version          = '1.0.4.4'
+    s.version          = '1.0.4.5'
     #库简短介绍
     s.summary          = '云对讲组件'
     
@@ -56,15 +56,15 @@ Pod::Spec.new do |s|
     s.dependency 'TCMember'
     s.dependency 'TCPublicKit'
     s.dependency 'FMDB', '~> 2.6.2'
-    s.dependency 'Masonry'
-    s.dependency 'MJRefresh'
-    s.dependency 'MJExtension'
-    s.dependency 'SDWebImage'
+    s.dependency 'Masonry', '~> 2.6.2'
+    s.dependency 'MJRefresh', '~> 3.4.1'
+    s.dependency 'MJExtension', '~> 3.0.17'
+    s.dependency 'SDWebImage', '~> 5.7.2'
     s.dependency 'pop', '~> 1.0.9'
-    s.dependency 'DZNEmptyDataSet'
-    s.dependency 'SVProgressHUD'
-    s.dependency 'SGQRCode'
-    s.dependency 'JPush'
+    s.dependency 'DZNEmptyDataSet', '~> 1.8.1'
+    s.dependency 'SVProgressHUD', '~> 2.2.5'
+    s.dependency 'SGQRCode', '~> 3.0.1'
+    s.dependency 'JPush', '~> 3.3.2'
     
     #依赖的系统框架
     s.frameworks = 'Foundation','UIKit','MapKit','VideoToolbox','CoreGraphics','AssetsLibrary','AddressBookUI','MapKit','CoreAudio','AudioToolbox','CFNetwork','SystemConfiguration','MobileCoreServices','StoreKit','CoreLocation','CoreTelephony','AVFoundation','MediaPlayer','CoreMedia','CoreFoundation','MessageUI','AddressBook','Contacts','AddressBook','QuartzCore'

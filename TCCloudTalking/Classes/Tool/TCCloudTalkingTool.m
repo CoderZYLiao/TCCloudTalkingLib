@@ -51,7 +51,7 @@ static dispatch_once_t predicate;
 
 + (void)saveUserMachineList
 {
-    TCUserModel *userModel = [[TCPersonalInfoModel shareInstance] getUserModel];
+
     [TCCloudTalkRequestTool GetMyDoorMachinelistWithCoid:nil Success:^(id  _Nonnull result) {
         [MBManager hideAlert];;
         debugLog(@"%@-----门口机列表",result);
@@ -168,9 +168,9 @@ static dispatch_once_t predicate;
     
     for (NSDictionary *dic in arr) {
         
-        if ([[dic objectForKey:@"intercomUserId"] isEqualToString:VoipNo]) {
-            NSLog(@"%@",[dic objectForKey:@"id"]);//遍历数组
-            str =   [dic objectForKey:@"id"];
+        if ([[dic xyValueForKey:@"intercomUserId"] isEqualToString:VoipNo]) {
+            NSLog(@"%@",[dic objectForKey:@"num"]);//遍历数组
+            str =   [dic objectForKey:@"num"];
         }
     }
     return str;
@@ -188,7 +188,7 @@ static dispatch_once_t predicate;
     
     for (NSDictionary *dic in arr) {
         
-        if ([[dic objectForKey:@"intercomUserId"] isEqualToString:VoipNo]) {
+        if ([[dic xyValueForKey:@"intercomUserId"] isEqualToString:VoipNo]) {
             NSLog(@"%@",[dic objectForKey:@"name"]);//遍历数组
             str =   [dic objectForKey:@"name"];
         }

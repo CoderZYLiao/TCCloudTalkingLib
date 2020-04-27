@@ -15,6 +15,7 @@
 #import "TCVoiceUnlockViewController.h"
 #import "TCOpenDoorView.h"
 
+
 @interface TCCHomeViewController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *LongTouchBtn;
@@ -57,13 +58,13 @@
 
 - (IBAction)VideoCallBtnClick {
     
-   [[UCSVOIPViewEngine getInstance] makingCallViewCallNumber:self.UserIDTextView.text callType:UCSCallType_VideoPhone callName:self.UserIDTextView.text];
+    [TCOpenDoorView show:OpenDoor_LookDoor];
     
 }
 
 - (IBAction)VoipCallBtnClick {
     
-    [[UCSVOIPViewEngine getInstance] makingCallViewCallNumber:self.UserIDTextView.text callType:UCSCallType_VOIP callName:self.UserIDTextView.text];
+
 }
 
 - (IBAction)PhoneCallBtnClick {
@@ -81,9 +82,7 @@
 
 - (IBAction)loginOutBtnClick {
     
-    TCCLoginViewController *tcclogin = [[TCCLoginViewController alloc] initWithNibName:@"TCCLoginViewController" bundle:nil];
-    TCAppDelegate *delegate = (TCAppDelegate *)[[UIApplication sharedApplication]delegate];
-    delegate.window.rootViewController = tcclogin;
+    
 }
 
 

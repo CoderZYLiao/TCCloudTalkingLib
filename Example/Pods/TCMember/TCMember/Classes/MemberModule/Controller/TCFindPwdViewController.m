@@ -173,7 +173,7 @@
         weakSelf.access_token = [json objectForKey:@"access_token"];
         [weakSelf SendCodeRequestWithToken:weakSelf.access_token];
     } failure:^(NSError * _Nonnull error) {
-        [weakSelf addAlertWithTitle:@"提示" text:@"获取token失败" sureStr:@"确定" cancelStr:@""];
+        [MBManager showBriefAlert:error.localizedDescription];
     }];
 }
 
@@ -194,8 +194,7 @@
         [MBManager hideAlert];
         [MBManager showBriefAlert:@"验证码已发送，请注意查收"];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBManager showBriefAlert:@"服务器异常"];
-        NSLog(@"%@", error);
+        [MBManager showBriefAlert:error.localizedDescription];
     }];
 }
 

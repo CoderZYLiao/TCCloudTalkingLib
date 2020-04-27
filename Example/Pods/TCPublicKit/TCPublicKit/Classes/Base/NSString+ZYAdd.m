@@ -107,18 +107,14 @@
 
 // 验证手机号
 + (BOOL)valiMobile:(NSString *)mobile {
-    /**
-     * 正则表达式
-     */
-    NSString *CM_NUM = @"^1((((3[0-3,5-9])|(4[5,7,9])|(5[0-3,5-9])|(66)|(7[1-3,5-8])|(8[0-9])|(9[1,8,9]))[0-9]{8})|((34)[0-8]\d{7}))$";
-    NSPredicate *pred1 = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", CM_NUM];
-    BOOL isMatch1 = [pred1 evaluateWithObject:mobile];
-    
-    if (isMatch1) {
-        return true;
-    }else{
-        return false;
+    BOOL isMatch = false;
+    if (mobile.length == 11) {
+        NSString *num = [mobile substringWithRange:NSMakeRange(0, 1)];
+        if ([num isEqualToString:@"1"]) {
+            isMatch = true;
+        }
     }
+    return isMatch;
 }
 
 #pragma mark - NSDate

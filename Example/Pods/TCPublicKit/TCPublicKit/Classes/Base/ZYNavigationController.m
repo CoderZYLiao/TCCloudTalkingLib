@@ -62,7 +62,11 @@
 
 - (void)back
 {
-    [self popViewControllerAnimated:YES];
+    if ([self.ZYDelegate respondsToSelector:@selector(ZYNavigationControllerBackAction)]) {
+        [self.ZYDelegate ZYNavigationControllerBackAction];
+    } else {
+        [self popViewControllerAnimated:YES];
+    }
 }
 
 @end

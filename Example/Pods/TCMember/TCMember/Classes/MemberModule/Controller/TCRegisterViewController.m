@@ -171,7 +171,7 @@
         [[TCHttpTool sharedHttpTool] updateMgrRequestAccessToken:[json objectForKey:@"access_token"]];
         [weakSelf RegisterRequest];
     } failure:^(NSError * _Nonnull error) {
-         [weakSelf addAlertWithTitle:@"提示" text:@"获取token失败" sureStr:@"确定" cancelStr:@""];
+         [MBManager showBriefAlert:error.localizedDescription];
     }];
 }
 
@@ -247,7 +247,7 @@
     if (_textFieldPhone == nil) {
         _textFieldPhone = [[UITextField alloc] init];
         _textFieldPhone.placeholder = @"请输入您的手机号";
-        [_textFieldPhone setFont:[UIFont systemFontOfSize:15]];
+        [_textFieldPhone setFont:[UIFont systemFontOfSize:14]];
         _textFieldPhone.tintColor = [UIColor colorWithHexString:MainColor];
         _textFieldPhone.clearButtonMode = UITextFieldViewModeWhileEditing;
         [_textFieldPhone addTarget:self action:@selector(textFieldChange:) forControlEvents:UIControlEventEditingChanged];
@@ -269,8 +269,8 @@
 {
     if (_textFieldPwd == nil) {
         _textFieldPwd = [[UITextField alloc] init];
-        _textFieldPwd.placeholder = @"请输入您的密码";
-        [_textFieldPwd setFont:[UIFont systemFontOfSize:15]];
+        _textFieldPwd.placeholder = @"请输入6-16位数字字母组合的密码";
+        [_textFieldPwd setFont:[UIFont systemFontOfSize:14]];
         _textFieldPwd.tintColor = [UIColor colorWithHexString:MainColor];
         _textFieldPwd.secureTextEntry = YES;
         _textFieldPwd.rightView = self.btnSwich;
@@ -305,7 +305,7 @@
     if (_textFieldPwd2 == nil) {
         _textFieldPwd2 = [[UITextField alloc] init];
         _textFieldPwd2.placeholder = @"请再次输入密码";
-        [_textFieldPwd2 setFont:[UIFont systemFontOfSize:15]];
+        [_textFieldPwd2 setFont:[UIFont systemFontOfSize:14]];
         _textFieldPwd2.tintColor = [UIColor colorWithHexString:MainColor];
         _textFieldPwd2.secureTextEntry = YES;
         _textFieldPwd2.rightView = self.btnSwich2;

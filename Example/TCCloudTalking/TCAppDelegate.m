@@ -8,7 +8,7 @@
 
 #import "TCAppDelegate.h"
 #import "TCLoginViewController.h"
-
+#import "TCCMianViewController.h"
 #import "TCNavigationController.h"
 #import "Header.h"
 
@@ -40,17 +40,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-//    TCDoorVideoCallController *SmartDoorVc = [[TCDoorVideoCallController alloc] init];
-//    SmartDoorVc.callerName = @"阿里落地N21-2号机";
-//    TCCLoginViewController *SmartDoorVc = [[TCCLoginViewController alloc] init];
-//    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:SmartDoorVc];
-//    [UIApplication sharedApplication].delegate.window.rootViewController = nav;
-//    CATransition *anim = [CATransition animation];
-//    anim.type = @"kCATransitionPush";
-//    anim.duration = 1;
-//    [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
-//     Override point for customization after application launch.
+    
+    //    TCDoorVideoCallController *SmartDoorVc = [[TCDoorVideoCallController alloc] init];
+    //    SmartDoorVc.callerName = @"阿里落地N21-2号机";
+    //    TCCLoginViewController *SmartDoorVc = [[TCCLoginViewController alloc] init];
+    //    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:SmartDoorVc];
+    //    [UIApplication sharedApplication].delegate.window.rootViewController = nav;
+    //    CATransition *anim = [CATransition animation];
+    //    anim.type = @"kCATransitionPush";
+    //    anim.duration = 1;
+    //    [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
+    //     Override point for customization after application launch.
     [self gotoLoginInterface];
     //设置tcp代理
     [[UCSTcpClient sharedTcpClientManager] setTcpDelegate:self];
@@ -75,7 +75,7 @@
     //Configure and initialize iflytek services.(This interface must been invoked in application:didFinishLaunchingWithOptions:)
     [IFlySpeechUtility createUtility:initString];
     
-//    [self InitJPushWithOptions:launchOptions];
+    //    [self InitJPushWithOptions:launchOptions];
     
     [self.window makeKeyAndVisible];
     return YES;
@@ -84,7 +84,30 @@
 // 去登录页面
 - (void)gotoLoginInterface
 {
+
+    TCUserModel *userModel = [[TCPersonalInfoModel shareInstance] getUserModel];
+    if (userModel == nil) {
+        TCLoginViewController *LoginVc = [[TCLoginViewController alloc]init];
+        TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:LoginVc];
+        self.window.rootViewController = nav;
+        LoginVc.loginSucceedAction = ^(NSInteger tag) {
+            
+            [self LoginTcpClient];
+        };
+        
+    } else {
+        [self LoginTcpClient];
+    }
     
+    
+    
+    
+    
+}
+
+
+- (void)LoginTcpClient
+{
     //连接之前，先断开tcp连接，
     [[UCSTcpClient sharedTcpClientManager] login_uninitWithFlag:NO];
     
@@ -103,44 +126,32 @@
         
         [self connectionFailed:error.code];
     }];
-    
-    
 }
 
 -(void)connectionSuccessful
 {
     NSLog(@"------对讲初始化成功");
-    TCLoginViewController *LoginVc = [[TCLoginViewController alloc]init];
-    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:LoginVc];
-    self.window.rootViewController = nav;
-    LoginVc.loginSucceedAction = ^(NSInteger tag) {
-//        TCCHomeViewController *TextVc = [[TCCHomeViewController alloc] init];
-        TCTextViewController *TextVc = [[TCTextViewController alloc] init];
-        TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:TextVc];
-        [UIApplication sharedApplication].delegate.window.rootViewController = nav;
-        CATransition *anim = [CATransition animation];
-        anim.type = @"kCATransitionPush";
-        anim.duration = 1;
-        [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
-    };
+    TCCMianViewController *TextVc = [[TCCMianViewController alloc] init];
+    
+    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:TextVc];
+    [UIApplication sharedApplication].delegate.window.rootViewController = nav;
+    CATransition *anim = [CATransition animation];
+    anim.type = @"kCATransitionPush";
+    anim.duration = 1;
+    [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
 }
 
 -(void)connectionFailed:(UCSErrorCode) errorCode
 {
     NSLog(@"------登录失败%u",errorCode);
-    TCLoginViewController *LoginVc = [[TCLoginViewController alloc]init];
-    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:LoginVc];
-    self.window.rootViewController = nav;
-    LoginVc.loginSucceedAction = ^(NSInteger tag) {
-//        TCCHomeViewController *TextVc = [[TCCHomeViewController alloc] init];
-        TCTextViewController *TextVc = [[TCTextViewController alloc] init];
-        TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:TextVc];
-        [UIApplication sharedApplication].delegate.window.rootViewController = nav;
-        CATransition *anim = [CATransition animation];
-        anim.type = @"kCATransitionPush";
-        anim.duration = 1;
-        [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
-    };
+    TCCMianViewController *TextVc = [[TCCMianViewController alloc] init];
+    
+    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:TextVc];
+    [UIApplication sharedApplication].delegate.window.rootViewController = nav;
+    CATransition *anim = [CATransition animation];
+    anim.type = @"kCATransitionPush";
+    anim.duration = 1;
+    [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
 }
 
 
@@ -317,7 +328,7 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
         //用户退出登录执行
-//        [LoginOutTool UserLogout];
+        //        [LoginOutTool UserLogout];
     }];
     [alertView addAction:okAction];
     [_window.rootViewController presentViewController:alertView animated:YES completion:nil];
@@ -354,10 +365,10 @@
         
         WEAKSELF
         
-
-
+        
+        
         TCHousesInfoModel *houesModel = [[TCPersonalInfoModel shareInstance] getHousesInfoModel];
-
+        
         //02
         //     [[UCSVOIPViewEngine getInstance] debugReleaseShowLocalNotification:[NSString stringWithFormat:@"收到VPush:vpinfo->%@_token->%@",[self getRemotePushInfo:payload.dictionaryPayload],[[InfoManager sharedInfoManager].imtoken substringToIndex:5]]];
         
@@ -371,12 +382,12 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 //03
-//                 [[UCSVOIPViewEngine getInstance] debugReleaseShowLocalNotification:[NSString stringWithFormat:@"收到VPush开始登录"]];
+                //                 [[UCSVOIPViewEngine getInstance] debugReleaseShowLocalNotification:[NSString stringWithFormat:@"收到VPush开始登录"]];
                 
                 [[UCSTcpClient sharedTcpClientManager] login_connect:houesModel.intercomToken  success:^(NSString *userId) {
-                      //04
-//                    [[UCSVOIPViewEngine getInstance] debugReleaseShowLocalNotification:[NSString stringWithFormat:@"收到VPush登录成功"]];
-
+                    //04
+                    //                    [[UCSVOIPViewEngine getInstance] debugReleaseShowLocalNotification:[NSString stringWithFormat:@"收到VPush登录成功"]];
+                    
                     
                     [weakSelf saveRemotePushInfo:[weakSelf.tmpdictionaryPayload copy]];
                     

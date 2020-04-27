@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -105,10 +103,13 @@
                         <action selector="SettingBtnClick:" destination="-1" eventType="touchUpInside" id="IEH-Df-Brx"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYb-wl-JO0">
-                    <rect key="frame" x="154" y="468" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYb-wl-JO0">
+                    <rect key="frame" x="10" y="403.5" width="355" height="44"/>
+                    <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                    <state key="normal" title="开        锁">
+                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                    </state>
                     <connections>
                         <action selector="openDoorBtn:" destination="-1" eventType="touchUpInside" id="Lfc-uP-0hX"/>
                     </connections>
@@ -116,6 +117,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="dYb-wl-JO0" firstAttribute="top" secondItem="fw3-5P-lWh" secondAttribute="bottom" constant="10" id="1aV-ml-lRG"/>
                 <constraint firstAttribute="bottom" secondItem="bfZ-dg-03W" secondAttribute="bottom" constant="50" id="2DO-lm-dgs"/>
                 <constraint firstItem="R61-cv-xEo" firstAttribute="leading" secondItem="oOh-ma-YfD" secondAttribute="leading" id="2Do-Sh-qrB"/>
                 <constraint firstItem="tba-B3-4eK" firstAttribute="leading" secondItem="R61-cv-xEo" secondAttribute="leading" id="2Za-7T-9fy"/>
@@ -126,9 +128,12 @@
                 <constraint firstItem="oOh-ma-YfD" firstAttribute="trailing" secondItem="2JY-FJ-93A" secondAttribute="trailing" id="BfB-uu-3D9"/>
                 <constraint firstItem="oOh-ma-YfD" firstAttribute="leading" secondItem="2JY-FJ-93A" secondAttribute="leading" id="CUj-JX-67W"/>
                 <constraint firstAttribute="trailing" secondItem="aUk-5n-qu5" secondAttribute="trailing" constant="10" id="JQp-nr-vUb"/>
+                <constraint firstItem="dYb-wl-JO0" firstAttribute="height" secondItem="fw3-5P-lWh" secondAttribute="height" id="Ofl-Ws-uG9"/>
+                <constraint firstItem="dYb-wl-JO0" firstAttribute="trailing" secondItem="fw3-5P-lWh" secondAttribute="trailing" id="SOd-gW-QHa"/>
                 <constraint firstItem="fw3-5P-lWh" firstAttribute="top" secondItem="tba-B3-4eK" secondAttribute="bottom" constant="10" id="TeD-ry-4OO"/>
                 <constraint firstItem="tba-B3-4eK" firstAttribute="trailing" secondItem="R61-cv-xEo" secondAttribute="trailing" id="YTk-MX-fTF"/>
                 <constraint firstItem="2JY-FJ-93A" firstAttribute="top" secondItem="aUk-5n-qu5" secondAttribute="bottom" constant="10" id="YhF-Ax-l6b"/>
+                <constraint firstItem="dYb-wl-JO0" firstAttribute="leading" secondItem="fw3-5P-lWh" secondAttribute="leading" id="YmI-XI-Fqy"/>
                 <constraint firstItem="R61-cv-xEo" firstAttribute="top" secondItem="oOh-ma-YfD" secondAttribute="bottom" constant="10" id="Zhu-ZX-I9s"/>
                 <constraint firstItem="oOh-ma-YfD" firstAttribute="top" secondItem="2JY-FJ-93A" secondAttribute="bottom" constant="10" id="cu2-uB-Tuy"/>
                 <constraint firstItem="tba-B3-4eK" firstAttribute="top" secondItem="R61-cv-xEo" secondAttribute="bottom" constant="10" id="hzl-K7-oMC"/>

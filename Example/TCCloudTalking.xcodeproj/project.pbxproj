@@ -24,6 +24,7 @@
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A11DCC0B90DC72FB3D06612B /* libPods-TCCloudTalking_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BE4B1929455601F81682B6 /* libPods-TCCloudTalking_Tests.a */; };
 		E40C2FD2238CB85D002D890F /* TCVoiceView.m in Sources */ = {isa = PBXBuildFile; fileRef = E40C2FD1238CB85D002D890F /* TCVoiceView.m */; };
+		E419DA5A2451480C0036B80D /* TCCMianViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E419DA592451480C0036B80D /* TCCMianViewController.m */; };
 		E4490C9C23964AF400EAFF56 /* NSArray+TCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = E4490C9B23964AF400EAFF56 /* NSArray+TCLog.m */; };
 		E461886623A360DC00D0FBFC /* TCTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E461886423A360DC00D0FBFC /* TCTextViewController.m */; };
 		E461886723A360DC00D0FBFC /* TCTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E461886523A360DC00D0FBFC /* TCTextViewController.xib */; };
@@ -89,6 +90,8 @@
 		E40C2FCE238CB7F2002D890F /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		E40C2FD0238CB85D002D890F /* TCVoiceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCVoiceView.h; sourceTree = "<group>"; };
 		E40C2FD1238CB85D002D890F /* TCVoiceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCVoiceView.m; sourceTree = "<group>"; };
+		E419DA582451480C0036B80D /* TCCMianViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TCCMianViewController.h; sourceTree = "<group>"; };
+		E419DA592451480C0036B80D /* TCCMianViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCCMianViewController.m; sourceTree = "<group>"; };
 		E4490C9A23964AF400EAFF56 /* NSArray+TCLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSArray+TCLog.h"; path = "../../TCCloudTalking/Classes/Category/NSArray+TCLog.h"; sourceTree = "<group>"; };
 		E4490C9B23964AF400EAFF56 /* NSArray+TCLog.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSArray+TCLog.m"; path = "../../TCCloudTalking/Classes/Category/NSArray+TCLog.m"; sourceTree = "<group>"; };
 		E44CE26C2390F1D900A1D52C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
@@ -196,6 +199,8 @@
 				6003F59C195388D20070C39A /* TCAppDelegate.h */,
 				6003F59D195388D20070C39A /* TCAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
+				E419DA582451480C0036B80D /* TCCMianViewController.h */,
+				E419DA592451480C0036B80D /* TCCMianViewController.m */,
 				E4D9868D23602435007B95F3 /* TCCBaseViewController.h */,
 				E4D9868F23602436007B95F3 /* TCCBaseViewController.m */,
 				E4D9868C23602435007B95F3 /* TCNavigationController.h */,
@@ -474,6 +479,7 @@
 				E4D9869123602436007B95F3 /* TCCBaseViewController.m in Sources */,
 				E4D9869F23602523007B95F3 /* TCCHomeViewController.m in Sources */,
 				E4D9869023602436007B95F3 /* TCNavigationController.m in Sources */,
+				E419DA5A2451480C0036B80D /* TCCMianViewController.m in Sources */,
 				E4490C9C23964AF400EAFF56 /* NSArray+TCLog.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
@@ -564,6 +570,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					"IsTestEnvironment=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -640,6 +647,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TCCloudTalking/TCCloudTalking-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"IsTestEnvironment=1",
+				);
 				INFOPLIST_FILE = "TCCloudTalking/TCCloudTalking-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (

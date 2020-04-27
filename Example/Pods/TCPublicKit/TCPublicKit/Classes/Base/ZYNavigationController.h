@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZYNavigationController : UINavigationController
+@protocol ZYNavigationControllerDelegate <NSObject>
+@optional
+/**返回按钮点击*/
+-(void)ZYNavigationControllerBackAction;
+@end
 
+@interface ZYNavigationController : UINavigationController
+@property (nonatomic, assign) id<ZYNavigationControllerDelegate> ZYDelegate;
 @end
