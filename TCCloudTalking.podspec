@@ -61,10 +61,18 @@ Pod::Spec.new do |s|
     s.dependency 'MJExtension', '~> 3.0.17'
     s.dependency 'SDWebImage', '~> 5.7.2'
     s.dependency 'pop', '~> 1.0.9'
+<<<<<<< HEAD
     s.dependency 'DZNEmptyDataSet', '~> 1.8.1'
     s.dependency 'SVProgressHUD', '~> 2.2.5'
     s.dependency 'SGQRCode', '~> 3.0.1'
     s.dependency 'JPush', '~> 3.3.2'
+=======
+    s.dependency 'DZNEmptyDataSet'
+    s.dependency 'SVProgressHUD'
+    s.dependency 'SGQRCode'
+    s.dependency 'JPush'
+    s.dependency 'MBProgressHUD', '~> 1.1.0'
+>>>>>>> 2744e2b2ebd5ee4933264ca869409b57e9eb4468
     
     #依赖的系统框架
     s.frameworks = 'Foundation','UIKit','MapKit','VideoToolbox','CoreGraphics','AssetsLibrary','AddressBookUI','MapKit','CoreAudio','AudioToolbox','CFNetwork','SystemConfiguration','MobileCoreServices','StoreKit','CoreLocation','CoreTelephony','AVFoundation','MediaPlayer','CoreMedia','CoreFoundation','MessageUI','AddressBook','Contacts','AddressBook','QuartzCore'

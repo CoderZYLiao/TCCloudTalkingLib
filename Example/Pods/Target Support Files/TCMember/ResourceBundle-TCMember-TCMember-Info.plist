@@ -13,7 +13,11 @@
   <key>CFBundlePackageType</key>
   <string>BNDL</string>
   <key>CFBundleShortVersionString</key>
+<<<<<<< HEAD
   <string>1.3.2</string>
+=======
+  <string>1.2.23</string>
+>>>>>>> 2744e2b2ebd5ee4933264ca869409b57e9eb4468
   <key>CFBundleSignature</key>
   <string>????</string>
   <key>CFBundleVersion</key>

@@ -969,7 +969,7 @@
 #pragma mark - 辅助逻辑处理代码
 - (NSString *)getTimestampFromTimeWithTimeStr:(NSString *)timeStr{
     // 时间转时间戳的方法:
-    NSDate *strDate = [NSDate dateWithString:timeStr format:@"YYYY-MM-dd HH:mm:ss"];
+    NSDate *strDate = [NSDate dateWithString:timeStr format:@"yyyy-MM-dd HH:mm:ss"];
     NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[strDate timeIntervalSince1970]];
     return timeSp;
 }
@@ -1140,7 +1140,7 @@
 - (void)dateViewTimerClick{
     NSDate *currentDate = [NSDate date];
     NSDateFormatter *dataFormatter = [[NSDateFormatter alloc]init];
-    [dataFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    [dataFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     self.timeLabel.text = [dataFormatter stringFromDate:currentDate];
 }
 

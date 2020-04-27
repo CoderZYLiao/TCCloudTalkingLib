@@ -347,7 +347,7 @@
 - (NSString *)dateWithTimeIntervalString:(NSString *)timeString{
     NSDate *nd = [NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)[timeString doubleValue] / 1000];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *dateString = [dateFormat stringFromDate:nd];
     return dateString;
 }
