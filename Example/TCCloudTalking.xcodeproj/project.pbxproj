@@ -649,7 +649,7 @@
 				GCC_PREFIX_HEADER = "TCCloudTalking/TCCloudTalking-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"IsTestEnvironment=1",
+					"IsTestEnvironment=0",
 				);
 				INFOPLIST_FILE = "TCCloudTalking/TCCloudTalking-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

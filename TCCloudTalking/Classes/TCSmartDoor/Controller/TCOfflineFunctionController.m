@@ -1,24 +1,19 @@
 //
-//  TCSmartDoorViewController.m
-//  TCCloudTalking
+//  TCOfflineFunctionController.m
+//  AFNetworking
 //
-//  Created by Huang ZhiBin on 2019/11/4.
+//  Created by Huang ZhiBin on 2020/5/12.
 //
 
-#import "TCSmartDoorViewController.h"
+#import "TCOfflineFunctionController.h"
 #import "CollectionButtonModel.h"
 #import "TCSmartDoorCollectionCell.h"
-#import "TCPasswordOpenViewController.h"
-#import "TCUnlockRecordViewController.h"
 #import "TCQRCodeUnlockViewController.h"
-#import "TCMyCardViewController.h"
-#import "TCCallRecordsViewController.h"
-#import "TCOpenDoorView.h"
-#import "TCOfflineFunctionController.h"
+#import "TCBluetoothUnlockController.h"
 #import "Header.h"
 
 static NSString *const SmartDoorID = @"SmartDoorID";
-@interface TCSmartDoorViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@interface TCOfflineFunctionController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (strong, nonatomic) UICollectionView *collectionView;
 /*************collectionView所需的属性 **************************/
@@ -35,7 +30,8 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 @property(nonatomic, strong) NSMutableArray *displayArray;
 @end
 
-@implementation TCSmartDoorViewController
+@implementation TCOfflineFunctionController
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //设置顶部导航栏透明，TODO 可移植于基类
@@ -52,14 +48,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     [super viewDidLoad];
     
     self.navigationController.navigationBarHidden = NO;
-    if (!_isPush) {
-        self.navigationItem.leftBarButtonItem = nil;
-        self.navigationItem.hidesBackButton = YES;
-    }else
-    {
-        self.navigationItem.hidesBackButton = NO;
-    }
-    self.title = @"智能门禁";
+    self.title = @"离线功能";
     //初始化collectionview
     [self initCollectionViewUI];
     
@@ -70,13 +59,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 
 - (void)initBackImgeUI
 {
-    UIImage *image;
-    if (!self.navigationItem.hidesBackButton) {
-        image = [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_bg"];
-    }else
-    {
-        image = [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_bg1"];
-    }
+    UIImage *image = [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_bg"];
     UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
     imgView.frame = self.view.bounds;
     imgView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -146,53 +129,15 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CollectionButtonModel *model = self.displayArray[indexPath.item];
-    if ([model.CollectionName isEqualToString:@"监视门口"]) {
-        
-        [TCOpenDoorView show:OpenDoor_LookDoor];
-    }else if ([model.CollectionName isEqualToString:@"通话记录"])
-    {
-        TCCallRecordsViewController *CallVc = [[TCCallRecordsViewController alloc] init];
-        [self.navigationController pushViewController:CallVc animated:YES];
-    }else if ([model.CollectionName isEqualToString:@"动态密码"])
-    {
-        [self getRandomPwds];
-        
-    }else if ([model.CollectionName isEqualToString:@"离线功能"])
-    {
-        TCOfflineFunctionController *OfflineVc = [[TCOfflineFunctionController alloc] init];
-        [self.navigationController pushViewController:OfflineVc animated:YES];
-    }else if ([model.CollectionName isEqualToString:@"开锁记录"])
-    {
-        TCUnlockRecordViewController *UnlockVc = [[TCUnlockRecordViewController alloc] init];
-        [self.navigationController pushViewController:UnlockVc animated:YES];
-    }else if ([model.CollectionName isEqualToString:@"我的卡"])
-    {
-        TCMyCardViewController *MyCardVc = [[TCMyCardViewController alloc] init];
-        [self.navigationController pushViewController:MyCardVc animated:YES];
-    }
-}
+    if ([model.CollectionName isEqualToString:@"蓝牙开锁"]) {
 
-- (void)getRandomPwds
-{
-    [MBManager showLoading];
-    [TCCloudTalkRequestTool GetDoorOpenRandomPwdsWithHours:@"24" Success:^(id  _Nonnull result) {
-        [MBManager hideAlert];
-        debugLog(@"%@-----动态密码",result);
-        if ([result[@"code"] intValue] == 0) {
-            TCPasswordOpenViewController *PasswordVc = [[TCPasswordOpenViewController alloc] init];
-            PasswordVc.PasswordCode =  [result[@"data"] objectForKey:@"passWord"];
-            [self.navigationController pushViewController:PasswordVc animated:YES];
-        }else
-        {
-            if (result[@"message"]) {
-                [MBManager showBriefAlert:result[@"message"]];
-                
-            }
-            
-        }
-    } faile:^(NSError * _Nonnull error) {
-        [MBManager showBriefAlert:@"请求失败"];
-    }];
+        TCBluetoothUnlockController *BluetoothVc = [[TCBluetoothUnlockController alloc] init];
+        [self.navigationController pushViewController:BluetoothVc animated:YES];
+    }else if ([model.CollectionName isEqualToString:@"二维码开锁"])
+    {
+        TCQRCodeUnlockViewController *QRCodeVc = [[TCQRCodeUnlockViewController alloc] init];
+        [self.navigationController pushViewController:QRCodeVc animated:YES];
+    }
 }
 
 
@@ -211,7 +156,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 -(NSArray *)collTitlsArray
 {
     if (!_collTitlsArray) {
-        _collTitlsArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
+        _collTitlsArray = @[@"蓝牙开锁",@"二维码开锁"];
     }
     return _collTitlsArray;
 }
@@ -220,7 +165,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 -(NSArray *)collImagesArray
 {
     if (!_collImagesArray) {
-        _collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TCCT_ic_dynamic password",@"TC_离线功能icon",@"TCCT_ic_my card",@"TCCT_ico_lock record"];
+        _collImagesArray = @[@"TC_蓝牙开锁icon",@"TCCT_ic_code unlock"];
     }
     return _collImagesArray;
 }
@@ -229,8 +174,10 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 -(NSArray *)collConVcNameArray
 {
     if (!_collConVcNameArray) {
-        _collConVcNameArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
+        _collConVcNameArray = @[@"蓝牙开锁",@"二维码开锁"];
     }
     return _collConVcNameArray;
 }
+
+
 @end

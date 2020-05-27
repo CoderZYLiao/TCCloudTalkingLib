@@ -21,7 +21,7 @@
 #import "UCConst.h"
 #import "InfoManager.h"
 #import "TCCUserDefaulfManager.h"
-#import <Masonry.h>
+#import "Masonry.h"
 #import "TCCloudTalkingImageTool.h"
 #import "MJExtension.h"
 #import <YYKit/YYKit.h>
@@ -29,6 +29,7 @@
 #import "NSObject+DataSafe.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "SVProgressHUD.h"
+#import "LGAlertView.h"
 //依赖Publickitk的头文件
 #import "TCHttpTool.h"
 #import "TCConfigDefine.h"
@@ -108,6 +109,8 @@
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define RGBONECOLOR(r) [UIColor colorWithRed:(r)/255.0f green:(r)/255.0f blue:(r)/255.0f alpha:1]
 #define RGBACOLOR(r,g,b,a)  [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+//主颜色
+#define NavBarColor [UIColor colorWithRed:64/255.0 green:115/255.0 blue:242/255.0 alpha:1.0]
 
 //当前设备的系统版本
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
