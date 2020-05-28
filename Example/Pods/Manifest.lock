@@ -28,7 +28,6 @@ PODS:
   - JCore (2.2.5)
   - JPush (3.3.2):
     - JCore (< 3.0.0, >= 2.0.0)
-  - LGAlertView (2.4.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
   - MJExtension (3.0.17)
@@ -39,11 +38,10 @@ PODS:
   - SDWebImage/Core (5.0.6)
   - SGQRCode (3.0.1)
   - SVProgressHUD (2.2.5)
-  - TCCloudTalking (1.0.4.5):
+  - TCCloudTalking (1.0.4.6):
     - DZNEmptyDataSet (~> 1.8.1)
     - FMDB (~> 2.6.2)
     - JPush (~> 3.3.2)
-    - LGAlertView (= 2.4.0)
     - Masonry (~> 1.1.0)
     - MBProgressHUD (~> 1.1.0)
     - MJExtension (~> 3.0.17)
@@ -62,20 +60,20 @@ PODS:
     - TCPublicKit
     - YYKit (= 1.0.9)
     - ZXCountDownView (= 1.0.1)
-  - TCPublicKit (1.4.3):
+  - TCPublicKit (1.4.4):
     - AFNetworking (= 3.2.1)
     - MBProgressHUD (= 1.1.0)
-    - TCPublicKit/Base (= 1.4.3)
-    - TCPublicKit/HttpTool (= 1.4.3)
-    - TCPublicKit/MBManager (= 1.4.3)
-  - TCPublicKit/Base (1.4.3):
+    - TCPublicKit/Base (= 1.4.4)
+    - TCPublicKit/HttpTool (= 1.4.4)
+    - TCPublicKit/MBManager (= 1.4.4)
+  - TCPublicKit/Base (1.4.4):
     - AFNetworking (= 3.2.1)
     - MBProgressHUD (= 1.1.0)
-  - TCPublicKit/HttpTool (1.4.3):
+  - TCPublicKit/HttpTool (1.4.4):
     - AFNetworking (= 3.2.1)
     - MBProgressHUD (= 1.1.0)
     - TCPublicKit/MBManager
-  - TCPublicKit/MBManager (1.4.3):
+  - TCPublicKit/MBManager (1.4.4):
     - AFNetworking (= 3.2.1)
     - MBProgressHUD (= 1.1.0)
   - YYKit (1.0.9):
@@ -100,7 +98,6 @@ SPEC REPOS:
     - IQKeyboardManager
     - JCore
     - JPush
-    - LGAlertView
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -125,7 +122,6 @@ SPEC CHECKSUMS:
   IQKeyboardManager: fcef267266379c003181fc3592f6bdb8bf4db839
   JCore: d75c0306dc99875d323d23e5a063b3a3ef22335a
   JPush: 9468c84a3809dc3ac2fc1c89c6d1d6c858a91bf5
-  LGAlertView: 2f5e83dd5cc2537de57d98727650609e86197d1a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
@@ -134,9 +130,9 @@ SPEC CHECKSUMS:
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SGQRCode: bf02d60e18d6660a9d75ff1c8b9b467f064f054e
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  TCCloudTalking: e6aaff9ab1898e696c52540d25b865ddacb79612
+  TCCloudTalking: 38dda428bac71f03c3841b75339afa03c6044354
   TCMember: 53caee330414728f0c17328bfbd91c8dcd799e11
-  TCPublicKit: 0bea65652b643e89177829c4806f536999c36391
+  TCPublicKit: 187a847f4387d294dd1b71e429068daa7b899942
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
   ZXCountDownView: ff78b8c1d2bf3de6f067b886b2c33e1278985349
 

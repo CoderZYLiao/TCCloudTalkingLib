@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     #库名称
     s.name             = 'TCCloudTalking'
     #版本号
-    s.version          = '1.0.4.6'
+    s.version          = '1.0.4.7'
     #库简短介绍
     s.summary          = '云对讲组件'
     
@@ -66,7 +66,7 @@ Pod::Spec.new do |s|
     s.dependency 'MJExtension', '~> 3.0.17'
     s.dependency 'SDWebImage', '~> 5.0.6'
     s.dependency 'MBProgressHUD', '~> 1.1.0'
-    s.dependency 'LGAlertView' , '2.4.0'
+
 
     #依赖的系统框架
     s.frameworks = 'Foundation','UIKit','MapKit','VideoToolbox','CoreGraphics','AssetsLibrary','AddressBookUI','MapKit','CoreAudio','AudioToolbox','CFNetwork','SystemConfiguration','MobileCoreServices','StoreKit','CoreLocation','CoreTelephony','AVFoundation','MediaPlayer','CoreMedia','CoreFoundation','MessageUI','AddressBook','Contacts','AddressBook','QuartzCore'

@@ -20,10 +20,12 @@
     #define KProjectWebBaseURL @"http://o2o.v5.taichuan.net"
     #define KProjectO2OAPIBaseURL @"http://o2o.v5.taichuan.net/o2o/"
     #define KProjectAPIBaseURL @"https://v5.taichuan.net"
+    #define kWechatRefererURL @"v5.taichuan.net://"
 #else                  // 正式环境
     #define KProjectWebBaseURL @"http://o2o.ucloud.taichuan.net"
     #define KProjectO2OAPIBaseURL @"http://o2o.ucloud.taichuan.net/o2o/"
     #define KProjectAPIBaseURL @"https://ucloud.taichuan.net"
+    #define kWechatRefererURL @"ucloud.taichuan.net://"
 #endif
 
 /*

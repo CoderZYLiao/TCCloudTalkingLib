@@ -290,42 +290,38 @@ didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
 
 - (void)showMessageInfoWithUnSupported
 {
-    LGAlertView *alertView = [[LGAlertView alloc] initWithTitle:@"提示"
-                                                        message:@"当前设备可能不支持蓝牙"
-                                                          style:LGAlertViewStyleAlert
-                                                   buttonTitles:nil
-                                              cancelButtonTitle:@"确定"
-                                         destructiveButtonTitle:nil
-                                                  actionHandler:nil
-                                                  cancelHandler:^(LGAlertView * _Nonnull alertView) {
-        
-        
-    } destructiveHandler:nil];
-    alertView.cancelButtonTitleColor = NavBarColor;
-    alertView.cancelButtonBackgroundColor = [UIColor whiteColor];
-    alertView.cancelButtonBackgroundColorHighlighted = [UIColor whiteColor];
-    [alertView showAnimated:YES completionHandler:nil];
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"当前设备可能不支持蓝牙!" preferredStyle:(UIAlertControllerStyleAlert)];
+
+    //字体颜色
+    alertView.view.tintColor = [UIColor blackColor];
+
+    //style：设置提示弹窗样式
+    UIAlertAction *select = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+
+    }];
+    [alertView addAction:select];
+    [self presentViewController:alertView animated:YES completion:nil];
+
     
 }
 
 - (void)showMessageInfoWithOff
 {
-    LGAlertView *alertView = [[LGAlertView alloc] initWithTitle:@"提示"
-                                                        message:@"蓝牙未开启,请在设置中打开蓝牙"
-                                                          style:LGAlertViewStyleAlert
-                                                   buttonTitles:nil
-                                              cancelButtonTitle:@"确定"
-                                         destructiveButtonTitle:nil
-                                                  actionHandler:nil
-                                                  cancelHandler:^(LGAlertView * _Nonnull alertView) {
-        
-        
-    } destructiveHandler:nil];
-    alertView.cancelButtonTitleColor = NavBarColor;
-    alertView.cancelButtonBackgroundColor = [UIColor whiteColor];
-    alertView.cancelButtonBackgroundColorHighlighted = [UIColor whiteColor];
-    [alertView showAnimated:YES completionHandler:nil];
-    
+    UIAlertController *alertView = [UIAlertController alertControllerWithTitle:@"提示" message:@"蓝牙未开启,请在设置中打开蓝牙!" preferredStyle:(UIAlertControllerStyleAlert)];
+
+    //字体颜色
+    alertView.view.tintColor = [UIColor blackColor];
+
+    //style：设置提示弹窗样式
+    UIAlertAction *select = [UIAlertAction actionWithTitle:@"知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
+
+
+    }];
+    [alertView addAction:select];
+    [self presentViewController:alertView animated:YES completion:nil];
+   
 }
 
 
