@@ -310,6 +310,36 @@ static AFHTTPSessionManager *mgr = nil;
     }];
 }
 
+// 上传证件图片和个人生活照
+- (void)postWithURL:(NSString *)url params:(id)params formDataArray:(NSArray *)formDataArray withFaceUrl:(NSString *)faceUrl success:(void (^)(id))success failure:(void (^)(NSError *))failure
+{
+    [mgr.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [mgr POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        for (IWFormData *data in formDataArray)
+        {
+            [formData appendPartWithFileData:data.data name:data.name fileName:data.filename mimeType:data.mimeType];
+        }
+        NSData *data = [faceUrl dataUsingEncoding:NSUTF8StringEncoding];
+        [formData appendPartWithFormData:[faceUrl dataUsingEncoding:NSUTF8StringEncoding] name:@"faceUrl"];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (success) {
+            success(responseObject);
+            NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject options:NSJSONWritingPrettyPrinted error:nil];
+            
+            NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            
+            DDLog(@"%@",[NSString stringWithFormat:@"[post]请求URL \n%@ 请求参数 \n%@ 回调结果\n%@",url,params,jsonStr]);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+            DDLog(@"%@",[NSString stringWithFormat:@"[post]请求URL \n%@ 请求参数 \n%@ 错误信息\n%@",url,params,error]);
+        }
+    }];
+}
+
 @end
 
 @implementation IWFormData

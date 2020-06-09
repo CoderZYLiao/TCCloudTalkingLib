@@ -115,6 +115,9 @@
  */
 - (void)getWithURL:(NSString *)url params:(id)params withManager:(AFHTTPSessionManager *)manager success:(void (^)(id))success failure:(void (^)(NSError *))failure;
 
+// 上传证件图片和个人生活照
+- (void)postWithURL:(NSString *)url params:(id)params formDataArray:(NSArray *)formDataArray withFaceUrl:(NSString *)faceUrl success:(void (^)(id))success failure:(void (^)(NSError *))failure;
+
 @end
 
 
