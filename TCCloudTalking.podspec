@@ -64,7 +64,7 @@ Pod::Spec.new do |s|
     s.dependency 'Masonry', '~> 1.1.0'
     s.dependency 'MJRefresh', '~> 3.2.0'
     s.dependency 'MJExtension', '~> 3.0.17'
-    s.dependency 'SDWebImage', '~> 5.0.6'
+    s.dependency 'SDWebImage', '~> 5.6.0'
     s.dependency 'MBProgressHUD', '~> 1.1.0'
 
     #依赖的系统框架
