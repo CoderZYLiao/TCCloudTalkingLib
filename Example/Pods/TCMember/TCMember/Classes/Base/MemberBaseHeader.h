@@ -13,6 +13,7 @@
 #define TCMemberInfoKey @"TCMemberInfo"
 #define TCHousesInfoKey @"TCHousesInfo"
 #define TCLoginStyleKey @"TCLoginStyle"
+#define TCIs5000PlatformKey @"TCIs5000PlatformKey"
 
 #pragma mark - 链接
 // 登录链接
@@ -20,6 +21,7 @@
 // 获取用户信息相关链接
 #define UserInfoURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/user", KProjectAPIBaseURL]
 #define GetHousesInfoURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/houses", KProjectAPIBaseURL]
+#define GetCommunitiesInfoURL [NSString stringWithFormat:@"%@/api/talkbackmobile/house/communities", KProjectAPIBaseURL]
 // 更改用户密码
 #define ChangeUserPasswordURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/account/changepassword", KProjectAPIBaseURL]
 // 意见反馈

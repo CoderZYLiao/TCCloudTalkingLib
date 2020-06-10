@@ -29,6 +29,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>需要蓝牙功能开锁</string>
 	<key>NSCameraUsageDescription</key>
 	<string>cameraDesciption</string>
 	<key>NSContactsUsageDescription</key>
@@ -41,9 +43,12 @@
 	<string>microphoneDesciption</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>photoLibraryDesciption</string>
+	<key>Privacy - Bluetooth Peripheral Usage Description </key>
+	<string>需要蓝牙功能开锁</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
+		<string>bluetooth-central</string>
 		<string>remote-notification</string>
 		<string>voip</string>
 	</array>

@@ -14,7 +14,9 @@
 #import "TCMyCardViewController.h"
 #import "TCCallRecordsViewController.h"
 #import "TCOpenDoorView.h"
+#import "TCOfflineFunctionController.h"
 #import "Header.h"
+#import "MemberBaseHeader.h"
 
 static NSString *const SmartDoorID = @"SmartDoorID";
 @interface TCSmartDoorViewController ()<UICollectionViewDataSource,UICollectionViewDelegate>
@@ -32,6 +34,8 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 
 /****模型数组 ******************/
 @property(nonatomic, strong) NSMutableArray *displayArray;
+
+@property(nonatomic,assign)BOOL is5000Platform;
 @end
 
 @implementation TCSmartDoorViewController
@@ -65,6 +69,9 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self initBackImgeUI];
+    
+    //是否5000型号
+     self.is5000Platform = [[NSUserDefaults standardUserDefaults] boolForKey:TCIs5000PlatformKey];
 }
 
 - (void)initBackImgeUI
@@ -156,10 +163,10 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     {
         [self getRandomPwds];
         
-    }else if ([model.CollectionName isEqualToString:@"二维码开锁"])
+    }else if ([model.CollectionName isEqualToString:@"离线功能"])
     {
-        TCQRCodeUnlockViewController *QRCodeVc = [[TCQRCodeUnlockViewController alloc] init];
-        [self.navigationController pushViewController:QRCodeVc animated:YES];
+        TCOfflineFunctionController *OfflineVc = [[TCOfflineFunctionController alloc] init];
+        [self.navigationController pushViewController:OfflineVc animated:YES];
     }else if ([model.CollectionName isEqualToString:@"开锁记录"])
     {
         TCUnlockRecordViewController *UnlockVc = [[TCUnlockRecordViewController alloc] init];
@@ -210,7 +217,13 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 -(NSArray *)collTitlsArray
 {
     if (!_collTitlsArray) {
-        _collTitlsArray = @[@"监视门口",@"通话记录",@"动态密码",@"二维码开锁",@"我的卡",@"开锁记录"];
+        if (self.is5000Platform) {
+            _collTitlsArray = @[@"监视门口",@"通话记录",@"离线功能"];
+        }else
+        {
+            _collTitlsArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
+        }
+        
     }
     return _collTitlsArray;
 }
@@ -219,7 +232,13 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 -(NSArray *)collImagesArray
 {
     if (!_collImagesArray) {
-        _collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TCCT_ic_dynamic password",@"TCCT_ic_code unlock",@"TCCT_ic_my card",@"TCCT_ico_lock record"];
+        if (self.is5000Platform) {
+            _collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TC_离线功能icon"];
+        }else
+        {
+            _collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TCCT_ic_dynamic password",@"TC_离线功能icon",@"TCCT_ic_my card",@"TCCT_ico_lock record"];
+        }
+        
     }
     return _collImagesArray;
 }
@@ -228,7 +247,13 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 -(NSArray *)collConVcNameArray
 {
     if (!_collConVcNameArray) {
-        _collConVcNameArray = @[@"监视门口",@"通话记录",@"动态密码",@"二维码开锁",@"我的卡",@"开锁记录"];
+        if (self.is5000Platform) {
+            _collConVcNameArray = @[@"监视门口",@"通话记录",@"离线功能"];
+        }else
+        {
+            _collConVcNameArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
+        }
+        
     }
     return _collConVcNameArray;
 }

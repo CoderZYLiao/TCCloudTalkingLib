@@ -294,6 +294,11 @@
             [[NSUserDefaults standardUserDefaults] setObject:dataJsonString forKey:TCMemberInfoKey]; // 保存用户信息
             [[NSUserDefaults standardUserDefaults] setObject:[dict objectForKey:@"id"] forKey:TCUserId];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            // 如果有默认小区，去获取小区信息，根据返回信息可知道是否是5000小区
+            NSString *defaultCommunityId = [dict objectForKey:@"defaultCommunityId"];
+            if (defaultCommunityId.length > 0) {
+                [self GetCommunitiesWithComId:defaultCommunityId];
+            }
             if (self.loginSucceedAction) {
                 self.loginSucceedAction(0);
             }
@@ -327,6 +332,27 @@
     } failure:^(NSError * _Nonnull error) {
         [MBManager showBriefAlert:@"获取对讲信息失败"];
     }];
+}
+
+// 获取小区信息
+- (void)GetCommunitiesWithComId:(NSString *)comId
+{
+    [[TCHttpTool sharedHttpTool] getWithURL:[NSString stringWithFormat:@"%@/%@", GetCommunitiesInfoURL, comId] params:nil success:^(id  _Nonnull json) {
+           [MBManager hideAlert];
+           NSInteger code = [[json objectForKey:@"code"] integerValue];
+           if (code == 0) {
+               NSDictionary *dict = [json xyValueForKey:@"data"];
+               if (dict) {
+                   BOOL is5000Platform = [[dict objectForKey:@"platform"] boolValue];
+                   [[NSUserDefaults standardUserDefaults] setBool:is5000Platform forKey:TCIs5000PlatformKey]; // 保存是否是5000平台的信息
+                   [[NSUserDefaults standardUserDefaults] synchronize];
+               }
+           } else {
+               NSLog(@"%@", [json objectForKey:@"message"]);
+           }
+       } failure:^(NSError * _Nonnull error) {
+           NSLog(@"获取小区信息失败：%@", error.localizedFailureReason);
+       }];
 }
 
 - (void)textFieldChange:(UITextField *)textField

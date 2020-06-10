@@ -10,6 +10,9 @@
 #import "AES128Util.h"
 #define TipViewShow @"TipViewShow"
 @interface TCQRCodeUnlockViewController ()
+{
+    double currentLight;
+}
 @property (nonatomic,strong) NSString *key;
 @property (nonatomic,strong) UIImageView *QRcodeImageView;
 @property (nonatomic,strong) UILabel *WarmLabel;
@@ -32,9 +35,18 @@
         // 显示
         [self showToolTipView];
     };
+    
+    currentLight = [[UIScreen mainScreen] brightness];
+    if(currentLight > 0.4)
+    {
+        [[UIScreen mainScreen] setBrightness: 0.3];
+    }
 }
 
-
+//调整整个手机界面的亮度的  并不仅仅是某个app的亮度 ，要做退出页面的时候将亮度设为原来的值
+- (void)viewWillDisappear:(BOOL)animated {
+    [[UIScreen mainScreen] setBrightness: currentLight];
+}
 
 - (void)showToolTipView
 {
