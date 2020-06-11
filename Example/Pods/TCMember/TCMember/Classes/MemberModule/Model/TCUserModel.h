@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, TCGender)
 @property (nonatomic, strong) NSString *defaultCommunityId;
 @property (nonatomic, strong) TCCommunityModel *defaultCommunity;
 @property (nonatomic, strong) NSArray *communities;
-@property (nonatomic, strong) NSString *name; // 昵称
+@property (nonatomic, strong) NSString *nickname; // 昵称
 @end
 
 NS_ASSUME_NONNULL_END

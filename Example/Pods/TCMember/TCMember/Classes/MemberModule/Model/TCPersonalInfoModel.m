@@ -42,7 +42,7 @@
 {
     NSString *dataJsonString = [[NSUserDefaults standardUserDefaults] objectForKey:TCMemberInfoKey];
     NSDictionary *memberInfoDict = [NSDictionary dictionaryWithJsonString:dataJsonString];
-    [memberInfoDict setValue:name forKey:@"name"];
+    [memberInfoDict setValue:name forKey:@"nickname"];
     NSData *dataData = [NSJSONSerialization dataWithJSONObject:memberInfoDict options:NSJSONWritingPrettyPrinted error:nil];
     dataJsonString = [[NSString alloc] initWithData:dataData encoding:NSUTF8StringEncoding];
     [[NSUserDefaults standardUserDefaults] setObject:dataJsonString forKey:TCMemberInfoKey];    // 保存用户信息
