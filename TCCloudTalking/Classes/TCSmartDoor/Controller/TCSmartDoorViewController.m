@@ -43,6 +43,9 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     [super viewWillAppear:animated];
     //设置顶部导航栏透明，TODO 可移植于基类
     [self setNavigationBarTransparent];
+    
+    //是否5000型号
+    self.is5000Platform = [[NSUserDefaults standardUserDefaults] boolForKey:TCIs5000PlatformKey];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -70,8 +73,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     
     [self initBackImgeUI];
     
-    //是否5000型号
-     self.is5000Platform = [[NSUserDefaults standardUserDefaults] boolForKey:TCIs5000PlatformKey];
+    
 }
 
 - (void)initBackImgeUI
