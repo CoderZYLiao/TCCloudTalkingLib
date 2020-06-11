@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     #库名称
     s.name             = 'TCCloudTalking'
     #版本号
-    s.version          = '1.0.5.2'
+    s.version          = '1.0.5.3'
     #库简短介绍
     s.summary          = '云对讲组件'
     
@@ -60,11 +60,11 @@ Pod::Spec.new do |s|
     s.dependency 'DZNEmptyDataSet', '~> 1.8.1'
     s.dependency 'SVProgressHUD', '~> 2.2.5'
     s.dependency 'SGQRCode', '~> 3.0.1'
-    s.dependency 'JPush', '~> 3.3.2'
+    s.dependency 'JPush', '~> 3.3.3'
     s.dependency 'Masonry', '~> 1.1.0'
     s.dependency 'MJRefresh', '~> 3.2.0'
     s.dependency 'MJExtension', '~> 3.0.17'
-    s.dependency 'SDWebImage', '~> 5.6.0'
+    s.dependency 'SDWebImage', '~> 5.6.1'
     s.dependency 'MBProgressHUD', '~> 1.1.0'
 
 
