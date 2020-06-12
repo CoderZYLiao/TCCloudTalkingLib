@@ -26,7 +26,7 @@ PODS:
   - FMDB/standard (2.6.2)
   - IQKeyboardManager (6.4.0)
   - JCore (2.2.5)
-  - JPush (3.3.2):
+  - JPush (3.3.3):
     - JCore (< 3.0.0, >= 2.0.0)
   - Masonry (1.1.0)
   - MBProgressHUD (1.1.0)
@@ -38,15 +38,26 @@ PODS:
   - SDWebImage/Core (5.0.6)
   - SGQRCode (3.0.1)
   - SVProgressHUD (2.2.5)
+<<<<<<< HEAD
   - TCCloudTalking (1.0.5.2):
     - DZNEmptyDataSet (~> 1.8.1)
     - FMDB (~> 2.6.2)
+=======
+  - TCCloudTalking (1.0.5.3):
+    - DZNEmptyDataSet (~> 1.8.1)
+    - FMDB (~> 2.6.2)
+    - JPush (~> 3.3.3)
+>>>>>>> 7d4243b480cc36b13bd0a3367eaf3dfac3e4d1aa
     - Masonry (~> 1.1.0)
     - MBProgressHUD (~> 1.1.0)
     - MJExtension (~> 3.0.17)
     - MJRefresh (~> 3.2.0)
     - pop (~> 1.0.9)
+<<<<<<< HEAD
     - SDWebImage (~> 5.0.6)
+=======
+    - SDWebImage (~> 5.6.1)
+>>>>>>> 7d4243b480cc36b13bd0a3367eaf3dfac3e4d1aa
     - SGQRCode (~> 3.0.1)
     - SVProgressHUD (~> 2.2.5)
     - TCMember
@@ -121,7 +132,7 @@ SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   IQKeyboardManager: fcef267266379c003181fc3592f6bdb8bf4db839
   JCore: d75c0306dc99875d323d23e5a063b3a3ef22335a
-  JPush: 9468c84a3809dc3ac2fc1c89c6d1d6c858a91bf5
+  JPush: 61b3dc8c2bdefb7c48e7ca283f9fe42e71bfe063
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
@@ -130,7 +141,11 @@ SPEC CHECKSUMS:
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SGQRCode: bf02d60e18d6660a9d75ff1c8b9b467f064f054e
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+<<<<<<< HEAD
   TCCloudTalking: 5cb0d36611f4dbb893a0bd8998b5e3dfae8b9f26
+=======
+  TCCloudTalking: 1a02f7b01bc0d3a3b5d222e1872114425c811903
+>>>>>>> 7d4243b480cc36b13bd0a3367eaf3dfac3e4d1aa
   TCMember: 6f4094c60a80926a4e397adb619728db0623f824
   TCPublicKit: 487190151c281c69ec897de47077f789da890f77
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
@@ -138,4 +153,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 5290ba0960c7a4bf92ef61760b53ade2602cbd83
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.3
