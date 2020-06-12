@@ -1,10 +1,6 @@
 {
   "name": "TCCloudTalking",
-<<<<<<< HEAD
-  "version": "1.0.5.2",
-=======
   "version": "1.0.5.3",
->>>>>>> 7d4243b480cc36b13bd0a3367eaf3dfac3e4d1aa
   "summary": "云对讲组件",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "http://10.10.5.215:7880/iosteam/TCCloudTalking",
@@ -17,11 +13,7 @@
   },
   "source": {
     "git": "http://10.10.5.215:7880/iosteam/TCCloudTalking.git",
-<<<<<<< HEAD
-    "tag": "1.0.5.2"
-=======
     "tag": "1.0.5.3"
->>>>>>> 7d4243b480cc36b13bd0a3367eaf3dfac3e4d1aa
   },
   "platforms": {
     "ios": "9.0"
@@ -50,12 +42,6 @@
     "SGQRCode": [
       "~> 3.0.1"
     ],
-<<<<<<< HEAD
-=======
-    "JPush": [
-      "~> 3.3.3"
-    ],
->>>>>>> 7d4243b480cc36b13bd0a3367eaf3dfac3e4d1aa
     "Masonry": [
       "~> 1.1.0"
     ],
@@ -66,11 +52,7 @@
       "~> 3.0.17"
     ],
     "SDWebImage": [
-<<<<<<< HEAD
       "~> 5.0.6"
-=======
-      "~> 5.6.1"
->>>>>>> 7d4243b480cc36b13bd0a3367eaf3dfac3e4d1aa
     ],
     "MBProgressHUD": [
       "~> 1.1.0"
