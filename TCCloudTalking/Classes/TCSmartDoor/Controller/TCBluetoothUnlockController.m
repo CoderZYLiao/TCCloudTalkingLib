@@ -11,6 +11,7 @@
 #import "Header.h"
 
 #define kPeripheralName         @"Liuting's Device" //外围设备名称，自定义
+#define UUID            @"0000fff0-0000-1000-8000-00805f9b34fb" //服务的UUID，自定义
 #define kServiceUUID            @"FFF0" //服务的UUID，自定义
 #define kCharacteristicUUID     @"FFF1" //特征的UUID，自定义
 
@@ -135,14 +136,15 @@ UIWindow *_window;
     time = currentTime;
     
     TCHousesInfoModel *houesModel = [[TCPersonalInfoModel shareInstance] getHousesInfoModel];
-    if (!houesModel.account) {
+    if (!houesModel.mobile) {
         [MBManager showBriefAlert:@"开锁状态不正确!"];
         return;
     }
-    NSData *data = [houesModel.account dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [houesModel.mobile dataUsingEncoding:NSUTF8StringEncoding];
     NSString *degestString = [data base64EncodedStringWithOptions:0];
     //设置设备信息dict，CBAdvertisementDataLocalNameKey是设置设备名
     NSDictionary *dict = @{CBAdvertisementDataLocalNameKey:degestString};
+
     //开始广播
     [self.peripheralManager startAdvertising:dict];
     
@@ -224,6 +226,7 @@ UIWindow *_window;
     [serviceM setCharacteristics:@[characteristicM]];
     //将服务添加到外围设备
     [self.peripheralManager addService:serviceM];
+   
 }
 
 /* 外围设备恢复状态时调用 */
