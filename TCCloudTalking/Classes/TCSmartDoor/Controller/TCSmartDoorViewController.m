@@ -44,8 +44,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     //设置顶部导航栏透明，TODO 可移植于基类
     [self setNavigationBarTransparent];
     
-    //是否5000型号
-    self.is5000Platform = [[NSUserDefaults standardUserDefaults] boolForKey:TCIs5000PlatformKey];
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
@@ -66,6 +65,8 @@ static NSString *const SmartDoorID = @"SmartDoorID";
         self.navigationItem.hidesBackButton = NO;
     }
     self.title = @"智能门禁";
+    
+//    [self DateSource];
     //初始化collectionview
     [self initCollectionViewUI];
     
@@ -73,8 +74,39 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     
     [self initBackImgeUI];
     
-    
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(ChangeUserCommunity) name:@"ChangeCommunityNotification" object:nil];
 }
+
+- (void)ChangeUserCommunity
+{
+    //是否5000型号
+    self.is5000Platform = [[NSUserDefaults standardUserDefaults] boolForKey:TCIs5000PlatformKey];
+//    [self DateSource];
+    [self.collectionView reloadData];
+}
+
+//- (void)DateSource
+//{
+//
+//    if (self.is5000Platform) {
+//        self.collTitlsArray = @[@"监视门口",@"通话记录",@"离线功能"];
+//        self.collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TC_离线功能icon"];
+//        self.collConVcNameArray = @[@"监视门口",@"通话记录",@"离线功能"];
+//    }else
+//    {
+//        self.collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TCCT_ic_dynamic password",@"TC_离线功能icon",@"TCCT_ic_my card",@"TCCT_ico_lock record"];
+//        self.collTitlsArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
+//        self.collConVcNameArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
+//    }
+//
+//    NSMutableArray *tempModelArray = [NSMutableArray array];
+//    for (int i = 0; i < self.collTitlsArray.count; i++) {
+//        CollectionButtonModel *model = [CollectionButtonModel modelWithImage:[TCCloudTalkingImageTool getToolsBundleImage:self.collImagesArray[i]]  withTitle:self.collTitlsArray[i] withUIViewController:self.collConVcNameArray[i] ];
+//        [tempModelArray addObject:model];
+//    }
+//    self.displayArray = tempModelArray;
+//}
+
 
 - (void)initBackImgeUI
 {
@@ -203,6 +235,11 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     }];
 }
 
+//移除通知
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 
 -(NSMutableArray *)displayArray
@@ -225,7 +262,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
         {
             _collTitlsArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
         }
-        
+
     }
     return _collTitlsArray;
 }
@@ -240,7 +277,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
         {
             _collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TCCT_ic_dynamic password",@"TC_离线功能icon",@"TCCT_ic_my card",@"TCCT_ico_lock record"];
         }
-        
+
     }
     return _collImagesArray;
 }
@@ -255,7 +292,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
         {
             _collConVcNameArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
         }
-        
+
     }
     return _collConVcNameArray;
 }
