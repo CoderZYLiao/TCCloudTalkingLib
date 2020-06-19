@@ -56,56 +56,41 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationController.navigationBarHidden = NO;
-    if (!_isPush) {
-        self.navigationItem.leftBarButtonItem = nil;
-        self.navigationItem.hidesBackButton = YES;
-    }else
-    {
-        self.navigationItem.hidesBackButton = NO;
-    }
     self.title = @"智能门禁";
-    
-//    [self DateSource];
+    [self initBackImgeUI];
+    [self DateSource];
+    self.view.backgroundColor = [UIColor whiteColor];
     //初始化collectionview
     [self initCollectionViewUI];
     
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    [self initBackImgeUI];
-    
-    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(ChangeUserCommunity) name:@"ChangeCommunityNotification" object:nil];
+    [[NSNotificationCenter defaultCenter]  addObserver:self selector:@selector(ChangeUserCommunity) name:@"Is5000PlatformChangeNotification" object:nil];
 }
 
 - (void)ChangeUserCommunity
 {
-    //是否5000型号
-    self.is5000Platform = [[NSUserDefaults standardUserDefaults] boolForKey:TCIs5000PlatformKey];
-//    [self DateSource];
-    [self.collectionView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        [self DateSource];
+        [self.collectionView reloadData];
+
+    });
 }
 
-//- (void)DateSource
-//{
-//
-//    if (self.is5000Platform) {
-//        self.collTitlsArray = @[@"监视门口",@"通话记录",@"离线功能"];
-//        self.collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TC_离线功能icon"];
-//        self.collConVcNameArray = @[@"监视门口",@"通话记录",@"离线功能"];
-//    }else
-//    {
-//        self.collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TCCT_ic_dynamic password",@"TC_离线功能icon",@"TCCT_ic_my card",@"TCCT_ico_lock record"];
-//        self.collTitlsArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
-//        self.collConVcNameArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
-//    }
-//
-//    NSMutableArray *tempModelArray = [NSMutableArray array];
-//    for (int i = 0; i < self.collTitlsArray.count; i++) {
-//        CollectionButtonModel *model = [CollectionButtonModel modelWithImage:[TCCloudTalkingImageTool getToolsBundleImage:self.collImagesArray[i]]  withTitle:self.collTitlsArray[i] withUIViewController:self.collConVcNameArray[i] ];
-//        [tempModelArray addObject:model];
-//    }
-//    self.displayArray = tempModelArray;
-//}
+- (void)DateSource
+{
+    //是否5000型号
+    self.is5000Platform = [[NSUserDefaults standardUserDefaults] boolForKey:TCIs5000PlatformKey];
+    if (self.is5000Platform) {
+        self.collTitlsArray = @[@"监视门口",@"通话记录",@"离线功能"];
+        self.collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TC_离线功能icon"];
+        self.collConVcNameArray = @[@"监视门口",@"通话记录",@"离线功能"];
+    }else
+    {
+        self.collTitlsArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
+        self.collImagesArray = @[@"TCCT_ico_monitor",@"TCCT_ico_call records",@"TCCT_ic_dynamic password",@"TC_离线功能icon",@"TCCT_ic_my card",@"TCCT_ico_lock record"];
+        self.collConVcNameArray = @[@"监视门口",@"通话记录",@"动态密码",@"离线功能",@"我的卡",@"开锁记录"];
+    }
+}
 
 
 - (void)initBackImgeUI
@@ -252,6 +237,7 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     _displayArray = tempModelArray;
     return _displayArray;
 }
+/*
 //按钮对应的名字
 -(NSArray *)collTitlsArray
 {
@@ -296,4 +282,5 @@ static NSString *const SmartDoorID = @"SmartDoorID";
     }
     return _collConVcNameArray;
 }
+ */
 @end
