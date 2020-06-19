@@ -95,6 +95,14 @@ static NSString *const SmartDoorID = @"SmartDoorID";
 
 - (void)initBackImgeUI
 {
+    self.navigationController.navigationBarHidden = NO;
+    if (!_isPush) {
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.hidesBackButton = YES;
+    }else
+    {
+        self.navigationItem.hidesBackButton = NO;
+    }
     UIImage *image;
     if (!self.navigationItem.hidesBackButton) {
         image = [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_bg"];
