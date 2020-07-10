@@ -65,6 +65,7 @@ Pod::Spec.new do |s|
     s.dependency 'MJExtension', '~> 3.0.17'
     s.dependency 'SDWebImage', '~> 5.0.6'
     s.dependency 'MBProgressHUD', '~> 1.1.0'
+    s.dependency 'JuphoonCloudSDK_iOS', '2.1'
 
 
     #依赖的系统框架

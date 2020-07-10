@@ -192,7 +192,12 @@
         NSLog(@"%@", SendCodeURL);
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MBManager hideAlert];
-        [MBManager showBriefAlert:@"验证码已发送，请注意查收"];
+        NSInteger code = [[responseObject objectForKey:@"code"] integerValue];
+        if (code == 0) {
+            [MBManager showBriefAlert:@"验证码已发送，请注意查收"];
+        } else {
+            [MBManager showBriefAlert:[responseObject objectForKey:@"message"] ];
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [MBManager showBriefAlert:error.localizedDescription];
     }];
@@ -317,7 +322,7 @@
         [_btnGetCode initOpr];
         [_btnGetCode addTarget:self action:@selector(btnGetCodeClick:) forControlEvents:UIControlEventTouchUpInside];
         WEAKSELF
-        [_btnGetCode setCountDown:10 mark:@"btnRegisterGetCode" resTextFormat:^NSString *(long remainSec) {
+        [_btnGetCode setCountDown:60 mark:@"btnRegisterGetCode" resTextFormat:^NSString *(long remainSec) {
             if (remainSec == 0) {
                 weakSelf.btnGetCode.enabled = YES;
             }

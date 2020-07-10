@@ -11,6 +11,7 @@
 #import "TCCMianViewController.h"
 #import "TCNavigationController.h"
 #import "Header.h"
+#import "JCManager.h"
 
 //测试
 #import "TCCLoginViewController.h"
@@ -28,7 +29,7 @@
 //pushkit(音视频推送)
 #import <PushKit/PushKit.h>
 
-
+#import "JCManager.h"
 #define APPID_VALUE           @"5ddceac9"
 @interface TCAppDelegate()<JPUSHRegisterDelegate,UCSTCPDelegateBase,PKPushRegistryDelegate>
 @property (nonatomic, strong) NSDictionary * pushInfo; //离线推送的信息
@@ -51,12 +52,20 @@
     //    anim.duration = 1;
     //    [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
     //     Override point for customization after application launch.
-    [self gotoLoginInterface];
+    
+    
+    
     //设置tcp代理
     [[UCSTcpClient sharedTcpClientManager] setTcpDelegate:self];
     //云对讲功能初始化
     [UCSFuncEngine getInstance];
     
+    //菊风初始化
+    [JCManager.shared initialize];
+    
+    [self gotoLoginInterface];
+    
+    /*
     //讯飞SDK初始化
     //Set log level
     [IFlySetting setLogFile:LVL_ALL];
@@ -76,8 +85,13 @@
     [IFlySpeechUtility createUtility:initString];
     
     //    [self InitJPushWithOptions:launchOptions];
-    
+    */
     [self.window makeKeyAndVisible];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoginSuccess:) name:kClientOnLoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoginFail:) name:kClientOnLoginFailNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clientStateChange:) name:kClientStateChangeNotification object:nil];
+    
     return YES;
 }
 
@@ -91,12 +105,17 @@
         TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:LoginVc];
         self.window.rootViewController = nav;
         LoginVc.loginSucceedAction = ^(NSInteger tag) {
-            
+            //初始化云之讯
             [self LoginTcpClient];
+            //初始化菊风
+            [self LoginJCClient];
         };
         
     } else {
+        //初始化云之讯
         [self LoginTcpClient];
+        //初始化菊风
+        [self LoginJCClient];
     }
     
     
@@ -154,6 +173,64 @@
     [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
 }
 
+
+- (void)LoginJCClient
+{
+
+    if (JCManager.shared.client.state == JCClientStateLogined) {
+        [JCManager.shared.client logout];
+    }else if (JCManager.shared.client.state == JCClientStateIdle)
+    {
+        JCClientLoginParam* loginParam = [[JCClientLoginParam alloc] init];
+        //国内服务器地址环境配置
+        if ([JCManager.shared.client login:@"123456" password:@"123" loginParam:nil]) {
+           debugLog(@"菊风服务器登录正常");
+        }else
+        {
+            debugLog(@"菊风服务器登录异常");
+        }
+        
+    }
+}
+
+
+#pragma mark notification
+
+- (void)onLoginSuccess:(NSNotification *)info
+{
+    TCCMianViewController *TextVc = [[TCCMianViewController alloc] init];
+    
+    TCNavigationController *nav = [[TCNavigationController alloc] initWithRootViewController:TextVc];
+    [UIApplication sharedApplication].delegate.window.rootViewController = nav;
+    CATransition *anim = [CATransition animation];
+    anim.type = @"kCATransitionPush";
+    anim.duration = 1;
+    [[UIApplication sharedApplication].delegate.window.layer addAnimation:anim forKey:nil];
+    debugLog(@"菊风服务器登录成功");
+}
+
+- (void)onLoginFail:(NSNotification *)info
+{
+    debugLog(@"菊风服务器登录失败---%@",info);
+}
+
+- (void)clientStateChange:(NSNotification*)info
+{
+    JCClientState state = JCManager.shared.client.state;
+    if (state == JCClientStateIdle) {
+        debugLog(@"登录");
+
+    } else if (state == JCClientStateLogined) {
+        debugLog(@"已登录");
+        
+    } else if (state == JCClientStateLogining) {
+        
+        debugLog(@"登录中");
+    } else if (state == JCClientStateLogouting) {
+        
+        debugLog(@"登出中");
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

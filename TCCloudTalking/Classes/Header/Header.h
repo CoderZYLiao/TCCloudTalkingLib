@@ -30,6 +30,11 @@
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "SVProgressHUD.h"
 
+//菊风SDK头文件
+#import <JCSDKOC/JCSDKOC.h>
+#import "JCManager.h"
+
+
 //依赖Publickitk的头文件
 #import "TCHttpTool.h"
 #import "TCConfigDefine.h"
@@ -116,3 +121,4 @@
 #define IOS_VERSION [[[UIDevice currentDevice] systemVersion] floatValue]
 #define UCS_SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([UIDevice currentDevice].systemVersion.floatValue >= v)
 
+#define StandardUserDefault [NSUserDefaults standardUserDefaults]
