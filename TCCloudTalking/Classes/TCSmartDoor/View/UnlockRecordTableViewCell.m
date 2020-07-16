@@ -49,13 +49,13 @@
     _callRecordModel = callRecordModel;
     self.DoorMachineNameL.text = callRecordModel.nickName;
     self.UnlockingTimeL.text =[TCCloudTalkingTool ConvertStrToTime:callRecordModel.time];
-    if ([callRecordModel.callStatus intValue]==0) {
-        [self.DoorMachineNameL setTextColor:[UIColor blackColor]];
-        [self.UnlockingTimeL setTextColor:[UIColor blackColor]];
-    }else
-    {
+    if ([callRecordModel.callStatus intValue]==2) {
         [self.DoorMachineNameL setTextColor:[UIColor redColor]];
         [self.UnlockingTimeL setTextColor:[UIColor redColor]];
+    }else
+    {
+        [self.DoorMachineNameL setTextColor:[UIColor blackColor]];
+        [self.UnlockingTimeL setTextColor:[UIColor blackColor]];
     }
 }
 

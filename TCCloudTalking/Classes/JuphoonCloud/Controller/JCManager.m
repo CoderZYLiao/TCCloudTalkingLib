@@ -10,6 +10,10 @@
 #import <PushKit/PushKit.h>
 #import <UserNotifications/UserNotifications.h>
 #import "JCDoorVideoCallController.h"
+#import "TCVoipDBManager.h"
+#import "TCVoipCallListModel.h"
+#import "TCCallRecordsModel.h"
+#import "FMDBBaseTool.h"
 
 #define MY_APP_KEY @"05a47ad899f302041d525097" //
 
@@ -197,6 +201,70 @@ static JCManager* _manager;
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kCallNotification object:nil];
     [self addLog:[NSString stringWithFormat:@"*onCallItemRemove %@ reason:%d description:%@", item.userId, (int)reason, description]];
+    
+    //写入数据库
+    [self makeDBModel:item reason:reason description:description];
+    
+}
+
+//插入数据库操作
+- (void)makeDBModel:(JCCallItem*)item reason:(JCCallReason)reason description:(NSString *)description
+{
+    TCVoipCallListModel * callModel = [[TCVoipCallListModel alloc] init];
+    callModel.userId = item.userId;
+    callModel.nickName = item.displayName ? item.displayName : item.userId;
+    callModel.sendCall = [NSString stringWithFormat:@"%ld",(long)item.direction];
+    callModel.callStatus = [self genCallStatus:reason item:item];
+    callModel.time = [NSString stringWithFormat:@"%ld",item.beginTime];
+    callModel.callType = @"2";
+    callModel.callDuration = @"";
+    callModel.headPortrait = @"";
+    
+    TCCallRecordsModel * recordModel = [[TCCallRecordsModel alloc] init];
+    [recordModel getInfoFromCallListModel:callModel];
+    
+    [[FMDBBaseTool shareInstance] insertDBWithModel:recordModel];
+    [[UCSVOIPViewEngine getInstance] WriteToSandBox:[NSString stringWithFormat:@"写入数据库"]];
+}
+
+//通话状态 （接听0，已取消1，未接听2）
+- (NSString *)genCallStatus:(JCCallReason )reason item:(JCCallItem*)item{
+    switch (reason) {
+        case JCCallReasonTimeOut:
+            return @"1";
+        case JCCallReasonNetWork:
+            return @"1";
+        case JCCallReasonTermBySelf:
+            if (item.talkingBeginTime > 0) {//通话时间大于0 说明已经接听
+                return @"0";
+            }else
+            {
+                if (item.direction == JCCallDirectionIn) {
+                    return @"2";
+                }else
+                {
+                    return @"1";
+                }
+            }
+        case JCCallReasonAnswerFail:
+            return @"1";
+        case JCCallReasonDecline:
+            return @"1";
+        case JCCallReasonUserOffline:
+            return @"1";
+        case JCCallReasonNotFound:
+            return @"1";
+        case JCCallReasonNone:
+            if (item.talkingBeginTime > 0) {//通话时间大于0 说明已经接听
+                return @"0";
+            }else
+            {
+                return @"2";
+            }
+            
+        default:
+            return @"1";
+    }
 }
 
 -(void)onCallItemUpdate:(JCCallItem *)item changeParam:(JCCallChangeParam *)changeParam

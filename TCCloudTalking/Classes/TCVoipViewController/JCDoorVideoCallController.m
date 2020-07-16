@@ -8,6 +8,7 @@
 #import "JCDoorVideoCallController.h"
 #import "TYLVerticalButton.h"
 #import "Header.h"
+#import "RadarAnimationView.h"
 
 @interface JCDoorVideoCallController ()
 {
@@ -29,7 +30,7 @@
 @property (strong,nonatomic) UIView *videoRemoteView; // WLS，2015-12-14，远程视频视图
 
 @property (assign,nonatomic) BOOL incomingCall; //(处于被叫界面)
-
+@property (nonatomic, assign) BOOL isVideoCall; //是否视频呼叫
 @property (nonatomic,retain) NSString *callID;
 @property (nonatomic,retain) NSString *callerName;
 @end
@@ -41,6 +42,7 @@
     {
         self.callerName = item.displayName;
         self.incomingCall = item.direction == JCCallDirectionIn;
+        self.isVideoCall = item.video;
         return self;
     }
     
@@ -88,16 +90,16 @@
         }
         
         if (activeCall.state == JCCallStatePending) {
-            if (activeCall.video) {
-//                if (_localCanvas == nil && activeCall.uploadVideoStreamSelf) {
-//                    _localCanvas = [JCManager.shared.mediaDevice startCameraVideo:JCMediaDeviceRenderFullContent];
-//                    _localCanvas.videoView.frame = CGRectMake(0, 0, 0, 1);
-//                    [self.view insertSubview:_localCanvas.videoView aboveSubview:self.backgroundView];
-//                } else if (_localCanvas != nil && !activeCall.uploadVideoStreamSelf) {
-//                    [JCManager.shared.mediaDevice stopVideo:_localCanvas];
-//                    [_localCanvas.videoView removeFromSuperview];
-//                    _localCanvas = nil;
-//                }
+            if (activeCall.video) {//不处理本地视频
+                //                if (_localCanvas == nil && activeCall.uploadVideoStreamSelf) {
+                //                    _localCanvas = [JCManager.shared.mediaDevice startCameraVideo:JCMediaDeviceRenderFullContent];
+                //                    _localCanvas.videoView.frame = CGRectMake(0, 0, 0, 1);
+                //                    [self.view insertSubview:_localCanvas.videoView aboveSubview:self.backgroundView];
+                //                } else if (_localCanvas != nil && !activeCall.uploadVideoStreamSelf) {
+                //                    [JCManager.shared.mediaDevice stopVideo:_localCanvas];
+                //                    [_localCanvas.videoView removeFromSuperview];
+                //                    _localCanvas = nil;
+                //                }
             }
             
         } else if (activeCall.state == JCCallStateTalking) {
@@ -198,7 +200,17 @@
         make.height.equalTo(@110);
     }];
     
-    
+    //语音呼叫
+    if (!self.isVideoCall) {
+        RadarAnimationView *rader = [[RadarAnimationView alloc]initWithFrame:CGRectMake(300, 300, 240, 240)];
+        rader.image = [TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_img_门口机"];
+        [self.backgroundView addSubview:rader];
+        
+        [rader mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self.backgroundView);
+            make.height.width.mas_equalTo(240);
+        }];
+    }
     
     //显示呼叫状态、通话状态、显示通话时间的按钮
     UIButton *JCcallTimeLabel = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -244,7 +256,7 @@
 - (void)funtionButtonClick:(UIButton *)button{
     if ([button.titleLabel.text isEqualToString:@"挂断"]) {
         
-        [JCManager.shared.call term:[self getActiveCall] reason:JCCallReasonNone description:@"test"];
+        [JCManager.shared.call term:[self getActiveCall] reason:JCCallReasonNone description:@"主动挂断"];
         
     }else if([button.titleLabel.text isEqualToString:@"开锁"])
     {
@@ -252,6 +264,9 @@
         
     }else if([button.titleLabel.text isEqualToString:@"免提"])
     {
+        
+        [JCManager.shared.mediaDevice enableSpeaker:!JCManager.shared.mediaDevice.isSpeakerOn];
+        self.JCanswerButton.selected = JCManager.shared.mediaDevice.isSpeakerOn;
         
     }else
     {
@@ -266,7 +281,11 @@
 
 - (void)answerCall
 {
-    [JCManager.shared.call answer:[self getActiveCall] video:true];
+    [self.JCanswerButton setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_免提_关闭"] forState:UIControlStateNormal];
+    [self.JCanswerButton setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_免提_开启_nor"] forState:UIControlStateSelected];
+    [self.JCanswerButton setTitle:@"免提" forState:UIControlStateNormal];
+    
+    [JCManager.shared.call answer:[self getActiveCall] video:self.isVideoCall];
 }
 
 -(void)removeCanvas
@@ -321,7 +340,13 @@
     if (item != nil) {
         if (callNum == 1) {
             //更新网络状态
-            [self genNetStatus:item];
+            if (self.isVideoCall) {//视频呼叫显示对方网络状态
+                [self genNetStatus:item isVideo:YES];
+            }else//语音呼叫显示对方网络状态
+            {
+                [self genNetStatus:item isVideo:NO];
+            }
+            
             debugLog(@"----%@",[self genCallInfo:item]);
             self.JCcallTimeLabel.hidden = NO;
             [_JCcallTimeLabel setTitle:[self genCallInfo:item] forState:UIControlStateDisabled];
@@ -330,34 +355,35 @@
     }
 }
 
-- (void )genNetStatus:(JCCallItem *)item {
+- (void )genNetStatus:(JCCallItem *)item isVideo:(BOOL)Video {
     NSString * networkStatusTips = nil;
     if (item.videoNetReceiveStatus != JCCallStateTalking) {
         
     }
-    switch (item.videoNetReceiveStatus) {
-        case JCCallNetWorkDisconnected:
+    if (Video) {
+        switch (item.videoNetReceiveStatus) {
+            case JCCallNetWorkDisconnected:
             {
                 //差
                 networkStatusTips = @"当前通话网络状况不佳";
                 [self.JCnetWorkStatusLabel setTitleColor:[UIColor redColor] forState:UIControlStateDisabled];
             }
                 break;
-        case JCCallNetWorkVeryBad:
+            case JCCallNetWorkVeryBad:
             {
                 //差
                 networkStatusTips = @"当前通话网络状况不佳";
                 [self.JCnetWorkStatusLabel setTitleColor:[UIColor redColor] forState:UIControlStateDisabled];
             }
                 break;
-        case JCCallNetWorkBad:
+            case JCCallNetWorkBad:
             {
                 //差
                 networkStatusTips = @"当前通话网络状况不佳";
                 [self.JCnetWorkStatusLabel setTitleColor:[UIColor redColor] forState:UIControlStateDisabled];
             }
                 break;
-        case JCCallNetWorkNormal:
+            case JCCallNetWorkNormal:
             {
                 //一般
                 networkStatusTips = @"当前通话网络状况一般";
@@ -365,23 +391,76 @@
                 
             }
                 break;
-        case JCCallNetWorkGood:
+            case JCCallNetWorkGood:
             {
                 //良好
                 networkStatusTips = @"当前通话网络状况良好";
                 [self.JCnetWorkStatusLabel setTitleColor:[UIColor greenColor] forState:UIControlStateDisabled];
             }
                 break;
-        case JCCallNetWorkVeryGood:
+            case JCCallNetWorkVeryGood:
             {
                 //优秀
                 networkStatusTips = @"当前通话网络状况优秀";
                 [self.JCnetWorkStatusLabel setTitleColor:[UIColor greenColor] forState:UIControlStateDisabled];
             }
                 break;
-        default:
-        break;
+                
+            default:
+                break;
+        }
+    }else
+    {
+        switch (item.audioNetReceiveStatus) {
+            case JCCallNetWorkDisconnected:
+            {
+                //差
+                networkStatusTips = @"当前通话网络状况不佳";
+                [self.JCnetWorkStatusLabel setTitleColor:[UIColor redColor] forState:UIControlStateDisabled];
+            }
+                break;
+            case JCCallNetWorkVeryBad:
+            {
+                //差
+                networkStatusTips = @"当前通话网络状况不佳";
+                [self.JCnetWorkStatusLabel setTitleColor:[UIColor redColor] forState:UIControlStateDisabled];
+            }
+                break;
+            case JCCallNetWorkBad:
+            {
+                //差
+                networkStatusTips = @"当前通话网络状况不佳";
+                [self.JCnetWorkStatusLabel setTitleColor:[UIColor redColor] forState:UIControlStateDisabled];
+            }
+                break;
+            case JCCallNetWorkNormal:
+            {
+                //一般
+                networkStatusTips = @"当前通话网络状况一般";
+                [self.JCnetWorkStatusLabel setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+                
+            }
+                break;
+            case JCCallNetWorkGood:
+            {
+                //良好
+                networkStatusTips = @"当前通话网络状况良好";
+                [self.JCnetWorkStatusLabel setTitleColor:[UIColor greenColor] forState:UIControlStateDisabled];
+            }
+                break;
+            case JCCallNetWorkVeryGood:
+            {
+                //优秀
+                networkStatusTips = @"当前通话网络状况优秀";
+                [self.JCnetWorkStatusLabel setTitleColor:[UIColor greenColor] forState:UIControlStateDisabled];
+            }
+                break;
+            default:
+                break;
+        }
+        
     }
+    
     self.JCnetWorkStatusLabel.hidden = NO;
     [self.JCnetWorkStatusLabel setTitle:networkStatusTips forState:UIControlStateDisabled];
 }
