@@ -65,6 +65,7 @@
     
     [self gotoLoginInterface];
     
+    [self registPushKit];
     /*
     //讯飞SDK初始化
     //Set log level
@@ -183,13 +184,12 @@
     {
         JCClientLoginParam* loginParam = [[JCClientLoginParam alloc] init];
         //国内服务器地址环境配置
-        if ([JCManager.shared.client login:@"123456" password:@"123" loginParam:nil]) {
+        if ([JCManager.shared.client login:@"0123456789" password:@"123" loginParam:nil]) {
            debugLog(@"菊风服务器登录正常");
         }else
         {
             debugLog(@"菊风服务器登录异常");
         }
-        
     }
 }
 

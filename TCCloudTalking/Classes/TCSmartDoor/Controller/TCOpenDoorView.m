@@ -244,7 +244,7 @@ static UIWindow *window_;
         if (self.typeNum == 0) {//对讲
             
             
-            [JCManager.shared.call call:@"123" video:true extraParam:@"门口机呼叫"];
+            [JCManager.shared.call call:@"12345678911" video:true extraParam:@"门口机呼叫"];
             /*
             NSLog(@"视频呼叫");
             if ([[UCSTcpClient sharedTcpClientManager] login_isConnected]) {

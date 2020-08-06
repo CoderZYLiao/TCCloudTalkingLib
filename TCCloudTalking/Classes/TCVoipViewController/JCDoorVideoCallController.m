@@ -49,7 +49,13 @@
     return nil;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 
+    [self stopCallInfoTimer];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -76,14 +82,17 @@
     
 }
 
+
+
 - (void)updateVideoUI:(NSNotification *)noti
 {
+    NSLog(@"-----%@",JCManager.shared.call.callItems);
     if (JCManager.shared.call.callItems.count == 1) {
         // 单路
         JCCallItem *activeCall = JCManager.shared.call.callItems.firstObject;
         NSInteger callNum = JCManager.shared.call.callItems.count;
         if (callNum == 0 && _timer != nil) {
-            [self stopCallInfoTimer];
+            
             
         } else if (callNum > 0 && _timer == nil) {
             [self startCallInfoTimer];
@@ -347,7 +356,7 @@
                 [self genNetStatus:item isVideo:NO];
             }
             
-            debugLog(@"----%@",[self genCallInfo:item]);
+            debugLog(@"通话状态----%@",[self genCallInfo:item]);
             self.JCcallTimeLabel.hidden = NO;
             [_JCcallTimeLabel setTitle:[self genCallInfo:item] forState:UIControlStateDisabled];
         }
