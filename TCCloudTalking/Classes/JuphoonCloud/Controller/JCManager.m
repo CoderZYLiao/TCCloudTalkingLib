@@ -243,6 +243,11 @@ static JCManager* _manager;
 -(void)onCallItemRemove:(JCCallItem*)item reason:(JCCallReason)reason description:(NSString *)description
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:kCallNotification object:nil];
+    if (self.call.callItems.count == 0) {
+        [_callViewController dismissViewControllerAnimated:YES completion:nil];
+        _callViewController = nil;
+    }
+    
     [self addLog:[NSString stringWithFormat:@"*onCallItemRemove %@ reason:%d description:%@", item.userId, (int)reason, description]];
     
     [[TCCVibrationer instance] removeVibrate];

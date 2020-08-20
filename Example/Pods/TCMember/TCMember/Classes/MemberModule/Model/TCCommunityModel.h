@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *tel;
 @property (nonatomic, strong) NSString *areaId;
+@property (nonatomic, assign) BOOL sipFeesMode;
 @end
 
 NS_ASSUME_NONNULL_END

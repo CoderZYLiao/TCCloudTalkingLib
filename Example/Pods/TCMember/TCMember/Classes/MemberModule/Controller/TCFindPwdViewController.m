@@ -12,8 +12,13 @@
 #import <ZXCountDownView/ZXCountDownBtn.h>
 #import "MemberBaseHeader.h"
 #import "TCPersonalInfoModel.h"
+#import "ZYOptionView.h"
+#import "TCCloudServerModel.h"
+#import <MJExtension.h>
 
-@interface TCFindPwdViewController ()
+@interface TCFindPwdViewController () <ZYOptionViewDelegate>
+@property (nonatomic, strong) UIImageView *imgCloudServerIcon;
+@property (nonatomic, strong) ZYOptionView *cloudServerOptionView;
 @property (nonatomic, strong) UIImageView *imgViewPhoneIcon;
 @property (nonatomic, strong) UITextField *textFieldPhone;
 @property (nonatomic, strong) UIImageView *imgViewVerifyCodeIcon;
@@ -23,10 +28,14 @@
 @property (nonatomic, strong) UITextField *textFieldPwd;
 @property (nonatomic, strong) UIButton *btnSwich;
 @property (nonatomic, strong) UIButton *btnConfrm;
+@property (nonatomic, strong) UIView *viewLine0;
 @property (nonatomic, strong) UIView *viewLine1;
 @property (nonatomic, strong) UIView *viewLine2;
 @property (nonatomic, strong) UIView *viewLine3;
 @property (nonatomic, strong) NSString *access_token;
+// 云服务商列表
+@property (nonatomic, strong) NSMutableArray *cloudServerList;
+@property (nonatomic, assign) NSInteger selectedIndex;
 @end
 
 @implementation TCFindPwdViewController
@@ -35,12 +44,23 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    [self getCloudServerRequest];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 如果保存了云服务商信息，直接可以点击登录调用
+    NSString *cloudServerHost = [[NSUserDefaults standardUserDefaults] objectForKey:TCCloudServerHostKey];
+    if (cloudServerHost.length) {
+        _selectedIndex = 0;
+    } else {
+        _selectedIndex = -1;
+    }
     self.view.backgroundColor = [UIColor whiteColor];
     [self setTitle:@"找回密码" withBottomLineHidden:YES];
+    [self.view addSubview:self.imgCloudServerIcon];
+    [self.view addSubview:self.cloudServerOptionView];
+    [self.view addSubview:self.viewLine0];
     [self.view addSubview:self.imgViewPhoneIcon];
     [self.view addSubview:self.textFieldPhone];
     [self.view addSubview:self.viewLine1];
@@ -60,10 +80,27 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
+    [self.imgCloudServerIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(30);
+        make.top.mas_equalTo(TCNaviH+45);
+        make.width.height.mas_equalTo(22);
+    }];
+    [self.cloudServerOptionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.imgCloudServerIcon.mas_centerY);
+        make.left.mas_equalTo(self.imgCloudServerIcon.mas_right).offset(20);
+        make.right.mas_equalTo(self.view.mas_right).offset(-30);
+        make.height.mas_equalTo(35);
+    }];
+    [self.viewLine0 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(30);
+        make.top.mas_equalTo(self.cloudServerOptionView.mas_bottom).offset(10);
+        make.right.mas_equalTo(self.view.mas_right).offset(-30);
+        make.height.mas_equalTo(0.5);
+    }];
     [self.imgViewPhoneIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(30);
         make.width.height.mas_equalTo(22);
-        make.top.mas_equalTo(TCNaviH+45);
+        make.top.mas_equalTo(self.viewLine0.mas_bottom).offset(20);
     }];
     [self.textFieldPhone mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.imgViewPhoneIcon.mas_centerY);
@@ -228,7 +265,7 @@
             [MBManager showBriefAlert:msg];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBManager showBriefAlert:@"服务器异常"];
+        [MBManager showBriefAlert:error.localizedDescription];
         NSLog(@"%@", error);
     }];
 }
@@ -262,7 +299,61 @@
     [self ResetPasswordRequest];
 }
 
+// 获取云服务商接口
+- (void)getCloudServerRequest
+{
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [mgr.requestSerializer setTimeoutInterval:10];
+    [mgr.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+     [MBManager showLoading];
+    WEAKSELF
+    [[TCHttpTool sharedHttpTool] getWithURL:GetCloudServerURL params:nil withManager:mgr success:^(id _Nonnull json) {
+        [MBManager hideAlert];
+        weakSelf.cloudServerList = [TCCloudServerModel mj_objectArrayWithKeyValuesArray:json];
+        [weakSelf.cloudServerOptionView setDataSource:weakSelf.cloudServerList];
+    } failure:^(NSError * _Nonnull error) {
+        [MBManager hideAlert];
+        [MBManager showBriefAlert:error.localizedDescription];
+    }];
+}
+
+#pragma mark - ZYOptionViewDelegate
+
+- (void)zyOptionView:(ZYOptionView *)optionView selectedIndex:(NSInteger)selectedIndex
+{
+    NSLog(@"%zd", selectedIndex);
+    self.selectedIndex = selectedIndex;
+    TCCloudServerModel *serverModel = self.cloudServerList[selectedIndex];
+    NSString *serverHost = serverModel.host;
+    if ([serverHost hasSuffix:@"/"] && serverModel.host.length > 2) {
+        serverHost = [serverHost substringToIndex:serverHost.length - 1];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:serverModel.name forKey:TCCloudServerNameKey];
+    [[NSUserDefaults standardUserDefaults] setObject:serverHost forKey:TCCloudServerHostKey];
+    [[NSUserDefaults standardUserDefaults] setObject:serverModel.icon forKey:TCCloudServerIconKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 #pragma mark - Get
+
+- (UIImageView *)imgCloudServerIcon
+{
+    if (_imgCloudServerIcon == nil) {
+        _imgCloudServerIcon = [[UIImageView alloc] init];
+        [_imgCloudServerIcon setImage:[UIImage tc_imgWithName:@"member_cloudServer" bundle:TCMemberBundelName targetClass:[self class]]];
+    }
+    return _imgCloudServerIcon;
+}
+
+- (ZYOptionView *)cloudServerOptionView
+{
+    if (_cloudServerOptionView == nil) {
+        _cloudServerOptionView = [[ZYOptionView alloc] init];
+        _cloudServerOptionView.delegate = self;
+    }
+    return _cloudServerOptionView;
+}
 
 - (UIImageView *)imgViewPhoneIcon
 {
@@ -379,6 +470,15 @@
         [_btnConfrm addTarget:self action:@selector(btnConfirmClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _btnConfrm;
+}
+
+- (UIView *)viewLine0
+{
+    if (_viewLine0 == nil) {
+        _viewLine0 = [[UIView alloc] init];
+        _viewLine0.backgroundColor = [UIColor colorWithHexString:LineColor];
+    }
+    return _viewLine0;
 }
 
 - (UIView *)viewLine1

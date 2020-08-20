@@ -15,16 +15,17 @@
 #define TCUsername @"username"
 #define TCPassword @"password"
 #define TCUserId @"userId"
+#define TCCloudServerNameKey @"TCCloudServerName"
+#define TCCloudServerHostKey @"TCCloudServerHost"
+#define TCCloudServerIconKey @"TCCloudServerIcon"
+
+#define KProjectWebBaseURL [NSString stringWithFormat:@"%@//o2o.%@", [KProjectAPIBaseURL componentsSeparatedByString:@"//"][0], [KProjectAPIBaseURL componentsSeparatedByString:@"//"][1]]
+#define KProjectO2OAPIBaseURL [NSString stringWithFormat:@"%@/o2o/", KProjectWebBaseURL]
+#define KProjectAPIBaseURL [[NSUserDefaults standardUserDefaults] objectForKey:TCCloudServerHostKey]
 
 #if IsTestEnvironment  // 测试环境
-    #define KProjectWebBaseURL @"http://o2o.v5.taichuan.net"
-    #define KProjectO2OAPIBaseURL @"http://o2o.v5.taichuan.net/o2o/"
-    #define KProjectAPIBaseURL @"https://v5.taichuan.net"
     #define kWechatRefererURL @"v5.taichuan.net://"
 #else                  // 正式环境
-    #define KProjectWebBaseURL @"http://o2o.ucloud.taichuan.net"
-    #define KProjectO2OAPIBaseURL @"http://o2o.ucloud.taichuan.net/o2o/"
-    #define KProjectAPIBaseURL @"https://ucloud.taichuan.net"
     #define kWechatRefererURL @"ucloud.taichuan.net://"
 #endif
 

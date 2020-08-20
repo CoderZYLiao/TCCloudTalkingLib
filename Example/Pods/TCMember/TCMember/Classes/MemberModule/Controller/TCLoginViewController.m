@@ -14,10 +14,15 @@
 #import <TCPublicKit/TCHttpTool.h>
 #import "MemberBaseHeader.h"
 #import <YYKit/YYKit.h>
+#import "ZYOptionView.h"
+#import "TCCloudServerModel.h"
+#import <MJExtension.h>
 
-@interface TCLoginViewController () <UITextFieldDelegate>
+@interface TCLoginViewController () <UITextFieldDelegate, ZYOptionViewDelegate>
 @property (nonatomic, strong) UIImageView *imgViewBg;
 @property (nonatomic, strong) UIImageView *imgView;
+@property (nonatomic, strong) UIImageView *imgCloudServerIcon;
+@property (nonatomic, strong) ZYOptionView *cloudServerOptionView;
 @property (nonatomic, strong) UIImageView *imgAccountIcon;
 @property (nonatomic, strong) UITextField *textFieldAccount;
 @property (nonatomic, strong) UIImageView *imgPwdIcon;
@@ -26,6 +31,7 @@
 @property (nonatomic, strong) UIButton *btnForgetPwd;
 @property (nonatomic, strong) UIButton *btnLogin;
 @property (nonatomic, strong) UIButton *btnSwitchLoginRole;
+@property (nonatomic, strong) UIView *viewLine0;
 @property (nonatomic, strong) UIView *viewLine1;
 @property (nonatomic, strong) UIView *viewLine2;
 @property (nonatomic, strong) UIButton *btnSwitchStatus;
@@ -38,6 +44,9 @@
 @property (nonatomic, strong) UIView *viewBottomRightLine;
 // 是否测试版提醒
 @property (nonatomic, strong) UILabel *lblIsTestVersionTip;
+// 云服务商列表
+@property (nonatomic, strong) NSMutableArray *cloudServerList;
+@property (nonatomic, assign) NSInteger selectedIndex;
 @end
 
 @implementation TCLoginViewController
@@ -55,14 +64,23 @@
         self.textFieldAccount.placeholder = @"请输入您的手机号";
         self.textFieldAccount.keyboardType = UIKeyboardTypePhonePad;
     }
+    [self getCloudServerRequest];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    // 如果保存了云服务商信息，直接可以点击登录调用
+    NSString *cloudServerHost = [[NSUserDefaults standardUserDefaults] objectForKey:TCCloudServerHostKey];
+    if (cloudServerHost.length) {
+        _selectedIndex = 0;
+    } else {
+        _selectedIndex = -1;
+    }
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.imgViewBg];
     [self.view addSubview:self.imgView];
+    [self.view addSubview:self.imgCloudServerIcon];
+    [self.view addSubview:self.cloudServerOptionView];
     [self.view addSubview:self.imgAccountIcon];
     [self.view addSubview:self.textFieldAccount];
     [self.view addSubview:self.imgPwdIcon];
@@ -70,6 +88,7 @@
     [self.view addSubview:self.btnRegist];
     [self.view addSubview:self.btnForgetPwd];
     [self.view addSubview:self.btnLogin];
+    [self.view addSubview:self.viewLine0];
     [self.view addSubview:self.viewLine1];
     [self.view addSubview:self.viewLine2];
     [self.view addSubview:self.agreeLbl];
@@ -114,9 +133,26 @@
         make.width.mas_equalTo(254);
         make.height.mas_equalTo(256);
     }];
+    [self.imgCloudServerIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(36);
+        make.top.mas_equalTo(self.imgView.mas_bottom);
+        make.width.height.mas_equalTo(22);
+    }];
+    [self.cloudServerOptionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.imgCloudServerIcon.mas_centerY);
+        make.left.mas_equalTo(self.imgCloudServerIcon.mas_right).offset(20);
+        make.right.mas_equalTo(self.view.mas_right).offset(-30);
+        make.height.mas_equalTo(35);
+    }];
+    [self.viewLine0 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.cloudServerOptionView.mas_bottom).offset(6);
+        make.left.mas_equalTo(30);
+        make.right.mas_equalTo(self.view.mas_right).offset(-30);
+        make.height.mas_equalTo(0.5);
+    }];
     [self.imgAccountIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(36);
-        make.top.mas_equalTo(self.imgView.mas_bottom).offset(5);
+        make.top.mas_equalTo(self.viewLine0.mas_bottom).offset(20);
         make.width.height.mas_equalTo(22);
     }];
     [self.textFieldAccount mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -126,7 +162,7 @@
         make.height.mas_equalTo(35);
     }];
     [self.viewLine1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.textFieldAccount.mas_bottom).offset(10);
+        make.top.mas_equalTo(self.textFieldAccount.mas_bottom).offset(6);
         make.left.mas_equalTo(30);
         make.right.mas_equalTo(self.view.mas_right).offset(-30);
         make.height.mas_equalTo(0.5);
@@ -144,7 +180,7 @@
         make.height.mas_equalTo(35);
     }];
     [self.viewLine2 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.textFieldPwd.mas_bottom).offset(10);
+        make.top.mas_equalTo(self.textFieldPwd.mas_bottom).offset(6);
         make.left.mas_equalTo(30);
         make.right.mas_equalTo(self.view.mas_right).offset(-30);
         make.height.mas_equalTo(0.5);
@@ -168,7 +204,7 @@
         make.height.mas_equalTo(50);
     }];
     [self.btnBottomLoginStyle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-50*TCFrameRatioWidth);
+        make.bottom.mas_equalTo(self.view.mas_bottom).offset(-25*TCFrameRatioWidth);
         make.centerX.mas_equalTo(self.view.mas_centerX);
     }];
     [self.viewBottomLeftLine mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -214,6 +250,10 @@
 
 - (void)loginBtnClick:(UIButton *)btn
 {
+    if (self.selectedIndex == -1) {
+        [MBManager showBriefAlert:@"请选择您的云服务商"];
+        return;
+    }
     if (self.btnBottomLoginStyle.selected) {  // 账号
         if (self.textFieldAccount.text.length <= 0) {
             [MBManager showBriefAlert:@"请输入您的账号"];
@@ -235,6 +275,26 @@
     }
     [self LoginRequest];
 }
+
+// 获取云服务商接口
+- (void)getCloudServerRequest
+{
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    mgr.requestSerializer = [AFHTTPRequestSerializer serializer];
+    [mgr.requestSerializer setTimeoutInterval:10];
+    [mgr.requestSerializer setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+     [MBManager showLoading];
+    WEAKSELF
+    [[TCHttpTool sharedHttpTool] getWithURL:GetCloudServerURL params:nil withManager:mgr success:^(id _Nonnull json) {
+        [MBManager hideAlert];
+        weakSelf.cloudServerList = [TCCloudServerModel mj_objectArrayWithKeyValuesArray:json];
+        [weakSelf.cloudServerOptionView setDataSource:weakSelf.cloudServerList];        
+    } failure:^(NSError * _Nonnull error) {
+        [MBManager hideAlert];
+        [MBManager showBriefAlert:error.localizedDescription];
+    }];
+}
+
 
 // 登录接口
 - (void)LoginRequest
@@ -345,6 +405,8 @@
                if (dict) {
                    BOOL is5000Platform = [[dict objectForKey:@"platform"] boolValue];
                    [[NSUserDefaults standardUserDefaults] setBool:is5000Platform forKey:TCIs5000PlatformKey]; // 保存是否是5000平台的信息
+                   BOOL intercomScheme = [[dict objectForKey:@"intercomScheme"] boolValue];
+                   [[NSUserDefaults standardUserDefaults] setBool:intercomScheme forKey:TCIntercomSchemeKey]; // 保存通道 0云之讯  1菊风
                    [[NSUserDefaults standardUserDefaults] synchronize];
                }
            } else {
@@ -384,14 +446,31 @@
     btn.selected = !btn.isSelected;
 }
 
+#pragma mark - ZYOptionViewDelegate
+
+- (void)zyOptionView:(ZYOptionView *)optionView selectedIndex:(NSInteger)selectedIndex
+{
+    NSLog(@"%zd", selectedIndex);
+    self.selectedIndex = selectedIndex;
+    TCCloudServerModel *serverModel = self.cloudServerList[selectedIndex];
+    NSString *serverHost = serverModel.host;
+    if ([serverHost hasSuffix:@"/"] && serverModel.host.length > 2) {
+        serverHost = [serverHost substringToIndex:serverHost.length - 1];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:serverModel.name forKey:TCCloudServerNameKey];
+    [[NSUserDefaults standardUserDefaults] setObject:serverHost forKey:TCCloudServerHostKey];
+    [[NSUserDefaults standardUserDefaults] setObject:serverModel.icon forKey:TCCloudServerIconKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 #pragma mark - Get
 
 - (UIButton *)btnCheckBox
 {
     if (_btnCheckBox == nil) {
         _btnCheckBox = [[UIButton alloc] init];
-        [_btnCheckBox setImage:[UIImage imageNamed:@"check_nor"] forState:UIControlStateNormal];
-        [_btnCheckBox setImage:[UIImage imageNamed:@"check_pre"] forState:UIControlStateSelected];
+        [_btnCheckBox setImage:[UIImage tc_imgWithName:@"member_check_nor" bundle:TCMemberBundelName targetClass:[self class]] forState:UIControlStateNormal];
+        [_btnCheckBox setImage:[UIImage tc_imgWithName:@"member_check_pre" bundle:TCMemberBundelName targetClass:[self class]] forState:UIControlStateSelected];
         [_btnCheckBox addTarget:self action:@selector(checkBoxClick:) forControlEvents:UIControlEventTouchUpInside];
         _btnCheckBox.selected = YES;
     }
@@ -436,6 +515,16 @@
     return _imgView;
 }
 
+- (ZYOptionView *)cloudServerOptionView
+{
+    if (_cloudServerOptionView == nil) {
+        _cloudServerOptionView = [[ZYOptionView alloc] init];
+        _cloudServerOptionView.delegate = self;
+        _cloudServerOptionView.backgroundColor = [UIColor clearColor];
+    }
+    return _cloudServerOptionView;
+}
+
 - (UITextField *)textFieldAccount
 {
     if (_textFieldAccount == nil) {
@@ -447,6 +536,7 @@
         _textFieldAccount.tag = 0;
         _textFieldAccount.keyboardType = UIKeyboardTypePhonePad;
         _textFieldAccount.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _textFieldAccount.backgroundColor = [UIColor clearColor];
     }
     return _textFieldAccount;
 }
@@ -468,7 +558,7 @@
         [self.btnSwitchStatus addTarget:self action:@selector(btnSwitchStatusClick:) forControlEvents:UIControlEventTouchUpInside];
         self.textFieldPwd.secureTextEntry = YES;
         _textFieldPwd.rightView = self.btnSwitchStatus;
-        
+        _textFieldPwd.backgroundColor = [UIColor clearColor];
     }
     return _textFieldPwd;
 }
@@ -513,6 +603,15 @@
     return _btnLogin;
 }
 
+- (UIView *)viewLine0
+{
+    if (_viewLine0 == nil) {
+        _viewLine0 = [[UIView alloc] init];
+        _viewLine0.backgroundColor = [UIColor colorWithHexString:LineColor];
+    }
+    return _viewLine0;
+}
+
 - (UIView *)viewLine1
 {
     if (_viewLine1 == nil) {
@@ -529,6 +628,15 @@
         _viewLine2.backgroundColor = [UIColor colorWithHexString:LineColor];
     }
     return _viewLine2;
+}
+
+- (UIImageView *)imgCloudServerIcon
+{
+    if (_imgCloudServerIcon == nil) {
+        _imgCloudServerIcon = [[UIImageView alloc] init];
+        [_imgCloudServerIcon setImage:[UIImage tc_imgWithName:@"member_cloudServer" bundle:TCMemberBundelName targetClass:[self class]]];
+    }
+    return _imgCloudServerIcon;
 }
 
 - (UIImageView *)imgAccountIcon

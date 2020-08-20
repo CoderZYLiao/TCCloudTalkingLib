@@ -33,6 +33,9 @@
 @property (nonatomic, assign) BOOL isVideoCall; //是否视频呼叫
 @property (nonatomic,retain) NSString *callID;
 @property (nonatomic,retain) NSString *callerName;
+
+@property (nonatomic, assign) BOOL isFirstCall; //呼叫首次通知回调
+
 @end
 
 @implementation JCDoorVideoCallController
@@ -52,9 +55,9 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
+    
     [self stopCallInfoTimer];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,6 +74,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVideoUI:) name:kCallNotification object:nil];
     
+    self.isFirstCall = YES;
     [self setUpCallViewUI];
     // 设置通话过程中自动感应，黑屏，避免耳朵按到其他按键
     [UIDevice currentDevice].proximityMonitoringEnabled = YES;
@@ -86,8 +90,8 @@
 
 - (void)updateVideoUI:(NSNotification *)noti
 {
-    NSLog(@"-----%@",JCManager.shared.call.callItems);
-    if (JCManager.shared.call.callItems.count == 1) {
+    if (self.isFirstCall) {
+        self.isFirstCall = NO;
         // 单路
         JCCallItem *activeCall = JCManager.shared.call.callItems.firstObject;
         NSInteger callNum = JCManager.shared.call.callItems.count;
@@ -127,13 +131,9 @@
             
         }
         
-        
         if (!activeCall.video) {
             [self removeCanvas];
         }
-    }  else {
-        [self removeCanvas];
-        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -264,7 +264,6 @@
 #pragma mark - 按钮点击事件
 - (void)funtionButtonClick:(UIButton *)button{
     if ([button.titleLabel.text isEqualToString:@"挂断"]) {
-        
         [JCManager.shared.call term:[self getActiveCall] reason:JCCallReasonNone description:@"主动挂断"];
         
     }else if([button.titleLabel.text isEqualToString:@"开锁"])

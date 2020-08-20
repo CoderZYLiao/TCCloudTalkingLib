@@ -12,7 +12,7 @@
 #import "TYLVerticalButton.h"
 #import "TCCloudTalkingTool.h"
 #import "TCOpenDoorTool.h"
-
+#import "MemberBaseHeader.h"
 
 static CGFloat const TCAnimationDelay = 0.1;
 static CGFloat const TCSpringFactor = 10;
@@ -233,45 +233,45 @@ static UIWindow *window_;
     
 }
 
-
-
 - (void)buttonClick:(UIButton *)button
 {
     [self cancelWithCompletionBlock:^{
-        
+
         TCDoorMachineModel *DoorItem = self.AllMachines[button.tag];
-        
+
+        ///0：云之讯方案；     1：菊风方案
+        BOOL intercomScheme = [[NSUserDefaults standardUserDefaults] boolForKey:TCIntercomSchemeKey];
+
         if (self.typeNum == 0) {//对讲
-            
-            
-            [JCManager.shared.call call:@"12345678911" video:true extraParam:@"门口机呼叫"];
-            /*
-            NSLog(@"视频呼叫");
-            if ([[UCSTcpClient sharedTcpClientManager] login_isConnected]) {
-                //主动呼叫
-                [[UCSVOIPViewEngine getInstance] makingCallViewCallNumber:DoorItem.intercomUserId callType:UCSCallType_VideoPhone callName:DoorItem.name];
-                
-            }else
-            {
-                [MBManager showWaitingWithTitle:@"对讲服务正在连接中,请稍后!"];
-                TCHousesInfoModel *houesModel = [[TCPersonalInfoModel shareInstance] getHousesInfoModel];
-                [[UCSTcpClient sharedTcpClientManager] login_connect:houesModel.intercomToken  success:^(NSString *userId) {
-                    [MBManager hideAlert];
+
+            if (!intercomScheme) {
+                if ([[UCSTcpClient sharedTcpClientManager] login_isConnected]) {
                     //主动呼叫
                     [[UCSVOIPViewEngine getInstance] makingCallViewCallNumber:DoorItem.intercomUserId callType:UCSCallType_VideoPhone callName:DoorItem.name];
-                } failure:^(UCSError *error) {
-                    [MBManager hideAlert];
-                    [MBManager showBriefAlert:@"对讲服务器连接失败!"];
-                }];
+
+                }else
+                {
+                    [MBManager showWaitingWithTitle:@"对讲服务正在连接中,请稍后!"];
+                    TCHousesInfoModel *houesModel = [[TCPersonalInfoModel shareInstance] getHousesInfoModel];
+                    [[UCSTcpClient sharedTcpClientManager] login_connect:houesModel.intercomToken  success:^(NSString *userId) {
+                        [MBManager hideAlert];
+                        //主动呼叫
+                        [[UCSVOIPViewEngine getInstance] makingCallViewCallNumber:DoorItem.intercomUserId callType:UCSCallType_VideoPhone callName:DoorItem.name];
+                    } failure:^(UCSError *error) {
+                        [MBManager hideAlert];
+                        [MBManager showBriefAlert:@"对讲服务器连接失败!"];
+                    }];
+                }
+
+            }else{
+                NSLog(@"%@", DoorItem.intercomUserId);
+                [JCManager.shared.call call:DoorItem.intercomUserId video:true extraParam:@"门口机呼叫"];
             }
-             */
-        }else//开锁
-        {
+
+        }else{//开锁
             [self OpenTheDoorWithID:DoorItem.num DoorName:DoorItem.name TalkID:DoorItem.intercomUserId] ;
-            NSLog(@"开锁");
-            
         }
-        
+
     }];
 }
 

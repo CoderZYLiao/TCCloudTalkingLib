@@ -14,6 +14,7 @@
 #define TCHousesInfoKey @"TCHousesInfo"
 #define TCLoginStyleKey @"TCLoginStyle"
 #define TCIs5000PlatformKey @"TCIs5000PlatformKey"
+#define TCIntercomSchemeKey @"TCIntercomSchemeKey"
 
 #pragma mark - 链接
 // 登录链接
@@ -38,5 +39,6 @@
 #define SearchCommunityURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/community", KProjectAPIBaseURL]
 // 设置我的默认小区链接
 #define SetDefaultCommunityURL [NSString stringWithFormat:@"%@/api/ucenter-mobile/community/default", KProjectAPIBaseURL]
-
+// 获取云服务商链接
+#define GetCloudServerURL @"https://ucloud.taichuan.net/system.json"
 #endif /* BaseHeader_h */

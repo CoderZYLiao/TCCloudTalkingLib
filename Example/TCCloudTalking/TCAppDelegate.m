@@ -183,8 +183,10 @@
     }else if (JCManager.shared.client.state == JCClientStateIdle)
     {
         JCClientLoginParam* loginParam = [[JCClientLoginParam alloc] init];
+//        [loginParam setServerAddress:@"udp:test.router.justalkcloud.com:8000"];
+        [loginParam setServerAddress:@"http:cn.router.justalkcloud.com:8080"];
         //国内服务器地址环境配置
-        if ([JCManager.shared.client login:@"0123456789" password:@"123" loginParam:nil]) {
+        if ([JCManager.shared.client login:@"v5house16626206884" password:@"123456" loginParam:nil]) {
            debugLog(@"菊风服务器登录正常");
         }else
         {

@@ -165,7 +165,6 @@ static AFHTTPSessionManager *mgr = nil;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure)
         {
-            [MBManager showBriefAlert:@"服务器异常"];
             failure(error);
         }
     }];

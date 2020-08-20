@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *creator;
 @property (nonatomic, strong) NSString *lastModifyTime;
 @property (nonatomic, strong) NSString *createTime;
+@property (nonatomic, strong) NSString *sipExpirationTime;
 @end
 
 NS_ASSUME_NONNULL_END
