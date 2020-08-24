@@ -117,7 +117,7 @@ SPEC REPOS:
   http://10.10.5.215:7880/iosteam/tcspecs.git:
     - TCMember
     - TCPublicKit
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - DZNEmptyDataSet
     - FBSnapshotTestCase
@@ -168,4 +168,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: fb41bb6e91d5027bef770ee412471484f0aef1f2
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.7.5

@@ -186,7 +186,8 @@
 //        [loginParam setServerAddress:@"udp:test.router.justalkcloud.com:8000"];
         [loginParam setServerAddress:@"http:cn.router.justalkcloud.com:8080"];
         //国内服务器地址环境配置
-        if ([JCManager.shared.client login:@"v5house16626206884" password:@"123456" loginParam:nil]) {
+        TCHousesInfoModel *houseModel = [[TCPersonalInfoModel shareInstance] getHousesInfoModel];
+        if ([JCManager.shared.client login:houseModel.intercomUserId password:@"123456" loginParam:nil]) {
            debugLog(@"菊风服务器登录正常");
         }else
         {
