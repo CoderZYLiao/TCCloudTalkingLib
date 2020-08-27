@@ -76,19 +76,13 @@ static JCManager* _manager;
 
 -(bool)initialize
 {
-    JCClientCreateParam *param = [[JCClientCreateParam alloc] init];
-    //    param.sdkLogLevel = [StandardUserDefault integerForKey:@"LogLevel"];
-    //    param.sdkInfoDir = [self genFullPath:[StandardUserDefault objectForKey:@"SdkDir"]];
-    //    param.sdkLogDir = [self genFullPath:[StandardUserDefault objectForKey:@"LogDir"]];
-    _client = [JCClient create:MY_APP_KEY callback:self creatParam:param];
+    _client = [JCClient create:MY_APP_KEY callback:self creatParam:nil];
     _mediaDevice = [JCMediaDevice create:_client callback:self];
     _call = [JCCall create:_client mediaDevice:_mediaDevice callback:self];
     _push = [JCPush create:_client];
     _account = [JCAccount create:self];
     _logs = [[NSMutableArray alloc] init];
-    
     [self addLog:[NSString stringWithFormat:@"*initialize"]];
-    
     return _client.state == JCClientStateIdle;
 }
 

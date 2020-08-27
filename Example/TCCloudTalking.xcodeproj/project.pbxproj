@@ -291,6 +291,7 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				F2913E2B980FC6830A55002E /* [CP] Copy Pods Resources */,
+				069D7D3D2A76279AC8E39DD3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -393,6 +394,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		069D7D3D2A76279AC8E39DD3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TCCloudTalking_Example/Pods-TCCloudTalking_Example-frameworks.sh",
+				"${PODS_ROOT}/../../TCCloudTalking/Classes/JuphoonCloud/JCSDKOC.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JCSDKOC.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TCCloudTalking_Example/Pods-TCCloudTalking_Example-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E5C2A97C69AFF02F2E1D0160 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

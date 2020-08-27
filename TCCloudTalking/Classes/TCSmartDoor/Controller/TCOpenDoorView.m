@@ -241,7 +241,6 @@ static UIWindow *window_;
 
         ///0：云之讯方案；     1：菊风方案
         BOOL intercomScheme = [[NSUserDefaults standardUserDefaults] boolForKey:TCIntercomSchemeKey];
-
         if (self.typeNum == 0) {//对讲
 
             if (!intercomScheme) {
@@ -265,9 +264,8 @@ static UIWindow *window_;
 
             }else{
                 NSLog(@"%@", DoorItem.intercomUserId);
-                [JCManager.shared.call call:DoorItem.intercomUserId video:true extraParam:@"门口机呼叫"];
+                [JCManager.shared.call call:DoorItem.intercomUserId video:true callParam:nil];
             }
-
         }else{//开锁
             [self OpenTheDoorWithID:DoorItem.num DoorName:DoorItem.name TalkID:DoorItem.intercomUserId] ;
         }

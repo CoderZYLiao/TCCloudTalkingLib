@@ -177,17 +177,12 @@
 
 - (void)LoginJCClient
 {
-
+    NSLog(@"JCManager.shared.client.state:%ld", (long)JCManager.shared.client.state);
     if (JCManager.shared.client.state == JCClientStateLogined) {
         [JCManager.shared.client logout];
-    }else if (JCManager.shared.client.state == JCClientStateIdle)
-    {
-        JCClientLoginParam* loginParam = [[JCClientLoginParam alloc] init];
-//        [loginParam setServerAddress:@"udp:test.router.justalkcloud.com:8000"];
-        [loginParam setServerAddress:@"http:cn.router.justalkcloud.com:8080"];
-        //国内服务器地址环境配置
+    } else if (JCManager.shared.client.state == JCClientStateIdle) {
         TCHousesInfoModel *houseModel = [[TCPersonalInfoModel shareInstance] getHousesInfoModel];
-        if ([JCManager.shared.client login:houseModel.intercomUserId password:@"123456" loginParam:nil]) {
+        if ([JCManager.shared.client login:houseModel.intercomUserId password:@"123456" serverAddress:@"http:cn.router.justalkcloud.com:8080" loginParam:nil]) {
            debugLog(@"菊风服务器登录正常");
         }else
         {

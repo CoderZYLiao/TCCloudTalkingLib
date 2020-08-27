@@ -33,9 +33,6 @@
 @property (nonatomic, assign) BOOL isVideoCall; //是否视频呼叫
 @property (nonatomic,retain) NSString *callID;
 @property (nonatomic,retain) NSString *callerName;
-
-@property (nonatomic, assign) BOOL isFirstCall; //呼叫首次通知回调
-
 @end
 
 @implementation JCDoorVideoCallController
@@ -74,7 +71,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVideoUI:) name:kCallNotification object:nil];
     
-    self.isFirstCall = YES;
     [self setUpCallViewUI];
     // 设置通话过程中自动感应，黑屏，避免耳朵按到其他按键
     [UIDevice currentDevice].proximityMonitoringEnabled = YES;
@@ -90,8 +86,8 @@
 
 - (void)updateVideoUI:(NSNotification *)noti
 {
-    if (self.isFirstCall) {
-        self.isFirstCall = NO;
+    NSLog(@"-----%@",JCManager.shared.call.callItems);
+    if (JCManager.shared.call.callItems.count == 1) {
         // 单路
         JCCallItem *activeCall = JCManager.shared.call.callItems.firstObject;
         NSInteger callNum = JCManager.shared.call.callItems.count;
@@ -131,9 +127,13 @@
             
         }
         
+        
         if (!activeCall.video) {
             [self removeCanvas];
         }
+    }  else {
+        [self removeCanvas];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

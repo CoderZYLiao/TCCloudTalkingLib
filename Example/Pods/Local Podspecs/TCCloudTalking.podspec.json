@@ -1,6 +1,6 @@
 {
   "name": "TCCloudTalking",
-  "version": "1.0.5.8",
+  "version": "1.0.5.9",
   "summary": "云对讲组件",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "http://10.10.5.215:7880/iosteam/TCCloudTalking",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "http://10.10.5.215:7880/iosteam/TCCloudTalking.git",
-    "tag": "1.0.5.8"
+    "tag": "1.0.5.9"
   },
   "platforms": {
     "ios": "9.0"
@@ -56,9 +56,6 @@
     ],
     "MBProgressHUD": [
       "~> 1.1.0"
-    ],
-    "JuphoonCloudSDK_iOS": [
-      "2.1"
     ]
   },
   "frameworks": [
@@ -86,7 +83,13 @@
     "AddressBook",
     "Contacts",
     "AddressBook",
-    "QuartzCore"
+    "QuartzCore",
+    "CoreMotion",
+    "CoreVideo",
+    "GLKit",
+    "PushKit",
+    "ReplayKit",
+    "Security"
   ],
   "libraries": [
     "resolv",
@@ -96,7 +99,10 @@
     "stdc++",
     "c++"
   ],
-  "vendored_frameworks": "TCCloudTalking/Classes/iFLYOSsdk/*.framework",
+  "vendored_frameworks": [
+    "TCCloudTalking/Classes/iFLYOSsdk/*.framework",
+    "TCCloudTalking/Classes/JuphoonCloud/*.framework"
+  ],
   "vendored_libraries": [
     "TCCloudTalking/Classes/VOIPSDK/*.a",
     "TCCloudTalking/Classes/TCPSDK/*.a"
