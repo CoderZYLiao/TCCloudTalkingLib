@@ -264,7 +264,10 @@ static UIWindow *window_;
 
             }else{
                 NSLog(@"%@", DoorItem.intercomUserId);
-                [JCManager.shared.call call:DoorItem.intercomUserId video:true callParam:nil];
+               bool value = [JCManager.shared.call call:DoorItem.intercomUserId video:true callParam:nil];
+                if (value) {
+                    NSLog(@"okokokok");
+                }
             }
         }else{//开锁
             [self OpenTheDoorWithID:DoorItem.num DoorName:DoorItem.name TalkID:DoorItem.intercomUserId] ;

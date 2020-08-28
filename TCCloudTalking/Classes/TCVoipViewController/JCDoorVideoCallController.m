@@ -131,7 +131,7 @@
         if (!activeCall.video) {
             [self removeCanvas];
         }
-    }  else {
+    } else {
         [self removeCanvas];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
