@@ -9,6 +9,7 @@
 #import "TYLVerticalButton.h"
 #import "Header.h"
 #import "RadarAnimationView.h"
+#import "TCCloudTalkingTool.h"
 
 @interface JCDoorVideoCallController ()
 {
@@ -40,7 +41,7 @@
 - (JCDoorVideoCallController *)initWithCallerItem:(JCCallItem *)item{
     if (self = [super init])
     {
-        self.callerName = item.displayName;
+        self.callerName = [TCCloudTalkingTool getMachineNameWithVoipNo:item.userId];
         self.incomingCall = item.direction == JCCallDirectionIn;
         self.isVideoCall = item.video;
         return self;
