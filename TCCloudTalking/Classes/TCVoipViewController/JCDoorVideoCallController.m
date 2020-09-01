@@ -10,6 +10,7 @@
 #import "Header.h"
 #import "RadarAnimationView.h"
 #import "TCCloudTalkingTool.h"
+#import "TCOpenDoorTool.h"
 
 @interface JCDoorVideoCallController ()
 {
@@ -42,6 +43,7 @@
     if (self = [super init])
     {
         self.callerName = [TCCloudTalkingTool getMachineNameWithVoipNo:item.userId];
+        self.callID = item.userId;
         self.incomingCall = item.direction == JCCallDirectionIn;
         self.isVideoCall = item.video;
         return self;
@@ -266,25 +268,14 @@
 - (void)funtionButtonClick:(UIButton *)button{
     if ([button.titleLabel.text isEqualToString:@"挂断"]) {
         [JCManager.shared.call term:[self getActiveCall] reason:JCCallReasonNone description:@"主动挂断"];
-        
-    }else if([button.titleLabel.text isEqualToString:@"开锁"])
-    {
-        
-        
-    }else if([button.titleLabel.text isEqualToString:@"免提"])
-    {
-        
+    } else if([button.titleLabel.text isEqualToString:@"开锁"]) {
+        [TCOpenDoorTool openTheDoorWithID:[TCCloudTalkingTool getMachineNumberWithVoipNo:self.callID] DoorName:[TCCloudTalkingTool getMachineNameWithVoipNo:self.callID] TalkID:self.callID];
+    } else if([button.titleLabel.text isEqualToString:@"免提"]) {
         [JCManager.shared.mediaDevice enableSpeaker:!JCManager.shared.mediaDevice.isSpeakerOn];
         self.JCanswerButton.selected = JCManager.shared.mediaDevice.isSpeakerOn;
-        
-    }else
-    {
+    } else {
         [self answerCall];
-        
     }
-    
-    
-    
 }
 
 

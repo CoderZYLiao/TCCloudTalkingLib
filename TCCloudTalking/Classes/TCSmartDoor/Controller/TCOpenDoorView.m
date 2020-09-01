@@ -201,9 +201,11 @@ static UIWindow *window_;
         [button setTitle:DoorItem.name forState:UIControlStateNormal];
         
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        //        [button setImage:[UIImage imageNamed:images[i]] forState:UIControlStateNormal];
-        [button setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_门口机_nor"] forState:UIControlStateNormal];
-        [button setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_门口机_pre"] forState:UIControlStateHighlighted];
+        if (DoorItem.isOnline) {
+            [button setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_门口机_pre"] forState:UIControlStateNormal];
+        } else {
+            [button setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"TCCT_门口机_nor"] forState:UIControlStateNormal];
+        }
         // 计算X\Y
         int row = i / maxCols;
         int col = i % maxCols;

@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 //对讲Id
 @property (nonatomic, strong) NSString *intercomUserId;
 //是否在线
-@property (nonatomic, strong) NSString *isOnline;
+@property (nonatomic, assign) BOOL isOnline;
 
 @end
 
