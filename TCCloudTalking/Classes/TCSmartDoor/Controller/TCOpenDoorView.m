@@ -265,11 +265,18 @@ static UIWindow *window_;
                 }
 
             }else{
-                NSLog(@"%@", DoorItem.intercomUserId);
-               bool value = [JCManager.shared.call call:DoorItem.intercomUserId video:true callParam:nil];
-                if (value) {
-                    NSLog(@"okokokok");
+                debugLog(@"%@", DoorItem.intercomUserId);
+                if (JCManager.shared.client.state == JCClientStateLogined) {
+                    JCCallParam *callParam = [[JCCallParam alloc] init];
+                    [callParam setExtraParam:DoorItem.name];
+                    bool value = [JCManager.shared.call call:DoorItem.intercomUserId video:true callParam:callParam];
+                    if (value) {
+                       debugLog(@"菊风调用call方法成功");
+                    }
+                } else {
+                    [MBManager showBriefAlert:@"对讲账号异常，请重新登录应用"];
                 }
+              
             }
         }else{//开锁
             [self OpenTheDoorWithID:DoorItem.num DoorName:DoorItem.name TalkID:DoorItem.intercomUserId] ;

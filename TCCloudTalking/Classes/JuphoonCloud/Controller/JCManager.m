@@ -18,8 +18,8 @@
 #import "PushNotificationManager.h"
 #import "TCCVibrationer.h"
 
-//#define MY_APP_KEY @"05a47ad899f302041d525097" //菊风测试key
-#define MY_APP_KEY @"6c06d1b0d9015e47ec144097" //
+#define MY_APP_KEY @"cad1a228ea4733f68b1a5097" //  公司注册正式key
+
 NSString * const kClientStateChangeNotification =  @"kClientStateChangeNotification";
 NSString * const kClientOnLoginSuccessNotification = @"kClientOnLoginNotification";
 NSString * const kClientOnLoginFailNotification = @"kClientOnLoginFailNotification";
@@ -314,7 +314,7 @@ static JCManager* _manager;
 {
     TCVoipCallListModel * callModel = [[TCVoipCallListModel alloc] init];
     callModel.userId = item.userId;
-    callModel.nickName = item.displayName ? item.displayName : item.userId;
+    callModel.nickName = item.extraParam ? item.extraParam : item.userId;
     callModel.sendCall = [NSString stringWithFormat:@"%ld",(long)item.direction];
     callModel.callStatus = [self genCallStatus:reason item:item];
     callModel.time = [NSString stringWithFormat:@"%ld",item.beginTime];
