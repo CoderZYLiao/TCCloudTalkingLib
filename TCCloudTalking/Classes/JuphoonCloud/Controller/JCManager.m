@@ -17,8 +17,7 @@
 #import "TCCAVPlayer.h"
 #import "PushNotificationManager.h"
 #import "TCCVibrationer.h"
-
-#define MY_APP_KEY @"cad1a228ea4733f68b1a5097" //  公司注册正式key
+#import "MemberBaseHeader.h"
 
 NSString * const kClientStateChangeNotification =  @"kClientStateChangeNotification";
 NSString * const kClientOnLoginSuccessNotification = @"kClientOnLoginNotification";
@@ -76,7 +75,8 @@ static JCManager* _manager;
 
 -(bool)initialize
 {
-    _client = [JCClient create:MY_APP_KEY callback:self creatParam:nil];
+    NSString *appKey = [[NSUserDefaults standardUserDefaults] objectForKey:TCJuphoonAppKey];
+    _client = [JCClient create:appKey callback:self creatParam:nil];
     _mediaDevice = [JCMediaDevice create:_client callback:self];
     _call = [JCCall create:_client mediaDevice:_mediaDevice callback:self];
     _push = [JCPush create:_client];
