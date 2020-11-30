@@ -15,6 +15,7 @@
 #import "ZYOptionView.h"
 #import "TCCloudServerModel.h"
 #import <MJExtension.h>
+#import "MemberBaseHeader.h"
 
 @interface TCFindPwdViewController () <ZYOptionViewDelegate>
 @property (nonatomic, strong) UIImageView *imgCloudServerIcon;
@@ -329,8 +330,13 @@
     if ([serverHost hasSuffix:@"/"] && serverModel.host.length > 2) {
         serverHost = [serverHost substringToIndex:serverHost.length - 1];
     }
+    NSString *o2oHost = serverModel.o2o.host;
+    if ([o2oHost hasSuffix:@"/"] && o2oHost.length > 2) {
+        o2oHost = [o2oHost substringToIndex:o2oHost.length - 1];
+    }
     [[NSUserDefaults standardUserDefaults] setObject:serverModel.name forKey:TCCloudServerNameKey];
     [[NSUserDefaults standardUserDefaults] setObject:serverHost forKey:TCCloudServerHostKey];
+    [[NSUserDefaults standardUserDefaults] setObject:o2oHost forKey:TCCloudServerO2OHostKey];
     [[NSUserDefaults standardUserDefaults] setObject:serverModel.icon forKey:TCCloudServerIconKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

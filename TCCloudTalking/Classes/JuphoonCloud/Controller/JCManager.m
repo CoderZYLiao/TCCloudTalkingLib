@@ -58,7 +58,8 @@ static JCManager* _manager;
 
 - (TCCAVPlayer *)player{
     if (_player == nil) {
-        NSURL * url = [NSURL URLWithString:[[NSBundle bundleForClass:[self class]] pathForResource:@"incomingCall" ofType:@"mp3" inDirectory:@"TCCloudTalking.bundle"]];
+        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"TCCloudTalking" ofType:@"bundle"]];
+        NSURL *url = [NSURL fileURLWithPath:[bundle pathForResource:@"incomingCall" ofType:@"mp3"]];
         _player = [[TCCAVPlayer alloc] initWithContentsOfURL:url];
     }
     return _player;

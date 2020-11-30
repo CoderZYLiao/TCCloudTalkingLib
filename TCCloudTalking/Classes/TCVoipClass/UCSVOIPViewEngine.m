@@ -66,7 +66,8 @@ NSString* const isRepeatCallStatus = @"isRepeatCallStatus";
 
 - (TCCAVPlayer *)player{
     if (_player == nil) {
-        NSURL * url = [NSURL URLWithString:[[NSBundle mainBundle] pathForResource:@"incomingCall" ofType:@"mp3"]];
+        NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"TCCloudTalking" ofType:@"bundle"]];
+        NSURL *url = [NSURL fileURLWithPath:[bundle pathForResource:@"incomingCall" ofType:@"mp3"]];
         _player = [[TCCAVPlayer alloc] initWithContentsOfURL:url];
     }
     return _player;

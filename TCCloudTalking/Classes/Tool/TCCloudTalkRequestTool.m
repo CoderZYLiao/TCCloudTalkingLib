@@ -36,10 +36,7 @@
                               faile:(FailBlock)failBlock
 {
     NSMutableDictionary * params = [NSMutableDictionary dictionary];
-    if(coId){
-        [params setObject:coId forKey:@"coId"];
-    }
-    [[TCHttpTool sharedHttpTool] getWithURL:GetMyDoorURL params:params success:^(id  _Nonnull json) {
+    [[TCHttpTool sharedHttpTool] getWithURL:[NSString stringWithFormat:@"%@/%@", GetMyDoorURL, coId] params:params success:^(id  _Nonnull json) {
         successBlock(json);
     } failure:^(NSError * _Nonnull error) {
         failBlock(error);

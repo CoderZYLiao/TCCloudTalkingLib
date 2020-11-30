@@ -15,6 +15,12 @@
 #define TCLoginStyleKey @"TCLoginStyle"
 #define TCIs5000PlatformKey @"TCIs5000PlatformKey"
 #define TCIntercomSchemeKey @"TCIntercomSchemeKey"
+#define TCCloudServerNameKey @"TCCloudServerName"
+#define TCCloudServerHostKey @"TCCloudServerHost"
+#define TCCloudServerO2OHostKey @"TCCloudServerO2OHost"
+#define TCCloudServerIconKey @"TCCloudServerIcon"
+#define TCJuphoonServerKey @"TCJuphoonServer"
+#define TCJuphoonAppKey @"TCJuphoonAppKey"
 
 #pragma mark - 链接
 // 登录链接

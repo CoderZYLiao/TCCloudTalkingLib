@@ -351,4 +351,25 @@
     return currentTimeString;
     
 }
+
+- (NSString *)jsonStringWithDict:(NSDictionary *)dict
+{
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:(NSJSONWritingPrettyPrinted) error:&error];
+    if (error) {
+        NSLog(@"%s -> JSONSerialization Error: %@", __FUNCTION__, error);
+        return nil;
+    }
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+}
+
+//获取当前时间戳
+- (NSString *)getTimestampWithTimeIntervalSinceNow:(NSInteger)second
+{
+    NSDate* date = [NSDate dateWithTimeIntervalSinceNow:second];//获取当前时间0秒后的时间
+    NSTimeInterval time=[date timeIntervalSince1970]*1000;// *1000 是精确到毫秒，不乘就是精确到秒
+    NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
+    return timeString;
+}
+
 @end

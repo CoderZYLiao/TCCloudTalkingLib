@@ -17,6 +17,7 @@
 #import "ZYOptionView.h"
 #import "TCCloudServerModel.h"
 #import <MJExtension.h>
+#import <AFNetworking.h>
 
 @interface TCLoginViewController () <UITextFieldDelegate, ZYOptionViewDelegate>
 @property (nonatomic, strong) UIImageView *imgViewBg;
@@ -42,8 +43,6 @@
 @property (nonatomic, strong) UIButton *btnBottomLoginStyle;
 @property (nonatomic, strong) UIView *viewBottomLeftLine;
 @property (nonatomic, strong) UIView *viewBottomRightLine;
-// 是否测试版提醒
-@property (nonatomic, strong) UILabel *lblIsTestVersionTip;
 // 云服务商列表
 @property (nonatomic, strong) NSMutableArray *cloudServerList;
 @property (nonatomic, assign) NSInteger selectedIndex;
@@ -64,7 +63,14 @@
         self.textFieldAccount.placeholder = @"请输入您的手机号";
         self.textFieldAccount.keyboardType = UIKeyboardTypePhonePad;
     }
-    [self getCloudServerRequest];
+    
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+       [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+           if (status == AFNetworkReachabilityStatusReachableViaWWAN || status == AFNetworkReachabilityStatusReachableViaWiFi) {
+               [self getCloudServerRequest];
+           }
+           NSLog(@"statusstatusstatusstatus:%ld", status);
+    }];
 }
 
 - (void)viewDidLoad {
@@ -96,9 +102,6 @@
     [self.view addSubview:self.btnBottomLoginStyle];
     [self.view addSubview:self.viewBottomLeftLine];
     [self.view addSubview:self.viewBottomRightLine];
-#if IsTestEnvironment
-    [self.view addSubview:self.lblIsTestVersionTip];
-#endif
 }
 
 #pragma mark - Private
@@ -228,12 +231,6 @@
         make.centerY.mas_equalTo(self.agreeLbl.mas_centerY);
         make.width.height.mas_equalTo(40);
     }];
-#if IsTestEnvironment
-    [self.lblIsTestVersionTip mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view.mas_right).offset(-15);
-        make.centerY.mas_equalTo(self.view.mas_top).offset(40);
-    }];
-#endif
 }
 
 - (void)findPwdBtnClick:(UIButton *)btn
@@ -326,8 +323,6 @@
             base64 = valueList[1];
             // 获取用户信息
             [weakSelf GetUserInfoRequest];
-            // 获取对讲信息
-            [weakSelf GetHousesInfoRequest];
         }
     } failure:^(NSError * _Nonnull error) {
         [MBManager hideAlert];
@@ -356,7 +351,7 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             // 如果有默认小区，去获取小区信息，根据返回信息可知道是否是5000小区
             NSString *defaultCommunityId = [dict objectForKey:@"defaultCommunityId"];
-            if (defaultCommunityId.length > 0) {
+            if ((defaultCommunityId != nil) && ![defaultCommunityId isEqual:[NSNull null]] && (defaultCommunityId.length > 0)) {
                 [self GetCommunitiesWithComId:defaultCommunityId];
             }
             if (self.loginSucceedAction) {
@@ -369,28 +364,6 @@
         }
     } failure:^(NSError * _Nonnull error) {
         [MBManager showBriefAlert:@"用户名或者密码错误"];
-    }];
-}
-
-// 获取对讲用户信息
-- (void)GetHousesInfoRequest
-{
-    [[TCHttpTool sharedHttpTool] getWithURL:GetHousesInfoURL params:nil success:^(id  _Nonnull json) {
-        [MBManager hideAlert];
-        NSInteger code = [[json objectForKey:@"code"] integerValue];
-        if (code == 0) {
-            NSDictionary *dict = [json xyValueForKey:@"data"];
-            if (dict) {
-                NSData *dataData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
-                NSString *dataJsonString = [[NSString alloc] initWithData:dataData encoding:NSUTF8StringEncoding];
-                [[NSUserDefaults standardUserDefaults] setObject:dataJsonString forKey:TCHousesInfoKey]; // 保存对讲用户信息
-                [[NSUserDefaults standardUserDefaults] synchronize];
-            }
-        } else {
-            [MBManager showBriefAlert:[json objectForKey:@"message"]];
-        }
-    } failure:^(NSError * _Nonnull error) {
-        [MBManager showBriefAlert:@"获取对讲信息失败"];
     }];
 }
 
@@ -457,9 +430,14 @@
     if ([serverHost hasSuffix:@"/"] && serverModel.host.length > 2) {
         serverHost = [serverHost substringToIndex:serverHost.length - 1];
     }
+    NSString *o2oHost = serverModel.o2o.host;
+    if ([o2oHost hasSuffix:@"/"] && o2oHost.length > 2) {
+        o2oHost = [o2oHost substringToIndex:o2oHost.length - 1];
+    }
     [[NSUserDefaults standardUserDefaults] setObject:serverModel.name forKey:TCCloudServerNameKey];
     [[NSUserDefaults standardUserDefaults] setObject:serverHost forKey:TCCloudServerHostKey];
     [[NSUserDefaults standardUserDefaults] setObject:serverModel.icon forKey:TCCloudServerIconKey];
+    [[NSUserDefaults standardUserDefaults] setObject:o2oHost forKey:TCCloudServerO2OHostKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -687,17 +665,6 @@
         _btnBottomLoginStyle.selected = NO;
     }
     return _btnBottomLoginStyle;
-}
-
-- (UILabel *)lblIsTestVersionTip
-{
-    if (_lblIsTestVersionTip == nil) {
-        _lblIsTestVersionTip = [[UILabel alloc] init];
-        _lblIsTestVersionTip.text = @"测试版";
-        _lblIsTestVersionTip.textColor = [UIColor redColor];
-        _lblIsTestVersionTip.font = [UIFont systemFontOfSize:13];
-    }
-    return _lblIsTestVersionTip;
 }
 
 @end

@@ -20,7 +20,7 @@ static AFHTTPSessionManager *mgr = nil;
         sharedHttpTool = [[TCHttpTool alloc] init];
         mgr = [AFHTTPSessionManager manager];
         mgr.requestSerializer = [AFJSONRequestSerializer serializer];
-        [mgr.requestSerializer setTimeoutInterval:10];
+        [mgr.requestSerializer setTimeoutInterval:30];
         NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:TCAccessToken];
         [mgr.requestSerializer setValue:[NSString stringWithFormat:@"bearer %@", accessToken] forHTTPHeaderField:@"Authorization"];
         mgr.responseSerializer = [AFJSONResponseSerializer serializer];
