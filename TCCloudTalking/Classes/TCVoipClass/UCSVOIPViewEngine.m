@@ -446,7 +446,7 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         nickName = [TCCTCatEyeAccountManager tcSelectCatEyeNameByCatEyeAccount:caller];
     }
     
-    if (nickName == nil) {
+    if (nickName == nil || nickName.length <= 0) {
         nickName = caller;
     }
     
@@ -841,10 +841,6 @@ UCSVOIPViewEngine * ucsVoipViewEngine = nil;
         
     }
     
-    
-    if ([callModel.userId isEqualToString:callModel.nickName]) {
-        callModel.nickName = @"";
-    }
     
     
     

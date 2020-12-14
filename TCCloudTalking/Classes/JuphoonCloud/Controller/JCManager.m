@@ -18,6 +18,7 @@
 #import "PushNotificationManager.h"
 #import "TCCVibrationer.h"
 #import "MemberBaseHeader.h"
+#import "TCCloudTalkingTool.h"
 
 NSString * const kClientStateChangeNotification =  @"kClientStateChangeNotification";
 NSString * const kClientOnLoginSuccessNotification = @"kClientOnLoginNotification";
@@ -315,7 +316,7 @@ static JCManager* _manager;
 {
     TCVoipCallListModel * callModel = [[TCVoipCallListModel alloc] init];
     callModel.userId = item.userId;
-    callModel.nickName = item.extraParam ? item.extraParam : item.userId;
+    callModel.nickName = [TCCloudTalkingTool getMachineNameWithVoipNo:item.userId];
     callModel.sendCall = [NSString stringWithFormat:@"%ld",(long)item.direction];
     callModel.callStatus = [self genCallStatus:reason item:item];
     callModel.time = [NSString stringWithFormat:@"%ld",item.beginTime];

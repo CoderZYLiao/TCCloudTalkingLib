@@ -34,10 +34,26 @@ static dispatch_once_t predicate;
     return userModel.phoneNumber;
 }
 
+// 当前小区的机器列表
 + (void)saveUserMachineList:(id )jsonstr
 {
     //第一步.设置json文件的保存路径
     NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/MyMachineJson.json"];
+    
+    NSLog(@"%@====filePath",filePath);
+    
+    //第二步.封包数据
+    NSData *json_data = [NSJSONSerialization dataWithJSONObject:jsonstr options:NSJSONWritingPrettyPrinted error:nil];
+    
+    //第三步.写入数据
+    [json_data writeToFile:filePath atomically:YES];
+}
+
+// 全部的机器列表
++ (void)saveUserAllMachineList:(id )jsonstr
+{
+    //第一步.设置json文件的保存路径
+    NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/MyAllMachineJson.json"];
     
     NSLog(@"%@====filePath",filePath);
     
@@ -56,7 +72,7 @@ static dispatch_once_t predicate;
         [MBManager hideAlert];;
         debugLog(@"%@-----门口机列表",result);
         if ([result[@"code"] intValue] == 0) {
-            [self saveUserMachineList:result];
+            [self saveUserAllMachineList:result];
         }
     } faile:^(NSError * _Nonnull error) {
         
@@ -161,7 +177,7 @@ static dispatch_once_t predicate;
 {
     //读取本地json数据
     NSString *str = [[NSString alloc] init];
-    NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/MyMachineJson.json"];//获取json文件保存的路径
+    NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/MyAllMachineJson.json"];//获取json文件保存的路径
     NSData *data = [NSData dataWithContentsOfFile:filePath];//获取指定路径的data文件
     id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil]; //获取到json文件的跟数据（字典）
     NSArray *arr = [json objectForKey:@"data"];//获取指定key值的value，是一个数组
@@ -181,7 +197,9 @@ static dispatch_once_t predicate;
 {
     //读取本地json数据
     NSString *str = [[NSString alloc] init];
-    NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/MyMachineJson.json"];//获取json文件保存的路径
+    NSBundle *bundle = [NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:@"TCCloudTalking" ofType:@"bundle"]];
+          NSURL *url = [NSURL fileURLWithPath:[bundle pathForResource:@"incomingCall" ofType:@"mp3"]];
+    NSString *filePath = [NSHomeDirectory() stringByAppendingString:@"/Documents/MyAllMachineJson.json"];//获取json文件保存的路径
     NSData *data = [NSData dataWithContentsOfFile:filePath];//获取指定路径的data文件
     id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil]; //获取到json文件的跟数据（字典）
     NSArray *arr = [json objectForKey:@"data"];//获取指定key值的value，是一个数组

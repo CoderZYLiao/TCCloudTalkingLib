@@ -31,6 +31,13 @@
  */
 + (void)saveUserMachineList:(id )jsonstr;
 
+/**
+保存用户所有的门口机列表
+
+@param jsonstr json数据
+*/
++ (void)saveUserAllMachineList:(id )jsonstr;
+
 
 /**
  获取门口机数组
