@@ -109,7 +109,9 @@
         self.playStopBtn.hidden = NO;
         self.videoView.hidden = NO;
         self.photoImageView.hidden = YES;
-        [self.videoView.layer removeAllSublayers];
+        for (CALayer *layer in self.videoView.layer.sublayers) {
+            [layer removeFromSuperlayer];
+        }
         //设置播放的项目
         AVPlayerItem *item = [[AVPlayerItem alloc] initWithURL:[NSURL URLWithString:listModel.url]];
         //初始化player对象
@@ -211,7 +213,7 @@
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(kScreenWidth / 2, TccHeight(120));
+    return CGSizeMake(kMainScreenWidth / 2, TccHeight(120));
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -293,7 +295,7 @@
         _playStopBtn = [UIButton new];
         [_playStopBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_playIcon"] forState:UIControlStateNormal];
         [_playStopBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_stopIcon"] forState:UIControlStateSelected];
-        [_playStopBtn setTarget:self action:@selector(playStopBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_playStopBtn addTarget:self action:@selector(playStopBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _playStopBtn;
 }
@@ -321,7 +323,7 @@
         _downBtn = [UIButton new];
         [_downBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_down"] forState:UIControlStateNormal];
         [_downBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_downPre"] forState:UIControlStateHighlighted];
-        [_downBtn setTarget:self action:@selector(downBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_downBtn addTarget:self action:@selector(downBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _downBtn;
 }

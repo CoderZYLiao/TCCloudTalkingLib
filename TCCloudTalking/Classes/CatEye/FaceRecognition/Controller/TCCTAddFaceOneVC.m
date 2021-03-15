@@ -8,6 +8,7 @@
 #import "TCCTAddFaceOneVC.h"
 #import "TCCTCatEyeModel.h"
 #import "TCCTAddFaceTwoVC.h"
+#import "Header.h"
 
 @interface TCCTAddFaceOneVC ()
 
@@ -428,7 +429,7 @@
 -(AVCaptureVideoPreviewLayer *)previewLayer{
     if (_previewLayer == nil) {
         _previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
-        _previewLayer.frame = CGRectMake(0, 0, kScreenWidth - TccWidth(100) - 1, kScreenWidth - TccWidth(100) - 1);
+        _previewLayer.frame = CGRectMake(0, 0, kMainScreenWidth - TccWidth(100) - 1, kMainScreenWidth - TccWidth(100) - 1);
         _previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     }
     return _previewLayer;

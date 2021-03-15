@@ -10,7 +10,7 @@ static const float timeinterval = 0.5;
 
 #import <QuartzCore/QuartzCore.h>
 #import "RadarAnimationView.h"
-#import "YYKit.h"
+#import "Header.h"
 
 @interface RadarAnimationView ()
 //按钮图片

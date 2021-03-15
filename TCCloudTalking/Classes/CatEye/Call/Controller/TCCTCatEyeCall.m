@@ -10,6 +10,7 @@
 #import "TCCTCatEyeModel.h"
 #import "TCCTCatEyeAccountManager.h"
 #import "TCCTApiManager.h"
+#import <YYModel.h>
 
 @interface TCCTCatEyeCall ()
 
@@ -90,7 +91,7 @@
     BOOL isHaveCallID = NO;
     NSDictionary *dict = [TCCTCatEyeAccountManager tcSelectCatEyeModelByCatEyeAccount:self.callID];
     if (dict) {
-        TCCTCatEyeModel *model = [TCCTCatEyeModel modelWithJSON:dict];
+        TCCTCatEyeModel *model = [TCCTCatEyeModel yy_modelWithJSON:dict];
         if ([model.account isEqualToString:self.callID]) {
             isHaveCallID = YES;
             self.curCatEyeModel = model;
@@ -488,7 +489,7 @@
         _beforePhotoBtn = [UIButton new];
         [_beforePhotoBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_photoBtn"] forState:UIControlStateNormal];
         [_beforePhotoBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_photoBtnPre"] forState:UIControlStateHighlighted];
-        [_beforePhotoBtn setTarget:self action:@selector(photoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_beforePhotoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _beforePhotoBtn;
 }
@@ -498,7 +499,7 @@
         _beforeVideoBtn = [UIButton new];
         [_beforeVideoBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_video"] forState:UIControlStateNormal];
         [_beforeVideoBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_videoPre"] forState:UIControlStateHighlighted];
-        [_beforeVideoBtn setTarget:self action:@selector(videoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_beforeVideoBtn addTarget:self action:@selector(videoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _beforeVideoBtn;
 }
@@ -516,7 +517,7 @@
         _afterPhotoBtn = [UIButton new];
         [_afterPhotoBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_photoBtn"] forState:UIControlStateNormal];
         [_afterPhotoBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_photoBtnPre"] forState:UIControlStateHighlighted];
-        [_afterPhotoBtn setTarget:self action:@selector(photoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_afterPhotoBtn addTarget:self action:@selector(photoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _afterPhotoBtn;
 }
@@ -526,7 +527,7 @@
         _afterMuteBtn = [UIButton new];
         [_afterMuteBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_vol"] forState:UIControlStateNormal];
         [_afterMuteBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_volPre"] forState:UIControlStateHighlighted];
-        [_afterMuteBtn setTarget:self action:@selector(muteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_afterMuteBtn addTarget:self action:@selector(muteBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _afterMuteBtn;
 }
@@ -536,7 +537,7 @@
         _afterVideoBtn = [UIButton new];
         [_afterVideoBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_video"] forState:UIControlStateNormal];
         [_afterVideoBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_videoPre"] forState:UIControlStateHighlighted];
-        [_afterVideoBtn setTarget:self action:@selector(videoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_afterVideoBtn addTarget:self action:@selector(videoBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _afterVideoBtn;
 }
@@ -564,7 +565,7 @@
         _answerBtn = [UIButton new];
         [_answerBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_answer"] forState:UIControlStateNormal];
         [_answerBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_answerPre"] forState:UIControlStateHighlighted];
-        [_answerBtn setTarget:self action:@selector(answerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_answerBtn addTarget:self action:@selector(answerBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _answerBtn;
 }
@@ -574,7 +575,7 @@
         _dropRightBtn = [UIButton new];
         [_dropRightBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_drop"] forState:UIControlStateNormal];
         [_dropRightBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_dropPre"] forState:UIControlStateHighlighted];
-        [_dropRightBtn setTarget:self action:@selector(dropBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_dropRightBtn addTarget:self action:@selector(dropBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _dropRightBtn;
 }
@@ -584,7 +585,7 @@
         _dropCenterBtn = [UIButton new];
         [_dropCenterBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_drop"] forState:UIControlStateNormal];
         [_dropCenterBtn setImage:[TCCloudTalkingImageTool getToolsBundleImage:@"sm_dropPre"] forState:UIControlStateHighlighted];
-        [_dropCenterBtn setTarget:self action:@selector(dropBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_dropCenterBtn addTarget:self action:@selector(dropBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _dropCenterBtn;
 }

@@ -14,6 +14,7 @@
 #import "TCOpenDoorTool.h"
 #import "UIImage+GIF.h"
 
+
 @interface TCVoiceUnlockViewController ()<IFlySpeechRecognizerDelegate>
 //科大讯飞识别
 @property (nonatomic, strong) IFlySpeechRecognizer *iFlySpeechRecognizer;

@@ -11,7 +11,7 @@
 
 #import "TCCTCatEyeHeader.h"
 #import "TCCTApiManager.h"
-
+#import <YYModel.h>
 #import "TCCTFaceCell.h"
 #import "TCCTAddFaceOneVC.h"
 #import "TCCTAddFaceTwoVC.h"
@@ -92,7 +92,7 @@
             [self.dataArray removeAllObjects];
             NSArray *requestDataArray = [responseObject objectForKey:jsonResult_Data];
             for (NSDictionary *dict in requestDataArray) {
-                TCCTFaceModel *model = [TCCTFaceModel modelWithJSON:dict];
+                TCCTFaceModel *model = [TCCTFaceModel yy_modelWithJSON:dict];
                 [self.dataArray addObject:model];
             }
             [self.memberTableView reloadData];
@@ -207,7 +207,7 @@
         [_addMemberBtn setTitle:@"添加家庭成员" forState:UIControlStateNormal];
         [_addMemberBtn.layer setCornerRadius:Fillet_CornerRadius];
         [_addMemberBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_addMemberBtn setTarget:self action:@selector(addMemberBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+        [_addMemberBtn addTarget:self action:@selector(addMemberBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addMemberBtn;
 }

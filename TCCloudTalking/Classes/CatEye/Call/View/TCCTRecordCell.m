@@ -8,6 +8,7 @@
 #import "TCCTRecordCell.h"
 #import "TCCTRecordModel.h"
 #import "SDWebImage.h"
+#import "Header.h"
 
 @interface TCCTRecordCell ()
 

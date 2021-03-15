@@ -65,6 +65,7 @@ Pod::Spec.new do |s|
     s.dependency 'MJExtension', '~> 3.0.17'
     s.dependency 'SDWebImage', '~> 5.0.6'
     s.dependency 'MBProgressHUD', '~> 1.1.0'
+    s.dependency 'YYModel'
 
     #依赖的系统框架
     s.frameworks = 'Foundation','UIKit','MapKit','VideoToolbox','CoreGraphics','AssetsLibrary','AddressBookUI','MapKit','CoreAudio','AudioToolbox','CFNetwork','SystemConfiguration','MobileCoreServices','StoreKit','CoreLocation','CoreTelephony','AVFoundation','MediaPlayer','CoreMedia','CoreFoundation','MessageUI','AddressBook','Contacts','AddressBook','QuartzCore','CoreMotion','CoreVideo','GLKit','PushKit','ReplayKit','Security'

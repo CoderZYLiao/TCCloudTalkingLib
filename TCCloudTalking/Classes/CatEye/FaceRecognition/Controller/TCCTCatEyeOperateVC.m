@@ -9,6 +9,7 @@
 #import "TCCTCatEyeModel.h"
 #import "TCCTScanVC.h"
 #import "TCCTApiManager.h"
+#import <YYModel.h>
 
 @interface TCCTCatEyeOperateVC ()<TCCTScanVCDelegate>
 
@@ -222,7 +223,7 @@
             BOOL requestBool = [[responseObject objectForKey:jsonResult_Data] boolValue];
             if (requestBool) {
                 [MBManager showBriefAlert:@"新增猫眼设备成功"];
-                TCCTCatEyeModel *catEyeModel = [TCCTCatEyeModel modelWithJSON:[responseObject objectForKey:jsonResult_Data]];
+                TCCTCatEyeModel *catEyeModel = [TCCTCatEyeModel yy_modelWithJSON:[responseObject objectForKey:jsonResult_Data]];
                 catEyeModel.devType = 3000;
                 self.catEyeModel = catEyeModel;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -248,7 +249,7 @@
             BOOL requestBool = [[responseObject objectForKey:jsonResult_Data] boolValue];
             if (requestBool) {
                 [MBManager showBriefAlert:@"编辑猫眼设备成功"];
-                TCCTCatEyeModel *catEyeModel = [TCCTCatEyeModel modelWithJSON:[responseObject objectForKey:jsonResult_Data]];
+                TCCTCatEyeModel *catEyeModel = [TCCTCatEyeModel yy_modelWithJSON:[responseObject objectForKey:jsonResult_Data]];
                 catEyeModel.devType = 3000;
                 self.catEyeModel = catEyeModel;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
