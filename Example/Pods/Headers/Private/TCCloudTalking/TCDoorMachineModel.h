@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/TCSmartDoor/Model/TCDoorMachineModel.h
+../../../../../TCCloudTalking/Classes/Public/TCDoorMachineModel.h

@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/TCPSDK/UCSTCPSDK.h
+../../../../../TCCloudTalking/Classes/UCS/TCPSDK/UCSTCPSDK.h

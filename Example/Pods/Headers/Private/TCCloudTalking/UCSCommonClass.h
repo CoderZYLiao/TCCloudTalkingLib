@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/VOIPSDK/UCSCommonClass.h
+../../../../../TCCloudTalking/Classes/UCS/VOIPSDK/UCSCommonClass.h

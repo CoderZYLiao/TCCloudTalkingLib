@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/VOIPSDK/UCSVideoDefine.h
+../../../../../TCCloudTalking/Classes/UCS/VOIPSDK/UCSVideoDefine.h

@@ -1,1 +1,1 @@
-../../../../../TCCloudTalking/Classes/Category/NSString+UCLog.h
+../../../../../TCCloudTalking/Classes/UCS/TCVoipClass/NSString+UCLog.h

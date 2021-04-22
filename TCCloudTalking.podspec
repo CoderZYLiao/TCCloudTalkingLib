@@ -10,9 +10,9 @@ Pod::Spec.new do |s|
     #库名称
     s.name             = 'TCCloudTalking'
     #版本号
-    s.version          = '1.1.4'
+    s.version          = '1.0.0'
     #库简短介绍
-    s.summary          = '云对讲组件'
+    s.summary          = '云对讲SDK'
     
     # This description is used to generate tags and improve search results.
     #   * Think: What does it do? Why did you write it? What is the focus?
@@ -24,48 +24,23 @@ Pod::Spec.new do |s|
     TODO: Add long description of the pod here.
     DESC
     #开源库地址，或者是博客、社交地址等
-    s.homepage         = 'http://10.10.5.215:7880/iosteam/TCCloudTalking'
+    s.homepage         = 'https://github.com/CoderZYLiao/TCCloudTalkingLib'
     # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
     #开源协议
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     #开源库作者
     s.author           = { 'TYL' => 'tianyalin@taichuan.com' }
     #开源库GitHub的路径与tag值，GitHub路径后必须有.git,tag实际就是上面的版本
-    s.source           = { :git => 'http://10.10.5.215:7880/iosteam/TCCloudTalking.git', :tag => s.version.to_s }
+    s.source           = { :git => 'https://github.com/CoderZYLiao/TCCloudTalkingLib.git', :tag => s.version.to_s }
     # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
     
     #开源库最低支持
     s.ios.deployment_target = '9.0'
     #源库资源文件
     s.source_files = 'TCCloudTalking/Classes/**/*'
-    
-    # s.resource_bundles = {
-    #   'TCCloudTalking' => ['TCCloudTalking/Assets/*.png']
-    # }
-    
-    #  s.public_header_files = 'TCCloudTalking/Classes/Header/Header.h'
-    # s.dependency 'AFNetworking', '~> 2.3'
+  
     #是否支持arc
     s.requires_arc = true
-    
-    #依赖系统库
-    
-    
-    #开源库依赖库
-    
-    s.dependency 'TCMember'
-    s.dependency 'TCPublicKit'
-    s.dependency 'FMDB', '~> 2.6.2'
-    s.dependency 'pop', '~> 1.0.9'
-    s.dependency 'DZNEmptyDataSet', '~> 1.8.1'
-    s.dependency 'SVProgressHUD', '~> 2.2.5'
-    s.dependency 'SGQRCode', '~> 3.0.1'
-    s.dependency 'Masonry', '~> 1.1.0'
-    s.dependency 'MJRefresh', '~> 3.2.0'
-    s.dependency 'MJExtension', '~> 3.0.17'
-    s.dependency 'SDWebImage'
-    s.dependency 'MBProgressHUD'
-    s.dependency 'YYModel'
 
     #依赖的系统框架
     s.frameworks = 'Foundation','UIKit','MapKit','VideoToolbox','CoreGraphics','AssetsLibrary','AddressBookUI','MapKit','CoreAudio','AudioToolbox','CFNetwork','SystemConfiguration','MobileCoreServices','StoreKit','CoreLocation','CoreTelephony','AVFoundation','MediaPlayer','CoreMedia','CoreFoundation','MessageUI','AddressBook','Contacts','AddressBook','QuartzCore','CoreMotion','CoreVideo','GLKit','PushKit','ReplayKit','Security'
@@ -73,19 +48,21 @@ Pod::Spec.new do |s|
     s.library = 'resolv','sqlite3.0','z', 'stdc++.6','stdc++','c++'
     
     #添加依赖第三方的framework
-    s.vendored_frameworks = 'TCCloudTalking/Classes/iFLYOSsdk/*.framework','TCCloudTalking/Classes/JuphoonCloud/*.framework'
+    s.vendored_frameworks = 'TCCloudTalking/Classes/Juphoon/*.framework'
     
     #静态库.a
-    s.vendored_library = 'TCCloudTalking/Classes/VOIPSDK/*.a','TCCloudTalking/Classes/TCPSDK/*.a'
+    s.vendored_library = 'TCCloudTalking/Classes/UCS/VOIPSDK/*.a','TCCloudTalking/Classes/UCS/TCPSDK/*.a'
     
     #添加资源文件
     #s.resource = 'XXX/XXXX/**/*.bundle'
     #资源文件的路径，图片、音频等
-    s.resource_bundles = {
-        'TCCloudTalking' => ['TCCloudTalking/Assets/*.png','TCCloudTalking/Assets/*']
-    }
+#    s.resource_bundles = {
+#        'TCCloudTalking' => ['TCCloudTalking/Assets/*.png','TCCloudTalking/Assets/*']
+#    }
+    # 调试公开所有的头文件 这个地方下面的头文件 如果是在Example中调试 就公开全部，需要打包就只公开特定的h文件
+    #    s.public_header_files = 'TCCloudTalking/Classes/Public/*.h'   #需要对外开放的头文件
     #在 podspec 文件中添加 s.static_framework = true，CocoaPods 就会把这个库配置成static framework。同时支持 Swift 和 Objective-C
-    #s.static_framework = true
+    s.static_framework = true
     
     #设置此处将在 模拟器编译时不产生二进制文件
     s.pod_target_xcconfig = { 'VALID_ARCHS[sdk=iphonesimulator*]' => '' }
