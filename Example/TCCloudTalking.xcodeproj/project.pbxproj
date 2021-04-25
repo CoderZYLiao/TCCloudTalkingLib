@@ -344,7 +344,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-TCCloudTalking_Example/Pods-TCCloudTalking_Example-frameworks.sh",
-				"${PODS_ROOT}/../../TCCloudTalking/Classes/Juphoon/JCSDKOC.framework",
+				"${PODS_ROOT}/../../TCCloudTalking/Lib/Juphoon/JCSDKOC.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (

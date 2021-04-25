@@ -1,6 +1,6 @@
 {
   "name": "TCCloudTalking",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "summary": "云对讲SDK",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/CoderZYLiao/TCCloudTalkingLib",
@@ -9,11 +9,11 @@
     "file": "LICENSE"
   },
   "authors": {
-    "TYL": "tianyalin@taichuan.com"
+    "LZY": "liaozhiyao@taichuan.com"
   },
   "source": {
     "git": "https://github.com/CoderZYLiao/TCCloudTalkingLib.git",
-    "tag": "1.0.0"
+    "tag": "1.0.1"
   },
   "platforms": {
     "ios": "9.0"
@@ -61,7 +61,7 @@
     "stdc++",
     "c++"
   ],
-  "vendored_frameworks": "TCCloudTalking/Classes/Juphoon/*.framework",
+  "vendored_frameworks": "TCCloudTalking/Lib/Juphoon/*.framework",
   "vendored_libraries": [
     "TCCloudTalking/Classes/UCS/VOIPSDK/*.a",
     "TCCloudTalking/Classes/UCS/TCPSDK/*.a"

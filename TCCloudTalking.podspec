@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     #库名称
     s.name             = 'TCCloudTalking'
     #版本号
-    s.version          = '1.0.1'
+    s.version          = '1.0.2'
     #库简短介绍
     s.summary          = '云对讲SDK'
     
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
     #开源协议
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     #开源库作者
-    s.author           = { 'TYL' => 'tianyalin@taichuan.com' }
+    s.author           = { 'LZY' => 'liaozhiyao@taichuan.com' }
     #开源库GitHub的路径与tag值，GitHub路径后必须有.git,tag实际就是上面的版本
     s.source           = { :git => 'https://github.com/CoderZYLiao/TCCloudTalkingLib.git', :tag => s.version.to_s }
     # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
@@ -48,7 +48,7 @@ Pod::Spec.new do |s|
     s.library = 'resolv','sqlite3.0','z', 'stdc++.6','stdc++','c++'
     
     #添加依赖第三方的framework
-    s.vendored_frameworks = 'TCCloudTalking/Classes/Juphoon/*.framework'
+    s.vendored_frameworks = 'TCCloudTalking/Lib/Juphoon/*.framework'
     
     #静态库.a
     s.vendored_library = 'TCCloudTalking/Classes/UCS/VOIPSDK/*.a','TCCloudTalking/Classes/UCS/TCPSDK/*.a'

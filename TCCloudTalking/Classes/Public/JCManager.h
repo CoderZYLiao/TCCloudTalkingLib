@@ -46,7 +46,7 @@ extern NSString * const kAccountQueryUserStatusKey;
 
 + (JCManager*)shared;
 
--(bool)initialize;
+-(bool)initializeWithAppKey:(NSString *)appKey;
 
 -(void)uninitialize;
 

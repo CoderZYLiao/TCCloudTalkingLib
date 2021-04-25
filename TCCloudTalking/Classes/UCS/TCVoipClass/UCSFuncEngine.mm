@@ -7,7 +7,7 @@
 #import "UCSVOIPViewEngine.h"
 #import "Header.h"
 
-NSString * const UCSNotiClsoeView = @"UCSNotiClsoeView";
+NSString * const UCSNotiCloseView = @"UCSNotiCloseView";
 NSString * const UCSNotiHeadPhone = @"UCSNotiHeadPhone";
 NSString * const UCSNotiCallBalance = @"UCSNotiCallBalance";
 NSString * const UCSNotiRefreshCallList = @"UCSNotiRefreshCallList";

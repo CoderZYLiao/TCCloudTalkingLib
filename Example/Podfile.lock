@@ -4,7 +4,7 @@ PODS:
   - FBSnapshotTestCase/Core (2.1.4)
   - FBSnapshotTestCase/SwiftSupport (2.1.4):
     - FBSnapshotTestCase/Core
-  - TCCloudTalking (1.0.0)
+  - TCCloudTalking (1.0.1)
 
 DEPENDENCIES:
   - FBSnapshotTestCase
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
-  TCCloudTalking: 5204c288bd949b534350e69955204c1f9345030c
+  TCCloudTalking: 93a4e520a28dd8dbcf433bf25896a4553313dd42
 
 PODFILE CHECKSUM: a86865dbd704557be2116ef9d9da4cbb3f1f8791
 

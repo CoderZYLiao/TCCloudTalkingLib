@@ -7,104 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		024B490DE4EC37B2A0A88BF928A96BD5 /* JCMediaDeviceVideoCanvas.h in Headers */ = {isa = PBXBuildFile; fileRef = BF6AF9099269077FB9FDAB16687E4487 /* JCMediaDeviceVideoCanvas.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		03C297F10D1399941EF2A0A79A73AB7B /* JCSDKOC in Sources */ = {isa = PBXBuildFile; fileRef = 25ABF6B2A36544CA101563DE0D547680 /* JCSDKOC */; };
-		062516B01CF070517CCDDBD384ACFD8A /* JCClientConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = B79EC72F2F8CB83087F6A64C313C2A9E /* JCClientConstants.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0838DCD8247A3D654EEE5FA291E42C16 /* JCLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F769852E1FC7B303A630C756863F68F /* JCLog.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0939108ED7C73C461D5EB098AC859E0A /* UCSVOIPViewEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FA168D0750F05E876204EF5F5F95A5B /* UCSVOIPViewEngine.m */; };
 		0978FEF1E925744EEAF7E76217BF4A86 /* FBSnapshotTestCase.h in Headers */ = {isa = PBXBuildFile; fileRef = BF231DD85753C39424F0F58A879E8294 /* FBSnapshotTestCase.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0A450C38E1A8E8ECE296CF91FC04F7D1 /* TCCloudTalking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D39C1CB5F5D03E17CBD99AB0A885519B /* TCCloudTalking-dummy.m */; };
-		0E65C3E06B3082981F6B7B090E3DDC7F /* UCSVOIPViewEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 2EB7FB5744397440601CA26065E1A590 /* UCSVOIPViewEngine.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		0FCD2C23954395D6EFF7DCCF028EF2F5 /* libucstcplib.a in Sources */ = {isa = PBXBuildFile; fileRef = 3514D561AC0DA49DD38E158AA0957FEA /* libucstcplib.a */; };
-		10159067A2643B9A1D7C44B1868E228C /* JCNetCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = A3FE2987FBC07DF49A2C4A8C59732C96 /* JCNetCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0ABA8F87CF1B641923A04A9064B8988E /* UCSFuncEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = EFF976A9355266A94018EB2B44A3F65D /* UCSFuncEngine.mm */; };
 		150E44F5E68BB8211B1BFDA5C22EE888 /* Pods-TCCloudTalking_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A00593C525BC5CC8CEDA945456CB6F38 /* Pods-TCCloudTalking_Tests-dummy.m */; };
-		154FF32002050779A2B16FEAB7577D83 /* UCSTcpClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C2A9AA35F6110BB493FFD06D3642812 /* UCSTcpClient.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		16676737C302EBFFB58987001B908491 /* JCDoodleProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 75E96D3F1BDEB6612BB04CE99BCCC9C2 /* JCDoodleProtocol.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1658D10CE4FF99EE37FBC7B2F53948FB /* UCSTCPCommonClass.h in Headers */ = {isa = PBXBuildFile; fileRef = A73A3F87392573F22B5D1FB9E84A0EB1 /* UCSTCPCommonClass.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		167D8B31213AA066E2343702CAD3223A /* JCManager.h in Headers */ = {isa = PBXBuildFile; fileRef = E9A4C0442274A76B94A622F9CB573D80 /* JCManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		19C22F14E991F46B9BF05AD0078E3849 /* libucsvideosdk.a in Sources */ = {isa = PBXBuildFile; fileRef = C38CA1F8324F7BD2D5EDE47DA6C5A2AD /* libucsvideosdk.a */; };
 		19F37CC50E23DE48D4345923514B8F98 /* UIApplication+StrictKeyWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = AA305E8AE2A0531EB3AA3E9958E7E2E5 /* UIApplication+StrictKeyWindow.m */; };
-		1AC6F0CF6204543AD907EA5AA0ED21AF /* UCSFuncEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = BD637ADAD1F333AB64F5B82992EDEF81 /* UCSFuncEngine.mm */; };
-		1E999C8D82D1F7E8E992AE9041262617 /* UCSFuncEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = DFB6A80C0A7530F29AA43068CFD727E8 /* UCSFuncEngine.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2D96E4EDA81380AC503D4475AD2D2C78 /* JCMediaChannelCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 1133B7EEA1F5D82A7C07F9696DB639B2 /* JCMediaChannelCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2DBB21C508DC38F351F254D8F11393F6 /* UCSError.h in Headers */ = {isa = PBXBuildFile; fileRef = C6F0628EEF90AD7D140F6995BA44AE32 /* UCSError.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2EFFCAD9C2028DE696C9AB54FA53116B /* JCCallItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FD81BF9809DE9E4C6737D12AB132F70 /* JCCallItem.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		370A89CBE6DCEBF16D1678E5E5B4674E /* Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 38726D4B3273CBC5CC7B5ED53313A066 /* Header.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		39F9DD3121C794C0D2E49DCDCEB60EB2 /* UCSEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B466448266CEC8F798CB2CA24EA1354 /* UCSEvent.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		40FFDBC007B3D075DE1C50DA42959809 /* UCSTcpDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = D5023CFF92C397BEB58F1011DADFD276 /* UCSTcpDefine.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4173306A21836CAE8253C6FCFCC268A5 /* JCMessageChannelCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A7C5F07FE5C29AD51786D8EDD1874A6 /* JCMessageChannelCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4419D0A709C78447688C298175761711 /* JCCallConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C453D80C0DB6072BD83E730859F2445 /* JCCallConstants.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		483FA6759AB84FD6D5D7A10C7212361B /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = 814373BB9E8ED1C550380488580769D3 /* module.modulemap */; };
-		4AFEB4ADEEB90605D0DB41A2D1ACE177 /* JCStorageConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 199561EE357DEC91F86D21DC0DC20D06 /* JCStorageConstants.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4DE6AAA5AF9FE425F46AB4DE76924AB8 /* TCDoorMachineModel.h in Headers */ = {isa = PBXBuildFile; fileRef = D2BC3692427145188E99490CAD1689F1 /* TCDoorMachineModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2784F048B5AD6F6636323871E1BEA14F /* UCSEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 87C84DAF2DF83956CD33A72FC0C4E2FF /* UCSEvent.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2C9156BE7DD66554F68B17FFD32678E8 /* UCSVOIPViewEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D33A84EB9C7E5291C52D89BF96880 /* UCSVOIPViewEngine.m */; };
+		389497D4BD1048E5BA190F5AA42ACE17 /* UCConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 258D83576A764E9B15D5387B2DB02026 /* UCConst.m */; };
 		50544CC39838135DDBF0047A180E97F4 /* FBSnapshotTestCasePlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = 1BB8800FEBEFE94A390F54FF049C0F04 /* FBSnapshotTestCasePlatform.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		51E173E7AED5534289367853BA881DF0 /* JCGroupMember.h in Headers */ = {isa = PBXBuildFile; fileRef = AC7DAA6D8054D158A6ECD463BC822E2F /* JCGroupMember.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		54EDC338681540C7C8C8AD67395A8928 /* JCGroupCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = D8184A9F0A3C4E34E9BCEE09795D4AF0 /* JCGroupCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		5693A08347C5CFEBCEBAA2AED5FADEE1 /* FBSnapshotTestCasePlatform.m in Sources */ = {isa = PBXBuildFile; fileRef = D24D77D9EBB30FD63D72D5303A60061F /* FBSnapshotTestCasePlatform.m */; };
-		5F6EA06CCAB908BBE3685BB96B7E767B /* JCClient.h in Headers */ = {isa = PBXBuildFile; fileRef = DD57399CE1214CE67F4F25E84BD5C907 /* JCClient.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6152DDC7F88309BFEC6D23539790DA69 /* UCSService.h in Headers */ = {isa = PBXBuildFile; fileRef = ECE5873D4A607FB031F35FC099911A1F /* UCSService.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5F17C7A0BE05AA50A0CBBD1904C498EB /* JCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D990A07A621E3E17C4B9BAF45D493C4B /* JCManager.m */; };
 		682106D6179E8EEBF47829EA2B55B185 /* Pods-TCCloudTalking_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BCFC23EB58A30FE6DE3886C888DEFAB /* Pods-TCCloudTalking_Example-dummy.m */; };
-		682279474E41E04AE7A4573A9C6A8D3F /* JCManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EC5A424CA466739624D1C3DB6F7769A8 /* JCManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6EC7C48E26F27A01A5421A4D260D9DDC /* UCSTCPDelegateBase.h in Headers */ = {isa = PBXBuildFile; fileRef = B5BA926B5E017BC3DDC8CBDB9FCA1F97 /* UCSTCPDelegateBase.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		70EE5B96673E4282D59889F744B61636 /* JCDoodle.h in Headers */ = {isa = PBXBuildFile; fileRef = C49365399A7D138E68A0DBCB0C40B4B0 /* JCDoodle.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		732BEFC81D321AB15967F113301BBF3A /* JCStorageCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A5A1F39EDC189C6058745368FA80A7D /* JCStorageCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		749059F60C28E070D0D6F5562EECC69A /* JCMediaChannelParticipant.h in Headers */ = {isa = PBXBuildFile; fileRef = 272D07266F53EEA28531BAB517C9FE46 /* JCMediaChannelParticipant.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		758C1709AB093DBF6CD62FFC1B5FBE6A /* UCSTCPDelegateBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 66D30B7875CEFFE62B842B178FB053F8 /* UCSTCPDelegateBase.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		769035FEC54036542595583A51CA3E16 /* NSString+UCLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 815F19F188FAA682A4F1399A5785972C /* NSString+UCLog.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		77963FF7EE2C6BF810466A85D700811E /* FBSnapshotTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 946BF97354D4762FF89FF62BB2493AAB /* FBSnapshotTestController.m */; };
-		7DF1A04012638B4A78DE18EC8B19D76F /* CloudTalkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9626CEED02C87F9D89BC2F686EE47EFD /* CloudTalkingManager.m */; };
-		82E666F3D132D672C09B9A5C72B3FF17 /* JCCallCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = CFC1800416970B7D777CE5B0F3C4DA0F /* JCCallCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8558140B0B03581DC169FD76D90D440F /* JCNetConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 617E41535B8FAC5728B91831B1D1E11C /* JCNetConstants.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8560B97D1B0A680EAD6067A1D8FBB5D3 /* JCGroupItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EBBA334B21C22B38F64DE7E199DA0374 /* JCGroupItem.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		87D6F8413A7B375C836E57CCAD550A7F /* SwiftSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9ECE87ECC280ED44FEE10A626B490D /* SwiftSupport.swift */; };
-		8BF5F0E26E36B4D9937A6B5F37CBD12C /* JCDoodleAction.h in Headers */ = {isa = PBXBuildFile; fileRef = AB62546E010AA75678EB0A44FF4C0F86 /* JCDoodleAction.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8966C7D53D8FB63E11D5CDB2B256B0B1 /* UCSVOIPViewEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 71C4DB120555AB617DD8DE44A4412EEC /* UCSVOIPViewEngine.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8C0B5EBDF83DDC66A416370F936B9A00 /* UIApplication+StrictKeyWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = B2869E4C7500F81B855421AD3A428F7B /* UIApplication+StrictKeyWindow.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8DD091A327C3EAAC0583707A9BE9F5ED /* UCConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 258DCAF727BB78388BDD2EC72CCB0B05 /* UCConst.m */; };
-		8DDC2A239F17075DDFE8DC94F9D533B0 /* NSString+UCLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 840E328C4889929BFD299118AB528820 /* NSString+UCLog.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8E21DEA2485C79902F083DA31595BA9A /* JCNet.h in Headers */ = {isa = PBXBuildFile; fileRef = DBB62823C86B4EAC3597173C765B214A /* JCNet.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		991BF523ECCD39675E22091AA30652BB /* JCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 531F102C9990F575D46EF15D3E34EE36 /* JCManager.m */; };
-		9ABC895B4D1C3361671900639B99CF61 /* JCPushTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = EF2AE90C501B3B72CC2CAA52B190190C /* JCPushTemplate.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9C0832309B902351287F4E343669FD13 /* JCAccountItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 96DA81BBDBC9C68E75327E986975FC87 /* JCAccountItem.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9D8E275930F83338091020F9EDE637AD /* JCAccountContact.h in Headers */ = {isa = PBXBuildFile; fileRef = 72CB24203E72B3DC0C41DCB623061D46 /* JCAccountContact.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9FEF1CA7BE1522016CC438AD9E2E2BA7 /* JCPush.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BF827C789B5DD0F7DECB2FC6FEA49F8 /* JCPush.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A0355F157A055F057B0BB231B837697E /* JCMediaDeviceCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = 52E03B0FA3D434542D6BE2138D65F0AC /* JCMediaDeviceCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A0E5FF860AB792287186F1AE837C00A4 /* JCGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 89137F505B5B53C0398B0B5633D38839 /* JCGroup.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8EE88D9ADE2E64BACBE1BA0ED9FCF42D /* UCSService.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D7243AFF10FE37D5E2946F2DE49FE6A /* UCSService.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		94D4F1BF7D898CED4EFDA4B634813A7D /* TCCloudTalking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A89F7166A1086A6F1931F7F836FE6A9 /* TCCloudTalking-dummy.m */; };
+		9D24D509DF82913427DE6BC70D56AE90 /* NSString+UCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = C984F4FE2C33304FCB46B258511C39EB /* NSString+UCLog.m */; };
+		A388BD7EB8552EF0F08E40836181C74A /* UCSTCPSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D9D730C77862480627D952661AC0974 /* UCSTCPSDK.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		A457A948F248D2A52CD05F067B0C1367 /* UIImage+Compare.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3BCBCDCE9AB1C81BEF4FF139B33C52 /* UIImage+Compare.m */; };
-		A73DD960008A102749CFE9DDD80E0F13 /* JCAccount.h in Headers */ = {isa = PBXBuildFile; fileRef = F23A37B84C666F8B2262E980765D09E1 /* JCAccount.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A799B05ADE41798E858AC3FC89818B73 /* UCConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 184D25A2134C5041E66F05517BA62CF1 /* UCConst.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A8E29F7DE372D2568FE1485773CA61E8 /* UCSTCPSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 72D44D9738A0C0A52A74B3DE2BFF228F /* UCSTCPSDK.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A9A3ACE844642E67A954128FE09F4388 /* JCMediaChannelConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 893707ED1F13983D350D66B3CD04250D /* JCMediaChannelConstants.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		AA1A85BDF9E22CF791595FDF128A2CFE /* JCReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = BB97C14DD3E89CCBDA5D172D47BDAF82 /* JCReachability.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A4FFE8A6B1F0446BED71C36FE48E241C /* UCSVideoDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = EDCD906E4977F885952C18937CF477B5 /* UCSVideoDefine.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A88BF7D8708B40B9D1361DA8083CCA57 /* UCSFuncEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = A87C53F07CA16D7E0172CA07C432050A /* UCSFuncEngine.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		AB3570007412B510F78B81D1A83E7FC9 /* FBSnapshotTestCase-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D10E263DD0E2D7DFDEDB26AF6FE30DA /* FBSnapshotTestCase-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		AED33FA78F7CA6B5E0E1A90100B53223 /* JCAccountConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B4123BB7D9A7E2848767E15318CC4C8 /* JCAccountConstants.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		AC81655FF96D068A22BB9786C0E3BDFD /* UCSCommonClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 129C5677873C2C52BD896C695ACA923B /* UCSCommonClass.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B4E5A022F7732B637C3D5728A4A31421 /* UCConst.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B994630393DFE240A8F34230DA44289 /* UCConst.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B8ADA30C051A2790FE88BE07CBFFF592 /* UIImage+Diff.m in Sources */ = {isa = PBXBuildFile; fileRef = DF74AEB8FBA3B574B14913B6A0259E1A /* UIImage+Diff.m */; };
-		C0DE60B00218DFD40717A6F04B73CE4A /* UCSVideoDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = 9EC3F21F687581B0FC91C94F64893643 /* UCSVideoDefine.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C17E1592636060AD8C6D02130FE2D28A /* JCStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C482858C136F7EA4B6CB5275BB5413C /* JCStorage.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BB1CB96097E1ED89A03DD66DEEC401CB /* TCCPubEnum.h in Headers */ = {isa = PBXBuildFile; fileRef = F973555B5DC0A8E55F2B67F0663328D8 /* TCCPubEnum.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C227FD1C858148327AD6CF45F9BC35E4 /* UIImage+Diff.h in Headers */ = {isa = PBXBuildFile; fileRef = 25A6B83B99996AB0D345D1F73BBFADC0 /* UIImage+Diff.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C2AE834687C973C1FEC0E80979362AFA /* JCMediaDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DA3603C3BABA649FDF9DD038310D63 /* JCMediaDevice.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C3CA256CC5C3308862AFF3218B47B684 /* UIImage+Compare.h in Headers */ = {isa = PBXBuildFile; fileRef = 133B70FDA298B1C75AEA6D9B4DFB9D7C /* UIImage+Compare.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C638A6CCEA25009E3C43C25BD736DB64 /* JCClientCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = E76B6AF284B3267F119811466D3A6B90 /* JCClientCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C9B707AD579A00D2152B0628A3A1CF23 /* UCSError.h in Headers */ = {isa = PBXBuildFile; fileRef = FF8B40918063DB09224708E1D2A9DFA5 /* UCSError.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CB998B2C34F5C4CAB1463FF673231E59 /* TCDoorMachineModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 582534CCF7C1BD0F395F75D57136BCDD /* TCDoorMachineModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		CBD39660A2AEA338F8D2CE18BEBECEF9 /* UIImage+Snapshot.m in Sources */ = {isa = PBXBuildFile; fileRef = A79A17A92B6BB3CD04A0E57CB43F8E4E /* UIImage+Snapshot.m */; };
-		CF3731EA4B73D1CC4E311A73E8C7DBDE /* NSString+UCLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 605AE223378585D677B3D402DAE3CC08 /* NSString+UCLog.m */; };
+		D32BD41FCC8A89DD78A8EB94B845B5DB /* libucstcplib.a in Sources */ = {isa = PBXBuildFile; fileRef = 63AAF945E128415272CA64412D4527C5 /* libucstcplib.a */; };
+		D582B0CC0380F3A3DE2AAB5C0A9D1D47 /* TCDoorMachineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BD8E2B77848EBC2511E0FF957B9CEB77 /* TCDoorMachineModel.m */; };
 		D5FAA5ED25EAEE61F6476D63E0CA9894 /* FBSnapshotTestCase-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E68205BA0BE03E12021F3128A765BC2E /* FBSnapshotTestCase-dummy.m */; };
 		D607E281B6103D213C2295CE59CC6658 /* FBSnapshotTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 801441A53595C4296307546E40FB19DF /* FBSnapshotTestCase.m */; };
-		D712D253F6858A506CD7166451EBBE16 /* CloudTalkingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B9FA8C2AE1F941D0EDE1D63927D3465F /* CloudTalkingManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D84DE8A5829464AC72A5FDC993E550E4 /* libucsvideosdk.a in Sources */ = {isa = PBXBuildFile; fileRef = 2D05D7D4ED5CA1FA7C613E324A0D661B /* libucsvideosdk.a */; };
-		D88512C90CF3239F011131D0D2DB4DDE /* TCCPubEnum.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A630F2A77BAC092F0A13B26520877B0 /* TCCPubEnum.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D9A73172AFE7B9D64DD2BD5C921B55D2 /* JCStorageItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CF5786D9FACF08795A39331808A9A4B /* JCStorageItem.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E08D0BFCE2CC88B9D7C396E355D6C651 /* UCSTCPCommonClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 77074381C9BFA9364CF4D9CCB2D82348 /* UCSTCPCommonClass.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EBB13A39B00E6510C042FECB2F12AE73 /* JCGroupConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = B3ACCD16F718D5385DA66E1A14DFD1FE /* JCGroupConstants.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EBBDA18769D71265EB2BE795CFE150D2 /* JCJson.h in Headers */ = {isa = PBXBuildFile; fileRef = CFE6E4F99E69EBABBD80ED0BBB09F27D /* JCJson.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DF09A5AB097F793401BD66C9C44556F0 /* UCSTcpDefine.h in Headers */ = {isa = PBXBuildFile; fileRef = D7019567D3765ABDCD283A53BE8CF0F5 /* UCSTcpDefine.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		EFA45E70CD6224C8B68738ED9E97CA21 /* FBSnapshotTestController.h in Headers */ = {isa = PBXBuildFile; fileRef = B8688C495C7274D9CD6B569947115F5C /* FBSnapshotTestController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F08CD3A4A51901BE59BE75BA9414E102 /* JCMediaDeviceConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 98512FE55C0C8FE555E51A776AE15D03 /* JCMediaDeviceConstants.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F09E08B683A8DCBDCBDB1DEAE217FA57 /* Pods-TCCloudTalking_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F73B8D5AF172EB13E98A90970A2DF25 /* Pods-TCCloudTalking_Tests-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F40747BEAE2479280C4DC17D69AD05D6 /* JCMediaChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5455A36DC7EC92D72078A5A1CBDD5011 /* JCMediaChannel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F56C3C5E55C4C35B494D18AEB726F925 /* TCDoorMachineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F33D8CFC3A978C017ABDCCA3C2C7B6F /* TCDoorMachineModel.m */; };
-		F5BE8222A172C28266E8A3250730B294 /* JCMessageChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = CE9EC55ACD700DFBCE99F387E3423B28 /* JCMessageChannel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F61D295411C2819F3678A356B49D35DB /* JCCall.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B7BC86BF01E8E86B2A6F5E0A210F824 /* JCCall.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F7A9EB0B9CECF6EEA2DAD842304695AF /* JCMediaChannelQueryInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = BD8092A7A0E32D6E24D2B3A689A43E7F /* JCMediaChannelQueryInfo.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F873235A3C5F3768CBE7447B40335C55 /* JCAccountCallback.h in Headers */ = {isa = PBXBuildFile; fileRef = DF8F98878D1A02677553002BF3425D0C /* JCAccountCallback.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F875B9A26FF59477CE3A7236B4AE94A9 /* UCSCommonClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 7063185CC054F5EE5780E4C884937834 /* UCSCommonClass.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F2236DBCB57F528EC45447EFC957A557 /* CloudTalkingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 195706D7420630D2F8E3804E8D04F0CC /* CloudTalkingManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F647671E1EE79C25D1604CE90C2A0D82 /* Header.h in Headers */ = {isa = PBXBuildFile; fileRef = D14988068FC6553F74376370EC5225EF /* Header.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F876F054886227B059B0778C6C1A0A83 /* UIImage+Snapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = C69BBB5F7F16D373D86DBDE5AF4590E2 /* UIImage+Snapshot.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FA00CC5FFA6519C7FBAB29A86296DD60 /* JCSDKOC.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FC6945FBC3C1256900D747E76A287D2 /* JCSDKOC.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FA53E6E4147A7C9416685F00DE2172A4 /* JCMessageChannelConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 39141E0A82F88B3995E4B1376B3A923B /* JCMessageChannelConstants.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FC61AA5D38DF80FC389FBD31A2EEEC93 /* JCMessageChannelItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FBB1E8DBEFEFE12F00507EEEE92B97A /* JCMessageChannelItem.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FD2FBC809D453DF11B94D88505CB0F44 /* JCMessageChannelConversation.h in Headers */ = {isa = PBXBuildFile; fileRef = 449BAD21DE1013155AB2A608E5A6A2A3 /* JCMessageChannelConversation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FAB6F63F44B07061E17604EFEBCFCC20 /* CloudTalkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A580DFECB1D725A069AF83A36F7BA5C7 /* CloudTalkingManager.m */; };
+		FE0E0F98DA99116363F8465BAE84E0BB /* UCSTcpClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 26446CAD0E165D80828DD93E69F28D3A /* UCSTcpClient.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,128 +83,79 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0745D7E82747EDCB6D9D403A6090A26C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0A7C5F07FE5C29AD51786D8EDD1874A6 /* JCMessageChannelCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMessageChannelCallback.h; sourceTree = "<group>"; };
-		0FC6945FBC3C1256900D747E76A287D2 /* JCSDKOC.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCSDKOC.h; sourceTree = "<group>"; };
-		1133B7EEA1F5D82A7C07F9696DB639B2 /* JCMediaChannelCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMediaChannelCallback.h; sourceTree = "<group>"; };
+		0F511816D5E7823D5C817A1C74B01E88 /* TCCloudTalking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCCloudTalking-prefix.pch"; sourceTree = "<group>"; };
+		129C5677873C2C52BD896C695ACA923B /* UCSCommonClass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSCommonClass.h; sourceTree = "<group>"; };
 		133B70FDA298B1C75AEA6D9B4DFB9D7C /* UIImage+Compare.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Compare.h"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.h"; sourceTree = "<group>"; };
-		15428C4016B0BB4F8B86F8B016A6AB1D /* TCCloudTalking.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TCCloudTalking.xcconfig; sourceTree = "<group>"; };
-		184D25A2134C5041E66F05517BA62CF1 /* UCConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCConst.h; sourceTree = "<group>"; };
-		190205991F6BEDC41356286525BEC7BC /* TCCloudTalking.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = TCCloudTalking.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		199561EE357DEC91F86D21DC0DC20D06 /* JCStorageConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCStorageConstants.h; sourceTree = "<group>"; };
+		195706D7420630D2F8E3804E8D04F0CC /* CloudTalkingManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CloudTalkingManager.h; sourceTree = "<group>"; };
 		1A3BCBCDCE9AB1C81BEF4FF139B33C52 /* UIImage+Compare.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Compare.m"; path = "FBSnapshotTestCase/Categories/UIImage+Compare.m"; sourceTree = "<group>"; };
-		1A5A1F39EDC189C6058745368FA80A7D /* JCStorageCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCStorageCallback.h; sourceTree = "<group>"; };
-		1B7BC86BF01E8E86B2A6F5E0A210F824 /* JCCall.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCCall.h; sourceTree = "<group>"; };
 		1BB8800FEBEFE94A390F54FF049C0F04 /* FBSnapshotTestCasePlatform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCasePlatform.h; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.h; sourceTree = "<group>"; };
+		1C9ECCECFE25B7B7419B1AE01328D3F8 /* TCCloudTalking.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TCCloudTalking.xcconfig; sourceTree = "<group>"; };
+		1D9D730C77862480627D952661AC0974 /* UCSTCPSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSTCPSDK.h; sourceTree = "<group>"; };
 		1EF1785F5072E148ED891FB4EA636F14 /* Pods-TCCloudTalking_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-TCCloudTalking_Tests.modulemap"; sourceTree = "<group>"; };
-		1FA168D0750F05E876204EF5F5F95A5B /* UCSVOIPViewEngine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = UCSVOIPViewEngine.m; sourceTree = "<group>"; };
-		258DCAF727BB78388BDD2EC72CCB0B05 /* UCConst.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = UCConst.m; sourceTree = "<group>"; };
+		258D83576A764E9B15D5387B2DB02026 /* UCConst.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = UCConst.m; sourceTree = "<group>"; };
 		25A6B83B99996AB0D345D1F73BBFADC0 /* UIImage+Diff.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Diff.h"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.h"; sourceTree = "<group>"; };
-		25ABF6B2A36544CA101563DE0D547680 /* JCSDKOC */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "compiled.mach-o.dylib"; path = JCSDKOC; sourceTree = "<group>"; };
-		272D07266F53EEA28531BAB517C9FE46 /* JCMediaChannelParticipant.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMediaChannelParticipant.h; sourceTree = "<group>"; };
-		27DA3603C3BABA649FDF9DD038310D63 /* JCMediaDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMediaDevice.h; sourceTree = "<group>"; };
-		2B6573F7A2A544262A77C61A97B68FDE /* libPods-TCCloudTalking_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TCCloudTalking_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D05D7D4ED5CA1FA7C613E324A0D661B /* libucsvideosdk.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = libucsvideosdk.a; sourceTree = "<group>"; };
-		2D626CD71317EED0F905EB7F4D535D9B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		2EB7FB5744397440601CA26065E1A590 /* UCSVOIPViewEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSVOIPViewEngine.h; sourceTree = "<group>"; };
-		3514D561AC0DA49DD38E158AA0957FEA /* libucstcplib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = libucstcplib.a; sourceTree = "<group>"; };
-		38726D4B3273CBC5CC7B5ED53313A066 /* Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
-		39141E0A82F88B3995E4B1376B3A923B /* JCMessageChannelConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMessageChannelConstants.h; sourceTree = "<group>"; };
-		3BF827C789B5DD0F7DECB2FC6FEA49F8 /* JCPush.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCPush.h; sourceTree = "<group>"; };
-		3CF5786D9FACF08795A39331808A9A4B /* JCStorageItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCStorageItem.h; sourceTree = "<group>"; };
-		3FD81BF9809DE9E4C6737D12AB132F70 /* JCCallItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCCallItem.h; sourceTree = "<group>"; };
-		449BAD21DE1013155AB2A608E5A6A2A3 /* JCMessageChannelConversation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMessageChannelConversation.h; sourceTree = "<group>"; };
+		26446CAD0E165D80828DD93E69F28D3A /* UCSTcpClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSTcpClient.h; sourceTree = "<group>"; };
+		2B6573F7A2A544262A77C61A97B68FDE /* libPods-TCCloudTalking_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TCCloudTalking_Example.a"; path = "libPods-TCCloudTalking_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F657CC9078BEF9FC8655116FAB46257 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		38FFA697EBDEF1C6D8EF2D8D580890A4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		3A89F7166A1086A6F1931F7F836FE6A9 /* TCCloudTalking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TCCloudTalking-dummy.m"; sourceTree = "<group>"; };
+		3B994630393DFE240A8F34230DA44289 /* UCConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCConst.h; sourceTree = "<group>"; };
 		465570D4218BF349873EB798D3E44272 /* FBSnapshotTestCase.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FBSnapshotTestCase.modulemap; sourceTree = "<group>"; };
 		4794606E132347EA124C15149DF6F945 /* Pods-TCCloudTalking_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TCCloudTalking_Example-frameworks.sh"; sourceTree = "<group>"; };
-		4A630F2A77BAC092F0A13B26520877B0 /* TCCPubEnum.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCCPubEnum.h; sourceTree = "<group>"; };
-		4C2A9AA35F6110BB493FFD06D3642812 /* UCSTcpClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSTcpClient.h; sourceTree = "<group>"; };
 		4DB86E4C5261D37A5B14209388F4F071 /* Pods-TCCloudTalking_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TCCloudTalking_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		5275116C1D8425DC98D8B42E92698B2E /* TCCloudTalking-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TCCloudTalking-prefix.pch"; sourceTree = "<group>"; };
-		52E03B0FA3D434542D6BE2138D65F0AC /* JCMediaDeviceCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMediaDeviceCallback.h; sourceTree = "<group>"; };
-		531F102C9990F575D46EF15D3E34EE36 /* JCManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = JCManager.m; sourceTree = "<group>"; };
-		5455A36DC7EC92D72078A5A1CBDD5011 /* JCMediaChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMediaChannel.h; sourceTree = "<group>"; };
-		5C4F31330DFA99D699E4BDC8C3573D73 /* libFBSnapshotTestCase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFBSnapshotTestCase.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		605AE223378585D677B3D402DAE3CC08 /* NSString+UCLog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSString+UCLog.m"; sourceTree = "<group>"; };
-		617E41535B8FAC5728B91831B1D1E11C /* JCNetConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCNetConstants.h; sourceTree = "<group>"; };
-		6B466448266CEC8F798CB2CA24EA1354 /* UCSEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSEvent.h; sourceTree = "<group>"; };
-		6C453D80C0DB6072BD83E730859F2445 /* JCCallConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCCallConstants.h; sourceTree = "<group>"; };
-		7063185CC054F5EE5780E4C884937834 /* UCSCommonClass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSCommonClass.h; sourceTree = "<group>"; };
-		72CB24203E72B3DC0C41DCB623061D46 /* JCAccountContact.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCAccountContact.h; sourceTree = "<group>"; };
-		72D44D9738A0C0A52A74B3DE2BFF228F /* UCSTCPSDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSTCPSDK.h; sourceTree = "<group>"; };
-		75E96D3F1BDEB6612BB04CE99BCCC9C2 /* JCDoodleProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCDoodleProtocol.h; sourceTree = "<group>"; };
-		77074381C9BFA9364CF4D9CCB2D82348 /* UCSTCPCommonClass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSTCPCommonClass.h; sourceTree = "<group>"; };
-		7B4123BB7D9A7E2848767E15318CC4C8 /* JCAccountConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCAccountConstants.h; sourceTree = "<group>"; };
+		582534CCF7C1BD0F395F75D57136BCDD /* TCDoorMachineModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCDoorMachineModel.h; sourceTree = "<group>"; };
+		5C4F31330DFA99D699E4BDC8C3573D73 /* libFBSnapshotTestCase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFBSnapshotTestCase.a; path = libFBSnapshotTestCase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		63AAF945E128415272CA64412D4527C5 /* libucstcplib.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = libucstcplib.a; sourceTree = "<group>"; };
+		66D30B7875CEFFE62B842B178FB053F8 /* UCSTCPDelegateBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSTCPDelegateBase.h; sourceTree = "<group>"; };
+		71C4DB120555AB617DD8DE44A4412EEC /* UCSVOIPViewEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSVOIPViewEngine.h; sourceTree = "<group>"; };
 		7D10E263DD0E2D7DFDEDB26AF6FE30DA /* FBSnapshotTestCase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-umbrella.h"; sourceTree = "<group>"; };
+		7D7243AFF10FE37D5E2946F2DE49FE6A /* UCSService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSService.h; sourceTree = "<group>"; };
 		801441A53595C4296307546E40FB19DF /* FBSnapshotTestCase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCase.m; path = FBSnapshotTestCase/FBSnapshotTestCase.m; sourceTree = "<group>"; };
-		814373BB9E8ED1C550380488580769D3 /* module.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = module.modulemap; sourceTree = "<group>"; };
-		840E328C4889929BFD299118AB528820 /* NSString+UCLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSString+UCLog.h"; sourceTree = "<group>"; };
-		89137F505B5B53C0398B0B5633D38839 /* JCGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCGroup.h; sourceTree = "<group>"; };
-		893707ED1F13983D350D66B3CD04250D /* JCMediaChannelConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMediaChannelConstants.h; sourceTree = "<group>"; };
-		8C365068C1B148C15FDB056AB6E0F475 /* JCSDKOC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JCSDKOC.framework; path = TCCloudTalking/Classes/Juphoon/JCSDKOC.framework; sourceTree = "<group>"; };
-		8C482858C136F7EA4B6CB5275BB5413C /* JCStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCStorage.h; sourceTree = "<group>"; };
+		815F19F188FAA682A4F1399A5785972C /* NSString+UCLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSString+UCLog.h"; sourceTree = "<group>"; };
+		87C84DAF2DF83956CD33A72FC0C4E2FF /* UCSEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSEvent.h; sourceTree = "<group>"; };
 		8D9ECE87ECC280ED44FEE10A626B490D /* SwiftSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftSupport.swift; path = FBSnapshotTestCase/SwiftSupport.swift; sourceTree = "<group>"; };
 		8DBF1343FECC08B49D2B9C8639DEAF86 /* Pods-TCCloudTalking_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TCCloudTalking_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		8F33D8CFC3A978C017ABDCCA3C2C7B6F /* TCDoorMachineModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCDoorMachineModel.m; sourceTree = "<group>"; };
-		8F769852E1FC7B303A630C756863F68F /* JCLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCLog.h; sourceTree = "<group>"; };
 		946BF97354D4762FF89FF62BB2493AAB /* FBSnapshotTestController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestController.m; path = FBSnapshotTestCase/FBSnapshotTestController.m; sourceTree = "<group>"; };
-		9626CEED02C87F9D89BC2F686EE47EFD /* CloudTalkingManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CloudTalkingManager.m; sourceTree = "<group>"; };
-		96DA81BBDBC9C68E75327E986975FC87 /* JCAccountItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCAccountItem.h; sourceTree = "<group>"; };
-		98512FE55C0C8FE555E51A776AE15D03 /* JCMediaDeviceConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMediaDeviceConstants.h; sourceTree = "<group>"; };
 		989F69DF45BC39C521B77A547FA23913 /* Pods-TCCloudTalking_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TCCloudTalking_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9BCFC23EB58A30FE6DE3886C888DEFAB /* Pods-TCCloudTalking_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TCCloudTalking_Example-dummy.m"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9EC3F21F687581B0FC91C94F64893643 /* UCSVideoDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSVideoDefine.h; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9F4D33A84EB9C7E5291C52D89BF96880 /* UCSVOIPViewEngine.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = UCSVOIPViewEngine.m; sourceTree = "<group>"; };
 		9F73B8D5AF172EB13E98A90970A2DF25 /* Pods-TCCloudTalking_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TCCloudTalking_Tests-umbrella.h"; sourceTree = "<group>"; };
-		9FBB1E8DBEFEFE12F00507EEEE92B97A /* JCMessageChannelItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMessageChannelItem.h; sourceTree = "<group>"; };
 		A00593C525BC5CC8CEDA945456CB6F38 /* Pods-TCCloudTalking_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TCCloudTalking_Tests-dummy.m"; sourceTree = "<group>"; };
+		A0FC68FC629E6635CD5A3293455F781F /* JCSDKOC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JCSDKOC.framework; path = TCCloudTalking/Lib/Juphoon/JCSDKOC.framework; sourceTree = "<group>"; };
 		A27A5F1363CD083307244F4BA942F930 /* Pods-TCCloudTalking_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TCCloudTalking_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		A3FE2987FBC07DF49A2C4A8C59732C96 /* JCNetCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCNetCallback.h; sourceTree = "<group>"; };
 		A47F8C13515220EA401C0014A9EF807C /* FBSnapshotTestCase.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FBSnapshotTestCase.xcconfig; sourceTree = "<group>"; };
 		A48988D4F5B92BE432A5E246D59E66D8 /* FBSnapshotTestCase-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FBSnapshotTestCase-prefix.pch"; sourceTree = "<group>"; };
+		A580DFECB1D725A069AF83A36F7BA5C7 /* CloudTalkingManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CloudTalkingManager.m; sourceTree = "<group>"; };
+		A73A3F87392573F22B5D1FB9E84A0EB1 /* UCSTCPCommonClass.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSTCPCommonClass.h; sourceTree = "<group>"; };
 		A79A17A92B6BB3CD04A0E57CB43F8E4E /* UIImage+Snapshot.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Snapshot.m"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.m"; sourceTree = "<group>"; };
+		A87C53F07CA16D7E0172CA07C432050A /* UCSFuncEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSFuncEngine.h; sourceTree = "<group>"; };
 		AA305E8AE2A0531EB3AA3E9958E7E2E5 /* UIApplication+StrictKeyWindow.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+StrictKeyWindow.m"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.m"; sourceTree = "<group>"; };
-		AB62546E010AA75678EB0A44FF4C0F86 /* JCDoodleAction.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCDoodleAction.h; sourceTree = "<group>"; };
-		AC7DAA6D8054D158A6ECD463BC822E2F /* JCGroupMember.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCGroupMember.h; sourceTree = "<group>"; };
 		B12267209FF15D33A07BB3BCB2A3DC02 /* Pods-TCCloudTalking_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TCCloudTalking_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B2869E4C7500F81B855421AD3A428F7B /* UIApplication+StrictKeyWindow.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIApplication+StrictKeyWindow.h"; path = "FBSnapshotTestCase/Categories/UIApplication+StrictKeyWindow.h"; sourceTree = "<group>"; };
-		B3ACCD16F718D5385DA66E1A14DFD1FE /* JCGroupConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCGroupConstants.h; sourceTree = "<group>"; };
-		B5BA926B5E017BC3DDC8CBDB9FCA1F97 /* UCSTCPDelegateBase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSTCPDelegateBase.h; sourceTree = "<group>"; };
-		B79EC72F2F8CB83087F6A64C313C2A9E /* JCClientConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCClientConstants.h; sourceTree = "<group>"; };
 		B8688C495C7274D9CD6B569947115F5C /* FBSnapshotTestController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestController.h; path = FBSnapshotTestCase/FBSnapshotTestController.h; sourceTree = "<group>"; };
-		B9FA8C2AE1F941D0EDE1D63927D3465F /* CloudTalkingManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CloudTalkingManager.h; sourceTree = "<group>"; };
-		BB97C14DD3E89CCBDA5D172D47BDAF82 /* JCReachability.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCReachability.h; sourceTree = "<group>"; };
-		BD637ADAD1F333AB64F5B82992EDEF81 /* UCSFuncEngine.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; path = UCSFuncEngine.mm; sourceTree = "<group>"; };
-		BD8092A7A0E32D6E24D2B3A689A43E7F /* JCMediaChannelQueryInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMediaChannelQueryInfo.h; sourceTree = "<group>"; };
+		BD8E2B77848EBC2511E0FF957B9CEB77 /* TCDoorMachineModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TCDoorMachineModel.m; sourceTree = "<group>"; };
 		BF231DD85753C39424F0F58A879E8294 /* FBSnapshotTestCase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FBSnapshotTestCase.h; path = FBSnapshotTestCase/FBSnapshotTestCase.h; sourceTree = "<group>"; };
-		BF6AF9099269077FB9FDAB16687E4487 /* JCMediaDeviceVideoCanvas.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMediaDeviceVideoCanvas.h; sourceTree = "<group>"; };
 		C2B3D788D81746F8E848F0565404D81C /* Pods-TCCloudTalking_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TCCloudTalking_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		C49365399A7D138E68A0DBCB0C40B4B0 /* JCDoodle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCDoodle.h; sourceTree = "<group>"; };
+		C38CA1F8324F7BD2D5EDE47DA6C5A2AD /* libucsvideosdk.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = libucsvideosdk.a; sourceTree = "<group>"; };
 		C69BBB5F7F16D373D86DBDE5AF4590E2 /* UIImage+Snapshot.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Snapshot.h"; path = "FBSnapshotTestCase/Categories/UIImage+Snapshot.h"; sourceTree = "<group>"; };
-		C6F0628EEF90AD7D140F6995BA44AE32 /* UCSError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSError.h; sourceTree = "<group>"; };
-		CE9EC55ACD700DFBCE99F387E3423B28 /* JCMessageChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCMessageChannel.h; sourceTree = "<group>"; };
-		CEA74280FB74D2B98A4D63E66C4CCB77 /* libTCCloudTalking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTCCloudTalking.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CFC1800416970B7D777CE5B0F3C4DA0F /* JCCallCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCCallCallback.h; sourceTree = "<group>"; };
-		CFE6E4F99E69EBABBD80ED0BBB09F27D /* JCJson.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCJson.h; sourceTree = "<group>"; };
+		C984F4FE2C33304FCB46B258511C39EB /* NSString+UCLog.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSString+UCLog.m"; sourceTree = "<group>"; };
+		CEA74280FB74D2B98A4D63E66C4CCB77 /* libTCCloudTalking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libTCCloudTalking.a; path = libTCCloudTalking.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D12A1B04360CE1733617CB4F21941F06 /* TCCloudTalking.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = TCCloudTalking.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D14988068FC6553F74376370EC5225EF /* Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		D24D77D9EBB30FD63D72D5303A60061F /* FBSnapshotTestCasePlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FBSnapshotTestCasePlatform.m; path = FBSnapshotTestCase/FBSnapshotTestCasePlatform.m; sourceTree = "<group>"; };
-		D2BC3692427145188E99490CAD1689F1 /* TCDoorMachineModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCDoorMachineModel.h; sourceTree = "<group>"; };
-		D39C1CB5F5D03E17CBD99AB0A885519B /* TCCloudTalking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TCCloudTalking-dummy.m"; sourceTree = "<group>"; };
-		D5023CFF92C397BEB58F1011DADFD276 /* UCSTcpDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSTcpDefine.h; sourceTree = "<group>"; };
-		D8184A9F0A3C4E34E9BCEE09795D4AF0 /* JCGroupCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCGroupCallback.h; sourceTree = "<group>"; };
-		DBB62823C86B4EAC3597173C765B214A /* JCNet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCNet.h; sourceTree = "<group>"; };
-		DD57399CE1214CE67F4F25E84BD5C907 /* JCClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCClient.h; sourceTree = "<group>"; };
+		D7019567D3765ABDCD283A53BE8CF0F5 /* UCSTcpDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSTcpDefine.h; sourceTree = "<group>"; };
+		D990A07A621E3E17C4B9BAF45D493C4B /* JCManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = JCManager.m; sourceTree = "<group>"; };
 		DF74AEB8FBA3B574B14913B6A0259E1A /* UIImage+Diff.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Diff.m"; path = "FBSnapshotTestCase/Categories/UIImage+Diff.m"; sourceTree = "<group>"; };
-		DF8F98878D1A02677553002BF3425D0C /* JCAccountCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCAccountCallback.h; sourceTree = "<group>"; };
 		DF9753FF928FFBD6068D14E944882132 /* Pods-TCCloudTalking_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TCCloudTalking_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		DFB6A80C0A7530F29AA43068CFD727E8 /* UCSFuncEngine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSFuncEngine.h; sourceTree = "<group>"; };
 		E68205BA0BE03E12021F3128A765BC2E /* FBSnapshotTestCase-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FBSnapshotTestCase-dummy.m"; sourceTree = "<group>"; };
-		E76B6AF284B3267F119811466D3A6B90 /* JCClientCallback.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCClientCallback.h; sourceTree = "<group>"; };
-		E8CF99CEA4E4747070E0982964E3A3D6 /* libPods-TCCloudTalking_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TCCloudTalking_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EBBA334B21C22B38F64DE7E199DA0374 /* JCGroupItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCGroupItem.h; sourceTree = "<group>"; };
-		EC5A424CA466739624D1C3DB6F7769A8 /* JCManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCManager.h; sourceTree = "<group>"; };
-		ECE5873D4A607FB031F35FC099911A1F /* UCSService.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSService.h; sourceTree = "<group>"; };
-		EF2AE90C501B3B72CC2CAA52B190190C /* JCPushTemplate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCPushTemplate.h; sourceTree = "<group>"; };
-		F23A37B84C666F8B2262E980765D09E1 /* JCAccount.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCAccount.h; sourceTree = "<group>"; };
+		E8CF99CEA4E4747070E0982964E3A3D6 /* libPods-TCCloudTalking_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-TCCloudTalking_Tests.a"; path = "libPods-TCCloudTalking_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9A4C0442274A76B94A622F9CB573D80 /* JCManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = JCManager.h; sourceTree = "<group>"; };
+		EDCD906E4977F885952C18937CF477B5 /* UCSVideoDefine.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSVideoDefine.h; sourceTree = "<group>"; };
+		EFF976A9355266A94018EB2B44A3F65D /* UCSFuncEngine.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = UCSFuncEngine.mm; sourceTree = "<group>"; };
+		F973555B5DC0A8E55F2B67F0663328D8 /* TCCPubEnum.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TCCPubEnum.h; sourceTree = "<group>"; };
 		FCBFD1205EE878AE6F88E3738FC0D9D1 /* Pods-TCCloudTalking_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TCCloudTalking_Example.release.xcconfig"; sourceTree = "<group>"; };
+		FF8B40918063DB09224708E1D2A9DFA5 /* UCSError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = UCSError.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,7 +180,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		59892A67D475C1555884CA13F019E410 /* Frameworks */ = {
+		B42CD8A2FC9FFAEF4F6D8908830D0F61 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -288,14 +190,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0365B7821E38E77914B6515FD9DD8A0F /* Public */ = {
+		15A907F5EAD4F42268C31FE3D8973EB7 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				B9FA8C2AE1F941D0EDE1D63927D3465F /* CloudTalkingManager.h */,
-				9626CEED02C87F9D89BC2F686EE47EFD /* CloudTalkingManager.m */,
-				38726D4B3273CBC5CC7B5ED53313A066 /* Header.h */,
-				D2BC3692427145188E99490CAD1689F1 /* TCDoorMachineModel.h */,
-				8F33D8CFC3A978C017ABDCCA3C2C7B6F /* TCDoorMachineModel.m */,
+				195706D7420630D2F8E3804E8D04F0CC /* CloudTalkingManager.h */,
+				A580DFECB1D725A069AF83A36F7BA5C7 /* CloudTalkingManager.m */,
+				D14988068FC6553F74376370EC5225EF /* Header.h */,
+				E9A4C0442274A76B94A622F9CB573D80 /* JCManager.h */,
+				D990A07A621E3E17C4B9BAF45D493C4B /* JCManager.m */,
+				582534CCF7C1BD0F395F75D57136BCDD /* TCDoorMachineModel.h */,
+				BD8E2B77848EBC2511E0FF957B9CEB77 /* TCDoorMachineModel.m */,
 			);
 			name = Public;
 			path = TCCloudTalking/Classes/Public;
@@ -321,58 +225,45 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		34564C383CCCD4963ECDB3EA409D5319 /* Support Files */ = {
+		2DC3541B2E926400606F8195F14D4C4F /* UCS */ = {
 			isa = PBXGroup;
 			children = (
-				15428C4016B0BB4F8B86F8B016A6AB1D /* TCCloudTalking.xcconfig */,
-				D39C1CB5F5D03E17CBD99AB0A885519B /* TCCloudTalking-dummy.m */,
-				5275116C1D8425DC98D8B42E92698B2E /* TCCloudTalking-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/TCCloudTalking";
-			sourceTree = "<group>";
-		};
-		3E3D9BBEE8841C3A1BD118508636A47C /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-				814373BB9E8ED1C550380488580769D3 /* module.modulemap */,
-			);
-			path = Modules;
-			sourceTree = "<group>";
-		};
-		41F883F3741F872A2AA8E816130E9BD2 /* TCPSDK */ = {
-			isa = PBXGroup;
-			children = (
-				3514D561AC0DA49DD38E158AA0957FEA /* libucstcplib.a */,
-				C6F0628EEF90AD7D140F6995BA44AE32 /* UCSError.h */,
-				4C2A9AA35F6110BB493FFD06D3642812 /* UCSTcpClient.h */,
-				77074381C9BFA9364CF4D9CCB2D82348 /* UCSTCPCommonClass.h */,
-				D5023CFF92C397BEB58F1011DADFD276 /* UCSTcpDefine.h */,
-				B5BA926B5E017BC3DDC8CBDB9FCA1F97 /* UCSTCPDelegateBase.h */,
-				72D44D9738A0C0A52A74B3DE2BFF228F /* UCSTCPSDK.h */,
-			);
-			path = TCPSDK;
-			sourceTree = "<group>";
-		};
-		42729BC82E6BE93F410E10BD2F1180E1 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				2D626CD71317EED0F905EB7F4D535D9B /* LICENSE */,
-				0745D7E82747EDCB6D9D403A6090A26C /* README.md */,
-				190205991F6BEDC41356286525BEC7BC /* TCCloudTalking.podspec */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		4D9EBE3A4D43A837353846F28F82B6A6 /* UCS */ = {
-			isa = PBXGroup;
-			children = (
-				41F883F3741F872A2AA8E816130E9BD2 /* TCPSDK */,
-				9B578E5D6CE85A13FBCD33C397483B94 /* TCVoipClass */,
-				CB78054649C93697B2B1FF78459FBA85 /* VOIPSDK */,
+				81EDC064B0737E6E2CC41DFA9B98A668 /* TCPSDK */,
+				37612803FF2F308DF379EC39F72BE3B5 /* TCVoipClass */,
+				E2DB700C54089BB568ACF5EB78150876 /* VOIPSDK */,
 			);
 			name = UCS;
 			path = TCCloudTalking/Classes/UCS;
+			sourceTree = "<group>";
+		};
+		37612803FF2F308DF379EC39F72BE3B5 /* TCVoipClass */ = {
+			isa = PBXGroup;
+			children = (
+				815F19F188FAA682A4F1399A5785972C /* NSString+UCLog.h */,
+				C984F4FE2C33304FCB46B258511C39EB /* NSString+UCLog.m */,
+				F973555B5DC0A8E55F2B67F0663328D8 /* TCCPubEnum.h */,
+				3B994630393DFE240A8F34230DA44289 /* UCConst.h */,
+				258D83576A764E9B15D5387B2DB02026 /* UCConst.m */,
+				A87C53F07CA16D7E0172CA07C432050A /* UCSFuncEngine.h */,
+				EFF976A9355266A94018EB2B44A3F65D /* UCSFuncEngine.mm */,
+				71C4DB120555AB617DD8DE44A4412EEC /* UCSVOIPViewEngine.h */,
+				9F4D33A84EB9C7E5291C52D89BF96880 /* UCSVOIPViewEngine.m */,
+			);
+			name = TCVoipClass;
+			path = TCVoipClass;
+			sourceTree = "<group>";
+		};
+		479A0CC3B293CAFF6D601B0B0749445A /* TCCloudTalking */ = {
+			isa = PBXGroup;
+			children = (
+				5DB706DD043909493BA983E5A1F2E8F3 /* Frameworks */,
+				B6F31588B764973FAD65DAE32E34B6B6 /* Pod */,
+				15A907F5EAD4F42268C31FE3D8973EB7 /* Public */,
+				BEA21781B97095941E360A5F49B78D04 /* Support Files */,
+				2DC3541B2E926400606F8195F14D4C4F /* UCS */,
+			);
+			name = TCCloudTalking;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		531A31FFC67288BF0275A50A17C9C499 /* Pods-TCCloudTalking_Tests */ = {
@@ -390,90 +281,56 @@
 			path = "Target Support Files/Pods-TCCloudTalking_Tests";
 			sourceTree = "<group>";
 		};
-		7A0A5A16C8185B32AF0DC408190144E3 /* Headers */ = {
+		5DB706DD043909493BA983E5A1F2E8F3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F23A37B84C666F8B2262E980765D09E1 /* JCAccount.h */,
-				DF8F98878D1A02677553002BF3425D0C /* JCAccountCallback.h */,
-				7B4123BB7D9A7E2848767E15318CC4C8 /* JCAccountConstants.h */,
-				72CB24203E72B3DC0C41DCB623061D46 /* JCAccountContact.h */,
-				96DA81BBDBC9C68E75327E986975FC87 /* JCAccountItem.h */,
-				1B7BC86BF01E8E86B2A6F5E0A210F824 /* JCCall.h */,
-				CFC1800416970B7D777CE5B0F3C4DA0F /* JCCallCallback.h */,
-				6C453D80C0DB6072BD83E730859F2445 /* JCCallConstants.h */,
-				3FD81BF9809DE9E4C6737D12AB132F70 /* JCCallItem.h */,
-				DD57399CE1214CE67F4F25E84BD5C907 /* JCClient.h */,
-				E76B6AF284B3267F119811466D3A6B90 /* JCClientCallback.h */,
-				B79EC72F2F8CB83087F6A64C313C2A9E /* JCClientConstants.h */,
-				C49365399A7D138E68A0DBCB0C40B4B0 /* JCDoodle.h */,
-				AB62546E010AA75678EB0A44FF4C0F86 /* JCDoodleAction.h */,
-				75E96D3F1BDEB6612BB04CE99BCCC9C2 /* JCDoodleProtocol.h */,
-				89137F505B5B53C0398B0B5633D38839 /* JCGroup.h */,
-				D8184A9F0A3C4E34E9BCEE09795D4AF0 /* JCGroupCallback.h */,
-				B3ACCD16F718D5385DA66E1A14DFD1FE /* JCGroupConstants.h */,
-				EBBA334B21C22B38F64DE7E199DA0374 /* JCGroupItem.h */,
-				AC7DAA6D8054D158A6ECD463BC822E2F /* JCGroupMember.h */,
-				CFE6E4F99E69EBABBD80ED0BBB09F27D /* JCJson.h */,
-				8F769852E1FC7B303A630C756863F68F /* JCLog.h */,
-				5455A36DC7EC92D72078A5A1CBDD5011 /* JCMediaChannel.h */,
-				1133B7EEA1F5D82A7C07F9696DB639B2 /* JCMediaChannelCallback.h */,
-				893707ED1F13983D350D66B3CD04250D /* JCMediaChannelConstants.h */,
-				272D07266F53EEA28531BAB517C9FE46 /* JCMediaChannelParticipant.h */,
-				BD8092A7A0E32D6E24D2B3A689A43E7F /* JCMediaChannelQueryInfo.h */,
-				27DA3603C3BABA649FDF9DD038310D63 /* JCMediaDevice.h */,
-				52E03B0FA3D434542D6BE2138D65F0AC /* JCMediaDeviceCallback.h */,
-				98512FE55C0C8FE555E51A776AE15D03 /* JCMediaDeviceConstants.h */,
-				BF6AF9099269077FB9FDAB16687E4487 /* JCMediaDeviceVideoCanvas.h */,
-				CE9EC55ACD700DFBCE99F387E3423B28 /* JCMessageChannel.h */,
-				0A7C5F07FE5C29AD51786D8EDD1874A6 /* JCMessageChannelCallback.h */,
-				39141E0A82F88B3995E4B1376B3A923B /* JCMessageChannelConstants.h */,
-				449BAD21DE1013155AB2A608E5A6A2A3 /* JCMessageChannelConversation.h */,
-				9FBB1E8DBEFEFE12F00507EEEE92B97A /* JCMessageChannelItem.h */,
-				DBB62823C86B4EAC3597173C765B214A /* JCNet.h */,
-				A3FE2987FBC07DF49A2C4A8C59732C96 /* JCNetCallback.h */,
-				617E41535B8FAC5728B91831B1D1E11C /* JCNetConstants.h */,
-				3BF827C789B5DD0F7DECB2FC6FEA49F8 /* JCPush.h */,
-				EF2AE90C501B3B72CC2CAA52B190190C /* JCPushTemplate.h */,
-				BB97C14DD3E89CCBDA5D172D47BDAF82 /* JCReachability.h */,
-				0FC6945FBC3C1256900D747E76A287D2 /* JCSDKOC.h */,
-				8C482858C136F7EA4B6CB5275BB5413C /* JCStorage.h */,
-				1A5A1F39EDC189C6058745368FA80A7D /* JCStorageCallback.h */,
-				199561EE357DEC91F86D21DC0DC20D06 /* JCStorageConstants.h */,
-				3CF5786D9FACF08795A39331808A9A4B /* JCStorageItem.h */,
-			);
-			path = Headers;
-			sourceTree = "<group>";
-		};
-		9B578E5D6CE85A13FBCD33C397483B94 /* TCVoipClass */ = {
-			isa = PBXGroup;
-			children = (
-				840E328C4889929BFD299118AB528820 /* NSString+UCLog.h */,
-				605AE223378585D677B3D402DAE3CC08 /* NSString+UCLog.m */,
-				4A630F2A77BAC092F0A13B26520877B0 /* TCCPubEnum.h */,
-				184D25A2134C5041E66F05517BA62CF1 /* UCConst.h */,
-				258DCAF727BB78388BDD2EC72CCB0B05 /* UCConst.m */,
-				DFB6A80C0A7530F29AA43068CFD727E8 /* UCSFuncEngine.h */,
-				BD637ADAD1F333AB64F5B82992EDEF81 /* UCSFuncEngine.mm */,
-				2EB7FB5744397440601CA26065E1A590 /* UCSVOIPViewEngine.h */,
-				1FA168D0750F05E876204EF5F5F95A5B /* UCSVOIPViewEngine.m */,
-			);
-			path = TCVoipClass;
-			sourceTree = "<group>";
-		};
-		A13EC3879DE75AED08282884B283BE94 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8C365068C1B148C15FDB056AB6E0F475 /* JCSDKOC.framework */,
+				A0FC68FC629E6635CD5A3293455F781F /* JCSDKOC.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A160026D7E29521E90EBB7741D1BA6A3 /* Development Pods */ = {
+		79F97881E6DBA612048D4607B4244036 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E53AC1F3BC23819A9458AB09E659502A /* TCCloudTalking */,
+				479A0CC3B293CAFF6D601B0B0749445A /* TCCloudTalking */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		81EDC064B0737E6E2CC41DFA9B98A668 /* TCPSDK */ = {
+			isa = PBXGroup;
+			children = (
+				63AAF945E128415272CA64412D4527C5 /* libucstcplib.a */,
+				FF8B40918063DB09224708E1D2A9DFA5 /* UCSError.h */,
+				26446CAD0E165D80828DD93E69F28D3A /* UCSTcpClient.h */,
+				A73A3F87392573F22B5D1FB9E84A0EB1 /* UCSTCPCommonClass.h */,
+				D7019567D3765ABDCD283A53BE8CF0F5 /* UCSTcpDefine.h */,
+				66D30B7875CEFFE62B842B178FB053F8 /* UCSTCPDelegateBase.h */,
+				1D9D730C77862480627D952661AC0974 /* UCSTCPSDK.h */,
+			);
+			name = TCPSDK;
+			path = TCPSDK;
+			sourceTree = "<group>";
+		};
+		B6F31588B764973FAD65DAE32E34B6B6 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				38FFA697EBDEF1C6D8EF2D8D580890A4 /* LICENSE */,
+				2F657CC9078BEF9FC8655116FAB46257 /* README.md */,
+				D12A1B04360CE1733617CB4F21941F06 /* TCCloudTalking.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		BEA21781B97095941E360A5F49B78D04 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1C9ECCECFE25B7B7419B1AE01328D3F8 /* TCCloudTalking.xcconfig */,
+				3A89F7166A1086A6F1931F7F836FE6A9 /* TCCloudTalking-dummy.m */,
+				0F511816D5E7823D5C817A1C74B01E88 /* TCCloudTalking-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/TCCloudTalking";
 			sourceTree = "<group>";
 		};
 		C81A9D7A2662C6529C83A937F7F2020A /* SwiftSupport */ = {
@@ -484,47 +341,16 @@
 			name = SwiftSupport;
 			sourceTree = "<group>";
 		};
-		C8333218A1C0A429CCB71690C1B04155 /* JCSDKOC.framework */ = {
-			isa = PBXGroup;
-			children = (
-				25ABF6B2A36544CA101563DE0D547680 /* JCSDKOC */,
-				7A0A5A16C8185B32AF0DC408190144E3 /* Headers */,
-				3E3D9BBEE8841C3A1BD118508636A47C /* Modules */,
-			);
-			path = JCSDKOC.framework;
-			sourceTree = "<group>";
-		};
-		CB78054649C93697B2B1FF78459FBA85 /* VOIPSDK */ = {
-			isa = PBXGroup;
-			children = (
-				2D05D7D4ED5CA1FA7C613E324A0D661B /* libucsvideosdk.a */,
-				7063185CC054F5EE5780E4C884937834 /* UCSCommonClass.h */,
-				6B466448266CEC8F798CB2CA24EA1354 /* UCSEvent.h */,
-				ECE5873D4A607FB031F35FC099911A1F /* UCSService.h */,
-				9EC3F21F687581B0FC91C94F64893643 /* UCSVideoDefine.h */,
-			);
-			path = VOIPSDK;
-			sourceTree = "<group>";
-		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				A160026D7E29521E90EBB7741D1BA6A3 /* Development Pods */,
+				79F97881E6DBA612048D4607B4244036 /* Development Pods */,
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
 				E81A37DBDE41E671312C56736544E2FA /* Pods */,
 				21D588380704D8272A768D2DEA570DCD /* Products */,
 				1E4CD516F9909C3980ED6FCDF1D844FB /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		CF88B9A949E4279A0CCC4879BE05E17E /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				EC5A424CA466739624D1C3DB6F7769A8 /* JCManager.h */,
-				531F102C9990F575D46EF15D3E34EE36 /* JCManager.m */,
-			);
-			path = Header;
 			sourceTree = "<group>";
 		};
 		D1C46F65B318C3FF52C7DC0A4ACDAF1E /* Core */ = {
@@ -555,18 +381,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E53AC1F3BC23819A9458AB09E659502A /* TCCloudTalking */ = {
+		E2DB700C54089BB568ACF5EB78150876 /* VOIPSDK */ = {
 			isa = PBXGroup;
 			children = (
-				A13EC3879DE75AED08282884B283BE94 /* Frameworks */,
-				F1AC58F41CE7CB89E4E93A44067887FC /* Juphoon */,
-				42729BC82E6BE93F410E10BD2F1180E1 /* Pod */,
-				0365B7821E38E77914B6515FD9DD8A0F /* Public */,
-				34564C383CCCD4963ECDB3EA409D5319 /* Support Files */,
-				4D9EBE3A4D43A837353846F28F82B6A6 /* UCS */,
+				C38CA1F8324F7BD2D5EDE47DA6C5A2AD /* libucsvideosdk.a */,
+				129C5677873C2C52BD896C695ACA923B /* UCSCommonClass.h */,
+				87C84DAF2DF83956CD33A72FC0C4E2FF /* UCSEvent.h */,
+				7D7243AFF10FE37D5E2946F2DE49FE6A /* UCSService.h */,
+				EDCD906E4977F885952C18937CF477B5 /* UCSVideoDefine.h */,
 			);
-			name = TCCloudTalking;
-			path = ../..;
+			name = VOIPSDK;
+			path = VOIPSDK;
 			sourceTree = "<group>";
 		};
 		E81A37DBDE41E671312C56736544E2FA /* Pods */ = {
@@ -584,6 +409,7 @@
 				ED0677FF8AE6244FCC6E57691B91080A /* Support Files */,
 				C81A9D7A2662C6529C83A937F7F2020A /* SwiftSupport */,
 			);
+			name = FBSnapshotTestCase;
 			path = FBSnapshotTestCase;
 			sourceTree = "<group>";
 		};
@@ -612,16 +438,6 @@
 			);
 			name = "Pods-TCCloudTalking_Example";
 			path = "Target Support Files/Pods-TCCloudTalking_Example";
-			sourceTree = "<group>";
-		};
-		F1AC58F41CE7CB89E4E93A44067887FC /* Juphoon */ = {
-			isa = PBXGroup;
-			children = (
-				CF88B9A949E4279A0CCC4879BE05E17E /* Header */,
-				C8333218A1C0A429CCB71690C1B04155 /* JCSDKOC.framework */,
-			);
-			name = Juphoon;
-			path = TCCloudTalking/Classes/Juphoon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -657,76 +473,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EE31DF5D6D3F6613F199A7B3DF9B0683 /* Headers */ = {
+		9A795819AFAC57FDD37DF0F7AB11FBCF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D712D253F6858A506CD7166451EBBE16 /* CloudTalkingManager.h in Headers */,
-				370A89CBE6DCEBF16D1678E5E5B4674E /* Header.h in Headers */,
-				A73DD960008A102749CFE9DDD80E0F13 /* JCAccount.h in Headers */,
-				F873235A3C5F3768CBE7447B40335C55 /* JCAccountCallback.h in Headers */,
-				AED33FA78F7CA6B5E0E1A90100B53223 /* JCAccountConstants.h in Headers */,
-				9D8E275930F83338091020F9EDE637AD /* JCAccountContact.h in Headers */,
-				9C0832309B902351287F4E343669FD13 /* JCAccountItem.h in Headers */,
-				F61D295411C2819F3678A356B49D35DB /* JCCall.h in Headers */,
-				82E666F3D132D672C09B9A5C72B3FF17 /* JCCallCallback.h in Headers */,
-				4419D0A709C78447688C298175761711 /* JCCallConstants.h in Headers */,
-				2EFFCAD9C2028DE696C9AB54FA53116B /* JCCallItem.h in Headers */,
-				5F6EA06CCAB908BBE3685BB96B7E767B /* JCClient.h in Headers */,
-				C638A6CCEA25009E3C43C25BD736DB64 /* JCClientCallback.h in Headers */,
-				062516B01CF070517CCDDBD384ACFD8A /* JCClientConstants.h in Headers */,
-				70EE5B96673E4282D59889F744B61636 /* JCDoodle.h in Headers */,
-				8BF5F0E26E36B4D9937A6B5F37CBD12C /* JCDoodleAction.h in Headers */,
-				16676737C302EBFFB58987001B908491 /* JCDoodleProtocol.h in Headers */,
-				A0E5FF860AB792287186F1AE837C00A4 /* JCGroup.h in Headers */,
-				54EDC338681540C7C8C8AD67395A8928 /* JCGroupCallback.h in Headers */,
-				EBB13A39B00E6510C042FECB2F12AE73 /* JCGroupConstants.h in Headers */,
-				8560B97D1B0A680EAD6067A1D8FBB5D3 /* JCGroupItem.h in Headers */,
-				51E173E7AED5534289367853BA881DF0 /* JCGroupMember.h in Headers */,
-				EBBDA18769D71265EB2BE795CFE150D2 /* JCJson.h in Headers */,
-				0838DCD8247A3D654EEE5FA291E42C16 /* JCLog.h in Headers */,
-				682279474E41E04AE7A4573A9C6A8D3F /* JCManager.h in Headers */,
-				F40747BEAE2479280C4DC17D69AD05D6 /* JCMediaChannel.h in Headers */,
-				2D96E4EDA81380AC503D4475AD2D2C78 /* JCMediaChannelCallback.h in Headers */,
-				A9A3ACE844642E67A954128FE09F4388 /* JCMediaChannelConstants.h in Headers */,
-				749059F60C28E070D0D6F5562EECC69A /* JCMediaChannelParticipant.h in Headers */,
-				F7A9EB0B9CECF6EEA2DAD842304695AF /* JCMediaChannelQueryInfo.h in Headers */,
-				C2AE834687C973C1FEC0E80979362AFA /* JCMediaDevice.h in Headers */,
-				A0355F157A055F057B0BB231B837697E /* JCMediaDeviceCallback.h in Headers */,
-				F08CD3A4A51901BE59BE75BA9414E102 /* JCMediaDeviceConstants.h in Headers */,
-				024B490DE4EC37B2A0A88BF928A96BD5 /* JCMediaDeviceVideoCanvas.h in Headers */,
-				F5BE8222A172C28266E8A3250730B294 /* JCMessageChannel.h in Headers */,
-				4173306A21836CAE8253C6FCFCC268A5 /* JCMessageChannelCallback.h in Headers */,
-				FA53E6E4147A7C9416685F00DE2172A4 /* JCMessageChannelConstants.h in Headers */,
-				FD2FBC809D453DF11B94D88505CB0F44 /* JCMessageChannelConversation.h in Headers */,
-				FC61AA5D38DF80FC389FBD31A2EEEC93 /* JCMessageChannelItem.h in Headers */,
-				8E21DEA2485C79902F083DA31595BA9A /* JCNet.h in Headers */,
-				10159067A2643B9A1D7C44B1868E228C /* JCNetCallback.h in Headers */,
-				8558140B0B03581DC169FD76D90D440F /* JCNetConstants.h in Headers */,
-				9FEF1CA7BE1522016CC438AD9E2E2BA7 /* JCPush.h in Headers */,
-				9ABC895B4D1C3361671900639B99CF61 /* JCPushTemplate.h in Headers */,
-				AA1A85BDF9E22CF791595FDF128A2CFE /* JCReachability.h in Headers */,
-				FA00CC5FFA6519C7FBAB29A86296DD60 /* JCSDKOC.h in Headers */,
-				C17E1592636060AD8C6D02130FE2D28A /* JCStorage.h in Headers */,
-				732BEFC81D321AB15967F113301BBF3A /* JCStorageCallback.h in Headers */,
-				4AFEB4ADEEB90605D0DB41A2D1ACE177 /* JCStorageConstants.h in Headers */,
-				D9A73172AFE7B9D64DD2BD5C921B55D2 /* JCStorageItem.h in Headers */,
-				8DDC2A239F17075DDFE8DC94F9D533B0 /* NSString+UCLog.h in Headers */,
-				D88512C90CF3239F011131D0D2DB4DDE /* TCCPubEnum.h in Headers */,
-				4DE6AAA5AF9FE425F46AB4DE76924AB8 /* TCDoorMachineModel.h in Headers */,
-				A799B05ADE41798E858AC3FC89818B73 /* UCConst.h in Headers */,
-				F875B9A26FF59477CE3A7236B4AE94A9 /* UCSCommonClass.h in Headers */,
-				2DBB21C508DC38F351F254D8F11393F6 /* UCSError.h in Headers */,
-				39F9DD3121C794C0D2E49DCDCEB60EB2 /* UCSEvent.h in Headers */,
-				1E999C8D82D1F7E8E992AE9041262617 /* UCSFuncEngine.h in Headers */,
-				6152DDC7F88309BFEC6D23539790DA69 /* UCSService.h in Headers */,
-				154FF32002050779A2B16FEAB7577D83 /* UCSTcpClient.h in Headers */,
-				E08D0BFCE2CC88B9D7C396E355D6C651 /* UCSTCPCommonClass.h in Headers */,
-				40FFDBC007B3D075DE1C50DA42959809 /* UCSTcpDefine.h in Headers */,
-				6EC7C48E26F27A01A5421A4D260D9DDC /* UCSTCPDelegateBase.h in Headers */,
-				A8E29F7DE372D2568FE1485773CA61E8 /* UCSTCPSDK.h in Headers */,
-				C0DE60B00218DFD40717A6F04B73CE4A /* UCSVideoDefine.h in Headers */,
-				0E65C3E06B3082981F6B7B090E3DDC7F /* UCSVOIPViewEngine.h in Headers */,
+				F2236DBCB57F528EC45447EFC957A557 /* CloudTalkingManager.h in Headers */,
+				F647671E1EE79C25D1604CE90C2A0D82 /* Header.h in Headers */,
+				167D8B31213AA066E2343702CAD3223A /* JCManager.h in Headers */,
+				769035FEC54036542595583A51CA3E16 /* NSString+UCLog.h in Headers */,
+				BB1CB96097E1ED89A03DD66DEEC401CB /* TCCPubEnum.h in Headers */,
+				CB998B2C34F5C4CAB1463FF673231E59 /* TCDoorMachineModel.h in Headers */,
+				B4E5A022F7732B637C3D5728A4A31421 /* UCConst.h in Headers */,
+				AC81655FF96D068A22BB9786C0E3BDFD /* UCSCommonClass.h in Headers */,
+				C9B707AD579A00D2152B0628A3A1CF23 /* UCSError.h in Headers */,
+				2784F048B5AD6F6636323871E1BEA14F /* UCSEvent.h in Headers */,
+				A88BF7D8708B40B9D1361DA8083CCA57 /* UCSFuncEngine.h in Headers */,
+				8EE88D9ADE2E64BACBE1BA0ED9FCF42D /* UCSService.h in Headers */,
+				FE0E0F98DA99116363F8465BAE84E0BB /* UCSTcpClient.h in Headers */,
+				1658D10CE4FF99EE37FBC7B2F53948FB /* UCSTCPCommonClass.h in Headers */,
+				DF09A5AB097F793401BD66C9C44556F0 /* UCSTcpDefine.h in Headers */,
+				758C1709AB093DBF6CD62FFC1B5FBE6A /* UCSTCPDelegateBase.h in Headers */,
+				A388BD7EB8552EF0F08E40836181C74A /* UCSTCPSDK.h in Headers */,
+				A4FFE8A6B1F0446BED71C36FE48E241C /* UCSVideoDefine.h in Headers */,
+				8966C7D53D8FB63E11D5CDB2B256B0B1 /* UCSVOIPViewEngine.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,11 +559,11 @@
 		};
 		9E0487CE27116C12C3B9D0D5F5497B20 /* TCCloudTalking */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 76B434072E777E1AD0E02FF3DEEC55AE /* Build configuration list for PBXNativeTarget "TCCloudTalking" */;
+			buildConfigurationList = ECBE747D0D56B3302ECF134C1D612A58 /* Build configuration list for PBXNativeTarget "TCCloudTalking" */;
 			buildPhases = (
-				EE31DF5D6D3F6613F199A7B3DF9B0683 /* Headers */,
-				491700E87567DE022E71D04AED3DA6DB /* Sources */,
-				59892A67D475C1555884CA13F019E410 /* Frameworks */,
+				9A795819AFAC57FDD37DF0F7AB11FBCF /* Headers */,
+				005A058942C5CB42174620AB96341AA4 /* Sources */,
+				B42CD8A2FC9FFAEF4F6D8908830D0F61 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -862,22 +631,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		491700E87567DE022E71D04AED3DA6DB /* Sources */ = {
+		005A058942C5CB42174620AB96341AA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DF1A04012638B4A78DE18EC8B19D76F /* CloudTalkingManager.m in Sources */,
-				991BF523ECCD39675E22091AA30652BB /* JCManager.m in Sources */,
-				03C297F10D1399941EF2A0A79A73AB7B /* JCSDKOC in Sources */,
-				0FCD2C23954395D6EFF7DCCF028EF2F5 /* libucstcplib.a in Sources */,
-				D84DE8A5829464AC72A5FDC993E550E4 /* libucsvideosdk.a in Sources */,
-				483FA6759AB84FD6D5D7A10C7212361B /* module.modulemap in Sources */,
-				CF3731EA4B73D1CC4E311A73E8C7DBDE /* NSString+UCLog.m in Sources */,
-				0A450C38E1A8E8ECE296CF91FC04F7D1 /* TCCloudTalking-dummy.m in Sources */,
-				F56C3C5E55C4C35B494D18AEB726F925 /* TCDoorMachineModel.m in Sources */,
-				8DD091A327C3EAAC0583707A9BE9F5ED /* UCConst.m in Sources */,
-				1AC6F0CF6204543AD907EA5AA0ED21AF /* UCSFuncEngine.mm in Sources */,
-				0939108ED7C73C461D5EB098AC859E0A /* UCSVOIPViewEngine.m in Sources */,
+				FAB6F63F44B07061E17604EFEBCFCC20 /* CloudTalkingManager.m in Sources */,
+				5F17C7A0BE05AA50A0CBBD1904C498EB /* JCManager.m in Sources */,
+				D32BD41FCC8A89DD78A8EB94B845B5DB /* libucstcplib.a in Sources */,
+				19C22F14E991F46B9BF05AD0078E3849 /* libucsvideosdk.a in Sources */,
+				9D24D509DF82913427DE6BC70D56AE90 /* NSString+UCLog.m in Sources */,
+				94D4F1BF7D898CED4EFDA4B634813A7D /* TCCloudTalking-dummy.m in Sources */,
+				D582B0CC0380F3A3DE2AAB5C0A9D1D47 /* TCDoorMachineModel.m in Sources */,
+				389497D4BD1048E5BA190F5AA42ACE17 /* UCConst.m in Sources */,
+				0ABA8F87CF1B641923A04A9064B8988E /* UCSFuncEngine.mm in Sources */,
+				2C9156BE7DD66554F68B17FFD32678E8 /* UCSVOIPViewEngine.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1011,34 +778,6 @@
 			};
 			name = Release;
 		};
-		7961F500D3B0EB46440846EDCF5B98E4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15428C4016B0BB4F8B86F8B016A6AB1D /* TCCloudTalking.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/TCCloudTalking/TCCloudTalking-prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"IsTestEnvironment=1",
-				);
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = TCCloudTalking;
-				PRODUCT_NAME = TCCloudTalking;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		83C6B13B45EC601024463331A2C1A2A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A47F8C13515220EA401C0014A9EF807C /* FBSnapshotTestCase.xcconfig */;
@@ -1067,6 +806,31 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		88E340954818C74C5D4B618AA630E3F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C9ECCECFE25B7B7419B1AE01328D3F8 /* TCCloudTalking.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/TCCloudTalking/TCCloudTalking-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = TCCloudTalking;
+				PRODUCT_NAME = TCCloudTalking;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
 		};
 		8F17DC3A99F99FBAD606CE6963886315 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1121,7 +885,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -1217,15 +982,19 @@
 			};
 			name = Debug;
 		};
-		DEF232199FC58297406DD174CA4A1D15 /* Release */ = {
+		DA3C3427F617D49361CB1D0E9E570E1F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 15428C4016B0BB4F8B86F8B016A6AB1D /* TCCloudTalking.xcconfig */;
+			baseConfigurationReference = 1C9ECCECFE25B7B7419B1AE01328D3F8 /* TCCloudTalking.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/TCCloudTalking/TCCloudTalking-prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"IsTestEnvironment=1",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -1238,9 +1007,8 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = Debug;
 		};
 		F9E34FA27F26B92926BF201A28990C24 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1294,20 +1062,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		76B434072E777E1AD0E02FF3DEEC55AE /* Build configuration list for PBXNativeTarget "TCCloudTalking" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7961F500D3B0EB46440846EDCF5B98E4 /* Debug */,
-				DEF232199FC58297406DD174CA4A1D15 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		CCC52705E06A4B877F065C0583DC8243 /* Build configuration list for PBXNativeTarget "Pods-TCCloudTalking_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E487FCA21F9DCB6D87164A7B93E6A35 /* Debug */,
 				61BA484646D474B6DFD14DA6DCD71C77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECBE747D0D56B3302ECF134C1D612A58 /* Build configuration list for PBXNativeTarget "TCCloudTalking" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA3C3427F617D49361CB1D0E9E570E1F /* Debug */,
+				88E340954818C74C5D4B618AA630E3F7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

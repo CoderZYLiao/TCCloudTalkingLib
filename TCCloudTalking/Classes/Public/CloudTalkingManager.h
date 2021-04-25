@@ -22,8 +22,11 @@ typedef enum
 } CloudTalkingType;
 
 @interface CloudTalkingManager : NSObject
-- (void)initCloudTalkingWithAccount:(NSString *)account withType:(CloudTalkingType)type;
-- (void)makingCallViewWithDoorMachineModel:(TCDoorMachineModel *)machineModel withCallType:(UCSCallTypeEnum)callType;
+// 音视频服务提供商UCS初始化
+- (void)initUCSCloudTalkingWithToken:(NSString *)token;
+// 音视频服务提供商Juphone初始化 cad1a228ea4733f68b1a5097
+- (void)initJuphoneCloudTalkingWithServerAddress:(NSString *)serverAddress withAppKey:(NSString *)appKey withAccount:(NSString *)account;
+- (void)makingCallViewVideoWithDoorMachineModel:(TCDoorMachineModel *)machineModel withCloudTalkingType:(CloudTalkingType)callType;
 @end
 
 NS_ASSUME_NONNULL_END

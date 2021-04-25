@@ -52,9 +52,8 @@ static JCManager* _manager;
     return _manager;
 }
 
--(bool)initialize
+- (bool)initializeWithAppKey:(NSString *)appKey
 {
-    NSString *appKey = @"666";
     _client = [JCClient create:appKey callback:self creatParam:nil];
     _mediaDevice = [JCMediaDevice create:_client callback:self];
     _call = [JCCall create:_client mediaDevice:_mediaDevice callback:self];
@@ -174,7 +173,7 @@ static JCManager* _manager;
     [self addLog:[NSString stringWithFormat:@"*onCallItemAdd %@", item.userId]];
     if (self.call.callItems.count == 1) {
         //如果在开锁页面(关闭开锁页面)
-        [[NSNotificationCenter defaultCenter] postNotificationName:UCSNotiClsoeView object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:UCSNotiCloseView object:nil];
         
 //        _callViewController = [[JCDoorVideoCallController alloc] initWithCallerItem:item];
 //        UIViewController *root = [UIApplication sharedApplication].keyWindow.rootViewController;

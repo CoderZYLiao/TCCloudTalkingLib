@@ -8,29 +8,41 @@
 
 #import "CloudTalkingManager.h"
 #import "UCSVOIPViewEngine.h"
+#import "JCManager.h"
 
 @interface CloudTalkingManager() <UCSTCPDelegateBase>
-@property (nonatomic, assign) CloudTalkingType talkingType;
+
 @end
 
 @implementation CloudTalkingManager
- // 7363395161858048
-- (void)initCloudTalkingWithAccount:(NSString *)account withType:(CloudTalkingType)type
+
+
+#pragma mark - 初始化
+
+ // 音视频服务提供商UCS初始化
+- (void)initUCSCloudTalkingWithToken:(NSString *)token
 {
-    _talkingType = type;
-    if (type == CloudTalkingTypeUCS) {  // 云之讯
-        [[UCSTcpClient sharedTcpClientManager] setTcpDelegate:self];
-        [UCSFuncEngine getInstance];
-        [[UCSTcpClient sharedTcpClientManager] login_uninitWithFlag:NO];
-        [[UCSTcpClient sharedTcpClientManager] login_connect:account  success:^(NSString *userId) {
-            [self connectionSuccessful];
-            [[UCSFuncEngine getInstance] creatTimerCheckCon];  //开启15秒连接定时检测
-        } failure:^(UCSError *error) {
-            [self connectionFailed:error.code];
-        }];
-    } else if (type == CloudTalkingTypeJuphone) {  // 菊风
-        
-    }
+    [[UCSTcpClient sharedTcpClientManager] setTcpDelegate:self];
+    [UCSFuncEngine getInstance];
+    [[UCSTcpClient sharedTcpClientManager] login_uninitWithFlag:NO];
+    [[UCSTcpClient sharedTcpClientManager] login_connect:token  success:^(NSString *userId) {
+        [self connectionSuccessful];
+        [[UCSFuncEngine getInstance] creatTimerCheckCon];  //开启15秒连接定时检测
+    } failure:^(UCSError *error) {
+        [self connectionFailed:error.code];
+    }];
+}
+
+// 音视频服务提供商Juphone初始化 cad1a228ea4733f68b1a5097
+- (void)initJuphoneCloudTalkingWithServerAddress:(NSString *)serverAddress withAppKey:(NSString *)appKey withAccount:(NSString *)account
+{
+    [JCManager.shared initializeWithAppKey:appKey];  // 初始化菊风
+    [self LoginJCClientWithServerAddress:serverAddress withAppKey:appKey withAccount:account];
+    // 菊风消息监测
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoginSuccess:) name:kClientOnLoginSuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onLoginFail:) name:kClientOnLoginFailNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clientStateChange:) name:kClientStateChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kickOff) name:kClientOnLogoutNotification object:nil];
 }
 
 #pragma mark - 云之讯相关
@@ -72,23 +84,23 @@
     }
 }
 
-/**
- *  @brief 收到透传数据时回调
- *
- *  @param objcts 透传实体类
- */
-- (void)didReceiveTransParentData:(UCSTCPTransParent *)objcts {
-    
-}
-
 // 拨打电话之前先确定云之讯或者菊风已经连接
-- (void)makingCallViewWithDoorMachineModel:(TCDoorMachineModel *)machineModel withCallType:(UCSCallTypeEnum)callType
+- (void)makingCallViewVideoWithDoorMachineModel:(TCDoorMachineModel *)machineModel withCloudTalkingType:(CloudTalkingType)callType
 {
-    if (_talkingType == CloudTalkingTypeUCS) {
+    if (callType == CloudTalkingTypeUCS) {
         // V520080492c47b6922b49ffa
         [[UCSVOIPViewEngine getInstance] makingCallViewCallNumber:machineModel.intercomUserId callType:UCSCallType_VideoPhone callName:machineModel.name];
     } else {
-        
+        if (JCManager.shared.client.state == JCClientStateLogined) {
+          JCCallParam *callParam = [[JCCallParam alloc] init];
+          [callParam setExtraParam:machineModel.name];
+          bool value = [JCManager.shared.call call:machineModel.intercomUserId video:true callParam:callParam];
+          if (value) {
+             NSLog(@"菊风调用call方法成功");
+          }
+      } else {
+          NSLog(@"对讲账号异常，请重新登录应用");
+      }
     }
 }
 
@@ -108,6 +120,47 @@
         } failure:^(UCSTCPTransParentRequest *request, UCSError *error) {
             
         }];
+    }
+}
+
+#pragma mark - 菊风相关
+
+- (void)LoginJCClientWithServerAddress:(NSString *)serverAddress withAppKey:(NSString *)appKey withAccount:(NSString *)account
+{
+    if (JCManager.shared.client.state == JCClientStateLogined) {
+        [JCManager.shared.client logout];
+    }
+    
+    if (JCManager.shared.client.state == JCClientStateIdle) {
+        if ([JCManager.shared.client login:account password:@"tc123456" serverAddress:serverAddress loginParam:nil]) {
+            NSLog(@"菊风服务器登录调用正常");
+        } else {
+            NSLog(@"菊风服务器登录调用异常");
+        }
+    }
+}
+
+- (void)onLoginSuccess:(NSNotification *)info
+{
+    NSLog(@"菊风服务器登录成功");
+}
+
+- (void)onLoginFail:(NSNotification *)info
+{
+    NSLog(@"菊风服务器登录失败---%@",info);
+}
+
+- (void)clientStateChange:(NSNotification*)info
+{
+    JCClientState state = JCManager.shared.client.state;
+    if (state == JCClientStateIdle) {
+        NSLog(@"登录");
+    } else if (state == JCClientStateLogined) {
+        NSLog(@"已登录");
+    } else if (state == JCClientStateLogining) {
+        NSLog(@"登录中");
+    } else if (state == JCClientStateLogouting) {
+        NSLog(@"登出中");
     }
 }
 
